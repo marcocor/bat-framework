@@ -1,0 +1,57 @@
+pathToWikiDataSummaryFile=benchmark/systems/illinois/Data/WikiSummary.proto.save
+
+pathToProtobufferWikiAccessIndex=benchmark/systems/illinois/Data/WikiAccessProtoBuffers
+
+pathToSurfaceFormsIndexFile=benchmark/systems/illinois/Data/SurfaceFromsInfo
+
+# the redirects data allows to evaluate results obtained with different versions of Wikipedia
+pathToEvaluationRedirectsData=benchmark/systems/illinois/Data/WikiData/RedirectsForEvaluationData/RedirectsFeb2011.txt
+
+pathToPairwiseSemanticInfo=benchmark/systems/illinois/Data/PairwiseSemanticSim/Index
+
+pathToWordNetConfigFile=benchmark/configs/illinois/jwnl_properties_benchmark.xml
+
+pathToTitleCategoryKeywordsInfo=benchmark/systems/illinois/Data/WikiData/TitleSummaryData.txt
+
+pathToModels=benchmark/systems/illinois/Data/Models/DemoModels
+
+pathToStopWords=benchmark/systems/illinois/Data/OtherData/stopwords_big
+
+curatorServerMachine=grandma.cs.uiuc.edu
+curatorPort=9010
+pathToCuratorCache=benchmark/systems/illinois/Data/TAC_ProblemsAndTextData/CuratorCache
+
+disableCacheUse=true
+expectCachedCuratorData=false
+bypassTheCurator=true
+pathToOfflineNerConfigFile=benchmark/configs/illinois/NER_benchmark.config
+
+disallowEntityOverlap=false
+THRES_FOR_ALMOST_UNAMBIGUOUS_SOLUTION=0.99
+annotateOnlyAlmostUnambiguousMentions=false
+showProgress=true
+showMemoryUsage=false 
+
+maxCandidatesToGenerateInitially=20
+
+useOnlyConditionalTitleProbabilitiesInTitleMatchFeatures=false
+useGeneratorFeatures=false
+useLexicalFeaturesNaive=false
+useLexicalFeaturesReweighted=true
+useUnambiguousInDisambiguationContext=false
+useNamedEntitiesInDisambiguationContext=false
+useAllSurfaceFormsInDisambiguationContext=true
+useOnlyLinkedSurfaceFormsForDisambiguationContext=true
+useCoherenceFeatures=true
+useGoldAnnotationsInCoherence=false
+
+generateFeaturesConjunctions=false
+numCandidatesAtCoherenceLevel=3
+
+# These are the Edison views and the Curator services used in this configuration
+# it's always best to keep these demands on minimum, particularly for the demo,
+# since the caching is useless for the demo and the services do tend to break down
+NER=true
+SHALLOW_PARSE=true
+DEPENDENCY=false
+POS=false 

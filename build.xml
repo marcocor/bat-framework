@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="BAT-Framework" basedir=".">
+
+	<property file="${basedir}/build.properties" />
+	
+	<!-- ${basedir} will be taken from build.properties -->
+	<property name="bin" value="${basedir}/bin"/>
+	<property name="src" value="${basedir}/src"/>
+	<property name="lib" value="${basedir}/lib"/>
+	<property name="extlib" value="${basedir}/benchmark/libs"/>
+	<property name="extsystems" value="${basedir}/benchmark/systems"/>
+	<property name="dist" value="${basedir}/dist"/>
+	<property name="version" value="0.1"/>
+		
+	<!-- exclude some source files -->
+	<property name="exclude.source" value=
+			"
+			it/acubelab/batframework/metrics/ProximityAnnotationMatch.java,
+			it/acubelab/batframework/systemPlugins/TagMyQueryTagger.java,
+			it/acubelab/batframework/scripts/**
+			test/**
+			"
+	/>
+	
+	<property name="exclude.benchmark" value=
+	"
+		configs/tagme_local/**,
+		configs/tagmyquery/**,
+		datasets/aida/AIDA-YAGO2-dataset.tsv,
+		datasets/kdd/**,
+		datasets/meij/original_tweets.list,
+		libs/tagme/**,
+		libs/tagmyquery/**
+		systems/tagmyquery/**
+	"
+	/>
+	
+	<!-- classpath for compiling -->
+	<path id="batframework.lib">
+		<fileset dir="${lib}">
+			<include name="*.jar"/>
+		</fileset>
+        <fileset dir="${extlib}">
+        	<include name="*.jar"/>
+        	<include name="*/*.jar"/>
+        </fileset>
+        <fileset dir="${extsystems}">
+        	<include name="*.jar"/>
+        	<include name="*/*.jar"/>
+        </fileset>
+	</path>
+	
+		
+	<!-- clean -->
+	<target name="clean">
+		<mkdir dir="${bin}"/>
+		<delete includeemptydirs="true">
+			<fileset dir="${bin}" includes="**/*"/>
+		</delete>
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="clean">
+		<mkdir dir="${bin}"/>
+		<javac
+			destdir="${bin}"
+			classpathref="batframework.lib"
+			nowarn="on"
+			debug="on"
+			debuglevel="lines,vars,source"
+			encoding="UTF-8"
+			excludes="${exclude.source}"
+			srcdir="${src}"
+		>
+			<compilerarg value="-Xlint:none"/>
+		</javac>
+	</target>
+
+	<!-- create the (class-only) jar -->
+	<target name="jar.class" depends="compile">
+		<tstamp/>
+		<delete quiet="true" file="${dist}/batframework-${version}-class.jar" />
+		<jar destfile="${dist}/batframework-${version}-class.jar" basedir="${bin}">
+		    <manifest>
+		      	<attribute name="Built-By" value="${user.name}"/>
+		    	<attribute name="Date" value="${DSTAMP}-${TSTAMP}"/>
+		    	<attribute name="Machine" value="${os.name} ${os.arch}"/>
+		    </manifest>
+		</jar>
+	</target>
+	
+	<!-- create the (class+source) jar -->
+	<target name="jar" depends="compile">
+		<delete dir="${basedir}/tmp" quiet="true" />
+		<mkdir dir="${basedir}/tmp"/>
+		<copy todir="${basedir}/tmp" preservelastmodified="true">
+			<fileset dir="${src}" excludes="${exclude.source}"/>
+			<fileset dir="${bin}" />
+		</copy>
+		<tstamp>
+		    <format property="time_prefix" pattern="yyyy-MM-dd HH:mm"/>
+		</tstamp>
+		
+		<delete quiet="true" file="${dist}/batframework-${version}.jar" />
+		<jar destfile="${dist}/batframework-${version}.jar" basedir="${basedir}/tmp">
+		    <manifest>
+		      	<attribute name="Built-By" value="${user.name}"/>
+		    	<attribute name="Date" value="${time_prefix}"/>
+		    	<attribute name="Machine" value="${os.name} ${os.arch}"/>
+		    </manifest>
+		</jar>
+		<delete dir="${basedir}/tmp" quiet="true" />
+	</target>
+	
+	<!-- create the BAT-environment -->
+	<target name="bat-env" depends="jar">
+		<delete quiet="true" file="${dist}/bat-env-${version}.zip" />
+		<zip destfile="${dist}/bat-env-${version}.zip">
+		    <zipfileset dir="${dist}" includes="*.jar" prefix="lib"/>
+		    <zipfileset dir="${basedir}/benchmark" excludes="${exclude.benchmark}" prefix="benchmark"/>
+		    <zipfileset dir="${basedir}/charts" prefix="charts"/>
+		    <zipfileset dir="${basedir}/lib" prefix="lib"/>
+		  </zip>
+	</target>
+	
+</project>
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wikipediaminer>
+        <setting name="access">
+                <param name="url" value="http://wikipediadataminer.cms.waikato.ac.nz/services/wikify" />
+        </setting>
+</wikipediaminer>

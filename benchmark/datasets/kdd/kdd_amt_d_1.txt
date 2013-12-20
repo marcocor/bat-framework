@@ -1,0 +1,3650 @@
+.	O	O	#
+party	party_city	O	B-ORG	Party_City	http://en.wikipedia.org/wiki/Party_City
+city	O	O	I-ORG
+in	O	O	O
+dallas	dallas	O	B-LOC	Dallas	http://en.wikipedia.org/wiki/Dallas
+.	O	O	#
+classroom	O	O	O
+maps	O	O	O
+download	O	O	O
+.	O	O	#
+can	O	O	O
+endometritis	O	O	O
+turn	O	O	O
+into	O	O	O
+hyperplasia?	O	O	O
+.	O	O	#
+aptiva	aptiva	O	B-ORG	Aptiva	http://en.wikipedia.org/wiki/Aptiva
+video	O	O	O
+card	O	O	O
+.	O	O	#
+haywood	haywood_house	O	B-ORG	NONE	NONE
+house	O	O	I-ORG
+cardiff	cardiff	O	B-LOC	Cardiff	http://en.wikipedia.org/wiki/Cardiff
+uk	uk	O	B-LOC	Uk	http://en.wikipedia.org/wiki/Uk
+.	O	O	#
+photoamateur	O	O	O	NONE	NONE
+.	O	O	#
+shoshone	shoshone_county_sheriffs_department;	O	B-ORG	NONE	NONE
+county	O	O	I-ORG
+sheriffs	O	O	I-ORG
+department;	O	O	I-ORG
+wallace;id	wallace;id	O	B-LOC	Wallace,_Idaho	http://en.wikipedia.org/wiki/Wallace%2C_Idaho
+.	O	O	#
+car	O	O	O
+rentals	O	O	O
+in	O	O	O
+albuquerque;nm	albuquerque;nm	O	B-LOC	Albuquerque,_New_Mexico	http://en.wikipedia.org/wiki/Albuquerque%2C_New_Mexico
+.	O	O	#
+rvclassified	O	O	O
+motorhome	O	O	O
+.	O	O	#
+protocol	O	O	O
+visualization	O	O	O
+.	O	O	#
+mdwav	O	O	O
+song	O	O	O
+.	O	O	#
+cdphp	O	O	O
+per	O	O	O
+se	O	O	O
+.	O	O	#
+ashgrove	ashgrove_elementary_school	O	B-ORG	NONE	NONE
+elementary	O	O	I-ORG
+school	O	O	I-ORG
+in	O	O	O
+riverton	riverton_wyoming	O	B-LOC	Riverton,_Wyoming	http://en.wikipedia.org/wiki/Riverton%2C_Wyoming
+wyoming	O	O	I-LOC
+.	O	O	#
+reef	O	O	O
+show	O	O	O
+tanks	O	O	O
+.	O	O	#
+mississippi	mississippi	O	B-LOC	Mississippi	http://en.wikipedia.org/wiki/Mississippi
+gulf	O	O	O
+coast	O	O	O
+aquarium	O	O	O
+.	O	O	#
+prism	O	O	O
+aha	O	O	O
+cpr	O	O	O
+training	O	O	O
+.	O	O	#
+music	O	O	O
+instruments	O	O	O
+the	O	O	O
+drum	O	O	O
+.	O	O	#
+gary	gary_eugene_orr	O	B-PER	NONE	NONE
+eugene	O	O	I-PER
+orr	O	O	I-PER
+arested	O	O	O
+.	O	O	#
+air	O	O	O
+froce	O	O	O
+1	O	O	O
+shoes	O	O	O
+.	O	O	#
+saskatchewan	O	O	O
+centenial	O	O	O
+celebration	O	O	O
+jokes	O	O	O
+or	O	O	O
+skits	O	O	O
+.	O	O	#
+maguy	maguy_bastadjian	O	B-PER	NONE	NONE
+bastadjian	O	O	I-PER
+.	O	O	#
+biography	O	O	O
+of	O	O	O
+ernst	ernst_barlach	O	B-PER	Ernst_barlach	http://en.wikipedia.org/wiki/Ernst_barlach
+barlach	O	O	I-PER
+.	O	O	#
+clarke	clarke_county_georgia	O	B-LOC	Clarke_County,_Georgia	http://en.wikipedia.org/wiki/Clarke_County%2C_Georgia
+county	O	O	I-LOC
+georgia	O	O	I-LOC
+school	O	O	O
+district	O	O	O
+.	O	O	#
+the	O	O	O
+number	O	O	O
+of	O	O	O
+cubic	O	O	O
+inches	O	O	O
+in	O	O	O
+six	O	O	O
+letres	O	O	O
+.	O	O	#
+concreate	O	O	O
+floors	O	O	O
+.	O	O	#
+harwood	harwood_lewin	O	B-PER	NONE	NONE
+lewin	O	O	I-PER
+.	O	O	#
+loan	O	O	O
+companies	O	O	O
+for	O	O	O
+bad	O	O	O
+credit	O	O	O
+.	O	O	#
+frontiersman	O	O	O
+homestead	O	O	O
+series	O	O	O
+.	O	O	#
+tom	tom_bannan	O	B-PER	Tom_Bannan	http://en.wikipedia.org/wiki/Tom_Bannan
+bannan	O	O	I-PER
+chevy	chevy	O	B-PER	Chevy	http://en.wikipedia.org/wiki/Chevy
+.	O	O	#
+credential	O	O	O
+in	O	O	O
+rehabilitative	O	O	O
+services	O	O	O
+.	O	O	#
+mcentyre's	mcentyre's	O	B-ORG	McEntyre	http://en.wikipedia.org/wiki/McEntyre
+cakes	O	O	O
+.	O	O	#
+matilda	matilda_jones	O	B-PER	NONE	NONE
+jones	O	O	I-PER
+murder	O	O	O
+a	O	O	O
+.	O	O	#
+credit	O	O	O
+card	O	O	O
+replacement	O	O	O
+.	O	O	#
+freeware	O	O	O
+usb	O	O	O
+virtual	O	O	O
+port	O	O	O
+.	O	O	#
+daly	daly_city	O	B-LOC	Daly_City	http://en.wikipedia.org/wiki/Daly_City
+city	O	O	I-LOC
+utilities	O	O	O
+.	O	O	#
+eloise	eloise_estrada	O	B-PER	NONE	NONE
+estrada	O	O	I-PER
+.	O	O	#
+kindergarten	O	O	O
+lesson	O	O	O
+plans	O	O	O
+peter	peter_rabbit	O	B-PER	Peter_rabbit	http://en.wikipedia.org/wiki/Peter_rabbit
+rabbit	O	O	I-PER
+.	O	O	#
+dvd	O	O	O
+idle	O	O	O
+pro	O	O	O
+crack	O	O	O
+.	O	O	#
+general	general_aluminum	O	B-ORG	NONE	NONE
+aluminum	O	O	I-ORG
+windows	O	O	O
+and	O	O	O
+doors	O	O	O
+.	O	O	#
+teacher	O	O	O
+molests	O	O	O
+12	O	O	O
+year	O	O	O
+old	O	O	O
+.	O	O	#
+uo/zzz_ros_aweuo_v1.0b5	O	O	O
+.	O	O	#
+progressive	O	O	O
+ins	O	O	O
+select	O	O	O
+auto	O	O	O
+repair	O	O	O
+shops	O	O	O
+.	O	O	#
+puyallup	puyallup	O	B-LOC	Puyallup,_Washington	http://en.wikipedia.org/wiki/Puyallup%2C_Washington
+jeep\	O	O	O
+.	O	O	#
+pontiac	O	O	O
+lubbock	lubbock	O	B-LOC	Lubbock	http://en.wikipedia.org/wiki/Lubbock
+.	O	O	#
+amelia	amelia_national_home_builders	O	B-ORG	NONE	NONE
+national	O	O	I-ORG
+home	O	O	I-ORG
+builders	O	O	I-ORG
+.	O	O	#
+businesses	O	O	O
+in	O	O	O
+milwaukee	milwaukee	O	B-LOC	Milwaukee	http://en.wikipedia.org/wiki/Milwaukee
+.	O	O	#
+real	O	O	O
+lifenude	O	O	O
+.	O	O	#
+eeoc	O	O	O
+laws	O	O	O
+date	O	O	O
+of	O	O	O
+birth	O	O	O
+.	O	O	#
+barbara	barbara_hodges	O	B-PER	NONE	NONE
+hodges	O	O	I-PER
+dvm	O	O	O
+california	california	O	B-LOC	California	http://en.wikipedia.org/wiki/California
+.	O	O	#
+no	O	O	O
+kill	O	O	O
+cat	O	O	O
+farms	O	O	O
+md	md	O	B-LOC	Md	http://en.wikipedia.org/wiki/Md
+.	O	O	#
+online	O	O	O
+real	O	O	O
+estate	O	O	O
+courses	O	O	O
+-rhode	-rhode_island	O	B-LOC	Rhode_Island	http://en.wikipedia.org/wiki/Rhode_Island
+island	O	O	I-LOC
+.	O	O	#
+dolch	O	O	O
+word	O	O	O
+game	O	O	O
+worksheet	O	O	O
+.	O	O	#
+road	O	O	O
+map	O	O	O
+vendors	O	O	O
+.	O	O	#
+gaali	O	O	O
+vanalo	O	O	O
+vananetilo	O	O	O
+padava	O	O	O
+.	O	O	#
+ecosysytm	O	O	O
+of	O	O	O
+forest	O	O	O
+.	O	O	#
+disney	disney_channel_._com	O	B-ORG	Disney_Channel	http://en.wikipedia.org/wiki/Disney_Channel
+channel	O	O	I-ORG
+.	O	O	I-ORG
+com	O	O	I-ORG
+/	O	O	O
+click	O	O	O
+it	O	O	O
+to	O	O	O
+pick	O	O	O
+it	O	O	O
+.	O	O	#
+mitchellopia	O	O	O
+.	O	O	#
+morphine	O	O	O
+addiction	O	O	O
+in	O	O	O
+newborns	O	O	O
+.	O	O	#
+carrs	O	O	O
+silversmith	O	O	O
+.	O	O	#
+courtyard	O	O	O
+by	O	O	O
+marriott	marriott	O	B-ORG	Marriott	http://en.wikipedia.org/wiki/Marriott
+east	east_wichita	O	B-LOC	Wichita,_Kansas	http://en.wikipedia.org/wiki/Wichita%2C_Kansas
+wichita	O	O	I-LOC
+.	O	O	#
+building	O	O	O
+materials	O	O	O
+donation	O	O	O
+.	O	O	#
+osd	osd	O	B-ORG	On-screen_display	http://en.wikipedia.org/wiki/On-screen_display
+acquisition	O	O	O
+.	O	O	#
+faq	O	O	O
+site:jaz-.com	O	O	O
+.	O	O	#
+florida	florida	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+dmv	dmv	O	B-ORG	DMV	http://en.wikipedia.org/wiki/DMV
+license	O	O	O
+check	O	O	O
+.	O	O	#
+the	O	O	O
+very	O	O	O
+hunger	O	O	O
+caterpilliar	O	O	O
+by	O	O	O
+eric	eric_carle	O	B-PER	Eric_Carle	http://en.wikipedia.org/wiki/Eric_Carle
+carle	O	O	I-PER
+.	O	O	#
+mount	mount_horeb	O	B-LOC	Mount_Horeb	http://en.wikipedia.org/wiki/Mount_Horeb
+horeb	O	O	I-LOC
+imp	O	O	O
+.	O	O	#
+carpet	O	O	O
+cleaning;seattrle	O	O	O
+.	O	O	#
+paint	O	O	O
+strokes	O	O	O
+.	O	O	#
+movie	O	O	O
+hitchhikers	O	O	O
+guide	O	O	O
+to	O	O	O
+the	O	O	O
+galaxy	galaxy	O	B-LOC	Galaxy	http://en.wikipedia.org/wiki/Galaxy
+.	O	O	#
+diamond	O	O	O
+o	O	O	O
+campground	O	O	O
+information	O	O	O
+.	O	O	#
+locations	O	O	O
+for	O	O	O
+section	O	O	O
+8	O	O	O
+housing	O	O	O
+in	O	O	O
+pg	pg_county_md	O	B-LOC	NONE	NONE
+county	O	O	I-LOC
+md	O	O	I-LOC
+.	O	O	#
+printable	O	O	O
+kids	O	O	O
+devotions	O	O	O
+.	O	O	#
+riedell	O	O	O
+122	O	O	O
+adkates	O	O	O
+.	O	O	#
+psichanalalyse	O	O	O
+mythologie	O	O	O
+.	O	O	#
+spleen/sarcoidosis	O	O	O
+.	O	O	#
+give	O	O	O
+me	O	O	O
+private	O	O	O
+company	O	O	O
+in	O	O	O
+taiwan	taiwan	O	B-LOC	Taiwan	http://en.wikipedia.org/wiki/Taiwan
+.	O	O	#
+icu	O	O	O
+updates	O	O	O
+.	O	O	#
+cardiopathie	O	O	O
+congenitale	O	O	O
+.	O	O	#
+bctv	bctv	O	B-ORG	BCTV	http://en.wikipedia.org/wiki/BCTV
+wayne	wayne_cox	O	B-PER	NONE	NONE
+cox	O	O	I-PER
+.	O	O	#
+sourcherry	O	O	O
+.	O	O	#
+davies	davies_gates	O	B-ORG	NONE	NONE
+gates	O	O	I-ORG
+garden	O	O	O
+made	O	O	O
+.	O	O	#
+rare	O	O	O
+rose	O	O	O
+pictures	O	O	O
+.	O	O	#
+mercedes	mercedes_benz	O	B-ORG	Mercedes_benz	http://en.wikipedia.org/wiki/Mercedes_benz
+benz	O	O	I-ORG
+c240	O	O	O
+weight	O	O	O
+.	O	O	#
+hp	O	O	O
+designjet	O	O	O
+paper	O	O	O
+falling	O	O	O
+into	O	O	O
+tray	O	O	O
+.	O	O	#
+eposn	O	O	O
+stylus	O	O	O
+color	O	O	O
+740	O	O	O
+not	O	O	O
+printing	O	O	O
+.	O	O	#
+sell	O	O	O
+used	O	O	O
+dolls	O	O	O
+.	O	O	#
+atlas	atlas_copco	O	B-ORG	Atlas_Copco	http://en.wikipedia.org/wiki/Atlas_Copco
+copco	O	O	I-ORG
+""service	O	O	O
+.	O	O	#
+boat	O	O	O
+from	O	O	O
+west	west_plam_beach	O	B-LOC	West_Palm_Beach,_Florida	http://en.wikipedia.org/wiki/West_Palm_Beach%2C_Florida
+plam	O	O	I-LOC
+beach	O	O	I-LOC
+florida	florida	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+to	O	O	O
+the	the_bahamas	O	B-LOC	The_Bahamas	http://en.wikipedia.org/wiki/The_Bahamas
+bahamas	O	O	I-LOC
+.	O	O	#
+citybank	citybank	O	B-ORG	Citibank	http://en.wikipedia.org/wiki/Citibank
+credit	O	O	O
+cardlost	O	O	O
+.	O	O	#
+charge	O	O	O
+rate	O	O	O
+for	O	O	O
+getting	O	O	O
+a	O	O	O
+tongue	O	O	O
+ring	O	O	O
+.	O	O	#
+philipiines	philipiines	O	B-LOC	Philippines	http://en.wikipedia.org/wiki/Philippines
+food	O	O	O
+recipe	O	O	O
+.	O	O	#
+lhs	O	O	O
+liverpool	liverpool	O	B-LOC	Liverpool	http://en.wikipedia.org/wiki/Liverpool
+k12	O	O	O
+ny	ny	O	B-LOC	New_York	http://en.wikipedia.org/wiki/New_York
+us	O	O	O
+lhs	O	O	O
+.	O	O	#
+beauty	O	O	O
+studio;myscene	O	O	O
+.	O	O	#
+haywood	haywood_county;	O	B-LOC	Haywood_County	http://en.wikipedia.org/wiki/Haywood_County
+county;	O	O	I-LOC
+tennessee;	tennessee;	O	B-LOC	Tennessee	http://en.wikipedia.org/wiki/Tennessee
+chamber	chamber_of_commerce	O	B-ORG	Chamber_of_commerce	http://en.wikipedia.org/wiki/Chamber_of_commerce
+of	O	O	I-ORG
+commerce	O	O	I-ORG
+.	O	O	#
+positive	O	O	O
+consumer	O	O	O
+focus	O	O	O
+in	O	O	O
+mental	O	O	O
+health	O	O	O
+.	O	O	#
+okaloosa	okaloosa_county	O	B-LOC	Okaloosa_County	http://en.wikipedia.org/wiki/Okaloosa_County
+county	O	O	I-LOC
+marriage	O	O	O
+.	O	O	#
+cleaning	O	O	O
+task	O	O	O
+work	O	O	O
+sheet	O	O	O
+.	O	O	#
+sicclan;net	O	O	O
+.	O	O	#
+faq	O	O	O
+site:x2g7.com	O	O	O
+.	O	O	#
+seachbox-earth	O	O	O
+.	O	O	#
+school	O	O	O
+bus	O	O	O
+wreak	O	O	O
+in	O	O	O
+grayson	grayson	O	B-LOC	Grayson	http://en.wikipedia.org/wiki/Grayson
+.	O	O	#
+carpet	O	O	O
+outlets	O	O	O
+new	new_york	O	B-LOC	New_york	http://en.wikipedia.org/wiki/New_york
+york	O	O	I-LOC
+.	O	O	#
+tom	tom	O	B-ORG	Tom	http://en.wikipedia.org/wiki/Tom
+trakers	O	O	O
+blade	O	O	O
+.	O	O	#
+shot	O	O	O
+satuday	O	O	O
+05	O	O	O
+.	O	O	#
+philadelphia	philadelphia	O	B-LOC	Philadelphia	http://en.wikipedia.org/wiki/Philadelphia
+billboard	O	O	O
+ordinances	O	O	O
+.	O	O	#
+buy	O	O	O
+new	O	O	O
+16mm	O	O	O
+film	O	O	O
+video	O	O	O
+camera	O	O	O
+.	O	O	#
+uganda	uganda	O	B-LOC	Uganda	http://en.wikipedia.org/wiki/Uganda
+loan	O	O	O
+.	O	O	#
+change	O	O	O
+your	O	O	O
+life	O	O	O
+move	O	O	O
+your	O	O	O
+stuff	O	O	O
+.	O	O	#
+ludwig	O	O	O
+scale	O	O	O
+.	O	O	#
+chicago	chicago	O	B-LOC	Chicago	http://en.wikipedia.org/wiki/Chicago
+bob	bob_nelson	O	B-PER	Bob_Nelson_(comedian)	http://en.wikipedia.org/wiki/Bob_Nelson_%28comedian%29
+nelson	O	O	I-PER
+.	O	O	#
+eagle	eagle_cycle	O	B-ORG	NONE	NONE
+cycle	O	O	I-ORG
+.	O	O	#
+semolina	semolina_north_dakota	O	B-LOC	NONE	NONE
+north	O	O	I-LOC
+dakota	O	O	I-LOC
+.	O	O	#
+life-time	O	O	O
+education	O	O	O
+credit	O	O	O
+.	O	O	#
+sd""	O	O	O
+""staunch	O	O	O
+defend	O	O	O
+.	O	O	#
+love	O	O	O
+in	O	O	O
+daytime	O	O	O
+dramas	O	O	O
+.	O	O	#
+belanger	belanger	O	B-ORG	Belanger	http://en.wikipedia.org/wiki/Belanger
+plumbing	O	O	O
+.	O	O	#
+used	O	O	O
+lift	O	O	O
+tables	O	O	O
+.	O	O	#
+cinema	O	O	O
+5	O	O	O
+in	O	O	O
+squamish	squamish	O	B-LOC	Squamish	http://en.wikipedia.org/wiki/Squamish
+.	O	O	#
+artict	O	O	O
+furr	O	O	O
+seal	O	O	O
+.	O	O	#
+freeware	O	O	O
+trayicon	O	O	O
+beta	O	O	O
+.	O	O	#
+spiritual	O	O	O
+translation	O	O	O
+of	O	O	O
+aya	O	O	O
+.	O	O	#
+cascade	cascade_high_school	O	B-ORG	Cascade_High_School_(Everett,_Washington)	http://en.wikipedia.org/wiki/Cascade_High_School_%28Everett%2C_Washington%29
+high	O	O	I-ORG
+school	O	O	I-ORG
+and	O	O	O
+everett	everett	O	B-LOC	NONE	NONE
+.	O	O	#
+english	O	O	O
+reports	O	O	O
+about	O	O	O
+epic	O	O	O
+stories	O	O	O
+.	O	O	#
+obituary	O	O	O
+william	william_hanley	O	B-PER	William_Hanley	http://en.wikipedia.org/wiki/William_Hanley
+hanley	O	O	I-PER
+.	O	O	#
+cultural	O	O	O
+strategy	O	O	O
+.	O	O	#
+experiment	O	O	O
+in	O	O	O
+terror	O	O	O
+.	O	O	#
+domador	O	O	O
+campus	O	O	O
+instancias	O	O	O
+.	O	O	#
+play	O	O	O
+mancala	O	O	O
+game	O	O	O
+.	O	O	#
+berostar	berostar_hotels	O	B-ORG	NONE	NONE
+hotels	O	O	I-ORG
+.	O	O	#
+blue	blue_creek_marine	O	B-ORG	NONE	NONE
+creek	O	O	I-ORG
+marine	O	O	I-ORG
+.	O	O	#
+innova	O	O	O
+qrs	O	O	O
+.	O	O	#
+desmond	desmond_mcdaniel	O	B-PER	NONE	NONE
+mcdaniel	O	O	I-PER
+(finney	(finney_high_school)	O	B-ORG	NONE	NONE
+high	O	O	I-ORG
+school)	O	O	I-ORG
+.	O	O	#
+how	O	O	O
+to	O	O	O
+slide	O	O	O
+baseball	O	O	O
+.	O	O	#
+bbeter	O	O	O
+byers	O	O	O
+women	O	O	O
+or	O	O	O
+men	O	O	O
+.	O	O	#
+lady	lady_irwin_school	O	B-ORG	Lady_Irwin_School	http://en.wikipedia.org/wiki/Lady_Irwin_School
+irwin	O	O	I-ORG
+school	O	O	I-ORG
+delhi	delhi	O	B-LOC	Delhi	http://en.wikipedia.org/wiki/Delhi
+.	O	O	#
+negative	O	O	O
+impact	O	O	O
+on	O	O	O
+enviornment	O	O	O
+.	O	O	#
+locate	O	O	O
+consignment	O	O	O
+stores	O	O	O
+.	O	O	#
+dell	dell	O	B-ORG	Dell	http://en.wikipedia.org/wiki/Dell
+latitude	O	O	O
+cpi	O	O	O
+266	O	O	O
+mhz	O	O	O
+pii	O	O	O
+.	O	O	#
+california	california	O	B-LOC	California	http://en.wikipedia.org/wiki/California
+road	O	O	O
+condition	O	O	O
+cameras	O	O	O
+.	O	O	#
+rev.	rev._kenton_rogers	O	B-PER	NONE	NONE
+kenton	O	O	I-PER
+rogers	O	O	I-PER
+.	O	O	#
+us	us	O	B-ORG	Us	http://en.wikipedia.org/wiki/Us
+gov	O	O	O
+harp	O	O	O
+project	O	O	O
+.	O	O	#
+extreme	O	O	O
+gymnastics	O	O	O
+nebraska	nebraska	O	B-LOC	Nebraska	http://en.wikipedia.org/wiki/Nebraska
+.	O	O	#
+photos	O	O	O
+of	O	O	O
+spragga	spragga	O	B-PER	Spragga_Benz	http://en.wikipedia.org/wiki/Spragga_Benz
+.	O	O	#
+rotax	rotax_277	O	B-ORG	Rotax_277	http://en.wikipedia.org/wiki/Rotax_277
+277	O	O	I-ORG
+ultralight	O	O	O
+engines	O	O	O
+for	O	O	O
+sale	O	O	O
+.	O	O	#
+lynx	O	O	O
+outdoor	O	O	O
+grills	O	O	O
+.	O	O	#
+movie	O	O	O
+title	O	O	O
+keyword	O	O	O
+.	O	O	#
+booklet	O	O	O
+georgia	georgia	O	B-LOC	Georgia	http://en.wikipedia.org/wiki/Georgia
+income	O	O	O
+tax	O	O	O
+.	O	O	#
+ogniwa	O	O	O
+agrobiznesu	O	O	O
+.	O	O	#
+likin	likin_park	O	B-ORG	NONE	NONE
+park	O	O	I-ORG
+music	O	O	O
+video	O	O	O
+samplers	O	O	O
+.	O	O	#
+trident	trident_real_estate	O	B-ORG	NONE	NONE
+real	O	O	I-ORG
+estate	O	O	I-ORG
+hiltonhead	O	O	O
+.	O	O	#
+used	O	O	O
+car	O	O	O
+byers	O	O	O
+guide	O	O	O
+.	O	O	#
+element	O	O	O
+skateboard	O	O	O
+backrounds	O	O	O
+.	O	O	#
+leonard	leonard_cohen	O	B-PER	Leonard_cohen	http://en.wikipedia.org/wiki/Leonard_cohen
+cohen	O	O	I-PER
+photo	O	O	O
+.	O	O	#
+greenhouse	O	O	O
+designes	O	O	O
+.	O	O	#
+microsoft	microsoft	O	B-ORG	Microsoft	http://en.wikipedia.org/wiki/Microsoft
+and	O	O	O
+encryption	O	O	O
+and	O	O	O
+base	O	O	O
+.	O	O	#
+requirements	O	O	O
+for	O	O	O
+educators	O	O	O
+.	O	O	#
+advantagse	O	O	O
+and	O	O	O
+disadvantages	O	O	O
+of	O	O	O
+cellular	O	O	O
+telephone	O	O	O
+.	O	O	#
+bank	bank_of	O	B-ORG	NONE	NONE
+of	O	O	I-ORG
+nova	nova	O	B-ORG	Nova	http://en.wikipedia.org/wiki/Nova
+scotia/halifax	O	O	O
+.	O	O	#
+undeniably	O	O	O
+you	O	O	O
+(jeff	O	O	O
+savage	O	O	O
+mix)	O	O	O
+.	O	O	#
+my	O	O	O
+computerf:\	O	O	O
+.	O	O	#
+mecruy	mecruy	O	B-ORG	NONE	NONE
+boat	O	O	O
+engins	O	O	O
+.	O	O	#
+stearns	stearns_county	O	B-LOC	Stearns_County	http://en.wikipedia.org/wiki/Stearns_County
+county	O	O	I-LOC
+court	O	O	O
+admin	O	O	O
+.	O	O	#
+chosing	O	O	O
+the	O	O	O
+right	O	O	O
+ipaq	O	O	O
+.	O	O	#
+comtempo	O	O	O
+paper	O	O	O
+goods	O	O	O
+.	O	O	#
+part	O	O	O
+time	O	O	O
+jobs	O	O	O
+ga	ga	O	B-LOC	Georgia_(U.S._state)	http://en.wikipedia.org/wiki/Georgia_%28U.S._state%29
+.	O	O	#
+delco	delco	O	B-ORG	Delco	http://en.wikipedia.org/wiki/Delco
+radio	O	O	O
+rhode	rhode_island	O	B-LOC	Rhode_island	http://en.wikipedia.org/wiki/Rhode_island
+island	O	O	I-LOC
+.	O	O	#
+dolphin	dolphin_fittness_club	O	B-ORG	NONE	NONE
+fittness	O	O	I-ORG
+club	O	O	I-ORG
+new	new_york_city	O	B-LOC	New_york_city	http://en.wikipedia.org/wiki/New_york_city
+york	O	O	I-LOC
+city	O	O	I-LOC
+.	O	O	#
+haulmark	haulmark_trailers	O	B-ORG	NONE	NONE
+trailers	O	O	I-ORG
+mcadoo	mcadoo	O	B-LOC	McAdoo,_Pennsylvania	http://en.wikipedia.org/wiki/McAdoo%2C_Pennsylvania
+pa	pa	O	B-LOC	Pennsylvania	http://en.wikipedia.org/wiki/Pennsylvania
+.	O	O	#
+definition	O	O	O
+credit	O	O	O
+and	O	O	O
+debit	O	O	O
+.	O	O	#
+february;	O	O	O
+2004	O	O	O
+calendar	O	O	O
+.	O	O	#
+nasir	nasir_shahabuddin	O	B-PER	NONE	NONE
+shahabuddin	O	O	I-PER
+.	O	O	#
+the	O	O	O
+kansas	kansas_city	O	B-LOC	Kansas_city	http://en.wikipedia.org/wiki/Kansas_city
+city	O	O	I-LOC
+star	O	O	O
+horoscope	O	O	O
+.	O	O	#
+tom	tom_goodman	O	B-PER	Tom_Goodman-Hill	http://en.wikipedia.org/wiki/Tom_Goodman-Hill
+goodman	O	O	I-PER
+attorney	O	O	O
+.	O	O	#
+antique-directory	O	O	O
+.	O	O	#
+saguaro	saguaro_park	O	B-LOC	Saguaro_National_Park	http://en.wikipedia.org/wiki/Saguaro_National_Park
+park	O	O	I-LOC
+in	O	O	O
+scottsdale;	scottsdale;_az	O	B-LOC	Scottsdale,_Arizona	http://en.wikipedia.org/wiki/Scottsdale%2C_Arizona
+az	O	O	I-LOC
+.	O	O	#
+vt	vt	O	B-LOC	Vermont	http://en.wikipedia.org/wiki/Vermont
+basketball	O	O	O
+playoffs	O	O	O
+.	O	O	#
+ghanaimage	O	O	O
+.	O	O	#
+bmx	O	O	O
+bikesale	O	O	O
+.	O	O	#
+teachers	teachers_federal_credit_unio	O	B-ORG	NONE	NONE
+federal	O	O	I-ORG
+credit	O	O	I-ORG
+unio	O	O	I-ORG
+.	O	O	#
+powerful;	O	O	O
+magic;	O	O	O
+real	O	O	O
+.	O	O	#
+project	project_healthy_beginnings	O	B-ORG	NONE	NONE
+healthy	O	O	I-ORG
+beginnings	O	O	I-ORG
+.	O	O	#
+pool	O	O	O
+gifts	O	O	O
+.	O	O	#
+acetylthiocholine	O	O	O
+iodide	O	O	O
+.	O	O	#
+hguitguhyhttityuyg	O	O	O
+.	O	O	#
+voice-over	O	O	O
+casting	O	O	O
+agency	O	O	O
+miami	miami_beach	O	B-LOC	Miami_beach	http://en.wikipedia.org/wiki/Miami_beach
+beach	O	O	I-LOC
+.	O	O	#
+becoing	O	O	O
+a	O	O	O
+secured	O	O	O
+debtor	O	O	O
+.	O	O	#
+final	O	O	O
+fantasy	O	O	O
+ganeshark	O	O	O
+codes	O	O	O
+.	O	O	#
+are	O	O	O
+service	O	O	O
+plans	O	O	O
+worthwhile?	O	O	O
+lcd	O	O	O
+tv	O	O	O
+service	O	O	O
+plan	O	O	O
+.	O	O	#
+radigan	radigan_&	O	B-ORG	NONE	NONE
+&	O	O	I-ORG
+radigan;	radigan;	O	B-ORG	NONE	NONE
+inc.	O	O	O
+.	O	O	#
+gch	O	O	O
+intranet	O	O	O
+.	O	O	#
+fromage	O	O	O
+and	O	O	O
+du	O	O	O
+and	O	O	O
+nord	O	O	O
+.	O	O	#
+anissa	anissa_mcevoy	O	B-PER	NONE	NONE
+mcevoy	O	O	I-PER
+.	O	O	#
+twinsouls	O	O	O
+project	O	O	O
+.	O	O	#
+updatemsmoney	O	O	O
+and	O	O	O
+03	O	O	O
+.	O	O	#
+plugra	plugra	O	B-ORG	Plugra	http://en.wikipedia.org/wiki/Plugra
+butter	O	O	O
+.	O	O	#
+rob	rob_bertrand	O	B-PER	Robert_Bertrand	http://en.wikipedia.org/wiki/Robert_Bertrand
+bertrand	O	O	I-PER
+.	O	O	#
+contemporary	O	O	O
+novelists	O	O	O
+.	O	O	#
+inuyasha	O	O	O
+season	O	O	O
+one	O	O	O
+dvd	O	O	O
+.	O	O	#
+color	O	O	O
+and	O	O	O
+coral	O	O	O
+.	O	O	#
+movie	O	O	O
+splicing	O	O	O
+tape	O	O	O
+.	O	O	#
+monona	monona_catering	O	B-ORG	NONE	NONE
+catering	O	O	I-ORG
+madison	madison	O	B-LOC	Madison	http://en.wikipedia.org/wiki/Madison
+.	O	O	#
+elsol95.co	O	O	O
+.	O	O	#
+picture	O	O	O
+of	O	O	O
+the	O	O	O
+gimp	O	O	O
+pulp	O	O	O
+fiction	O	O	O
+.	O	O	#
+liverpool	liverpool	O	B-LOC	Liverpool	http://en.wikipedia.org/wiki/Liverpool
+accomodation	O	O	O
+rent	O	O	O
+.	O	O	#
+mystery	O	O	O
+surrounds	O	O	O
+death	O	O	O
+of	O	O	O
+guardsman	O	O	O
+.	O	O	#
+sharp	sharp	O	B-ORG	Sharp	http://en.wikipedia.org/wiki/Sharp
+vhs	O	O	O
+full	O	O	O
+size	O	O	O
+camcorder	O	O	O
+.	O	O	#
+line	O	O	O
+navy	navy	O	B-ORG	Navy	http://en.wikipedia.org/wiki/Navy
+ship	O	O	O
+state	O	O	O
+united	O	O	O
+.	O	O	#
+chicago	chicago	O	B-LOC	Chicago	http://en.wikipedia.org/wiki/Chicago
+and	O	O	O
+massage	O	O	O
+and	O	O	O
+girls	O	O	O
+.	O	O	#
+becky	becky	O	B-PER	NONE	NONE
+frogs	O	O	O
+.	O	O	#
+chilchota;	chilchota;	O	B-LOC	NONE	NONE
+michoacan;	michoacan;	O	B-LOC	Michoacán	NONE
+mexico	mexico	O	B-LOC	Mexico	http://en.wikipedia.org/wiki/Mexico
+.	O	O	#
+smashing	O	O	O
+pumpkins	O	O	O
+song	O	O	O
+title	O	O	O
+.	O	O	#
+mga	O	O	O
+naging	O	O	O
+talambuhay	O	O	O
+ng	O	O	O
+mga	O	O	O
+pangulo	O	O	O
+.	O	O	#
+force	O	O	O
+file	O	O	O
+delete	O	O	O
+.	O	O	#
+dv	O	O	O
+com	O	O	O
+calling	O	O	O
+card	O	O	O
+.	O	O	#
+bass	O	O	O
+tabs	O	O	O
+for	O	O	O
+blessed	O	O	O
+.	O	O	#
+convert	O	O	O
+ounces	O	O	O
+to	O	O	O
+quarts	O	O	O
+.	O	O	#
+premium	O	O	O
+choice	O	O	O
+-	O	O	O
+calling	O	O	O
+card	O	O	O
+.	O	O	#
+training	O	O	O
+the	O	O	O
+great	O	O	O
+dane	O	O	O
+.	O	O	#
+same	O	O	O
+user	O	O	O
+on	O	O	O
+webmail	O	O	O
+exchange	O	O	O
+2000	O	O	O
+.	O	O	#
+rs	O	O	O
+muffers	O	O	O
+.	O	O	#
+oriental	O	O	O
+rugs	O	O	O
+mn	mn	O	B-LOC	Mn	http://en.wikipedia.org/wiki/Mn
+.	O	O	#
+party	O	O	O
+rental	O	O	O
+stores	O	O	O
+in	O	O	O
+portland;	portland;_or	O	B-LOC	Portland,_Oregon	http://en.wikipedia.org/wiki/Portland%2C_Oregon
+or	O	O	I-LOC
+.	O	O	#
+new	new_mexico	O	B-LOC	New_mexico	http://en.wikipedia.org/wiki/New_mexico
+mexico	O	O	I-LOC
+state	O	O	O
+flage	O	O	O
+.	O	O	#
+the	O	O	O
+edge	O	O	O
+of	O	O	O
+nowhere	O	O	O
+band	O	O	O
+.	O	O	#
+free	O	O	O
+valentines	O	O	O
+birthday	O	O	O
+ecards	O	O	O
+.	O	O	#
+a.	a.	O	B-PER	A.	http://en.wikipedia.org/wiki/A.
+e.	e._worsley	O	B-PER	NONE	NONE
+worsley	O	O	I-PER
+.	O	O	#
+costume	O	O	O
+shop	O	O	O
+in	O	O	O
+charlotter	charlotter	O	B-LOC	NONE	NONE
+.	O	O	#
+air	O	O	O
+conditioning""	O	O	O
+machine	O	O	O
+used	O	O	O
+.	O	O	#
+deidra	deidra	O	B-PER	Deidra_Dionne	http://en.wikipedia.org/wiki/Deidra_Dionne
+the	O	O	O
+hot	O	O	O
+toy	O	O	O
+.	O	O	#
+translation	O	O	O
+from	O	O	O
+french	O	O	O
+till	O	O	O
+arabic	O	O	O
+.	O	O	#
+kingsman	kingsman	O	B-ORG	Kingsman	http://en.wikipedia.org/wiki/Kingsman
+firelplace	O	O	O
+.	O	O	#
+cori	cori_werner_neustein	O	B-PER	NONE	NONE
+werner	O	O	I-PER
+neustein	O	O	I-PER
+.	O	O	#
+cross	O	O	O
+creek	O	O	O
+golf;	O	O	O
+temecula	temecula	O	B-LOC	Temecula	http://en.wikipedia.org/wiki/Temecula
+.	O	O	#
+motorbike	O	O	O
+sound	O	O	O
+file	O	O	O
+.	O	O	#
+pillar	pillar	O	B-ORG	Pillar	http://en.wikipedia.org/wiki/Pillar
+lyircs	O	O	O
+.	O	O	#
+girls	O	O	O
+find	O	O	O
+guys	O	O	O
+chat	O	O	O
+.	O	O	#
+ici	ici_paints	O	B-ORG	NONE	NONE
+paints	O	O	I-ORG
+sinclair	O	O	O
+3350n	O	O	O
+.	O	O	#
+bites	O	O	O
+from	O	O	O
+a	O	O	O
+loxosceles	O	O	O
+laeta	O	O	O
+.	O	O	#
+school	O	O	O
+border	O	O	O
+clipart	O	O	O
+.	O	O	#
+main	O	O	O
+idea	O	O	O
+detail	O	O	O
+lessons	O	O	O
+for	O	O	O
+children	O	O	O
+.	O	O	#
+seagrams	seagrams	O	B-ORG	Seagrams	http://en.wikipedia.org/wiki/Seagrams
+liquior	O	O	O
+.	O	O	#
+albkkan	O	O	O
+religion	O	O	O
+gods	O	O	O
+htm	O	O	O
+.	O	O	#
+paychiatric	O	O	O
+flight	O	O	O
+risk	O	O	O
+.	O	O	#
+outdoor	O	O	O
+activity	O	O	O
+ukraine	ukraine	O	B-LOC	Ukraine	http://en.wikipedia.org/wiki/Ukraine
+.	O	O	#
+covers	O	O	O
+for	O	O	O
+hard	O	O	O
+hats	O	O	O
+.	O	O	#
+rabbi	rabbi_nina_beth_cardin	O	B-PER	NONE	NONE
+nina	O	O	I-PER
+beth	O	O	I-PER
+cardin	O	O	I-PER
+.	O	O	#
+dragon	O	O	O
+or	O	O	O
+microphone	O	O	O
+or	O	O	O
+compatibility	O	O	O
+.	O	O	#
+internet	O	O	O
+explorer	O	O	O
+cameo	O	O	O
+.	O	O	#
+find	O	O	O
+business	O	O	O
+by	O	O	O
+adress	O	O	O
+.	O	O	#
+aleksey	aleksey	O	B-PER	Aleksey	http://en.wikipedia.org/wiki/Aleksey
+gordienko	gordienko	O	B-PER	NONE	NONE
+.	O	O	#
+treasure	O	O	O
+of	O	O	O
+david	david	O	B-PER	David	http://en.wikipedia.org/wiki/David
+.	O	O	#
+ls6	O	O	O
+chevy	chevy	O	B-ORG	Chevy	http://en.wikipedia.org/wiki/Chevy
+454	O	O	O
+engine	O	O	O
+.	O	O	#
+cory	cory_galliard	O	B-PER	NONE	NONE
+galliard	O	O	I-PER
+.	O	O	#
+princess	O	O	O
+landing	O	O	O
+.	O	O	#
+dark	O	O	O
+chocolate	O	O	O
+fine	O	O	O
+cooking	O	O	O
+.	O	O	#
+ontario	ontario	O	B-LOC	Ontario	http://en.wikipedia.org/wiki/Ontario
+partner	O	O	O
+.	O	O	#
+airpliance	airpliance	O	B-ORG	NONE	NONE
+.	O	O	#
+szakrt;90	O	O	O
+fidesz	O	O	O
+.	O	O	#
+supportftp	O	O	O
+.	O	O	#
+air	O	O	O
+tratic	O	O	O
+control	O	O	O
+.	O	O	#
+abilene;	abilene;_texas""	O	B-LOC	Abilene,_Texas	http://en.wikipedia.org/wiki/Abilene%2C_Texas
+texas""	O	O	I-LOC
+flower	O	O	O
+shops	O	O	O
+.	O	O	#
+follow	O	O	O
+and	O	O	O
+the	O	O	O
+and	O	O	O
+leader	O	O	O
+.	O	O	#
+mepi/uspto	O	O	O
+middle	middle_east	O	B-LOC	Middle_east	http://en.wikipedia.org/wiki/Middle_east
+east	O	O	I-LOC
+regional	O	O	O
+customs	O	O	O
+program	O	O	O
+.	O	O	#
+classic	O	O	O
+rock	O	O	O
+radios	O	O	O
+.	O	O	#
+cheats	O	O	O
+harry	O	O	O
+potter	O	O	O
+prisoner	O	O	O
+ps2	O	O	O
+.	O	O	#
+autobusov	O	O	O
+spoje	O	O	O
+v	O	O	O
+esk	O	O	O
+republice	O	O	O
+.	O	O	#
+england	england	O	B-LOC	England	http://en.wikipedia.org/wiki/England
+in	O	O	O
+wwii	O	O	O
+.	O	O	#
+sandia	sandia_high_school	O	B-ORG	Sandia_High_School	http://en.wikipedia.org/wiki/Sandia_High_School
+high	O	O	I-ORG
+school	O	O	I-ORG
+spring	O	O	O
+break	O	O	O
+.	O	O	#
+shamrock	O	O	O
+shaped	O	O	O
+cookware	O	O	O
+.	O	O	#
+visual	O	O	O
+studio	O	O	O
+jscript	O	O	O
+debugger	O	O	O
+.	O	O	#
+nov.20;1934	O	O	O
+.	O	O	#
+josef	josef_stalin	O	B-PER	Josef_stalin	http://en.wikipedia.org/wiki/Josef_stalin
+stalin	O	O	I-PER
+life	life	O	B-PER	Life	http://en.wikipedia.org/wiki/Life
+.	O	O	#
+brady	brady_book_company	O	B-ORG	NONE	NONE
+book	O	O	I-ORG
+company	O	O	I-ORG
+.	O	O	#
+katherine	katherine_mary_peyton	O	B-PER	NONE	NONE
+mary	O	O	I-PER
+peyton	O	O	I-PER
+.	O	O	#
+resort/tempe	O	O	O
+.	O	O	#
+deep	O	O	O
+sea	O	O	O
+fishing;	O	O	O
+destin	destin	O	B-LOC	Destin,_Florida	http://en.wikipedia.org/wiki/Destin%2C_Florida
+fl	fl	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+.	O	O	#
+gateway;	gateway;	O	B-ORG	Gateway	http://en.wikipedia.org/wiki/Gateway
+munster;	munster;	O	B-LOC	Munster	http://en.wikipedia.org/wiki/Munster
+indiana	indiana	O	B-LOC	Indiana	http://en.wikipedia.org/wiki/Indiana
+.	O	O	#
+alltel	alltel_arena	O	B-LOC	Alltel_Arena	http://en.wikipedia.org/wiki/Alltel_Arena
+arena	O	O	I-LOC
+calender	O	O	O
+.	O	O	#
+math	O	O	O
+games:pythagorean	O	O	O
+theorem	O	O	O
+.	O	O	#
+air	O	O	O
+gate""	O	O	O
+2004	O	O	O
+ford	O	O	O
+f250	O	O	O
+.	O	O	#
+firmware	O	O	O
+updates	O	O	O
+nec	O	O	O
+2500	O	O	O
+.	O	O	#
+generic	O	O	O
+drug	O	O	O
+for	O	O	O
+mevacor	O	O	O
+.	O	O	#
+dequeen	dequeen	O	B-LOC	De_Queen,_Arkansas	http://en.wikipedia.org/wiki/De_Queen%2C_Arkansas
+public	O	O	O
+wedding	O	O	O
+announcements	O	O	O
+.	O	O	#
+boys	O	O	O
+state	O	O	O
+basketball	O	O	O
+brackets	O	O	O
+2004-2005	O	O	O
+.	O	O	#
+duvet	O	O	O
+acoustic	O	O	O
+.	O	O	#
+setsuko	setsuko_shigetomi	O	B-PER	NONE	NONE
+shigetomi	O	O	I-PER
+.	O	O	#
+ginja-love	O	O	O
+and	O	O	O
+unity	O	O	O
+.	O	O	#
+houston	houston	O	B-LOC	Houston	http://en.wikipedia.org/wiki/Houston
+mortgage	O	O	O
+assistance	O	O	O
+program	O	O	O
+.	O	O	#
+federal	federal	O	B-ORG	Federal	http://en.wikipedia.org/wiki/Federal
+mogel	mogel_corporation	O	B-ORG	NONE	NONE
+corporation	O	O	I-ORG
+.	O	O	#
+babble	O	O	O
+spanish	O	O	O
+tanslations	O	O	O
+.	O	O	#
+ovulation	O	O	O
+prediction	O	O	O
+and	O	O	O
+pregnancy	O	O	O
+questions	O	O	O
+.	O	O	#
+free	O	O	O
+printable	O	O	O
+cross	O	O	O
+stitch	O	O	O
+.	O	O	#
+knowville	knowville_tn	O	B-LOC	NONE	NONE
+tn	O	O	I-LOC
+newspaper	O	O	O
+.	O	O	#
+mp3/	O	O	O
+digital	O	O	O
+camera	O	O	O
+.	O	O	#
+examples	O	O	O
+of	O	O	O
+a	O	O	O
+complex	O	O	O
+sentence	O	O	O
+.	O	O	#
+poem	O	O	O
+analyzation	O	O	O
+""to	O	O	O
+his	O	O	O
+coy	O	O	O
+mistress	O	O	O
+.	O	O	#
+atlant	O	O	O
+weatjer	O	O	O
+channel	O	O	O
+.	O	O	#
+hockey	O	O	O
+prospects	O	O	O
+showcase	O	O	O
+.	O	O	#
+power	O	O	O
+[point	O	O	O
+viewer	O	O	O
+.	O	O	#
+river	O	O	O
+walk	O	O	O
+restuarnats	O	O	O
+in	O	O	O
+san	san_antonio	O	B-LOC	San_antonio	http://en.wikipedia.org/wiki/San_antonio
+antonio	O	O	I-LOC
+.	O	O	#
+faq	O	O	O
+site:j3w0.com	O	O	O
+.	O	O	#
+passport	O	O	O
+airs	O	O	O
+.	O	O	#
+marina	O	O	O
+southern	southern_illinois	O	B-LOC	Southern_Illinois	http://en.wikipedia.org/wiki/Southern_Illinois
+illinois	O	O	I-LOC
+.	O	O	#
+ballot	O	O	O
+now	O	O	O
+voting	O	O	O
+.	O	O	#
+buy	O	O	O
+aciphex	O	O	O
+.	O	O	#
+advantage	O	O	O
+and	O	O	O
+car	O	O	O
+and	O	O	O
+rental	O	O	O
+and	O	O	O
+australia	australia	O	B-LOC	Australia	http://en.wikipedia.org/wiki/Australia
+.	O	O	#
+salary	O	O	O
+emt	O	O	O
+offshore	O	O	O
+.	O	O	#
+baxley	baxley_georgia	O	B-LOC	Baxley,_Georgia	http://en.wikipedia.org/wiki/Baxley%2C_Georgia
+georgia	O	O	I-LOC
+youth	O	O	O
+homes	O	O	O
+.	O	O	#
+cooperative	O	O	O
+apartments	O	O	O
+association	O	O	O
+in	O	O	O
+brooklyn	brooklyn	O	B-LOC	Brooklyn	http://en.wikipedia.org/wiki/Brooklyn
+.	O	O	#
+overseas	O	O	O
+cost	O	O	O
+of	O	O	O
+living	O	O	O
+calculator	O	O	O
+.	O	O	#
+tax	O	O	O
+free	O	O	O
+munisable	O	O	O
+bonds	O	O	O
+.	O	O	#
+liu	liu_cwis_cwp_library	O	B-LOC	NONE	NONE
+cwis	O	O	I-LOC
+cwp	O	O	I-LOC
+library	O	O	I-LOC
+workshop	O	O	O
+cittur	O	O	O
+htlm	O	O	O
+.	O	O	#
+artic	artic_cat	O	B-ORG	Artic_Cat	http://en.wikipedia.org/wiki/Artic_Cat
+cat	O	O	I-ORG
+snowmobile	O	O	O
+dealers	O	O	O
+new	new_hampshire	O	B-LOC	NONE	NONE
+hampshire	O	O	I-LOC
+.	O	O	#
+stoney	stoney_hollow_road	O	B-LOC	NONE	NONE
+hollow	O	O	I-LOC
+road	O	O	I-LOC
+cabot	cabot_pa	O	B-LOC	NONE	NONE
+pa	O	O	I-LOC
+.	O	O	#
+joaquin	joaquin_neypes	O	B-PER	NONE	NONE
+neypes	O	O	I-PER
+.	O	O	#
+limescale	O	O	O
+pics	O	O	O
+.	O	O	#
+robert	robert_perk	O	B-PER	NONE	NONE
+perk	O	O	I-PER
+.	O	O	#
+los	los_angeles	O	B-LOC	Los_angeles	http://en.wikipedia.org/wiki/Los_angeles
+angeles	O	O	I-LOC
+japan	japan	O	B-LOC	Japan	http://en.wikipedia.org/wiki/Japan
+golf	O	O	O
+tour	O	O	O
+.	O	O	#
+ms	O	O	O
+access	O	O	O
+aggregate	O	O	O
+functions	O	O	O
+.	O	O	#
+official	O	O	O
+anchorman	O	O	O
+website	O	O	O
+.	O	O	#
+pablo	pablo	O	B-PER	Pablo	http://en.wikipedia.org/wiki/Pablo
+columbia	columbia	O	B-LOC	Columbia	http://en.wikipedia.org/wiki/Columbia
+cartel	O	O	O
+cocaine	O	O	O
+pitcures	O	O	O
+.	O	O	#
+automotive	O	O	O
+marketing	O	O	O
+magazine	O	O	O
+.	O	O	#
+club	club	O	B-LOC	Club	http://en.wikipedia.org/wiki/Club
+24exercise	O	O	O
+.	O	O	#
+bagger	O	O	O
+for	O	O	O
+a	O	O	O
+toro	O	O	O
+model	O	O	O
+number20016	O	O	O
+.	O	O	#
+calories	O	O	O
+in	O	O	O
+patatoes	O	O	O
+.	O	O	#
+filing	O	O	O
+taxws	O	O	O
+online	O	O	O
+.	O	O	#
+eliminazione	O	O	O
+and	O	O	O
+barriere	O	O	O
+and	O	O	O
+architettoniche	O	O	O
+.	O	O	#
+cheap	O	O	O
+hotel	O	O	O
+adelaide	adelaide	O	B-LOC	Adelaide	http://en.wikipedia.org/wiki/Adelaide
+language:en	O	O	O
+.	O	O	#
+current	O	O	O
+links	O	O	O
+.	O	O	#
+dressy	O	O	O
+statin	O	O	O
+pump	O	O	O
+.	O	O	#
+map	O	O	O
+of	O	O	O
+kingston;	kingston;	O	B-LOC	Kingston,_Ontario	http://en.wikipedia.org/wiki/Kingston%2C_Ontario
+ontario;	ontario;	O	B-LOC	Ontario	http://en.wikipedia.org/wiki/Ontario
+canada	canada	O	B-LOC	Canada	http://en.wikipedia.org/wiki/Canada
+.	O	O	#
+arthur	arthur_conway	O	B-PER	Arthur_Conway	http://en.wikipedia.org/wiki/Arthur_Conway
+conway	O	O	I-PER
+.	O	O	#
+local	O	O	O
+newspaper""	O	O	O
+""pembroke	""pembroke_pines	O	B-ORG	Pembroke_pines	http://en.wikipedia.org/wiki/Pembroke_pines
+pines	O	O	I-ORG
+.	O	O	#
+grams	O	O	O
+and	O	O	O
+in	O	O	O
+and	O	O	O
+a	O	O	O
+and	O	O	O
+ounce	O	O	O
+.	O	O	#
+shoe	O	O	O
+redemption	O	O	O
+.	O	O	#
+lisreplacment	O	O	O
+.	O	O	#
+psikologi	O	O	O
+pendidikan	O	O	O
+dalam	O	O	O
+al-quran	O	O	O
+.	O	O	#
+outdoor	O	O	O
+tool	O	O	O
+sheds	O	O	O
+.	O	O	#
+mature	O	O	O
+timber	O	O	O
+.	O	O	#
+cxc	cxc	O	B-ORG	CXC	http://en.wikipedia.org/wiki/CXC
+examination	O	O	O
+timetable	O	O	O
+.	O	O	#
+school	O	O	O
+closings	O	O	O
+washignton	washignton_dc	O	B-LOC	Washington,_D.C.	http://en.wikipedia.org/wiki/Washington%2C_D.C.
+dc	O	O	I-LOC
+.	O	O	#
+fournisseur	O	O	O
+matriel	O	O	O
+paramdical	O	O	O
+.	O	O	#
+pictures	O	O	O
+of	O	O	O
+food	O	O	O
+in	O	O	O
+sulu	sulu	O	B-LOC	Sulu	http://en.wikipedia.org/wiki/Sulu
+in	O	O	O
+the	O	O	O
+philippines	philippines	O	B-LOC	Philippines	http://en.wikipedia.org/wiki/Philippines
+.	O	O	#
+byy	O	O	O
+wze	O	O	O
+trzebinia	O	O	O
+.	O	O	#
+carefree	carefree_park	O	B-LOC	NONE	NONE
+park	O	O	I-LOC
+fl	fl	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+winter	winter_haven	O	B-LOC	Winter_Haven,_Florida	http://en.wikipedia.org/wiki/Winter_Haven%2C_Florida
+haven	O	O	I-LOC
+.	O	O	#
+medical	O	O	O
+jargon	O	O	O
+for	O	O	O
+staph	O	O	O
+infection?	O	O	O
+""murca?	O	O	O
+.	O	O	#
+gkoisprfpde-d	O	O	O
+.	O	O	#
+epilepsy	O	O	O
+and	O	O	O
+coenzyme	O	O	O
+q10	O	O	O
+.	O	O	#
+england-estate-london-real	O	O	O
+.	O	O	#
+replacement	O	O	O
+light	O	O	O
+for	O	O	O
+vw	O	O	O
+beetle	O	O	O
+.	O	O	#
+acadia/	acadia/_national_park	O	B-LOC	Acadia_National_Park	http://en.wikipedia.org/wiki/Acadia_National_Park
+national	O	O	I-LOC
+park	O	O	I-LOC
+.	O	O	#
+villa	O	O	O
+hermosa	hermosa	O	B-LOC	Hermosa_Beach,_California	http://en.wikipedia.org/wiki/Hermosa_Beach%2C_California	Hermosa	http://en.wikipedia.org/wiki/Hermosa
+hermosa	hermosa_beach	O	B-LOC
+beach	O	O	I-LOC
+.	O	O	#
+real	O	O	O
+estate	O	O	O
+in	O	O	O
+hamden	hamden_ct	O	B-LOC	Hamden,_Connecticut	http://en.wikipedia.org/wiki/Hamden%2C_Connecticut
+ct	O	O	I-LOC
+.	O	O	#
+diagram	O	O	O
+water	O	O	O
+.	O	O	#
+robert	robert_burns	O	B-PER	Robert_Burns	http://en.wikipedia.org/wiki/Robert_Burns
+burns	O	O	I-PER
+a	O	O	O
+red	O	O	O
+red	O	O	O
+rose	O	O	O
+.	O	O	#
+poetryoffthepage	O	O	O
+.	O	O	#
+microstation	O	O	O
+v8	O	O	O
+problem	O	O	O
+macro_acloud	O	O	O
+.	O	O	#
+experiment	O	O	O
+relative	O	O	O
+heat	O	O	O
+capacity	O	O	O
+.	O	O	#
+afioh	O	O	O
+hsw	O	O	O
+col	O	O	O
+item	O	O	O
+.	O	O	#
+florida	florida	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+transfer	O	O	O
+vehicle	O	O	O
+.	O	O	#
+baseball	O	O	O
+scotting	O	O	O
+.	O	O	#
+msr	O	O	O
+backpack	O	O	O
+stoves	O	O	O
+.	O	O	#
+ronald	ronald_townsend	O	B-PER	NONE	NONE
+townsend	O	O	I-PER
+biography	O	O	O
+.	O	O	#
+oak	oak_n'_brass	O	B-ORG	NONE	NONE
+n'	O	O	I-ORG
+brass	O	O	I-ORG
+.	O	O	#
+autobazar	autobazar_europa	O	B-ORG	NONE	NONE
+europa	O	O	I-ORG
+.	O	O	#
+motorola	motorola	O	B-ORG	Motorola	http://en.wikipedia.org/wiki/Motorola
+bluetooth	O	O	O
+base	O	O	O
+unit	O	O	O
+(mot-s9642)	O	O	O
+.	O	O	#
+swan	O	O	O
+icons	O	O	O
+.	O	O	#
+lifetimeof	O	O	O
+rosaparks	O	O	O
+.	O	O	#
+cortisone	O	O	O
+injections	O	O	O
+in	O	O	O
+the	O	O	O
+hip	O	O	O
+.	O	O	#
+sata150	O	O	O
+raid	O	O	O
+.	O	O	#
+overhead	O	O	O
+transmission	O	O	O
+of	O	O	O
+electricity	O	O	O
+in	O	O	O
+jamaica	jamaica	O	B-LOC	Jamaica	http://en.wikipedia.org/wiki/Jamaica
+.	O	O	#
+football	O	O	O
+and	O	O	O
+play	O	O	O
+and	O	O	O
+designer	O	O	O
+and	O	O	O
+v3.0	O	O	O
+.	O	O	#
+hodkins	O	O	O
+tumor/heart	O	O	O
+.	O	O	#
+dutch	O	O	O
+children	O	O	O
+pictures	O	O	O
+.	O	O	#
+real	O	O	O
+estate	O	O	O
+college	college_place;wa	O	B-LOC	College_Place,_Washington	http://en.wikipedia.org/wiki/College_Place%2C_Washington
+place;wa	O	O	I-LOC
+.	O	O	#
+nba	O	O	O
+live	O	O	O
+installation	O	O	O
+key	O	O	O
+.	O	O	#
+nebraska	nebraska	O	B-LOC	Nebraska	http://en.wikipedia.org/wiki/Nebraska
+rv	O	O	O
+insurance	O	O	O
+.	O	O	#
+advance	O	O	O
+structure	O	O	O
+technology	O	O	O
+.	O	O	#
+aehghfgghkfjmkj	O	O	O
+.	O	O	#
+sacramento	sacramento	O	B-LOC	Sacramento	http://en.wikipedia.org/wiki/Sacramento
+or	O	O	O
+roseville	roseville	O	B-LOC	Roseville	http://en.wikipedia.org/wiki/Roseville
+teen	O	O	O
+(under	O	O	O
+18)	O	O	O
+nightclubs	O	O	O
+.	O	O	#
+congressional	O	O	O
+commite	O	O	O
+for	O	O	O
+alternative	O	O	O
+fuel	O	O	O
+.	O	O	#
+pay	O	O	O
+scale	O	O	O
+for	O	O	O
+astronauts	O	O	O
+in	O	O	O
+the	O	O	O
+1960s	O	O	O
+.	O	O	#
+newspapers	O	O	O
+in	O	O	O
+charlotte	charlotte_nc	O	B-LOC	Charlotte,_North_Carolina	http://en.wikipedia.org/wiki/Charlotte%2C_North_Carolina
+nc	O	O	I-LOC
+.	O	O	#
+bayan	bayan_medical_company	O	B-ORG	NONE	NONE
+medical	O	O	I-ORG
+company	O	O	I-ORG
+.	O	O	#
+load	O	O	O
+levellers	O	O	O
+for	O	O	O
+trailers	O	O	O
+.	O	O	#
+columbia	columbia_missouri	O	B-LOC	Columbia,_Missouri	http://en.wikipedia.org/wiki/Columbia%2C_Missouri
+missouri	O	O	I-LOC
+1000	O	O	O
+willow	O	O	O
+ridge	O	O	O
+roared	O	O	O
+.	O	O	#
+europe;	europe;	O	B-LOC	Europe	http://en.wikipedia.org/wiki/Europe
+weather	O	O	O
+forecast	O	O	O
+.	O	O	#
+massanutten	massanutten_virginia	O	B-LOC	Massanutten,_Virginia	http://en.wikipedia.org/wiki/Massanutten%2C_Virginia
+virginia	O	O	I-LOC
+.	O	O	#
+o-scale	O	O	O
+track	O	O	O
+.	O	O	#
+car	O	O	O
+rentals	O	O	O
+tel	tel_aviv	O	B-LOC	Tel_aviv	http://en.wikipedia.org/wiki/Tel_aviv
+aviv	O	O	I-LOC
+.	O	O	#
+modern	O	O	O
+""fireplace	O	O	O
+cabinets""	O	O	O
+around	O	O	O
+fireplace	O	O	O
+.	O	O	#
+afp	O	O	O
+and	O	O	O
+iftim	O	O	O
+.	O	O	#
+find	O	O	O
+words	O	O	O
+in	O	O	O
+to	O	O	O
+kill	O	O	O
+a	O	O	O
+mockingbird	O	O	O
+.	O	O	#
+lewis	lewis	O	B-PER	Lewis	http://en.wikipedia.org/wiki/Lewis
+floorwax	floorwax	O	B-PER	NONE	NONE
+denver	denver	O	B-LOC	Denver	http://en.wikipedia.org/wiki/Denver
+radio	O	O	O
+.	O	O	#
+schol	O	O	O
+for	O	O	O
+dietician	O	O	O
+.	O	O	#
+play	O	O	O
+seanc	O	O	O
+from	O	O	O
+greece	O	O	O
+lighting	O	O	O
+.	O	O	#
+luxury	O	O	O
+villas	O	O	O
+for	O	O	O
+rent	O	O	O
+marbella	marbella	O	B-LOC	Marbella	http://en.wikipedia.org/wiki/Marbella
+.	O	O	#
+driver	O	O	O
+and	O	O	O
+scanner	O	O	O
+and	O	O	O
+plustek	O	O	O
+and	O	O	O
+pour	O	O	O
+and	O	O	O
+xp	O	O	O
+.	O	O	#
+vahid	vahid_tarokh	O	B-PER	Vahid_Tarokh	http://en.wikipedia.org/wiki/Vahid_Tarokh
+tarokh	O	O	I-PER
+.	O	O	#
+commercial	O	O	O
+proterty	O	O	O
+management	O	O	O
+memphis	memphis_tenn	O	B-LOC	Memphis,_Tennessee	http://en.wikipedia.org/wiki/Memphis%2C_Tennessee
+tenn	O	O	I-LOC
+.	O	O	#
+mpm1stresults	O	O	O
+.	O	O	#
+bahrain	bahrain	O	B-LOC	Bahrain	http://en.wikipedia.org/wiki/Bahrain
+to	O	O	O
+tehran	tehran	O	B-LOC	Tehran	http://en.wikipedia.org/wiki/Tehran
+by	O	O	O
+ferry	O	O	O
+boat	O	O	O
+.	O	O	#
+pictures	O	O	O
+whit	O	O	O
+flores	O	O	O
+.	O	O	#
+los	los_angeles	O	B-LOC	Los_angeles	http://en.wikipedia.org/wiki/Los_angeles
+angeles	O	O	I-LOC
+county	O	O	O
+fair	O	O	O
+horse	O	O	O
+.	O	O	#
+dave	dave_scadden	O	B-PER	NONE	NONE
+scadden	O	O	I-PER
+.	O	O	#
+uses	O	O	O
+of	O	O	O
+a4	O	O	O
+size	O	O	O
+paper	O	O	O
+.	O	O	#
+canadian	O	O	O
+apprenticeship	O	O	O
+programs	O	O	O
+.	O	O	#
+madison	madison_ave	O	B-LOC	Madison_ave	http://en.wikipedia.org/wiki/Madison_ave
+ave	O	O	I-LOC
+income	O	O	O
+.	O	O	#
+characteristics	O	O	O
+of	O	O	O
+1964	O	O	O
+.	O	O	#
+catowomenclothe	O	O	O
+.	O	O	#
+spaghetti	O	O	O
+seasoning	O	O	O
+.	O	O	#
+ati	O	O	O
+radeon	O	O	O
+9800	O	O	O
+pro	O	O	O
+256	O	O	O
+.	O	O	#
+auto	O	O	O
+repossessed	O	O	O
+how	O	O	O
+to	O	O	O
+get	O	O	O
+it	O	O	O
+back	O	O	O
+.	O	O	#
+crack-poland	O	O	O
+.	O	O	#
+break_____donne	O	O	O
+.	O	O	#
+ryan	ryan_michael_dawson	O	B-PER	NONE	NONE
+michael	O	O	I-PER
+dawson	O	O	I-PER
+lebo	O	O	O
+kansas	kansas	O	B-LOC	Kansas	http://en.wikipedia.org/wiki/Kansas
+.	O	O	#
+nappy	O	O	O
+jeans	O	O	O
+.	O	O	#
+bexar	bexar_county	O	B-LOC	Bexar_County	http://en.wikipedia.org/wiki/Bexar_County
+county	O	O	I-LOC
+surveys	O	O	O
+.	O	O	#
+martinsburg	martinsburg_wv	O	B-LOC	Martinsburg,_West_Virginia	http://en.wikipedia.org/wiki/Martinsburg%2C_West_Virginia
+wv	O	O	I-LOC
+beauty	O	O	O
+shop	O	O	O
+.	O	O	#
+home	O	O	O
+how-to	O	O	O
+.	O	O	#
+alginates	O	O	O
+as	O	O	O
+suspending	O	O	O
+agent	O	O	O
+.	O	O	#
+britney	britney_spears	O	B-PER	Britney_spears	http://en.wikipedia.org/wiki/Britney_spears
+spears	O	O	I-PER
+index	O	O	O
+.	O	O	#
+expressio	O	O	O
+unius	O	O	O
+doctrine	O	O	O
+.	O	O	#
+super	O	O	O
+kid	O	O	O
+java	O	O	O
+.	O	O	#
+boces	O	O	O
+workshops	O	O	O
+""albany	""albany	O	B-LOC	Albany,_New_York	http://en.wikipedia.org/wiki/Albany%2C_New_York
+new	new_york	O	B-LOC	New_York	http://en.wikipedia.org/wiki/New_York
+york	O	O	I-LOC
+.	O	O	#
+clipart	O	O	O
+cleaning	O	O	O
+house	O	O	O
+.	O	O	#
+event	O	O	O
+viewer	O	O	O
+application	O	O	O
+log	O	O	O
+error	O	O	O
+.	O	O	#
+canada	canada	O	B-LOC	Canada	http://en.wikipedia.org/wiki/Canada
+post	O	O	O
+-	O	O	O
+rates/postage	O	O	O
+.	O	O	#
+lights	O	O	O
+of	O	O	O
+liberty	O	O	O
+tour	O	O	O
+.	O	O	#
+american	american_cleaners	O	B-ORG	NONE	NONE
+cleaners	O	O	I-ORG
+-	O	O	O
+st.	st._louiw	O	B-LOC	NONE	NONE
+louiw	O	O	I-LOC
+.	O	O	#
+does	O	O	O
+amber	O	O	O
+alert	O	O	O
+acutally	O	O	O
+work?	O	O	O
+.	O	O	#
+ornamental	O	O	O
+crab	O	O	O
+trees	O	O	O
+.	O	O	#
+britney	britney_spears	O	B-PER	Britney_spears	http://en.wikipedia.org/wiki/Britney_spears
+spears	O	O	I-PER
+199	O	O	O
+.	O	O	#
+eger	O	O	O
+gygymasszr	O	O	O
+tanfolyam	O	O	O
+.	O	O	#
+elenco	O	O	O
+die	O	O	O
+governatori	O	O	O
+della	O	O	O
+germania	germania	O	B-LOC	Germania	http://en.wikipedia.org/wiki/Germania
+.	O	O	#
+grandi	O	O	O
+domaini	O	O	O
+it	O	O	O
+.	O	O	#
+col	col	O	B-PER	Col	http://en.wikipedia.org/wiki/Col
+bob	bob_day	O	B-PER	Bob_Day	http://en.wikipedia.org/wiki/Bob_Day
+day	O	O	I-PER
+medal	O	O	O
+of	O	O	O
+honor	O	O	O
+.	O	O	#
+at&t	at&t	O	B-ORG	At&t	http://en.wikipedia.org/wiki/At%26t
+cell	O	O	O
+ohone	O	O	O
+.	O	O	#
+marianna;	marianna;	O	B-LOC	Marianna,_Florida	http://en.wikipedia.org/wiki/Marianna%2C_Florida
+fl	O	O	O
+vocational	O	O	O
+schools	O	O	O
+.	O	O	#
+snape's	snape's	O	B-PER	Severus_Snape	http://en.wikipedia.org/wiki/Severus_Snape
+souity	O	O	O
+.	O	O	#
+cranelakes	cranelakes	O	B-LOC	NONE	NONE
+.	O	O	#
+loyola	loyola_colleged	O	B-ORG	NONE	NONE
+colleged	O	O	I-ORG
+.	O	O	#
+under	O	O	O
+cabnet	O	O	O
+mount	O	O	O
+paper	O	O	O
+towel	O	O	O
+holder	O	O	O
+.	O	O	#
+ohio	O	O	O
+akc	akc_kennel_club	O	B-ORG	NONE	NONE
+kennel	O	O	I-ORG
+club	O	O	I-ORG
+.	O	O	#
+how	O	O	O
+to	O	O	O
+install	O	O	O
+neww	O	O	O
+electric	O	O	O
+circuit	O	O	O
+.	O	O	#
+dukenukem	O	O	O
+full	O	O	O
+version	O	O	O
+download	O	O	O
+.	O	O	#
+motor	O	O	O
+rama	rama	O	B-PER	Rama	http://en.wikipedia.org/wiki/Rama
+in	O	O	O
+dallas	dallas	O	B-LOC	Dallas	http://en.wikipedia.org/wiki/Dallas
+.	O	O	#
+satellite	O	O	O
+beacon	O	O	O
+frequencies	O	O	O
+.	O	O	#
+angela	angela	O	B-PER	Angela	http://en.wikipedia.org/wiki/Angela
+perry""	O	O	O
+engaged	O	O	O
+.	O	O	#
+condaleesa	condaleesa_rice	O	B-PER	NONE	NONE
+rice	O	O	I-PER
+photo	O	O	O
+.	O	O	#
+pip	O	O	O
+exporter	O	O	O
+.	O	O	#
+large	O	O	O
+awg	awg	O	B-ORG	AWG	http://en.wikipedia.org/wiki/AWG
+crimpers	O	O	O
+.	O	O	#
+illegal	O	O	O
+fighting	O	O	O
+mpegs	O	O	O
+.	O	O	#
+bfdeath;com	O	O	O
+.	O	O	#
+digital	O	O	O
+fact	O	O	O
+book	O	O	O
+.	O	O	#
+radm	O	O	O
+robert	robert_conway	O	B-PER	Robert_Conway	http://en.wikipedia.org/wiki/Robert_Conway
+conway	O	O	I-PER
+.	O	O	#
+metal	O	O	O
+wind	O	O	O
+chimes	O	O	O
+.	O	O	#
+ati	O	O	O
+radeon	O	O	O
+rx9550	O	O	O
+se	O	O	O
+td128	O	O	O
+driver	O	O	O
+.	O	O	#
+free	O	O	O
+real	O	O	O
+ringtones	O	O	O
+for	O	O	O
+verizon	verizon	O	B-ORG	Verizon	http://en.wikipedia.org/wiki/Verizon
+cell	O	O	O
+phones	O	O	O
+.	O	O	#
+anatomy	O	O	O
+of	O	O	O
+a	O	O	O
+landfill	O	O	O
+.	O	O	#
+embassy	embassy_of_norway	O	B-ORG	Embassy_of_Norway	http://en.wikipedia.org/wiki/Embassy_of_Norway
+of	O	O	I-ORG
+norway	O	O	I-ORG
+-	O	O	O
+tanzania	tanzania	O	B-LOC	Tanzania	http://en.wikipedia.org/wiki/Tanzania
+.	O	O	#
+giuliani	giuliani_capital_advisors.	O	B-ORG	Giuliani_Partners	http://en.wikipedia.org/wiki/Giuliani_Partners
+capital	O	O	I-ORG
+advisors.	O	O	I-ORG
+.	O	O	#
+fifty	O	O	O
+five	O	O	O
+year	O	O	O
+old	O	O	O
+wives	O	O	O
+.	O	O	#
+volleybal	O	O	O
+camp	O	O	O
+'university	'university_of_connecticut'	O	B-LOC	University_Of_Connecticut	http://en.wikipedia.org/wiki/University_Of_Connecticut
+of	O	O	I-LOC
+connecticut'	O	O	I-LOC
+.	O	O	#
+article	O	O	O
+on	O	O	O
+family	O	O	O
+communication	O	O	O
+.	O	O	#
+al	O	O	O
+shiiha	O	O	O
+rituals	O	O	O
+.	O	O	#
+thinking	O	O	O
+strategies	O	O	O
+four	O	O	O
+block	O	O	O
+.	O	O	#
+alska	alska	O	B-LOC	Alaska	http://en.wikipedia.org/wiki/Alaska
+fighting	O	O	O
+championship	O	O	O
+.	O	O	#
+levasole(levamisole	O	O	O
+hydrochloride)	O	O	O
+.	O	O	#
+norcal	norcal	O	B-LOC	Norcal	http://en.wikipedia.org/wiki/Norcal
+pet	O	O	O
+.	O	O	#
+buildings	O	O	O
+with	O	O	O
+passive	O	O	O
+cooling	O	O	O
+systems	O	O	O
+.	O	O	#
+detroit	detroit	O	B-LOC	Detroit	http://en.wikipedia.org/wiki/Detroit
+police	O	O	O
+officer	O	O	O
+sentenced	O	O	O
+.	O	O	#
+picture	O	O	O
+of	O	O	O
+decorated	O	O	O
+cake	O	O	O
+.	O	O	#
+township	township_of_wilmerding	O	B-LOC	Wilmerding,_Pennsylvania	http://en.wikipedia.org/wiki/Wilmerding%2C_Pennsylvania
+of	O	O	I-LOC
+wilmerding	O	O	I-LOC
+.	O	O	#
+numismatics	numismatics_internatioinal	O	B-ORG	NONE	NONE
+internatioinal	O	O	I-ORG
+.	O	O	#
+exercise	O	O	O
+to	O	O	O
+get	O	O	O
+fatter	O	O	O
+legs	O	O	O
+.	O	O	#
+condoleeza	condoleeza_rice	O	B-PER	Condoleeza_Rice	http://en.wikipedia.org/wiki/Condoleeza_Rice
+rice	O	O	I-PER
+pciture	O	O	O
+reviewing	O	O	O
+troops	O	O	O
+.	O	O	#
+error	O	O	O
+and	O	O	O
+""401""	O	O	O
+and	O	O	O
+""&""	O	O	O
+and	O	O	O
+modal	O	O	O
+.	O	O	#
+irs	irs	O	B-ORG	Irs	http://en.wikipedia.org/wiki/Irs
+and	O	O	O
+student	O	O	O
+loand	O	O	O
+.	O	O	#
+napolian	O	O	O
+tomato	O	O	O
+sauce	O	O	O
+recipe	O	O	O
+.	O	O	#
+property	O	O	O
+consultants	O	O	O
+real	O	O	O
+estate	O	O	O
+.	O	O	#
+rower	O	O	O
+zellers	O	O	O
+.	O	O	#
+cochiseconsultancyinc	cochiseconsultancyinc	O	B-ORG	NONE	NONE
+.	O	O	#
+mardave	mardave_corp	O	B-ORG	NONE	NONE
+corp	O	O	I-ORG
+.	O	O	#
+oncology;dover;nh	O	O	O
+.	O	O	#
+soapstone	O	O	O
+price	O	O	O
+.	O	O	#
+car	O	O	O
+ferry	O	O	O
+provincetown	provincetown	O	B-LOC	Provincetown	http://en.wikipedia.org/wiki/Provincetown
+to	O	O	O
+boston	boston	O	B-LOC	Boston	http://en.wikipedia.org/wiki/Boston
+.	O	O	#
+eedspacenasa	O	O	O
+.	O	O	#
+accountants	O	O	O
+tulsa	tulsa	O	B-LOC	Tulsa	http://en.wikipedia.org/wiki/Tulsa
+.	O	O	#
+greetings	O	O	O
+sounds	O	O	O
+download	O	O	O
+.	O	O	#
+navy	O	O	O
+seahawk	O	O	O
+helicopters	O	O	O
+.	O	O	#
+easy	O	O	O
+go	O	O	O
+usb	O	O	O
+2.0	O	O	O
+ide	O	O	O
+adapter	O	O	O
+.	O	O	#
+computer	O	O	O
+e-mails	O	O	O
+notifiers	O	O	O
+.	O	O	#
+michael	michael_w_smith	O	B-PER	Michael_W_Smith	http://en.wikipedia.org/wiki/Michael_W_Smith
+w	O	O	I-PER
+smith	O	O	I-PER
+friends	O	O	O
+lyrics	O	O	O
+.	O	O	#
+q-see	q-see	O	B-ORG	NONE	NONE
+baby	O	O	O
+monitor	O	O	O
+.	O	O	#
+free	O	O	O
+template	O	O	O
+of	O	O	O
+rejection	O	O	O
+letter	O	O	O
+to	O	O	O
+applicant	O	O	O
+.	O	O	#
+places	O	O	O
+of	O	O	O
+interest	O	O	O
+in	O	O	O
+cheshire	cheshire_england	O	B-LOC	Cheshire	http://en.wikipedia.org/wiki/Cheshire
+england	O	O	I-LOC
+.	O	O	#
+medical	O	O	O
+evaluation	O	O	O
+board	board	O	B-ORG	Board	http://en.wikipedia.org/wiki/Board
+fort	fort_hood	O	B-LOC	Fort_hood	http://en.wikipedia.org/wiki/Fort_hood
+hood	O	O	I-LOC
+texas	texas	O	B-LOC	Texas	http://en.wikipedia.org/wiki/Texas
+.	O	O	#
+discount	O	O	O
+duramax	O	O	O
+diesel	O	O	O
+upgrade	O	O	O
+.	O	O	#
+boston	O	O	O
+terrior	O	O	O
+puppies;	O	O	O
+oklahoma	oklahoma	O	B-LOC	Oklahoma	http://en.wikipedia.org/wiki/Oklahoma
+.	O	O	#
+mayberry	O	O	O
+black	O	O	O
+forest	O	O	O
+ham	O	O	O
+.	O	O	#
+cd	O	O	O
+vs	O	O	O
+cdrw	O	O	O
+.	O	O	#
+argo	argo_high_school	O	B-ORG	Argo_Community_High_School	http://en.wikipedia.org/wiki/Argo_Community_High_School
+high	O	O	I-ORG
+school	O	O	I-ORG
+summit	O	O	O
+.	O	O	#
+mineralsbyname	O	O	O
+.	O	O	#
+mens	O	O	O
+""dragon""	O	O	O
+leather	O	O	O
+coat	O	O	O
+.	O	O	#
+bardonecchia/italy/hotels	O	O	O
+.	O	O	#
+delivered	O	O	O
+meds	O	O	O
+3.57	O	O	O
+phem	O	O	O
+.	O	O	#
+faq	O	O	O
+site:-vf_.com	O	O	O
+.	O	O	#
+fifties	O	O	O
+prom	O	O	O
+gowns	O	O	O
+.	O	O	#
+passenger	O	O	O
+1904	O	O	O
+.	O	O	#
+sea	O	O	O
+same	O	O	O
+street	O	O	O
+games	O	O	O
+.	O	O	#
+fairwayfinancialservices	fairwayfinancialservices	O	B-ORG	NONE	NONE
+.	O	O	#
+canyon	canyon_lake	O	B-LOC	Canyon_Lake	http://en.wikipedia.org/wiki/Canyon_Lake
+lake	O	O	I-LOC
+rapid	rapid_city;	O	B-LOC	Rapid_City,_South_Dakota	http://en.wikipedia.org/wiki/Rapid_City%2C_South_Dakota
+city;	O	O	I-LOC
+south	south_dakota	O	B-LOC	South_dakota	http://en.wikipedia.org/wiki/South_dakota
+dakota	O	O	I-LOC
+.	O	O	#
+no	O	O	O
+car	car	O	B-LOC	Car	http://en.wikipedia.org/wiki/Car
+insurance	O	O	O
+law	O	O	O
+of	O	O	O
+california	california	O	B-LOC	California	http://en.wikipedia.org/wiki/California
+.	O	O	#
+learn	O	O	O
+the	O	O	O
+traditional	O	O	O
+lebonese	O	O	O
+dance	O	O	O
+.	O	O	#
+ap	O	O	O
+human	O	O	O
+geography	O	O	O
+tests	O	O	O
+.	O	O	#
+dannish	O	O	O
+cookies	O	O	O
+.	O	O	#
+accomodation	O	O	O
+near	O	O	O
+daventry	daventry_uk	O	B-LOC	Daventry_(UK_Parliament_constituency)	http://en.wikipedia.org/wiki/Daventry_%28UK_Parliament_constituency%29
+uk	O	O	I-LOC
+.	O	O	#
+labview	O	O	O
+formula	O	O	O
+node	O	O	O
+.	O	O	#
+villa	villa_park_elementary	O	B-ORG	Villa_Park,_California	http://en.wikipedia.org/wiki/Villa_Park%2C_California
+park	O	O	I-ORG
+elementary	O	O	I-ORG
+api	O	O	O
+scores	O	O	O
+in	O	O	O
+orange	orange_county	O	B-LOC	Orange_County,_California	http://en.wikipedia.org/wiki/Orange_County%2C_California
+county	O	O	I-LOC
+.	O	O	#
+federal	O	O	O
+goverment	O	O	O
+status	O	O	O
+.	O	O	#
+verio	O	O	O
+trouble	O	O	O
+site	O	O	O
+.	O	O	#
+kris	kris	O	B-PER	Kris	http://en.wikipedia.org/wiki/Kris
+howe""	O	O	O
+nebraska	nebraska	O	B-LOC	Nebraska	http://en.wikipedia.org/wiki/Nebraska
+.	O	O	#
+fork	O	O	O
+lift	O	O	O
+training	O	O	O
+in	O	O	O
+north	north_carolina	O	B-LOC	North_carolina	http://en.wikipedia.org/wiki/North_carolina
+carolina	O	O	I-LOC
+.	O	O	#
+family	O	O	O
+as	O	O	O
+unit	O	O	O
+.	O	O	#
+definition	O	O	O
+of	O	O	O
+comprehensive	O	O	O
+.	O	O	#
+miller	miller_brewery	O	B-ORG	Miller_Brewing_Company	http://en.wikipedia.org/wiki/Miller_Brewing_Company
+brewery	O	O	I-ORG
+wallpaper	O	O	O
+.	O	O	#
+mp3	O	O	O
+for	O	O	O
+ericsson	ericsson	O	B-ORG	Ericsson	http://en.wikipedia.org/wiki/Ericsson
+gsm	O	O	O
+.	O	O	#
+metabolism	O	O	O
+of	O	O	O
+glucose	O	O	O
+.	O	O	#
+priceline	priceline	O	B-ORG	Priceline	http://en.wikipedia.org/wiki/Priceline
+travel	O	O	O
+insurance	O	O	O
+.	O	O	#
+costco	costco	O	B-ORG	Costco	http://en.wikipedia.org/wiki/Costco
+jewellery	O	O	O
+.	O	O	#
+fire	O	O	O
+red	O	O	O
+leaf	O	O	O
+green	O	O	O
+version	O	O	O
+.	O	O	#
+harlan	harlan_electric	O	B-ORG	NONE	NONE
+electric	O	O	I-ORG
+.	O	O	#
+locate	O	O	O
+book	O	O	O
+stores	O	O	O
+in	O	O	O
+london	london	O	B-LOC	London	http://en.wikipedia.org/wiki/London
+.	O	O	#
+hind	O	O	O
+shorts	O	O	O
+.	O	O	#
+colorado	colorado	O	B-LOC	Colorado	http://en.wikipedia.org/wiki/Colorado
+fishing	O	O	O
+guide	O	O	O
+trout	O	O	O
+.	O	O	#
+ford	O	O	O
+4.9	O	O	O
+i6	O	O	O
+.	O	O	#
+pistol	O	O	O
+for	O	O	O
+sale	O	O	O
+in	O	O	O
+florida	florida	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+.	O	O	#
+michael	michael_vick	O	B-PER	Michael_vick	http://en.wikipedia.org/wiki/Michael_vick
+vick	O	O	I-PER
+shoes	O	O	O
+.	O	O	#
+mille	mille_lacs	O	B-ORG	Mille_Lacs	http://en.wikipedia.org/wiki/Mille_Lacs
+lacs	O	O	I-ORG
+band	O	O	O
+training	O	O	O
+grants	O	O	O
+.	O	O	#
+esthetician	O	O	O
+uniforms	O	O	O
+europe	europe	O	B-LOC	Europe	http://en.wikipedia.org/wiki/Europe
+.	O	O	#
+panasonic	panasonic	O	B-ORG	Panasonic	http://en.wikipedia.org/wiki/Panasonic
+allure	O	O	O
+leather	O	O	O
+cases	O	O	O
+.	O	O	#
+city	city_of_surrey_fire_dept	O	B-ORG	NONE	NONE
+of	O	O	I-ORG
+surrey	O	O	I-ORG
+fire	O	O	I-ORG
+dept	O	O	I-ORG
+rules	O	O	O
+for	O	O	O
+used	O	O	O
+oil	O	O	O
+tanks	O	O	O
+.	O	O	#
+can	O	O	O
+you	O	O	O
+have	O	O	O
+an	O	O	O
+overcast	O	O	O
+sky	O	O	O
+with	O	O	O
+stratus	O	O	O
+fractus	O	O	O
+.	O	O	#
+nicomponte	O	O	O
+.	O	O	#
+celebrity	O	O	O
+forum	O	O	O
+foot	foot_hill_college	O	B-ORG	NONE	NONE
+hill	O	O	I-ORG
+college	O	O	I-ORG
+.	O	O	#
+activ	O	O	O
+directory	O	O	O
+.	O	O	#
+navy	O	O	O
+physical	O	O	O
+security	O	O	O
+manual	O	O	O
+.	O	O	#
+ken	ken_owyang	O	B-PER	NONE	NONE
+owyang	O	O	I-PER
+.	O	O	#
+sweetheart	O	O	O
+lyrics	O	O	O
+u2	O	O	O
+.	O	O	#
+mil-prf-23699f	O	O	O
+msds	O	O	O
+.	O	O	#
+superbowl	O	O	O
+thirty	O	O	O
+nine	O	O	O
+commerative	O	O	O
+hummels	O	O	O
+.	O	O	#
+state	O	O	O
+rankings	O	O	O
+elementary	O	O	O
+math	O	O	O
+.	O	O	#
+pain	O	O	O
+and	O	O	O
+inconvenience	O	O	O
+settlement;	O	O	O
+scar	O	O	O
+settlement	O	O	O
+.	O	O	#
+broumovsky	O	O	O
+zpravodaj	O	O	O
+.	O	O	#
+clark	clark_county_ohio	O	B-LOC	Clark_County,_Ohio	http://en.wikipedia.org/wiki/Clark_County%2C_Ohio
+county	O	O	I-LOC
+ohio	O	O	I-LOC
+assessor	O	O	O
+.	O	O	#
+achitecture	O	O	O
+ove-arup	O	O	O
+.	O	O	#
+ford	O	O	O
+diesel	O	O	O
+v	O	O	O
+belt	O	O	O
+.	O	O	#
+travel	O	O	O
+agency	O	O	O
+to	O	O	O
+brasil	brasil	O	B-LOC	Brasil	http://en.wikipedia.org/wiki/Brasil
+.	O	O	#
+chevy	O	O	O
+s-10	O	O	O
+heater	O	O	O
+core	O	O	O
+.	O	O	#
+okoichovice	O	O	O
+cz	O	O	O
+.	O	O	#
+curacao	curacao_sfea_acquarium	O	B-LOC	NONE	NONE
+sfea	O	O	I-LOC
+acquarium	O	O	I-LOC
+.	O	O	#
+osu/okc	O	O	O
+in	O	O	O
+oklahoma	oklahoma	O	B-LOC	Oklahoma	http://en.wikipedia.org/wiki/Oklahoma
+citynursing	O	O	O
+program	O	O	O
+.	O	O	#
+czsci	O	O	O
+do	O	O	O
+pralek	O	O	O
+.	O	O	#
+map	O	O	O
+-	O	O	O
+saskatoon	saskatoon	O	B-LOC	Saskatoon	http://en.wikipedia.org/wiki/Saskatoon
+.	O	O	#
+panama	panama_city;_fla	O	B-LOC	Panama_City,_Florida	http://en.wikipedia.org/wiki/Panama_City%2C_Florida
+city;	O	O	I-LOC
+fla	O	O	I-LOC
+.	O	O	#
+color	O	O	O
+pages;	O	O	O
+dragons	O	O	O
+.	O	O	#
+central	central_dispatch	O	B-ORG	NONE	NONE
+dispatch	O	O	I-ORG
+houston	houston_texas	O	B-LOC	Houston_texas	http://en.wikipedia.org/wiki/Houston_texas
+texas	O	O	I-LOC
+.	O	O	#
+download	O	O	O
+and	O	O	O
+him	O	O	O
+.	O	O	#
+surface	O	O	O
+transportation	O	O	O
+board	O	O	O
+searches	O	O	O
+.	O	O	#
+gheuihttuhurhutirhjt	O	O	O
+.	O	O	#
+dominecker	O	O	O
+rooster	O	O	O
+.	O	O	#
+taking	O	O	O
+back	O	O	O
+sunday""	O	O	O
+lyrics	O	O	O
+i	O	O	O
+wanna	O	O	O
+hear	O	O	O
+you	O	O	O
+scream	O	O	O
+.	O	O	#
+spread	O	O	O
+4u	O	O	O
+live	O	O	O
+web	O	O	O
+cams	O	O	O
+.	O	O	#
+dragonfly	O	O	O
+hunting	O	O	O
+tequneques	O	O	O
+.	O	O	#
+american	american_airline	O	B-ORG	American_airline	http://en.wikipedia.org/wiki/American_airline
+airline	O	O	I-ORG
+telephone	O	O	O
+#	O	O	O
+.	O	O	#
+bernsworth	bernsworth_inn	O	B-LOC	NONE	NONE
+inn	O	O	I-LOC
+.	O	O	#
+chair	O	O	O
+rails	O	O	O
+cutting	O	O	O
+.	O	O	#
+best	best_western	O	B-ORG	Best_Western	http://en.wikipedia.org/wiki/Best_Western
+western	O	O	I-ORG
+meadow	meadow_acres	O	B-LOC	Meadow_Acres,_Wyoming	http://en.wikipedia.org/wiki/Meadow_Acres%2C_Wyoming
+acres	O	O	I-LOC
+.	O	O	#
+stretto	O	O	O
+fugue	O	O	O
+.	O	O	#
+rhode	rhode_island	O	B-LOC	Rhode_island	http://en.wikipedia.org/wiki/Rhode_island
+island	O	O	I-LOC
+trailer	O	O	O
+park	O	O	O
+.	O	O	#
+kelli	kelli_maccord	O	B-PER	NONE	NONE
+maccord	O	O	I-PER
+.	O	O	#
+apex	O	O	O
+4800-g2-p4	O	O	O
+.	O	O	#
+post	post_office	O	B-ORG	Post_office	http://en.wikipedia.org/wiki/Post_office
+office	O	O	I-ORG
+-	O	O	O
+denver	denver	O	B-LOC	Denver	http://en.wikipedia.org/wiki/Denver
+.	O	O	#
+repice	O	O	O
+potato	O	O	O
+cake	O	O	O
+.	O	O	#
+cheap	O	O	O
+car	O	O	O
+dvd	O	O	O
+.	O	O	#
+gay	O	O	O
+male	O	O	O
+lovers	O	O	O
+.	O	O	#
+leprosy	O	O	O
+in	O	O	O
+bible	O	O	O
+times	O	O	O
+.	O	O	#
+copper	O	O	O
+in	O	O	O
+a	O	O	O
+facial	O	O	O
+cream	O	O	O
+.	O	O	#
+seccio	O	O	O
+n	O	O	O
+amarilla	O	O	O
+.	O	O	#
+mcdonalds	mcdonalds	O	B-ORG	Mcdonalds	http://en.wikipedia.org/wiki/Mcdonalds
+and	O	O	O
+pizza	O	O	O
+.	O	O	#
+flash	O	O	O
+game	O	O	O
+machine	O	O	O
+.	O	O	#
+ashleys	ashleys	O	B-PER	NONE	NONE
+menu	O	O	O
+.	O	O	#
+plotting	O	O	O
+scale	O	O	O
+.	O	O	#
+a	O	O	O
+walk	O	O	O
+in	O	O	O
+temecula	temecula_california	O	B-LOC	Temecula_California	http://en.wikipedia.org/wiki/Temecula_California
+california	O	O	I-LOC
+.	O	O	#
+acculab	O	O	O
+crd-150;	O	O	O
+recalibrate	O	O	O
+.	O	O	#
+boeing	O	O	O
+667	O	O	O
+.	O	O	#
+chinese	O	O	O
+wedding	O	O	O
+music	O	O	O
+.	O	O	#
+odzyskiwanie	O	O	O
+mienia	O	O	O
+.	O	O	#
+property	O	O	O
+values	O	O	O
+in	O	O	O
+rhode	rhode_island	O	B-LOC	Rhode_island	http://en.wikipedia.org/wiki/Rhode_island
+island	O	O	I-LOC
+.	O	O	#
+rare	O	O	O
+apple	O	O	O
+.	O	O	#
+criminal	O	O	O
+records	O	O	O
+in	O	O	O
+santa	santa_cruz	O	B-LOC	Santa_Cruz_County,_Arizona	http://en.wikipedia.org/wiki/Santa_Cruz_County%2C_Arizona
+cruz	O	O	I-LOC
+.	O	O	#
+enigma	O	O	O
+return	O	O	O
+to	O	O	O
+innocence	O	O	O
+download	O	O	O
+.	O	O	#
+thoreau/transcendentalism	O	O	O
+.	O	O	#
+a.	O	O	O
+zahner	zahner	O	B-PER	Zahner	http://en.wikipedia.org/wiki/Zahner
+architectural	O	O	O
+metal	O	O	O
+.	O	O	#
+sae	O	O	O
+tn	O	O	O
+beta	O	O	O
+pictures	O	O	O
+.	O	O	#
+respiratory	O	O	O
+response:	O	O	O
+bronchiole	O	O	O
+asthma	O	O	O
+.	O	O	#
+antecedentes	O	O	O
+de	O	O	O
+presupuesto	O	O	O
+.	O	O	#
+michigan	michigan	O	B-LOC	Michigan	http://en.wikipedia.org/wiki/Michigan
+car	O	O	O
+dealers	O	O	O
+websites	O	O	O
+.	O	O	#
+air	O	O	O
+intake	O	O	O
+heater	O	O	O
+wire	O	O	O
+diagram	O	O	O
+dodge	O	O	O
+ram	O	O	O
+3500	O	O	O
+.	O	O	#
+celtic	O	O	O
+tribal	O	O	O
+armband	O	O	O
+tattoo	O	O	O
+.	O	O	#
+unn	O	O	O
+of	O	O	O
+advance	O	O	O
+technology	O	O	O
+.	O	O	#
+dial	O	O	O
+on	O	O	O
+start	O	O	O
+up	O	O	O
+.	O	O	#
+cgx-171cca	O	O	O
+yamaha	O	O	O
+.	O	O	#
+tom	tom_bass_park;	O	B-LOC	NONE	NONE
+bass	O	O	I-LOC
+park;	O	O	I-LOC
+houston;	houston;	O	B-LOC	Houston	http://en.wikipedia.org/wiki/Houston
+texas	texas	O	B-LOC	Texas	http://en.wikipedia.org/wiki/Texas
+.	O	O	#
+las	las_vegas	O	B-LOC	Las_vegas	http://en.wikipedia.org/wiki/Las_vegas
+vegas	O	O	I-LOC
+accomidations	O	O	O
+cheap	O	O	O
+.	O	O	#
+amortizare	O	O	O
+accelerata	O	O	O
+.	O	O	#
+dollynight	O	O	O
+.	O	O	#
+mckenzie	mckenzie	O	B-PER	Mackenzie_(surname)	http://en.wikipedia.org/wiki/Mackenzie_%28surname%29
+trust	trust	O	B-ORG	Trust	http://en.wikipedia.org/wiki/Trust
+.	O	O	#
+continental	O	O	O
+airlines	O	O	O
+executive	O	O	O
+bonus	O	O	O
+program	O	O	O
+.	O	O	#
+nature	O	O	O
+centers	O	O	O
+and	O	O	O
+denver	denver	O	B-LOC	Denver	http://en.wikipedia.org/wiki/Denver
+.	O	O	#
+targus	targus	O	B-ORG	Targus	http://en.wikipedia.org/wiki/Targus
+city	O	O	O
+gear	O	O	O
+tcg400	O	O	O
+.	O	O	#
+chon	O	O	O
+buri	O	O	O
+buffalo	O	O	O
+races	O	O	O
+thailand	thailand	O	B-LOC	Thailand	http://en.wikipedia.org/wiki/Thailand
+.	O	O	#
+cuba's	O	O	O
+recipes	O	O	O
+.	O	O	#
+mother-daughter	O	O	O
+inspirational	O	O	O
+quotes	O	O	O
+.	O	O	#
+intel	intel	O	B-ORG	Intel	http://en.wikipedia.org/wiki/Intel
+and	O	O	O
+82801db	O	O	O
+and	O	O	O
+(m)	O	O	O
+and	O	O	O
+ich4(-m)-ac	O	O	O
+and	O	O	O
+97	O	O	O
+.	O	O	#
+traslate	O	O	O
+english	O	O	O
+text	O	O	O
+to	O	O	O
+spanish	O	O	O
+.	O	O	#
+new	new_orleans_louisiana	O	B-LOC	New_Orleans	http://en.wikipedia.org/wiki/New_Orleans
+orleans	O	O	I-LOC
+louisiana	O	O	I-LOC
+channel	O	O	O
+4	O	O	O
+news	news	O	B-LOC	News	http://en.wikipedia.org/wiki/News
+.	O	O	#
+realtors	O	O	O
+in	O	O	O
+winterhaven	winterhaven	O	B-LOC	Winterhaven	http://en.wikipedia.org/wiki/Winterhaven
+florida	florida	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+.	O	O	#
+morrowind:	O	O	O
+.	O	O	#
+philip	philip	O	B-PER	Philip	http://en.wikipedia.org/wiki/Philip
+and	O	O	O
+""kotler's""	O	O	O
+and	O	O	O
+""4""	O	O	O
+and	O	O	O
+""c's	O	O	O
+.	O	O	#
+biographical	O	O	O
+information	O	O	O
+on	O	O	O
+martin	martin_luther_king	O	B-PER	Martin_luther_king	http://en.wikipedia.org/wiki/Martin_luther_king
+luther	O	O	I-PER
+king	O	O	I-PER
+.	O	O	#
+potatoes	O	O	O
+alaska	alaska	O	B-LOC	Alaska	http://en.wikipedia.org/wiki/Alaska
+reference	O	O	O
+.	O	O	#
+number	O	O	O
+of	O	O	O
+messages""	O	O	O
+organization	O	O	O
+design	O	O	O
+.	O	O	#
+cashew	O	O	O
+juice	O	O	O
+health	O	O	O
+drink	O	O	O
+singapore	singapore	O	B-LOC	Singapore	http://en.wikipedia.org/wiki/Singapore
+.	O	O	#
+moma	moma_lombardi's	O	B-PER	NONE	NONE
+lombardi's	O	O	I-PER
+long	long_island_ny	O	B-LOC	Long_Island	http://en.wikipedia.org/wiki/Long_Island
+island	O	O	I-LOC
+ny	O	O	I-LOC
+.	O	O	#
+cultered	O	O	O
+marble	O	O	O
+top	O	O	O
+.	O	O	#
+tomb	O	O	O
+of	O	O	O
+lucrezia	lucrezia_borgia	O	B-PER	Lucrezia_Borgia	http://en.wikipedia.org/wiki/Lucrezia_Borgia
+borgia	O	O	I-PER
+.	O	O	#
+rd	O	O	O
+electronics/ru	O	O	O
+.	O	O	#
+real	O	O	O
+estate	O	O	O
+in	O	O	O
+glen	glen	O	B-LOC	Glen	http://en.wikipedia.org/wiki/Glen
+oaks;	oaks;	O	B-LOC	Oaks	http://en.wikipedia.org/wiki/Oaks
+ny	ny	O	B-LOC	New_York	http://en.wikipedia.org/wiki/New_York
+.	O	O	#
+rattan	O	O	O
+baskets	O	O	O
+.	O	O	#
+the	O	O	O
+story	O	O	O
+behind	O	O	O
+toy	O	O	O
+soldiers	O	O	O
+-	O	O	O
+eminem	eminem	O	B-PER	Eminem	http://en.wikipedia.org/wiki/Eminem
+.	O	O	#
+affordable	O	O	O
+weddings	O	O	O
+sites	O	O	O
+durango	durango	O	B-LOC	Durango	http://en.wikipedia.org/wiki/Durango
+.	O	O	#
+counseling	O	O	O
+debt	O	O	O
+fl	O	O	O
+free	O	O	O
+reduction	O	O	O
+.	O	O	#
+huston-tillotson	huston-tillotson	O	B-LOC	Huston-Tillotson	http://en.wikipedia.org/wiki/Huston-Tillotson
+college	O	O	O
+music	O	O	O
+department	O	O	O
+.	O	O	#
+alexandra	alexandra_baryshnikov	O	B-PER	Alexandr_Baryshnikov	http://en.wikipedia.org/wiki/Alexandr_Baryshnikov
+baryshnikov	O	O	I-PER
+gives	O	O	O
+birth	O	O	O
+.	O	O	#
+msnstockquote	O	O	O
+historical	O	O	O
+data	O	O	O
+.	O	O	#
+how	O	O	O
+to	O	O	O
+build	O	O	O
+metal	O	O	O
+rockets	O	O	O
+.	O	O	#
+promotional	O	O	O
+basketball	O	O	O
+.	O	O	#
+gametraining	O	O	O
+.	O	O	#
+lebanese	O	O	O
+beaities	O	O	O
+and	O	O	O
+celebreties	O	O	O
+.	O	O	#
+itbs	O	O	O
+items	O	O	O
+by	O	O	O
+grade	O	O	O
+level	O	O	O
+.	O	O	#
+pictures	O	O	O
+of	O	O	O
+thermal	O	O	O
+pollutants	O	O	O
+.	O	O	#
+motosport	motosport_outlet_inc	O	B-ORG	NONE	NONE
+outlet	O	O	I-ORG
+inc	O	O	I-ORG
+.	O	O	#
+brittan	brittan	O	B-LOC	Brittan	http://en.wikipedia.org/wiki/Brittan
+rulers	O	O	O
+in	O	O	O
+1492	O	O	O
+.	O	O	#
+chuck	chuck_and_e_and_cheese;	O	B-ORG	NONE	NONE
+and	O	O	I-ORG
+e	O	O	I-ORG
+and	O	O	I-ORG
+cheese;	O	O	I-ORG
+and	O	O	I-ORG
+rochester;	rochester;_and_ny	O	B-LOC	Rochester,_New_York	http://en.wikipedia.org/wiki/Rochester%2C_New_York
+and	O	O	I-LOC
+ny	O	O	I-LOC
+.	O	O	#
+picc	O	O	O
+lines	O	O	O
+certification	O	O	O
+.	O	O	#
+lowes	lowes_home_improvement	O	B-ORG	Lowes_home_improvement	http://en.wikipedia.org/wiki/Lowes_home_improvement
+home	O	O	I-ORG
+improvement	O	O	I-ORG
+of	O	O	O
+wilson	wilson	O	B-LOC	Wilson	http://en.wikipedia.org/wiki/Wilson
+.	O	O	#
+pennslyvania	pennslyvania	O	B-LOC	Pennslyvania	http://en.wikipedia.org/wiki/Pennslyvania
+state	O	O	O
+statutes	O	O	O
+.	O	O	#
+probate	O	O	O
+process	O	O	O
+pennsylvania	pennsylvania	O	B-LOC	Pennsylvania	http://en.wikipedia.org/wiki/Pennsylvania
+.	O	O	#
+dell	dell	O	B-ORG	Dell	http://en.wikipedia.org/wiki/Dell
+elsalvador	elsalvador	O	B-LOC	El_Salvador	http://en.wikipedia.org/wiki/El_Salvador
+.	O	O	#
+photo	O	O	O
+aginepi	O	O	O
+light	O	O	O
+lazer	O	O	O
+.	O	O	#
+first	O	O	O
+women	O	O	O
+in	O	O	O
+the	O	O	O
+olympics	O	O	O
+.	O	O	#
+father	O	O	O
+on	O	O	O
+happy	O	O	O
+days	O	O	O
+.	O	O	#
+function	O	O	O
+nucleoside	O	O	O
+triphosphate	O	O	O
+.	O	O	#
+angel	O	O	O
+on	O	O	O
+the	O	O	O
+show	O	O	O
+called	O	O	O
+angel	O	O	O
+.	O	O	#
+density;	O	O	O
+mass	O	O	O
+formula	O	O	O
+.	O	O	#
+for	O	O	O
+sale	O	O	O
+monkeys	O	O	O
+.	O	O	#
+michael	michael_veasey	O	B-PER	NONE	NONE
+veasey	O	O	I-PER
+.	O	O	#
+dialysis	O	O	O
+and	O	O	O
+waiting	O	O	O
+and	O	O	O
+lists	O	O	O
+and	O	O	O
+uk	uk	O	B-LOC	Uk	http://en.wikipedia.org/wiki/Uk
+.	O	O	#
+tierras	O	O	O
+del	O	O	O
+sieclos	O	O	O
+xii	O	O	O
+.	O	O	#
+buick	buick	O	B-ORG	Buick	http://en.wikipedia.org/wiki/Buick
+dealer;	O	O	O
+tappahannock	tappahannock	O	B-LOC	Tappahannock	http://en.wikipedia.org/wiki/Tappahannock
+.	O	O	#
+second	second_""chance_pbgv""_rescue	O	B-ORG	NONE	NONE
+""chance	O	O	I-ORG
+pbgv""	O	O	I-ORG
+rescue	O	O	I-ORG
+.	O	O	#
+naturally	O	O	O
+occurring	O	O	O
+retiremen	O	O	O
+community	O	O	O
+.	O	O	#
+mercury	O	O	O
+sable	O	O	O
+interior	O	O	O
+color	O	O	O
+options	O	O	O
+.	O	O	#
+megan	megan_mulvaney	O	B-PER	NONE	NONE
+mulvaney	O	O	I-PER
+.	O	O	#
+city	O	O	O
+map	O	O	O
+of	O	O	O
+colorado	colorado	O	B-LOC	Colorado	http://en.wikipedia.org/wiki/Colorado
+.	O	O	#
+richmond	richmond_hill_united_church	O	B-ORG	Richmond_Hill_United_Church	http://en.wikipedia.org/wiki/Richmond_Hill_United_Church
+hill	O	O	I-ORG
+united	O	O	I-ORG
+church	O	O	I-ORG
+ontario	ontario	O	B-LOC	Ontario	http://en.wikipedia.org/wiki/Ontario
+.	O	O	#
+masage	O	O	O
+para	O	O	O
+la	O	O	O
+ceulitis	O	O	O
+.	O	O	#
+robter	robter_jones	O	B-PER	Robert_Jones	http://en.wikipedia.org/wiki/Robert_Jones
+jones	O	O	I-PER
+.	O	O	#
+central	central_michigan_university_school_of	O	B-ORG	Central_Michigan_University	http://en.wikipedia.org/wiki/Central_Michigan_University
+michigan	O	O	I-ORG
+university	O	O	I-ORG
+school	O	O	I-ORG
+of	O	O	I-ORG
+music	O	O	I-ORG
+.	O	O	#
+math	O	O	O
+piping	O	O	O
+problem	O	O	O
+.	O	O	#
+afgacamera	O	O	O
+driver	O	O	O
+.	O	O	#
+pegamento	O	O	O
+and	O	O	O
+pvc	O	O	O
+tangit	O	O	O
+mx	O	O	O
+.	O	O	#
+geotechicnal	O	O	O
+analysis	O	O	O
+.	O	O	#
+apple	O	O	O
+pie""	O	O	O
+raisins	O	O	O
+.	O	O	#
+cedar	cedar_lake_memorial_park	O	B-LOC	NONE	NONE
+lake	O	O	I-LOC
+memorial	O	O	I-LOC
+park	O	O	I-LOC
+campground	campground	O	B-LOC	Campground	http://en.wikipedia.org/wiki/Campground
+.	O	O	#
+career	O	O	O
+involving	O	O	O
+anatomy	O	O	O
+.	O	O	#
+dhcp	O	O	O
+overview	O	O	O
+.	O	O	#
+honduran	honduran	O	B-LOC	Honduran	http://en.wikipedia.org/wiki/Honduran
+retirement	O	O	O
+.	O	O	#
+love	O	O	O
+freaks	O	O	O
+.	O	O	#
+burglar	O	O	O
+prowl	O	O	O
+movie	O	O	O
+.	O	O	#
+cheerleading	O	O	O
+doll	O	O	O
+icons	O	O	O
+.	O	O	#
+tracy	tracy_austiin	O	B-PER	Tracy_Austin	http://en.wikipedia.org/wiki/Tracy_Austin
+austiin	O	O	I-PER
+tennis	O	O	O
+star	star	O	B-PER	Star	http://en.wikipedia.org/wiki/Star
+.	O	O	#
+mobile	O	O	O
+physical	O	O	O
+therapy;	O	O	O
+raleigh;	raleigh;	O	B-LOC	Raleigh	http://en.wikipedia.org/wiki/Raleigh
+nc	nc	O	B-LOC	Nc	http://en.wikipedia.org/wiki/Nc
+.	O	O	#
+boys	O	O	O
+""knee	O	O	O
+high""	O	O	O
+socks	O	O	O
+.	O	O	#
+cory	cory_horth	O	B-PER	NONE	NONE
+horth	O	O	I-PER
+.	O	O	#
+double	O	O	O
+wedding	O	O	O
+ring	O	O	O
+quilt	O	O	O
+pattern	O	O	O
+to	O	O	O
+print	O	O	O
+.	O	O	#
+cel	O	O	O
+mai	O	O	O
+bun	O	O	O
+avion	O	O	O
+de	O	O	O
+vanatoare	O	O	O
+.	O	O	#
+histiological	O	O	O
+pics	O	O	O
+of	O	O	O
+osteoporosis	O	O	O
+.	O	O	#
+countryclulb	countryclulb	O	B-ORG	NONE	NONE
+of	O	O	O
+fairfax.	fairfax.	O	B-LOC	Fairfax,_California	http://en.wikipedia.org/wiki/Fairfax%2C_California
+.	O	O	#
+california	california	O	B-LOC	California	http://en.wikipedia.org/wiki/California
+police	O	O	O
+auction	O	O	O
+.	O	O	#
+live	O	O	O
+music	O	O	O
+prices	O	O	O
+new	new_york	O	B-LOC	New_york	http://en.wikipedia.org/wiki/New_york
+york	O	O	I-LOC
+.	O	O	#
+free	O	O	O
+celeb	O	O	O
+picsl	O	O	O
+.	O	O	#
+can	O	O	O
+you	O	O	O
+track	O	O	O
+location	O	O	O
+of	O	O	O
+cell	O	O	O
+phone	O	O	O
+.	O	O	#
+moving	O	O	O
+pagefile	O	O	O
+.	O	O	#
+null	O	O	O
+pointer	O	O	O
+passed	O	O	O
+stub	O	O	O
+windows	O	O	O
+media	O	O	O
+player	O	O	O
+10	O	O	O
+.	O	O	#
+bacxkgrounds	O	O	O
+.	O	O	#
+safety	O	O	O
+ratings	O	O	O
+cribs	O	O	O
+.	O	O	#
+the	O	O	O
+complex	O	O	O
+environment	O	O	O
+where	O	O	O
+this	O	O	O
+industry	O	O	O
+.	O	O	#
+tuturing	O	O	O
+on	O	O	O
+microsoft	microsoft	O	B-ORG	Microsoft	http://en.wikipedia.org/wiki/Microsoft
+power	O	O	O
+point	O	O	O
+.	O	O	#
+screaming	O	O	O
+trees	O	O	O
+punkrock	O	O	O
+.	O	O	#
+rosehip	O	O	O
+picture	O	O	O
+.	O	O	#
+creech	O	O	O
+bill;	O	O	O
+article	O	O	O
+115-c	O	O	O
+.	O	O	#
+belsoie	belsoie	O	B-ORG	NONE	NONE
+formal	O	O	O
+wear	O	O	O
+.	O	O	#
+though	O	O	O
+rough	O	O	O
+bred	O	O	O
+characteristics	O	O	O
+.	O	O	#
+moody	moody_blues	O	B-ORG	Moody_Blues	http://en.wikipedia.org/wiki/Moody_Blues
+blues	O	O	I-ORG
+days	O	O	O
+of	O	O	O
+passed	O	O	O
+the	O	O	O
+dawn	O	O	O
+.	O	O	#
+bbc_readysteadycook	O	O	O
+.	O	O	#
+sholaderma	O	O	O
+.	O	O	#
+nation	O	O	O
+expects	O	O	O
+ignorant	O	O	O
+free	O	O	O
+expects	O	O	O
+.	O	O	#
+bj	bj_penn	O	B-PER	Bj_penn	http://en.wikipedia.org/wiki/Bj_penn
+penn	O	O	I-PER
+pics	O	O	O
+.	O	O	#
+condo	O	O	O
+rentals	O	O	O
+at	O	O	O
+eagle	eagle_pointe	O	B-LOC	NONE	NONE
+pointe	O	O	I-LOC
+in	O	O	O
+indiana	indiana	O	B-LOC	Indiana	http://en.wikipedia.org/wiki/Indiana
+.	O	O	#
+tripp	tripp_county	O	B-LOC	Tripp_County	http://en.wikipedia.org/wiki/Tripp_County
+county	O	O	I-LOC
+catholics	O	O	O
+.	O	O	#
+canton	O	O	O
+exhibitoin	O	O	O
+china	china	O	B-LOC	China	http://en.wikipedia.org/wiki/China
+.	O	O	#
+silcon	O	O	O
+dress	O	O	O
+pads	O	O	O
+.	O	O	#
+open	O	O	O
+doors""	O	O	O
+foundation	O	O	O
+and	O	O	O
+emmit	emmit_smith	O	B-PER	Emmit_Smith	http://en.wikipedia.org/wiki/Emmit_Smith
+smith	O	O	I-PER
+.	O	O	#
+dale	dale_earnhardt_sr	O	B-PER	Dale_Earnhardt	http://en.wikipedia.org/wiki/Dale_Earnhardt
+earnhardt	O	O	I-PER
+sr	O	O	I-PER
+wallpapers	O	O	O
+.	O	O	#
+hdtv	O	O	O
+buyers	O	O	O
+guide	O	O	O
+plasma	O	O	O
+lcd	O	O	O
+.	O	O	#
+seafood	O	O	O
+markets	O	O	O
+in	O	O	O
+hampton	hampton_roads_va	O	B-LOC	Hampton_Roads	http://en.wikipedia.org/wiki/Hampton_Roads
+roads	O	O	I-LOC
+va	O	O	I-LOC
+.	O	O	#
+annuaire	O	O	O
+en	O	O	O
+france	france	O	B-LOC	France	http://en.wikipedia.org/wiki/France
+.	O	O	#
+presonus	O	O	O
+mp	O	O	O
+20	O	O	O
+.	O	O	#
+bought	O	O	O
+copies	O	O	O
+in	O	O	O
+a	O	O	O
+fair	O	O	O
+grounds""	O	O	O
+language:en	O	O	O
+.	O	O	#
+new	new_river_media_partners;	O	B-ORG	NONE	NONE
+river	O	O	I-ORG
+media	O	O	I-ORG
+partners;	O	O	I-ORG
+radford;	radford;	O	B-LOC	Radford	http://en.wikipedia.org/wiki/Radford
+vas	vas	O	B-ORG	Vas	http://en.wikipedia.org/wiki/Vas
+.	O	O	#
+how	O	O	O
+taget	O	O	O
+stuff	O	O	O
+formytrack	O	O	O
+fone	O	O	O
+.	O	O	#
+alazar	alazar_riverboat_casino	O	B-ORG	NONE	NONE
+riverboat	O	O	I-ORG
+casino	O	O	I-ORG
+.	O	O	#
+psd	O	O	O
+informs	O	O	O
+dfas	O	O	O
+close	O	O	O
+account	O	O	O
+.	O	O	#
+bed	O	O	O
+and	O	O	O
+breakfast	O	O	O
+oklahoma	oklahoma_city	O	B-LOC	Oklahoma_city	http://en.wikipedia.org/wiki/Oklahoma_city
+city	O	O	I-LOC
+.	O	O	#
+compare	O	O	O
+mac	O	O	O
+os	O	O	O
+9	O	O	O
+.	O	O	#
+attachments	O	O	O
+to	O	O	O
+pgp	O	O	O
+e-mail	O	O	O
+.	O	O	#
+toy	O	O	O
+story	O	O	O
+videio	O	O	O
+.	O	O	#
+newspaper	O	O	O
+in	O	O	O
+the	O	O	O
+year	O	O	O
+1977-1980	O	O	O
+.	O	O	#
+blue	blue_cross	O	B-ORG	Blue_Cross_and_Blue_Shield_Association	http://en.wikipedia.org/wiki/Blue_Cross_and_Blue_Shield_Association	The_Blue_Cross	http://en.wikipedia.org/wiki/The_Blue_Cross
+cross	O	O	I-ORG
+blue	blue_shield	O	B-ORG
+shield	O	O	I-ORG
+compainion	O	O	O
+.	O	O	#
+northwest	northwest	O	B-LOC	Northwest	http://en.wikipedia.org/wiki/Northwest
+world	O	O	O
+perks	O	O	O
+#780-998-971	O	O	O
+.	O	O	#
+chiropractic	chiropractic_associasion	O	B-ORG	American_Chiropractic_Association	http://en.wikipedia.org/wiki/American_Chiropractic_Association
+associasion	O	O	I-ORG
+.	O	O	#
+roberts	roberts	O	B-PER	Roberts	http://en.wikipedia.org/wiki/Roberts
+company	company	O	B-ORG	Company	http://en.wikipedia.org/wiki/Company
+.	O	O	#
+enigma	O	O	O
+music	O	O	O
+stile	O	O	O
+.	O	O	#
+search	O	O	O
+mytle	O	O	O
+beach	O	O	O
+south	O	O	O
+carolina	carolina	O	B-LOC	South_Carolina	http://en.wikipedia.org/wiki/South_Carolina
+cruise	O	O	O
+.	O	O	#
+c3po	O	O	O
+buddy	O	O	O
+.	O	O	#
+emulator	O	O	O
+delta	O	O	O
+.	O	O	#
+local	O	O	O
+maps	O	O	O
+of	O	O	O
+gatlinburg	gatlinburg	O	B-LOC	Gatlinburg	http://en.wikipedia.org/wiki/Gatlinburg
+tn.	tn.	O	B-LOC	Tennessee	http://en.wikipedia.org/wiki/Tennessee
+.	O	O	#
+boat	O	O	O
+accident	O	O	O
+in	O	O	O
+long	long_beach;_ca	O	B-LOC	Long_Beach,_California	http://en.wikipedia.org/wiki/Long_Beach%2C_California
+beach;	O	O	I-LOC
+ca	O	O	I-LOC
+.	O	O	#
+glasscock	glasscock_county	O	B-LOC	Glasscock_County,_Texas	http://en.wikipedia.org/wiki/Glasscock_County%2C_Texas
+county	O	O	I-LOC
+recorder	O	O	O
+.	O	O	#
+save	O	O	O
+a	O	O	O
+little	O	O	O
+more	O	O	O
+for	O	O	O
+retirement	O	O	O
+.	O	O	#
+atv	O	O	O
+knock	O	O	O
+off	O	O	O
+.	O	O	#
+polyp	O	O	O
+rene	O	O	O
+tanke	O	O	O
+trunks	O	O	O
+.	O	O	#
+chimo	O	O	O
+pool	O	O	O
+coquitlam	coquitlam	O	B-LOC	Coquitlam	http://en.wikipedia.org/wiki/Coquitlam
+.	O	O	#
+realestate	O	O	O
+in	in	O	B-LOC	In	http://en.wikipedia.org/wiki/In
+il	il	O	B-LOC	Il	http://en.wikipedia.org/wiki/Il
+on	O	O	O
+ebay	ebay	O	B-ORG	Ebay	http://en.wikipedia.org/wiki/Ebay
+.	O	O	#
+northeastfourwheelclub	O	O	O
+.	O	O	#
+barn	O	O	O
+yard	O	O	O
+baby	O	O	O
+room	O	O	O
+.	O	O	#
+rrs	O	O	O
+14:32.1	O	O	O
+.	O	O	#
+the	O	O	O
+code	O	O	O
+to	O	O	O
+unlock	O	O	O
+i95	O	O	O
+.	O	O	#
+alcohol	O	O	O
+drug	O	O	O
+prevention	O	O	O
+parenting	O	O	O
+curriculum	O	O	O
+.	O	O	#
+panama	panama	O	B-LOC	Panama	http://en.wikipedia.org/wiki/Panama
+city;fl	O	O	O
+apartments	O	O	O
+.	O	O	#
+braza	braza_grill	O	B-ORG	NONE	NONE
+grill	O	O	I-ORG
+in	O	O	O
+cleveland	cleveland	O	B-LOC	Cleveland	http://en.wikipedia.org/wiki/Cleveland
+.	O	O	#
+italian	O	O	O
+words	O	O	O
+from	O	O	O
+the	O	O	O
+godfather	O	O	O
+.	O	O	#
+g	O	O	O
+lista	O	O	O
+wolsztajna	O	O	O
+.	O	O	#
+saxophone	O	O	O
+player	O	O	O
+weather	O	O	O
+report	O	O	O
+.	O	O	#
+vu	O	O	O
+and	O	O	O
+et	O	O	O
+and	O	O	O
+entandu	O	O	O
+.	O	O	#
+roanoke	roanoke_neurological_associates	O	B-ORG	NONE	NONE
+neurological	O	O	I-ORG
+associates	O	O	I-ORG
+.	O	O	#
+cotton	O	O	O
+knit	O	O	O
+comfort	O	O	O
+.	O	O	#
+sjd	O	O	O
+mu	O	O	O
+no	O	O	O
+ip	O	O	O
+.	O	O	#
+play	O	O	O
+morrowind	O	O	O
+the	O	O	O
+elder	O	O	O
+scrolls	O	O	O
+three	O	O	O
+on	O	O	O
+internet	O	O	O
+.	O	O	#
+allen	allen_entrekin	O	B-PER	NONE	NONE	NONE	NONE
+entrekin	O	O	I-PER
+allen	allen_pennsylvania	O	B-LOC
+pennsylvania	O	O	I-LOC
+.	O	O	#
+cheap	O	O	O
+santa	O	O	O
+suits	O	O	O
+.	O	O	#
+paris	paris	O	B-PER	Paris	http://en.wikipedia.org/wiki/Paris
+hilton's	hilton's	O	B-PER	Paris_Hilton	http://en.wikipedia.org/wiki/Paris_Hilton
+phone	O	O	O
+books	O	O	O
+numbers	O	O	O
+.	O	O	#
+employment	O	O	O
+in	O	O	O
+aviano	aviano	O	B-LOC	Aviano	http://en.wikipedia.org/wiki/Aviano
+italy	italy	O	B-LOC	Italy	http://en.wikipedia.org/wiki/Italy
+.	O	O	#
+cargo	O	O	O
+trailers	O	O	O
+in	O	O	O
+kansas	kansas	O	B-LOC	Kansas	http://en.wikipedia.org/wiki/Kansas
+.	O	O	#

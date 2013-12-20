@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tagme>
+        <setting name="access">
+                <param name="key" value="KEY" />
+                <param name="url" value="http://tagme.di.unipi.it/api" />
+        </setting>
+</tagme>

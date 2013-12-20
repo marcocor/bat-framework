@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aida>
+        <setting name="access">
+                <param name="user" value="USER" />
+                <param name="password" value="PASSWD" />
+                <param name="parseServerId" value="aidarmi" />
+                <param name="ip" value="139.19.87.14" />
+                <param name="port" value="9503" />
+                <param name="serviceId" value="gatewayrmi" />
+        </setting>
+</aida>

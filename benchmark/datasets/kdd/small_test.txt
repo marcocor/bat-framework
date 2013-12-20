@@ -1,0 +1,292 @@
+.	O	O	#
+party	party_city	O	B-ORG	Party_City	http://en.wikipedia.org/wiki/Party_City
+city	O	O	I-ORG
+in	O	O	O
+dallas	dallas	O	B-LOC	Dallas	http://en.wikipedia.org/wiki/Dallas
+.	O	O	#
+classroom	O	O	O
+maps	O	O	O
+download	O	O	O
+.	O	O	#
+can	O	O	O
+endometritis	O	O	O
+turn	O	O	O
+into	O	O	O
+hyperplasia?	O	O	O
+.	O	O	#
+aptiva	aptiva	O	B-ORG	Aptiva	http://en.wikipedia.org/wiki/Aptiva
+video	O	O	O
+card	O	O	O
+.	O	O	#
+haywood	haywood_house	O	B-ORG	NONE	NONE
+house	O	O	I-ORG
+cardiff	cardiff	O	B-LOC	Cardiff	http://en.wikipedia.org/wiki/Cardiff
+uk	uk	O	B-LOC	Uk	http://en.wikipedia.org/wiki/Uk
+.	O	O	#
+photoamateur	O	O	O	NONE	NONE
+.	O	O	#
+shoshone	shoshone_county_sheriffs_department;	O	B-ORG	NONE	NONE
+county	O	O	I-ORG
+sheriffs	O	O	I-ORG
+department;	O	O	I-ORG
+wallace;id	wallace;id	O	B-LOC	Wallace,_Idaho	http://en.wikipedia.org/wiki/Wallace%2C_Idaho
+.	O	O	#
+car	O	O	O
+rentals	O	O	O
+in	O	O	O
+albuquerque;nm	albuquerque;nm	O	B-LOC	Albuquerque,_New_Mexico	http://en.wikipedia.org/wiki/Albuquerque%2C_New_Mexico
+.	O	O	#
+rvclassified	O	O	O
+motorhome	O	O	O
+.	O	O	#
+protocol	O	O	O
+visualization	O	O	O
+.	O	O	#
+mdwav	O	O	O
+song	O	O	O
+.	O	O	#
+cdphp	O	O	O
+per	O	O	O
+se	O	O	O
+.	O	O	#
+ashgrove	ashgrove_elementary_school	O	B-ORG	NONE	NONE
+elementary	O	O	I-ORG
+school	O	O	I-ORG
+in	O	O	O
+riverton	riverton_wyoming	O	B-LOC	Riverton,_Wyoming	http://en.wikipedia.org/wiki/Riverton%2C_Wyoming
+wyoming	O	O	I-LOC
+.	O	O	#
+reef	O	O	O
+show	O	O	O
+tanks	O	O	O
+.	O	O	#
+mississippi	mississippi	O	B-LOC	Mississippi	http://en.wikipedia.org/wiki/Mississippi
+gulf	O	O	O
+coast	O	O	O
+aquarium	O	O	O
+.	O	O	#
+prism	O	O	O
+aha	O	O	O
+cpr	O	O	O
+training	O	O	O
+.	O	O	#
+music	O	O	O
+instruments	O	O	O
+the	O	O	O
+drum	O	O	O
+.	O	O	#
+gary	gary_eugene_orr	O	B-PER	NONE	NONE
+eugene	O	O	I-PER
+orr	O	O	I-PER
+arested	O	O	O
+.	O	O	#
+air	O	O	O
+froce	O	O	O
+1	O	O	O
+shoes	O	O	O
+.	O	O	#
+saskatchewan	O	O	O
+centenial	O	O	O
+celebration	O	O	O
+jokes	O	O	O
+or	O	O	O
+skits	O	O	O
+.	O	O	#
+maguy	maguy_bastadjian	O	B-PER	NONE	NONE
+bastadjian	O	O	I-PER
+.	O	O	#
+biography	O	O	O
+of	O	O	O
+ernst	ernst_barlach	O	B-PER	Ernst_barlach	http://en.wikipedia.org/wiki/Ernst_barlach
+barlach	O	O	I-PER
+.	O	O	#
+clarke	clarke_county_georgia	O	B-LOC	Clarke_County,_Georgia	http://en.wikipedia.org/wiki/Clarke_County%2C_Georgia
+county	O	O	I-LOC
+georgia	O	O	I-LOC
+school	O	O	O
+district	O	O	O
+.	O	O	#
+the	O	O	O
+number	O	O	O
+of	O	O	O
+cubic	O	O	O
+inches	O	O	O
+in	O	O	O
+six	O	O	O
+letres	O	O	O
+.	O	O	#
+concreate	O	O	O
+floors	O	O	O
+.	O	O	#
+harwood	harwood_lewin	O	B-PER	NONE	NONE
+lewin	O	O	I-PER
+.	O	O	#
+loan	O	O	O
+companies	O	O	O
+for	O	O	O
+bad	O	O	O
+credit	O	O	O
+.	O	O	#
+frontiersman	O	O	O
+homestead	O	O	O
+series	O	O	O
+.	O	O	#
+tom	tom_bannan	O	B-PER	Tom_Bannan	http://en.wikipedia.org/wiki/Tom_Bannan
+bannan	O	O	I-PER
+chevy	chevy	O	B-PER	Chevy	http://en.wikipedia.org/wiki/Chevy
+.	O	O	#
+credential	O	O	O
+in	O	O	O
+rehabilitative	O	O	O
+services	O	O	O
+.	O	O	#
+mcentyre's	mcentyre's	O	B-ORG	McEntyre	http://en.wikipedia.org/wiki/McEntyre
+cakes	O	O	O
+.	O	O	#
+matilda	matilda_jones	O	B-PER	NONE	NONE
+jones	O	O	I-PER
+murder	O	O	O
+a	O	O	O
+.	O	O	#
+credit	O	O	O
+card	O	O	O
+replacement	O	O	O
+.	O	O	#
+freeware	O	O	O
+usb	O	O	O
+virtual	O	O	O
+port	O	O	O
+.	O	O	#
+daly	daly_city	O	B-LOC	Daly_City	http://en.wikipedia.org/wiki/Daly_City
+city	O	O	I-LOC
+utilities	O	O	O
+.	O	O	#
+eloise	eloise_estrada	O	B-PER	NONE	NONE
+estrada	O	O	I-PER
+.	O	O	#
+kindergarten	O	O	O
+lesson	O	O	O
+plans	O	O	O
+peter	peter_rabbit	O	B-PER	Peter_rabbit	http://en.wikipedia.org/wiki/Peter_rabbit
+rabbit	O	O	I-PER
+.	O	O	#
+dvd	O	O	O
+idle	O	O	O
+pro	O	O	O
+crack	O	O	O
+.	O	O	#
+general	general_aluminum	O	B-ORG	NONE	NONE
+aluminum	O	O	I-ORG
+windows	O	O	O
+and	O	O	O
+doors	O	O	O
+.	O	O	#
+teacher	O	O	O
+molests	O	O	O
+12	O	O	O
+year	O	O	O
+old	O	O	O
+.	O	O	#
+uo/zzz_ros_aweuo_v1.0b5	O	O	O
+.	O	O	#
+progressive	O	O	O
+ins	O	O	O
+select	O	O	O
+auto	O	O	O
+repair	O	O	O
+shops	O	O	O
+.	O	O	#
+puyallup	puyallup	O	B-LOC	Puyallup,_Washington	http://en.wikipedia.org/wiki/Puyallup%2C_Washington
+jeep\	O	O	O
+.	O	O	#
+pontiac	O	O	O
+lubbock	lubbock	O	B-LOC	Lubbock	http://en.wikipedia.org/wiki/Lubbock
+.	O	O	#
+amelia	amelia_national_home_builders	O	B-ORG	NONE	NONE
+national	O	O	I-ORG
+home	O	O	I-ORG
+builders	O	O	I-ORG
+.	O	O	#
+businesses	O	O	O
+in	O	O	O
+milwaukee	milwaukee	O	B-LOC	Milwaukee	http://en.wikipedia.org/wiki/Milwaukee
+.	O	O	#
+real	O	O	O
+lifenude	O	O	O
+.	O	O	#
+eeoc	O	O	O
+laws	O	O	O
+date	O	O	O
+of	O	O	O
+birth	O	O	O
+.	O	O	#
+barbara	barbara_hodges	O	B-PER	NONE	NONE
+hodges	O	O	I-PER
+dvm	O	O	O
+california	california	O	B-LOC	California	http://en.wikipedia.org/wiki/California
+.	O	O	#
+no	O	O	O
+kill	O	O	O
+cat	O	O	O
+farms	O	O	O
+md	md	O	B-LOC	Md	http://en.wikipedia.org/wiki/Md
+.	O	O	#
+online	O	O	O
+real	O	O	O
+estate	O	O	O
+courses	O	O	O
+-rhode	-rhode_island	O	B-LOC	Rhode_Island	http://en.wikipedia.org/wiki/Rhode_Island
+island	O	O	I-LOC
+.	O	O	#
+dolch	O	O	O
+word	O	O	O
+game	O	O	O
+worksheet	O	O	O
+.	O	O	#
+road	O	O	O
+map	O	O	O
+vendors	O	O	O
+.	O	O	#
+gaali	O	O	O
+vanalo	O	O	O
+vananetilo	O	O	O
+padava	O	O	O
+.	O	O	#
+ecosysytm	O	O	O
+of	O	O	O
+forest	O	O	O
+.	O	O	#
+disney	disney_channel_._com	O	B-ORG	Disney_Channel	http://en.wikipedia.org/wiki/Disney_Channel
+channel	O	O	I-ORG
+.	O	O	I-ORG
+com	O	O	I-ORG
+/	O	O	O
+click	O	O	O
+it	O	O	O
+to	O	O	O
+pick	O	O	O
+it	O	O	O
+.	O	O	#
+mitchellopia	O	O	O
+.	O	O	#
+morphine	O	O	O
+addiction	O	O	O
+in	O	O	O
+newborns	O	O	O
+.	O	O	#
+carrs	O	O	O
+silversmith	O	O	O
+.	O	O	#
+courtyard	O	O	O
+by	O	O	O
+marriott	marriott	O	B-ORG	Marriott	http://en.wikipedia.org/wiki/Marriott
+east	east_wichita	O	B-LOC	Wichita,_Kansas	http://en.wikipedia.org/wiki/Wichita%2C_Kansas
+wichita	O	O	I-LOC
+.	O	O	#
+building	O	O	O
+materials	O	O	O
+donation	O	O	O
+.	O	O	#
+osd	osd	O	B-ORG	On-screen_display	http://en.wikipedia.org/wiki/On-screen_display
+acquisition	O	O	O
+.	O	O	#

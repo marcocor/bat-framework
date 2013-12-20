@@ -1,0 +1,330 @@
+.	O	O	#
+party	party_city	O	B-ORG	Party_City	http://en.wikipedia.org/wiki/Party_City
+city	O	O	I-ORG
+in	O	O	O
+dallas	dallas	O	B-LOC	Dallas	http://en.wikipedia.org/wiki/Dallas
+.	O	O	#
+classroom	classroom	O	B-O	Classroom	http://en.wikipedia.org/wiki/Classroom
+maps	maps	O	B-O	Map	http://en.wikipedia.org/wiki/Maps
+download	download	O	B-O	Download	http://en.wikipedia.org/wiki/Download
+.	O	O	#
+can	O	O	O
+endometritis	endometritis	O	B-O	Endometritis	http://en.wikipedia.org/wiki/Endometritis
+turn	O	O	O
+into	O	O	O
+hyperplasia?	hyperplasia?	O	B-O	Hyperplasia	http://en.wikipedia.org/wiki/Hyperplasia
+.	O	O	#
+aptiva	aptiva	O	B-ORG	Aptiva	http://en.wikipedia.org/wiki/Aptiva
+video	video_card	O	B-O	Video_card	http://en.wikipedia.org/wiki/Video_card
+card	O	O	I-O
+.	O	O	#
+photoamateur	O	O	O	NONE	NONE
+.	O	O	#
+shoshone	shoshone_county	O	B-ORG	Shoshone_County,_Idaho	http://en.wikipedia.org/wiki/Shoshone_County,_Idaho
+county	O	O	I-ORG
+sheriffs	sheriffs	O	B-O	Sheriff	http://en.wikipedia.org/wiki/Sheriff
+department;	O	O	O
+wallace;id	wallace;id	O	B-LOC	Wallace,_Idaho	http://en.wikipedia.org/wiki/Wallace%2C_Idaho
+.	O	O	#
+car	car_rentals	O	B-O	Car_rental	http://en.wikipedia.org/wiki/Car_rental
+rentals	O	O	I-O
+in	O	O	O
+albuquerque;nm	albuquerque;nm	O	B-LOC	Albuquerque,_New_Mexico	http://en.wikipedia.org/wiki/Albuquerque%2C_New_Mexico
+.	O	O	#
+rvclassified	rvclassified	O	B-O	Recreational_vehicle	http://en.wikipedia.org/wiki/Recreational_vehicle
+motorhome	motorhome	O	B-O	Motorhome	http://en.wikipedia.org/wiki/Motorhome
+.	O	O	#
+protocol	O	O	O
+visualization	O	O	O
+.	O	O	#
+mdwav	mdwav	O	B-O	My_Date_with_a_Vampire	http://en.wikipedia.org/wiki/My_Date_with_a_Vampire
+song	song	O	B-O	Song	http://en.wikipedia.org/wiki/Song
+.	O	O	#
+cdphp	O	O	O
+per	O	O	O
+se	O	O	O
+.	O	O	#
+ashgrove	O	O	O
+elementary	elementary_school	O	B-ORG	Elementary_school	http://en.wikipedia.org/wiki/Elementary_school
+school	O	O	I-ORG
+in	O	O	O
+riverton	riverton_wyoming	O	B-LOC	Riverton,_Wyoming	http://en.wikipedia.org/wiki/Riverton%2C_Wyoming
+wyoming	O	O	I-LOC
+.	O	O	#
+reef	reef	O	B-O	Reef	http://en.wikipedia.org/wiki/Reef
+show	O	O	O
+tanks	O	O	O
+.	O	O	#
+mississippi	mississippi_gulf_coast	O	B-LOC	Mississippi_Gulf_Coast	http://en.wikipedia.org/wiki/Mississippi_Gulf_Coast
+gulf	O	O	I-LOC
+coast	O	O	I-LOC
+aquarium	aquarium	O	B-O	Aquarium	http://en.wikipedia.org/wiki/Aquarium
+.	O	O	#
+prism	O	O	O
+aha	aha	O	B-ORG	American_Heart_Association	http://en.wikipedia.org/wiki/American_Heart_Association
+cpr	cpr	O	B-O	Cardiopulmonary_resuscitation	http://en.wikipedia.org/wiki/Cardiopulmonary_resuscitation
+training	training	O	B-O	Training	http://en.wikipedia.org/wiki/Training
+.	O	O	#
+music	music_instruments	O	B-O	Music_Instrument	http://en.wikipedia.org/wiki/Music_Instrument
+instruments	O	O	I-O
+the	O	O	O
+drum	drum	O	B-O	Drum	http://en.wikipedia.org/wiki/Drum
+.	O	O	#
+biography	biography	O	B-O	Biography	http://en.wikipedia.org/wiki/Biography
+of	O	O	O
+ernst	ernst_barlach	O	B-PER	Ernst_barlach	http://en.wikipedia.org/wiki/Ernst_barlach
+barlach	O	O	I-PER
+.	O	O	#
+clarke	clarke_county_georgia_school_district	O	B-ORG	Clarke_County_School_District	http://en.wikipedia.org/wiki/Clarke_County_School_District
+county	O	O	I-ORG
+georgia	O	O	I-ORG
+school	O	O	I-ORG
+district	O	O	I-ORG
+.	O	O	#
+tom	tom_bannan	O	B-PER	Tom_Bannan	http://en.wikipedia.org/wiki/Tom_Bannan
+bannan	O	O	I-PER
+chevy	chevy	O	B-PER	Chevy	http://en.wikipedia.org/wiki/Chevy
+.	O	O	#
+daly	daly_city	O	B-LOC	Daly_City	http://en.wikipedia.org/wiki/Daly_City
+city	O	O	I-LOC
+utilities	utilities	O	B-O	Utilities	http://en.wikipedia.org/wiki/Utilities
+.	O	O	#
+eloise	eloise_estrada	O	B-PER	NONE	NONE
+estrada	O	O	I-PER
+.	O	O	#
+kindergarten	kindergarten	O	B-O	Kindergarten	http://en.wikipedia.org/wiki/Kindergarten
+lesson	lesson_plans	O	B-O	Lesson_plan	http://en.wikipedia.org/wiki/Lesson_plan
+plans	O	O	I-O
+peter	peter_rabbit	O	B-PER	Peter_rabbit	http://en.wikipedia.org/wiki/Peter_rabbit
+rabbit	O	O	I-PER
+.	O	O	#
+dvd	O	O	O
+idle	O	O	O
+pro	O	O	O
+crack	crack	O	B-O	Software_cracking	http://en.wikipedia.org/wiki/Software_cracking
+.	O	O	#
+general	general_aluminum	O	B-ORG	NONE	NONE
+aluminum	O	O	I-ORG
+windows	windows	O	B-O	Window	http://en.wikipedia.org/wiki/Window
+and	O	O	O
+doors	doors	O	B-O	Door	http://en.wikipedia.org/wiki/Door
+.	O	O	#
+teacher	teacher	O	B-O	Teacher	http://en.wikipedia.org/wiki/Teacher
+molests	molests	O	B-O	Sexual_abuse	http://en.wikipedia.org/wiki/Sexual_abuse
+12	O	O	O
+year	year	O	B-O	Year	http://en.wikipedia.org/wiki/Year
+old	O	O	O
+.	O	O	#
+uo/zzz_ros_aweuo_v1.0b5	O	O	O
+.	O	O	#
+puyallup	puyallup	O	B-LOC	Puyallup,_Washington	http://en.wikipedia.org/wiki/Puyallup%2C_Washington
+jeep\	jeep\	O	B-O	Jeep	http://en.wikipedia.org/wiki/Jeep
+.	O	O	#
+pontiac	O	O	O
+lubbock	lubbock	O	B-LOC	Lubbock	http://en.wikipedia.org/wiki/Lubbock
+.	O	O	#
+businesses	businesses	O	B-O	Business	http://en.wikipedia.org/wiki/Business
+in	O	O	O
+milwaukee	milwaukee	O	B-LOC	Milwaukee	http://en.wikipedia.org/wiki/Milwaukee
+.	O	O	#
+real	O	O	O
+lifenude	O	O	O
+.	O	O	#
+eeoc	eeoc	O	B-O	Equal_Employment_Opportunity_Commission	http://en.wikipedia.org/wiki/Equal_Employment_Opportunity_Commission
+laws	laws	O	B-O	Law	http://en.wikipedia.org/wiki/Law
+date	date_of_birth	O	B-O	Birthday	http://en.wikipedia.org/wiki/Birthday
+of	O	O	I-O
+birth	O	O	I-O
+.	O	O	#
+barbara	barbara_hodges	O	B-PER	NONE	NONE
+hodges	O	O	I-PER
+dvm	dvm	O	B-O	Doctor_of_veterinary_medicine	http://en.wikipedia.org/wiki/Doctor_of_veterinary_medicine
+california	california	O	B-LOC	California	http://en.wikipedia.org/wiki/California
+.	O	O	#
+online	O	O	O
+real	real_estate	O	B-O	Real_estate	http://en.wikipedia.org/wiki/Real_estate
+estate	O	O	I-O
+courses	O	O	O
+-rhode	-rhode_island	O	B-LOC	Rhode_Island	http://en.wikipedia.org/wiki/Rhode_Island
+island	O	O	I-LOC
+.	O	O	#
+road	road	O	B-O	Road	http://en.wikipedia.org/wiki/Road
+map	map	O	B-O	Map	http://en.wikipedia.org/wiki/Map
+vendors	vendors	O	B-O	Vendor_(supply_chain)	http://en.wikipedia.org/wiki/Vendor_%28supply_chain%29
+.	O	O	#
+ecosysytm	ecosysytm	O	B-O	Ecosystem	http://en.wikipedia.org/wiki/Ecosystem
+of	O	O	O
+forest	forest	O	B-O	Forest	http://en.wikipedia.org/wiki/Forest
+.	O	O	#
+disney	disney_channel_._com	O	B-ORG	Disney_Channel	http://en.wikipedia.org/wiki/Disney_Channel
+channel	O	O	I-ORG
+.	O	O	I-ORG
+com	O	O	I-ORG
+/	O	O	O
+click	O	O	O
+it	O	O	O
+to	O	O	O
+pick	O	O	O
+it	O	O	O
+.	O	O	#
+mitchellopia	O	O	O
+.	O	O	#
+morphine	morphine	O	B-O	Morphine	http://en.wikipedia.org/wiki/Morphine
+addiction	addiction	O	B-O	Addiction	http://en.wikipedia.org/wiki/Addiction
+in	O	O	O
+newborns	newborns	O	B-O	Infant	http://en.wikipedia.org/wiki/Infant
+.	O	O	#
+carrs	O	O	O
+silversmith	silversmith	O	B-O	Silversmith	http://en.wikipedia.org/wiki/Silversmith
+.	O	O	#
+courtyard	courtyard_by_marriot	O	B-ORG	Courtyard_by_Marriott	http://en.wikipedia.org/wiki/Courtyard_by_Marriott
+by	O	O	I-ORG
+marriott	O	O	I-ORG
+east	east_wichita	O	B-LOC	Wichita,_Kansas	http://en.wikipedia.org/wiki/Wichita%2C_Kansas
+wichita	O	O	I-LOC
+.	O	O	#
+building	building_materials	O	B-O	Building_material	http://en.wikipedia.org/wiki/Building_material
+materials	O	O	I-O
+donation	donation	O	B-O	Donation	http://en.wikipedia.org/wiki/Donation
+.	O	O	#
+osd	osd	O	B-ORG	On-screen_display	http://en.wikipedia.org/wiki/On-screen_display
+acquisition	O	O	O
+.	O	O	#
+faq	faq	O	B-O	FAQ	http://en.wikipedia.org/wiki/FAQ
+site:jaz-.com	O	O	O
+.	O	O	#
+florida	florida	O	B-LOC	Florida	http://en.wikipedia.org/wiki/Florida
+dmv	dmv	O	B-ORG	Department_of_Motor_Vehicles	http://en.wikipedia.org/wiki/Department_of_Motor_Vehicles
+license	license	O	B-O	Driving_license	http://en.wikipedia.org/wiki/Driving_license
+check	O	O	O
+.	O	O	#
+the	the_very_hunger_caterpillar	O	B-O	The_Very_Hungry_Caterpillar	http://en.wikipedia.org/wiki/The_Very_Hungry_Caterpillar
+very	O	O	I-O
+hunger	O	O	I-O
+caterpilliar	O	O	I-O
+by	O	O	O
+eric	eric_carle	O	B-PER	Eric_Carle	http://en.wikipedia.org/wiki/Eric_Carle
+carle	O	O	I-PER
+.	O	O	#
+mount	mount_horeb	O	B-LOC	Mount_Horeb	http://en.wikipedia.org/wiki/Mount_Horeb
+horeb	O	O	I-LOC
+imp	O	O	O
+.	O	O	#
+carpet	carpet_cleaning;	O	B-O	Carpet_cleaning	http://en.wikipedia.org/wiki/Carpet_cleaning
+cleaning;	O	O	I-O
+seattrle	seattrle	O	B-LOC	Seattle	http://en.wikipedia.org/wiki/Seattle
+.	O	O	#
+paint	paint	O	B-O	Paint	http://en.wikipedia.org/wiki/Paint
+strokes	O	O	O
+.	O	O	#
+movie	movie_hitchhikers_guide_to_the_galaxy	O	B-O	The_Hitchhiker's_Guide_to_the_Galaxy_(film)	http://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy_%28film%29
+hitchhikers	O	O	I-O
+guide	O	O	I-O
+to	O	O	I-O
+the	O	O	I-O
+galaxy	O	O	I-O
+.	O	O	#
+diamond	O	O	O
+o	O	O	O
+campground	campground	O	B-O	Campsite	http://en.wikipedia.org/wiki/Campsite
+information	O	O	O
+.	O	O	#
+spleen/	spleen/	O	B-O	Spleen	http://en.wikipedia.org/wiki/Spleen
+sarcoidosis	sarcoidosis	O	B-O	Sarcoidosis	http://en.wikipedia.org/wiki/Sarcoidosis
+.	O	O	#
+give	O	O	O
+me	O	O	O
+private	private_company	O	B-O	Private_company	http://en.wikipedia.org/wiki/Private_company
+company	O	O	I-O
+in	O	O	O
+taiwan	taiwan	O	B-LOC	Taiwan	http://en.wikipedia.org/wiki/Taiwan
+.	O	O	#
+icu	O	O	O
+updates	O	O	O
+.	O	O	#
+bctv	bctv	O	B-ORG	BCTV	http://en.wikipedia.org/wiki/BCTV
+wayne	wayne_cox	O	B-PER	NONE	NONE
+cox	O	O	I-PER
+.	O	O	#
+sourcherry	O	O	O
+.	O	O	#
+davies	davies_gates	O	B-ORG	NONE	NONE
+gates	O	O	I-ORG
+garden	garden	O	B-O	Garden	http://en.wikipedia.org/wiki/Garden
+made	O	O	O
+.	O	O	#
+rare	O	O	O
+rose	rose	O	B-O	Rose	http://en.wikipedia.org/wiki/Rose
+pictures	pictures	O	B-O	Picture	http://en.wikipedia.org/wiki/Picture
+.	O	O	#
+mercedes	mercedes_benz_c240	O	B-O	Mercedes-Benz_C-Class	http://en.wikipedia.org/wiki/Mercedes-Benz_C-Class
+benz	O	O	I-O
+c240	O	O	B-O
+weight	weight	O	B-O	Weight	http://en.wikipedia.org/wiki/Weight
+.	O	O	#
+hp	hp	O	B-ORG	Hewlett-Packard	http://en.wikipedia.org/wiki/Hewlett-Packard
+designjet	O	O	O
+paper	paper	O	B-O	Paper	http://en.wikipedia.org/wiki/Paper
+falling	O	O	O
+into	O	O	O
+tray	O	O	O
+.	O	O	#
+eposn	eposn	O	B-ORG	Epson	http://en.wikipedia.org/wiki/Epson
+stylus	O	O	O
+color	O	O	O
+740	O	O	O
+not	O	O	O
+printing	printing	O	B-O	Printing	http://en.wikipedia.org/wiki/Printing
+.	O	O	#
+sell	sell	O	B-O	Sales	http://en.wikipedia.org/wiki/Sales
+used	used	O	B-O	Used_good	http://en.wikipedia.org/wiki/Used_good
+dolls	dolls	O	B-O	Doll	http://en.wikipedia.org/wiki/Doll
+.	O	O	#
+atlas	atlas_copco	O	B-ORG	Atlas_Copco	http://en.wikipedia.org/wiki/Atlas_Copco
+copco	O	O	I-ORG
+""service	O	O	O
+.	O	O	#
+boat	boat	O	B-O	Boat	http://en.wikipedia.org/wiki/Boat
+from	O	O	O
+west	west_plam_beach_florida	O	B-LOC	West_Palm_Beach,_Florida	http://en.wikipedia.org/wiki/West_Palm_Beach%2C_Florida
+plam	O	O	I-LOC
+beach	O	O	I-LOC
+florida	O	O	I-LOC
+to	O	O	O
+the	the_bahamas	O	B-LOC	The_Bahamas	http://en.wikipedia.org/wiki/The_Bahamas
+bahamas	O	O	I-LOC
+.	O	O	#
+citybank	citybank	O	B-ORG	Citibank	http://en.wikipedia.org/wiki/Citibank
+credit	credit	O	B-O	Credit_card	http://en.wikipedia.org/wiki/Credit_card
+cardlost	O	O	O
+.	O	O	#
+charge	charge_rate	O	B-O	Cost	http://en.wikipedia.org/wiki/Cost
+rate	O	O	I-O
+for	O	O	O
+getting	O	O	O
+a	O	O	O
+tongue	tongue_ring	O	B-O	Tongue_piercing	http://en.wikipedia.org/wiki/Tongue_piercing
+ring	O	O	I-O
+.	O	O	#
+philipiines	philipiines	O	B-LOC	Philippines	http://en.wikipedia.org/wiki/Philippines
+food	food_recipe	O	B-O	Recipe	http://en.wikipedia.org/wiki/Recipe
+recipe	O	O	I-O
+.	O	O	#
+haywood	haywood_county;	O	B-LOC	Haywood_County	http://en.wikipedia.org/wiki/Haywood_County
+county;	O	O	I-LOC
+tennessee;	tennessee;	O	B-LOC	Tennessee	http://en.wikipedia.org/wiki/Tennessee
+chamber	chamber_of_commerce	O	B-ORG	Chamber_of_commerce	http://en.wikipedia.org/wiki/Chamber_of_commerce
+of	O	O	I-ORG
+commerce	O	O	I-ORG
+.	O	O	#
+positive	O	O	O
+consumer	consumer	O	B-O	Consumer	http://en.wikipedia.org/wiki/Consumer
+focus	O	O	O
+in	O	O	O
+mental	mental_health	O	B-O	Mental_health	http://en.wikipedia.org/wiki/Mental_health
+health	O	O	I-O
+.	O	O	#
+okaloosa	okaloosa_county	O	B-LOC	Okaloosa_County	http://en.wikipedia.org/wiki/Okaloosa_County
+county	O	O	I-LOC
+marriage	marriage	O	B-O	Wedding	http://en.wikipedia.org/wiki/Wedding
+.	O	O	#
