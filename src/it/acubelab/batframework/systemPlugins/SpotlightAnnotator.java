@@ -28,10 +28,18 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	private long calib = -1;
 	private DBPediaApi dbpediaApi;
 	private WikipediaApiInterface wikiApi;
-
-	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi){
+	private final String host;
+	private final int port;
+	
+	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi, String host, int port){
 		this.dbpediaApi = dbpediaApi;
 		this.wikiApi = wikiApi;
+		this.host = host;
+		this.port = port;
+	}
+	
+	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi){
+		this(dbpediaApi, wikiApi, "spotlight.dbpedia.org", 80);
 	}
 
 	@Override
@@ -72,7 +80,7 @@ public class SpotlightAnnotator implements Sa2WSystem{
 		try{
 			lastTime = Calendar.getInstance().getTimeInMillis();
 
-			URL wikiApi = new URL("http://spotlight.dbpedia.org/rest/annotate");
+			URL wikiApi = new URL("http://" + host + ":" + port + "/rest/annotate");
 			String parameters = "confidence=0&support=0&text="+URLEncoder.encode(text, "UTF-8");
 			HttpURLConnection slConnection = (HttpURLConnection) wikiApi.openConnection();
 			slConnection.setRequestProperty("accept", "text/xml");
