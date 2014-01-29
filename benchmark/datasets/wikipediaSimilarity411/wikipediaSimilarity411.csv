@@ -64,7 +64,7 @@ baby,73165,Infant,mother,83430,Mother,7.85
 drink,7984,Drink,mother,83430,Mother,2.65
 automobile,13673345,Automobile,automobile,13673345,Automobile,10
 gem,12806,Gemstone,jewel,15739,Jewellery,8.96
-journey,155747,Travel,voyage,2173925,Voyage,9.29
+travel,155747,Travel,chair,262642,Chair,0.00
 coast,5236,Coast,shore,480527,Shore,9.1
 furnace,238150,Furnace,stove,556358,Stove,8.79
 food,10646,Food,fruit,10843,Fruit,7.52
@@ -82,7 +82,7 @@ monk,419369,Monk,slave,27992,Slavery,0.92
 coast,5236,Coast,forest,11090,Forest,3.15
 chord,297947,Chord (geometry),smile,187557,Smile,0.54
 glass,12581,Glass,magician,25152964,Magic (illusion),2.08
-rooster,26574,Rooster,voyage,2173925,Voyage,0.62
+rooster,26574,Rooster,travel,155747,Travel,0.62
 money,8983183,Money,dollar,8100,Dollar,8.42
 money,8983183,Money,currency,5665,Currency,9.04
 money,8983183,Money,wealth,9390638,Wealth (economics),8.27
@@ -121,15 +121,15 @@ precedent,23004,Precedent,information,18985062,Information,3.85
 precedent,23004,Precedent,cognition,106238,Cognition,2.81
 precedent,23004,Precedent,law,18949668,Law,6.65
 precedent,23004,Precedent,group,191253,Social group,1.77
-precedent,23004,Precedent,antecedent,2012141,Antecedent,6.04
-cup,1424937,Drinkware,coffee,604727,Coffee,6.58
-cup,1424937,Drinkware,tableware,1151989,Tableware,6.85
-cup,1424937,Drinkware,artifact,584894,Artifact (archaeology),2.92
-cup,1424937,Drinkware,object,1722616,Physical body,3.69
-cup,1424937,Drinkware,drink,7984,Drink,7.25
-cup,1424937,Drinkware,food,10646,Food,5
-cup,1424937,Drinkware,substance,26979,Substance,1.92
-cup,1424937,Drinkware,liquid,18993825,Liquid,5.9
+precedent,23004,Precedent,antecedent,6192035,Antecedent (law),6.04
+cup,41395970,Cup,coffee,604727,Coffee,6.58
+cup,41395970,Cup,tableware,1151989,Tableware,6.85
+cup,41395970,Cup,artifact,584894,Artifact (archaeology),2.92
+cup,41395970,Cup,object,1722616,Physical body,3.69
+cup,41395970,Cup,drink,7984,Drink,7.25
+cup,41395970,Cup,food,10646,Food,5
+cup,41395970,Cup,substance,9722260,Chemical Substance,1.92
+cup,41395970,Cup,liquid,18993825,Liquid,5.9
 jaguar,16217,Jaguar,cat,6678,Cat,7.42
 jaguar,147676,Jaguar Cars,car,13673345,Automobile,7.27
 energy,9649,Energy,secretary,214196,Secretary,1.81
@@ -149,7 +149,7 @@ sign,28130,Sign,recess,1134265,Recess (break),2.38
 Wednesday,54634,Wednesday,news,20781999,News,2.22
 mile,19159,Mile,kilometer,50510,Kilometre,8.66
 computer,7878457,Computer,news,20781999,News,4.47
-territory,212970,Territory,surface,27865,Surface,5.34
+land,40083369,Land,surface,27865,Surface,5.34
 atmosphere,202899,Atmosphere,landscape,205135,Landscape,3.69
 president,24110,President,medal,375211,Medal,3
 war,33158,War,troops,37338,Soldier,8.13
@@ -160,12 +160,12 @@ volunteer,32705,Volunteer,motto,70210,Motto,2.56
 decoration,250041,Military awards and decorations,valor,49899,Courage,5.63
 century,5881,Century,year,34341,Year,7.59
 century,5881,Century,nation,21754,Nation,3.16
-delay,41012,Delay,racism,25613,Racism,1.19
-delay,41012,Delay,news,20781999,News,3.31
+delay,20646089,Lag,racism,25613,Racism,1.19
+delay,20646089,Lag,news,20781999,News,3.31
 minister,739237,Minister (government),party,23996,Political party,6.63
 minority,437868,Minority group,peace,24702,Peace,3.69
 government,12229,Government,crisis,492128,Crisis,6.56
-deployment,3758871,Military deployment,departure,1048636,Departure,4.25
+deployment,3758871,Military deployment,departure,159472,Flight,4.25
 deployment,3758871,Military deployment,withdrawal,1531454,Withdrawal (military),5.88
 announcement,156659,Announcer,news,20781999,News,7.56
 stroke,625404,Stroke,hospital,18994221,Hospital,7.03
@@ -173,8 +173,8 @@ disability,56285,Disability,death,8221,Death,5.47
 treatment,13311819,Therapy,recovery,239217,Healing,7.91
 journal,324572,Academic journal,association,377828,Professional association,4.97
 doctor,23315,Physician,personnel,46053,Human resources,5
-doctor,23315,Physician,liability,101757,Liability,5.19
-liability,101757,Liability,insurance,15176,Insurance,7.03
+doctor,23315,Physician,liability,13212719,Public liability,5.19
+liability,13212719,Public liability,insurance,15176,Insurance,7.03
 reason,42446,Reason,hypertension,77432,Hypertension,2.31
 hundred,407384,100 (number),percent,64493,Percentage,7.38
 Harvard,18426501,Harvard University,Yale,34273,Yale University,8.13
@@ -186,7 +186,7 @@ governor,56231,Governor,interview,236975,Interview,3.25
 OPEC,166346,OPEC,country,5165,Country,5.63
 peace,24702,Peace,atmosphere,202899,Atmosphere,3.69
 peace,24702,Peace,insurance,15176,Insurance,2.94
-territory,212970,Territory,kilometer,50510,Kilometre,5.28
+land,40083369,Land,kilometer,50510,Kilometre,5.28
 competition,4715992,Competition (economics),price,211295,Price,6.44
 consumer,7818,Consumer,confidence,2973525,Confidence,4.13
 consumer,7818,Consumer,energy,2935251,Energy industry,4.75
@@ -200,7 +200,7 @@ bed,951407,Bed,closet,49402,Closet,6.72
 closet,49402,Closet,clothes,38180,Clothing,8
 impartiality,1659824,Impartiality,interest,68753,Attention,5.16
 direction,4767947,"Direction (geometry)",combination,5308,Combination,2.25
-street,199065,Street,place,586851,Place,6.44
+street,199065,Street,place,2393292,Location (geography),6.44
 street,199065,Street,avenue,1006179,Avenue (landscape),8.88
 street,199065,Street,block,948686,City block,6.88
 street,199065,Street,children,128987,Child,4.94
@@ -248,12 +248,12 @@ man,15822899,Man,governor,56231,Governor,5.25
 murder,20171,Murder,manslaughter,7397035,Manslaughter,8.53
 opera,22348,Opera,performance,224515,Performance,6.88
 television,29831,Television,film,21555729,Film,7.72
-possibility,142919,Possibility,girl,1723133,Girl,1.94
+possibility,192727,Luck,girl,1723133,Girl,1.94
 morality,43254,Morality,marriage,19728,Marriage,3.69
 Mexico,3966054,Mexico,Brazil,3383,Brazil,7.44
 family,10401954,Family,planning,378010,Planning,6.25
 opera,22348,Opera,industry,14543,Industry,2.63
-size,264558,Size,prominence,751115,Topographic prominence,5.31
+size,19022,Measurement,prominence,751115,Topographic prominence,5.31
 country,5165,Country,citizen,6784,Citizenship,7.31
 planet,22915,Planet,people,3488351,People,5.75
 experience,297724,Experience,music,18839,Music,3.47
@@ -410,3 +410,4 @@ architecture,21296224,Architecture,century,5881,Century,3.78
 ,54176,Human body,,57875,Soap,3.00
 ,54176,Human body,,10303,Evaporation,2.33
 ,57875,Soap,,1147423,Table (furniture),0.00
+,15135713,Jim Morrison,,22303,Oxygen,0.00
