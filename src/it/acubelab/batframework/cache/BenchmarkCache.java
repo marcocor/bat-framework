@@ -103,6 +103,38 @@ public class BenchmarkCache {
 		}
 		return computedAnns;
 	}
+	
+	public static List<Set<Annotation>> doD2WAnnotations(D2WSystem annotator, D2WDataset ds, AnnotatingCallback callback, int msec) throws Exception {
+		List<Set<Annotation>> computedAnns = new ArrayList<Set<Annotation>>();
+		Date lastCallback = new Date();
+		int doneDocs = 0;
+		int foundAnns = 0;
+		for (int i = 0; i < ds.getTextInstanceList().size(); i++){
+			String doc = ds.getTextInstanceList().get(i);
+			Set<Mention> mentions = ds.getMentionsInstanceList().get(i);
+			
+			Set<Annotation> res = resultsCache.getD2WResult(annotator.getName(), doc);
+			if (res == null){
+				modified = true;
+				res = annotator.solveD2W(doc, mentions);
+				resultsCache.putD2WResult(annotator.getName(), doc, res);
+				resultsCache.putD2WTiming(annotator.getName(), ds.getName(), doc, annotator.getLastAnnotationTime());
+			}
+			computedAnns.add(res);
+			doneDocs++;
+			foundAnns += res.size();
+			
+			//if more than 10 minutes have passed since last flush, flush again!
+			if (new Date().getTime() - lastFlush.getTime() > 1000*60*10)
+				flush();
+			//if more than <msec> seconds have passed, call the callback function.
+			if (callback != null && new Date().getTime() - lastCallback.getTime() > msec){
+				lastCallback = new Date();
+				callback.run(msec, doneDocs, ds.getSize(), foundAnns);
+			}
+		}
+		return computedAnns;
+	}
 
 	public static List<Set<Tag>> doC2WTags(C2WSystem tagger, C2WDataset ds) throws Exception{
 		List<Set<Tag>> computedTags = new Vector<Set<Tag>>();

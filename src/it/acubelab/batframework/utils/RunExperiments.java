@@ -85,6 +85,23 @@ public class RunExperiments {
 			updateThresholdRecords(results, m.getName(), tagger.getName(), ds.getName(), (float) threshold, rs);
 		}
 	}
+	
+	public static void computeMetricsD2WFakeReductionToSa2W(D2WSystem tagger, D2WDataset ds, String precisionFilename, String recallFilename, String F1Filename, WikipediaApiInterface api, HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results) throws Exception{
+		Metrics<Annotation> metrics = new Metrics<Annotation>();
+		StrongAnnotationMatch m = new StrongAnnotationMatch(api);
+		float threshold = 0;
+		System.out.print("Doing annotations... ");
+		List<Set<Annotation>> computedAnnotations = BenchmarkCache.doD2WAnnotations(tagger, ds, new AnnotatingCallback() {
+			public void run(long msec, int doneDocs, int totalDocs, int foundTags) {
+				System.out.printf("Done %d/%d documents. Found %d annotations/tags so far.%n",doneDocs, totalDocs, foundTags);
+			}
+		}, 60000);
+		System.out.println("Done with all documents.");
+		for (threshold = 0 ; threshold<=1; threshold+=THRESHOLD_STEP){
+			MetricsResultSet rs = metrics.getResult(computedAnnotations, ds.getD2WGoldStandardList(), m);
+			updateThresholdRecords(results, m.getName(), tagger.getName(), ds.getName(), (float) threshold, rs);
+		}
+	}
 
 	public static void computeMetricsD2WReducedFromSa2W(Sa2WSystem tagger, D2WDataset ds, String precisionFilename, String recallFilename, String F1Filename, WikipediaApiInterface api, HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results) throws Exception{
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
@@ -165,7 +182,7 @@ public class RunExperiments {
 		return result;
 	}
 
-	public static HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> performD2WExpVarThreshold(Vector<Sa2WSystem> sa2wAnnotators, Vector<D2WDataset> dss, WikipediaApiInterface api) throws Exception {
+	public static HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> performD2WExpVarThreshold(Vector<D2WSystem> d2wAnnotators, Vector<Sa2WSystem> sa2wAnnotators, Vector<D2WDataset> dss, WikipediaApiInterface api) throws Exception {
 		HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> result = new HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>>();
 		MatchRelation<Annotation> sam = new StrongAnnotationMatch(api);
 		for (D2WDataset ds : dss){
@@ -175,6 +192,14 @@ public class RunExperiments {
 					String prefix = sam.getName().replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 					String suffix = t.getName().replaceAll("[^a-zA-Z0-9]", "").toLowerCase()+"_"+ds.getName().replaceAll("[^a-zA-Z0-9]", "").toLowerCase() +".dat";
 					computeMetricsD2WReducedFromSa2W(t, ds, prefix+"_precision_threshold_"+suffix, prefix+"_recall_threshold_"+suffix, prefix+"_f1_threshold_"+suffix, api, result);
+					BenchmarkCache.flush();
+				}
+			if (d2wAnnotators != null)
+				for (D2WSystem t: d2wAnnotators){
+					System.out.println("Testing " + ds.getName() + " on " + t.getName() + " with score threshold parameter...");
+					String prefix = sam.getName().replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+					String suffix = t.getName().replaceAll("[^a-zA-Z0-9]", "").toLowerCase()+"_"+ds.getName().replaceAll("[^a-zA-Z0-9]", "").toLowerCase() +".dat";
+					computeMetricsD2WFakeReductionToSa2W(t, ds, prefix+"_precision_threshold_"+suffix, prefix+"_recall_threshold_"+suffix, prefix+"_f1_threshold_"+suffix, api, result);
 					BenchmarkCache.flush();
 				}
 

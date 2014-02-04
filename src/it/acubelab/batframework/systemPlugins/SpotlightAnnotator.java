@@ -7,14 +7,16 @@
 
 package it.acubelab.batframework.systemPlugins;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.*;
 
 import org.w3c.dom.*;
@@ -26,12 +28,18 @@ import it.acubelab.batframework.utils.*;
 public class SpotlightAnnotator implements Sa2WSystem{
 	private long lastTime = -1;
 	private long calib = -1;
+
+	private final DisambiguationPolicy disambiguator;
 	private DBPediaApi dbpediaApi;
 	private WikipediaApiInterface wikiApi;
 	private final String host;
 	private final int port;
-	
-	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi, String host, int port){
+
+	private static final DocumentBuilderFactory DOC_FACTORY = DocumentBuilderFactory.newInstance();
+	private static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
+
+	public SpotlightAnnotator(DisambiguationPolicy disambiguator, DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi, String host, int port) {
+		this.disambiguator = disambiguator;
 		this.dbpediaApi = dbpediaApi;
 		this.wikiApi = wikiApi;
 		this.host = host;
@@ -39,7 +47,7 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	}
 	
 	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi){
-		this(dbpediaApi, wikiApi, "spotlight.dbpedia.org", 80);
+		this(DisambiguationPolicy.Default, dbpediaApi, wikiApi, "spotlight.dbpedia.org", 80);
 	}
 
 	@Override
@@ -59,16 +67,31 @@ public class SpotlightAnnotator implements Sa2WSystem{
 
 	@Override
 	public Set<Annotation> solveD2W(String text, Set<Mention> mentions) {
-		return ProblemReduction.Sa2WToD2W(solveSa2W(text), mentions, Float.MIN_VALUE);
+		String xmlTextWithSpots = createTextWithMentions(text, mentions);
+		Set<ScoredAnnotation> scoredAnnotations = getSpotlightAnnotations(xmlTextWithSpots, Service.DISAMBIGUATE);
+		return ProblemReduction.Sa2WToD2W(scoredAnnotations, mentions, Float.MIN_VALUE);
 	}
 
 	@Override
 	public String getName() {
-		return "DBPedia Spotlight";
+		return "DBpedia Spotlight (" + disambiguator + ")";
 	}
 
 	@Override
 	public Set<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
+		return getSpotlightAnnotations(text, Service.ANNOTATE);
+	}
+
+	/**
+	 * Send request to spotlight and parse the response as a set of scored annotations. If disambiguate is used as
+	 * service, the endpoint expects a text with spotted mentions in the xml format as produced by the spot service.
+	 * 
+	 * @param text
+	 *            the text to send
+	 * @param service
+	 *            the endpoint service to use
+	 */
+	public Set<ScoredAnnotation> getSpotlightAnnotations(String text, Service service) {
 		//dbpedia spotlight cannot handle documents made only of whitespaces...
 		int i=0;
 		while (i<text.length() && (text.charAt(i)==' ' || text.charAt(i)=='\n')) i++;
@@ -80,8 +103,8 @@ public class SpotlightAnnotator implements Sa2WSystem{
 		try{
 			lastTime = Calendar.getInstance().getTimeInMillis();
 
-			URL wikiApi = new URL("http://" + host + ":" + port + "/rest/annotate");
-			String parameters = "confidence=0&support=0&text="+URLEncoder.encode(text, "UTF-8");
+			URL wikiApi = new URL("http://" + host + ":" + port + "/rest/" + service);
+			String parameters = "disambiguator=" + disambiguator + "&confidence=0&support=0&text="+URLEncoder.encode(text, "UTF-8");
 			HttpURLConnection slConnection = (HttpURLConnection) wikiApi.openConnection();
 			slConnection.setRequestProperty("accept", "text/xml");
 			slConnection.setDoOutput(true);
@@ -177,6 +200,61 @@ public class SpotlightAnnotator implements Sa2WSystem{
 		return lastTime - calib > 0 ? lastTime - calib  : 0;
 	}
 
+	/**
+	 * Create a text that includes the mentions which can be used for the D2W task. Sample xml output for Spotlight:
+	 * 
+	 * <pre>
+	 * {@code
+	 * 	<annotation text="     Search U.S. coalition: Forces have killed 43 militants in Afghanistan Posted | Comment | Recommend | | | KABUL, Afghanistan (AP) ">
+	 *   <surfaceForm name="Afghanistan" offset="63"/>
+	 *   <surfaceForm name="Afghanistan" offset="117"/>
+	 *   <surfaceForm name="AP" offset="130"/>
+	 * </annotation>
+	 * }
+	 * </pre>
+	 */
+	private static String createTextWithMentions(String text, Set<Mention> mentions) {
+		try {
+			DocumentBuilder docBuilder = DOC_FACTORY.newDocumentBuilder();
+			// annotation root element
+			Document doc = docBuilder.newDocument();
+			Element annotation = doc.createElement("annotation");
+			doc.appendChild(annotation);
+
+			// set text attribute to annotation element
+			Attr textAttr = doc.createAttribute("text");
+			textAttr.setValue(text);
+			annotation.setAttributeNode(textAttr);
+
+			for (Mention m : mentions) {
+				String name = text.substring(m.getPosition(), m.getPosition() + m.getLength());
+				Attr nameAttr = doc.createAttribute("name");
+				nameAttr.setValue(name);
+
+				Attr offsetAttr = doc.createAttribute("offset");
+				offsetAttr.setValue(Integer.toString(m.getPosition()));
+
+				Element surfaceForm = doc.createElement("surfaceForm");
+				surfaceForm.setAttributeNode(nameAttr);
+				surfaceForm.setAttributeNode(offsetAttr);
+				annotation.appendChild(surfaceForm);
+			}
+
+			// write the content into an xml string
+			Transformer transformer = TRANSFORMER_FACTORY.newTransformer();
+			transformer.setOutputProperty(OutputKeys.ENCODING, "utf-8");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+			DOMSource source = new DOMSource(doc);
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			transformer.transform(source, new StreamResult(out));
+
+			String xml = out.toString("utf-8");
+			return xml;
+		} catch (UnsupportedEncodingException | TransformerException | ParserConfigurationException e) {
+			throw new AnnotationException(e.getMessage());
+		}
+	}
 
 	private static class SpotLightAnnotation {
 		public SpotLightAnnotation(int position, int length, String resource, float score) {
@@ -190,4 +268,42 @@ public class SpotlightAnnotator implements Sa2WSystem{
 		public String resource;
 	}
 
+	private enum Service {
+		ANNOTATE("annotate"), DISAMBIGUATE("disambiguate");
+
+		private final String name;
+
+		Service(String name) {
+			this.name = name;
+		}
+
+		@Override
+		public String toString() {
+			return name;
+		}
+	}
+
+	public enum DisambiguationPolicy {
+		Document, Occurrences, CuttingEdge, Default, GraphBased;
+
+		/**
+		 * @throws IllegalArgumentException
+		 *             if there are no or invalid policies as argument.
+		 */
+		public static List<DisambiguationPolicy> parsePoliciesFromArgs(String[] args) {
+			List<DisambiguationPolicy> policies = new ArrayList<>();
+			for (String arg : args) {
+				try {
+					policies.add(DisambiguationPolicy.valueOf(arg));
+				} catch (IllegalArgumentException e) {
+				}
+			}
+			if (policies.isEmpty())
+				throw new IllegalArgumentException(
+						"Provide one or more valid disambiguation policies as argument. Valid policies: "
+								+ DisambiguationPolicy.values());
+			System.out.println("Parsed the following disambiguators: " + policies);
+			return policies;
+		}
+	}
 }
