@@ -105,7 +105,7 @@ public class WikipediaSimilarity411 implements RelatednessDataset {
 		}
 		if (goldStandard.size() != 411)
 			throw new RuntimeException(
-					"File should contain 311 records, contains "
+					"File should contain 411 records, contains "
 							+ goldStandard.size() + ".");
 	}
 

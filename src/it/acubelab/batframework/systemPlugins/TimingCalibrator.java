@@ -9,12 +9,14 @@ package it.acubelab.batframework.systemPlugins;
 
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Vector;
 
-import it.acubelab.batframework.problems.C2WSystem;
+import it.acubelab.batframework.data.Mention;
+import it.acubelab.batframework.problems.*;
 
 public class TimingCalibrator {
-	public static long getOffset(C2WSystem s){
+	public static long getOffset(TopicSystem s){
 		System.out.println("Calibrating "+s.getName()+"...");
 		int minsize=3000;
 		int n=50;
@@ -24,7 +26,10 @@ public class TimingCalibrator {
 			for (int j=0;j < minsize+i; j++)
 				t+=" ";
 			long lastTime = Calendar.getInstance().getTimeInMillis();
-			s.solveC2W(t);
+			if (s instanceof C2WSystem)
+				((C2WSystem)s).solveC2W(t);
+			else if (s instanceof D2WSystem)
+				((D2WSystem)s).solveD2W(t, new HashSet<Mention>());
 			lastTime = Calendar.getInstance().getTimeInMillis() - lastTime;
 			timings.add(lastTime);
 			//System.out.println("Time:"+lastTime);	
