@@ -16,11 +16,15 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- * D2W annotator.
+ * D2W annotator that uses HITS on DBpedia Graph.
+ * 
  * @see <a href="https://github.com/AKSW/AGDISTIS">https://github.com/AKSW/AGDISTIS</a>
  */
 public class AgdistisAnnotator implements D2WSystem {
 	private static final JSONParser JSON_PARSER = new JSONParser();
+
+	private long calib = -1;
+	private long lastTime = -1;
 
 	private final String host;
 	private final int port;
@@ -43,7 +47,9 @@ public class AgdistisAnnotator implements D2WSystem {
 
 	@Override
 	public long getLastAnnotationTime() {
-		return 30;
+		if (calib == -1)
+			calib = TimingCalibrator.getOffset(this);
+		return lastTime - calib > 0 ? lastTime - calib : 0;
 	}
 
 	@Override
