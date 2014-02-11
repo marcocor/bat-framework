@@ -727,20 +727,23 @@ public class DumpResults {
 			Vector<A2WSystem> a2wAnnotators,
 			Vector<Sa2WSystem> sa2wAnnotators,
 			Vector<Sc2WSystem> c2wAnnotators,
+			Vector<D2WSystem> d2wAnnotators,
 			Vector<D> dss,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords) {
-		Vector<C2WSystem> allAnns = new Vector<C2WSystem>();
+		Vector<TopicSystem> allAnns = new Vector<>();
 		if (sa2wAnnotators != null)
 			allAnns.addAll(sa2wAnnotators);
 		if (c2wAnnotators != null)
 			allAnns.addAll(c2wAnnotators);
 		if (a2wAnnotators != null)
 			allAnns.addAll(a2wAnnotators);
+		if (d2wAnnotators != null)
+			allAnns.addAll(d2wAnnotators);
 		System.out.println("Correctness performance [F1/prec/rec]");
 		for (MatchRelation<T> metric : matchRels) {
 			System.out.printf(LOCALE, "Best results (metrics: %s):%n",
 					metric.getName());
-			for (C2WSystem t : allAnns)
+			for (TopicSystem t : allAnns)
 				for (TopicDataset d : dss) {
 					Pair<Float, MetricsResultSet> result = RunExperiments
 							.getBestRecord(threshRecords, metric.getName(),
@@ -930,7 +933,7 @@ public class DumpResults {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <E extends Tag> void printCorrectnessPerformance(
-			C2WSystem ann, MatchRelation<E> m, List<Set<E>> goldStandard,
+			TopicSystem ann, MatchRelation<E> m, List<Set<E>> goldStandard,
 			List<Set<E>> output, WikipediaApiInterface api) throws IOException {
 		Metrics<E> metrics = new Metrics<E>();
 		MetricsResultSet rs = metrics.getResult(output, goldStandard, m);

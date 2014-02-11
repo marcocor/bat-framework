@@ -165,7 +165,7 @@ public class BenchmarkMain {
 		resA2W = RunExperiments.performA2WExpVarThreshold(matchRelationsA2W,
 				a2wAnnotators, sa2wAnnotators, dssA2W, wikiApi);
 		DumpResults.printCorrectnessPerformance(matchRelationsA2W,
-				a2wAnnotators, sa2wAnnotators, null, dssA2W, resA2W);
+				a2wAnnotators, sa2wAnnotators, null, null, dssA2W, resA2W);
 		DumpResults.latexCorrectnessPerformance(matchRelationsA2W,
 				a2wAnnotators, sa2wAnnotators, sc2wTaggers, dssA2W, false,
 				resA2W);
@@ -186,7 +186,7 @@ public class BenchmarkMain {
 		resC2W = RunExperiments.performC2WExpVarThreshold(matchRelationsC2W,
 				a2wAnnotators, sa2wAnnotators, sc2wTaggers, dssC2W, wikiApi);
 		DumpResults.printCorrectnessPerformance(matchRelationsC2W,
-				a2wAnnotators, sa2wAnnotators, sc2wTaggers, dssC2W, resC2W);
+				a2wAnnotators, sa2wAnnotators, sc2wTaggers, null, dssC2W, resC2W);
 		DumpResults.latexCorrectnessPerformance(matchRelationsC2W,
 				a2wAnnotators, sa2wAnnotators, sc2wTaggers, dssC2W, false,
 				resC2W);
@@ -206,10 +206,10 @@ public class BenchmarkMain {
 
 		Vector<MatchRelation<Annotation>> matchRelationsD2W = new Vector<MatchRelation<Annotation>>();
 		matchRelationsD2W.add(new StrongAnnotationMatch(wikiApi));
-		resD2W = RunExperiments.performD2WExpVarThreshold(sa2wAnnotators,
+		resD2W = RunExperiments.performD2WExpVarThreshold(null, sa2wAnnotators,
 				dssD2W, wikiApi);
 		DumpResults.printCorrectnessPerformance(matchRelationsD2W, null,
-				sa2wAnnotators, null, dssD2W, resD2W);
+				sa2wAnnotators, null, null, dssD2W, resD2W);
 		DumpResults.latexCorrectnessPerformance(matchRelationsD2W, null,
 				sa2wAnnotators, null, dssD2W, false, resD2W);
 		DumpResults.gnuplotCorrectnessPerformance(matchRelationsD2W, null,

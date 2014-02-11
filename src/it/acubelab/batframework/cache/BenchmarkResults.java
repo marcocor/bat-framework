@@ -22,6 +22,9 @@ import java.util.*;
 public class BenchmarkResults implements Serializable{
 	private static final long serialVersionUID = 1L;
 
+	// mapping: tagger name -> document -> set of annotations
+	private HashMap<String, HashMap<String, Set<Annotation>>> D2WCache = new HashMap<String, HashMap<String,Set<Annotation>>>();
+	
 	// mapping: tagger name -> document -> set of tags 
 	private HashMap<String, HashMap<String, Set<Annotation>>> A2WCache = new HashMap<String, HashMap<String,Set<Annotation>>>();
 
@@ -35,6 +38,7 @@ public class BenchmarkResults implements Serializable{
 	private HashMap<String, HashMap<String, Set<ScoredTag>>> Sc2WCache = new HashMap<String, HashMap<String,Set<ScoredTag>>>();
 
 	// mapping: tagger name -> dataset name -> document -> time in milliseconds 
+	private HashMap<String, HashMap<String, HashMap<String, Long>>> D2Wtimings = new HashMap<String, HashMap<String,HashMap<String,Long>>>();
 	private HashMap<String, HashMap<String, HashMap<String, Long>>> A2Wtimings = new HashMap<String, HashMap<String,HashMap<String,Long>>>();
 	private HashMap<String, HashMap<String, HashMap<String, Long>>> Sa2Wtimings = new HashMap<String, HashMap<String,HashMap<String,Long>>>();
 	private HashMap<String, HashMap<String, HashMap<String, Long>>> C2Wtimings = new HashMap<String, HashMap<String,HashMap<String,Long>>>();
@@ -42,6 +46,9 @@ public class BenchmarkResults implements Serializable{
 
 	public void putC2WTiming(String taggerName, String datasetName, String text, long time) throws Exception{
 		putTiming(C2Wtimings, taggerName, datasetName, text, time);
+	}
+	public void putD2WTiming(String taggerName, String datasetName, String text, long time) throws Exception{
+		putTiming(D2Wtimings, taggerName, datasetName, text, time);
 	}
 	public void putSa2WTiming(String taggerName, String datasetName, String text, long time) throws Exception{
 		putTiming(Sa2Wtimings, taggerName, datasetName, text, time);
@@ -73,6 +80,9 @@ public class BenchmarkResults implements Serializable{
 	public long getC2WTiming(String taggerName, String datasetName, String text) throws Exception{
 		return getTiming(C2Wtimings, taggerName, datasetName, text);
 	}
+	public long getD2WTiming(String taggerName, String datasetName, String text) throws Exception{
+		return getTiming(D2Wtimings, taggerName, datasetName, text);
+	}
 	public long getA2WTiming(String taggerName, String datasetName, String text) throws Exception{
 		return getTiming(A2Wtimings, taggerName, datasetName, text);
 	}
@@ -97,6 +107,24 @@ public class BenchmarkResults implements Serializable{
 		return timing;		
 	}
 
+	public void putD2WResult(String annotatorName, String doc, Set<Annotation> res){
+		HashMap<String, Set<Annotation>> annotatorCache;
+		if ((annotatorCache = D2WCache.get(annotatorName)) == null){
+			annotatorCache = new HashMap<String, Set<Annotation>>();
+			D2WCache.put(annotatorName, annotatorCache);
+		}
+		annotatorCache.put(doc, res);
+	}
+
+	public Set<Annotation> getD2WResult(String annotatorName, String text){
+		HashMap<String, Set<Annotation>> annotatorCache;
+		if ((annotatorCache = D2WCache.get(annotatorName)) == null){
+			annotatorCache = new HashMap<String, Set<Annotation>>();
+			D2WCache.put(annotatorName, annotatorCache);
+		}
+		return annotatorCache.get(text);
+	}
+	
 	public void putSa2WResult(String annotatorName, String doc, Set<ScoredAnnotation> res){
 		HashMap<String, Set<ScoredAnnotation>> annotatorCache;
 		if ((annotatorCache = Sa2WCache.get(annotatorName)) == null){

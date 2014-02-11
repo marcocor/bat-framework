@@ -98,7 +98,7 @@ public class BatchMain {
 		System.out.printf("The best micro-F1 for %s on %s is achieved with a threshold of $.3f. Its value is %.3f.%n",tagme.getName(), iitbDs.getName(), p.first, p.second.getMicroF1());
 		
 		/** Print the results about correctness (F1, precision, recall) to the screen */
-		DumpResults.printCorrectnessPerformance(matchRelationsA2W, null, sa2wAnnotators, null, dssA2W, resA2W);
+		DumpResults.printCorrectnessPerformance(matchRelationsA2W, null, sa2wAnnotators, null, null, dssA2W, resA2W);
 		
 		/** Print the results about correctness to the screen as a Latex table */
 		DumpResults.latexCorrectnessPerformance(matchRelationsA2W, null, sa2wAnnotators, null, dssA2W, false, resA2W);
@@ -119,7 +119,7 @@ public class BatchMain {
 		resC2W = RunExperiments.performC2WExpVarThreshold(matchRelationsC2W, null, sa2wAnnotators, null, dssC2W, wikiApi);
 
 		/** Print the results about correctness (F1, precision, recall) to the screen */
-		DumpResults.printCorrectnessPerformance(matchRelationsC2W, null, sa2wAnnotators, null, dssC2W, resC2W);
+		DumpResults.printCorrectnessPerformance(matchRelationsC2W, null, sa2wAnnotators, null, null, dssC2W, resC2W);
 		
 		/** Print the results about correctness to the screen as a Latex table */
 		DumpResults.latexCorrectnessPerformance(matchRelationsC2W, null, sa2wAnnotators, null, dssC2W, false, resC2W);
