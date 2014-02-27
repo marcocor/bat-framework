@@ -1,13 +1,7 @@
 package test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import it.acubelab.batframework.cache.BenchmarkCache;
 import it.acubelab.batframework.problems.Sa2WSystem;
-import it.acubelab.batframework.systemPlugins.TagmeAnnotator;
 import it.acubelab.batframework.systemPlugins.WikiSenseAnnotator;
-import it.acubelab.batframework.utils.WikipediaApiInterface;
 
 public class TestWikisense {
 

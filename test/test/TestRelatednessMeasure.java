@@ -1,6 +1,6 @@
 package test;
 
-import it.acubelab.batframework.datasetPlugins.WikipediaSimilarity353;
+import it.acubelab.batframework.datasetPlugins.WikipediaSimilarity411;
 import it.acubelab.batframework.metrics.RelatednessMetrics;
 import it.acubelab.batframework.problems.RelatednessDataset;
 import it.acubelab.batframework.problems.RelatednessMeasurer;
@@ -11,9 +11,9 @@ public class TestRelatednessMeasure {
 	public static void main(String[] args) throws Exception {
 		RelatednessMeasurer rel = new Measure1();
 		WikipediaApiInterface wikiApi = new WikipediaApiInterface("/tmp/wid.cache", "/tmp/redirect.cache");
-		RelatednessDataset wr353 = new WikipediaSimilarity353("benchmark/datasets/wikipediaSimilarity353/wikipediaSimilarity353.csv", wikiApi);
-		System.out.println(RelatednessMetrics.getQuadraticDistance(wr353.getGoldStandard(), rel));
-		System.out.println(RelatednessMetrics.getAbsoluteDistance(wr353.getGoldStandard(), rel));
+		RelatednessDataset wr411 = new WikipediaSimilarity411("benchmark/datasets/wikipediaSimilarity353/wikipediaSimilarity411.csv", wikiApi);
+		System.out.println(RelatednessMetrics.getQuadraticDistance(wr411.getGoldStandard(), rel));
+		System.out.println(RelatednessMetrics.getAbsoluteDistance(wr411.getGoldStandard(), rel));
 
 	}
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="it/acubelab/batframework/metrics/ProximityAnnotationMatch.java|it/acubelab/batframework/systemPlugins/TagmeLocalAnnotator.java|it/acubelab/batframework/systemPlugins/TagMyQueryTagger.java" kind="src" path="src"/>
+	<classpathentry excluding="it/acubelab/batframework/metrics/ProximityAnnotationMatch.java|it/acubelab/batframework/systemPlugins/TagMyQueryTagger.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/dsiutils-2.0.1.jar"/>
@@ -12,7 +12,8 @@
 	<classpathentry kind="lib" path="benchmark/libs/illinois/edison-0.2.9.jar"/>
 	<classpathentry kind="lib" path="benchmark/libs/illinois/protobuf-java-2.3.0.jar"/>
 	<classpathentry kind="lib" path="benchmark/libs/illinois/Wikifier.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/TagMe"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

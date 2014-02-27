@@ -8,11 +8,15 @@
 package it.acubelab.batframework.metrics;
 
 public class MetricsResultSet {
-	private float microF1, microRecall, microPrecision, macroF1, macroRecall, macroPrecision;
+	private float microF1, microRecall, microPrecision, macroF1, macroRecall,
+			macroPrecision;
 	private int tp, fn, fp;
 	float[] precisions, recalls, f1s;
-	public MetricsResultSet(float microF1, float microRecall, float microPrecision, float macroF1, float macroRecall,
-			float macroPrecision, int tp, int fn, int fp, float[] precisions, float[] recalls, float[] f1s){
+
+	public MetricsResultSet(float microF1, float microRecall,
+			float microPrecision, float macroF1, float macroRecall,
+			float macroPrecision, int tp, int fn, int fp, float[] precisions,
+			float[] recalls, float[] f1s) {
 		this.microF1 = microF1;
 		this.microRecall = microRecall;
 		this.microPrecision = microPrecision;
@@ -26,7 +30,7 @@ public class MetricsResultSet {
 		this.recalls = recalls;
 		this.f1s = f1s;
 	}
-	
+
 	public float getMicroRecall() {
 		return microRecall;
 	}
@@ -54,7 +58,7 @@ public class MetricsResultSet {
 	public int getGlobalTp() {
 		return tp;
 	}
-	
+
 	public int getGlobalFp() {
 		return fp;
 	}
@@ -66,12 +70,22 @@ public class MetricsResultSet {
 	public float getPrecisions(int i) {
 		return precisions[i];
 	}
-	
+
 	public float getRecalls(int i) {
 		return recalls[i];
 	}
 
 	public float getF1s(int i) {
 		return f1s[i];
+	}
+
+	public String toString() {
+		return String
+				.format("Micro P/R/F1: %.3f/%.3f/%.3f%nMacro P/R/F1: %.3f/%.3f/%.3f%nGlobal TP/FP/FN: %d/%d/%d",
+						this.getMicroPrecision(), this.getMicroRecall(),
+						this.getMicroF1(), this.getMacroPrecision(),
+						this.getMacroRecall(), this.getMacroF1(),
+						this.getGlobalTp(), this.getGlobalFp(),
+						this.getGlobalFn());
 	}
 }

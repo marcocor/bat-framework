@@ -21,7 +21,7 @@ public class InvalidateResults {
 		BenchmarkResults resultsCache = (BenchmarkResults) new ObjectInputStream(new FileInputStream(resultsCacheFilename)).readObject();
 		//resultsCache.invalidateResults("AIDA-PriorityOnly", aidaDs);
 		//resultsCache.invalidateResults("AIDA-PriorityOnly", aidaTestBDs);
-		resultsCache.invalidateResults("TagMe 2");
+		resultsCache.invalidateResults("WikiSense (simple)");
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(resultsCacheFilename));
 		oos.writeObject(resultsCache);
 		oos.close();
