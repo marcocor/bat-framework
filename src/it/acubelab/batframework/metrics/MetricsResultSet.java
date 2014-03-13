@@ -11,12 +11,13 @@ public class MetricsResultSet {
 	private float microF1, microRecall, microPrecision, macroF1, macroRecall,
 			macroPrecision;
 	private int tp, fn, fp;
-	float[] precisions, recalls, f1s;
+	private float[] precisions, recalls, f1s;
+	private int[] tps, fns, fps;
 
 	public MetricsResultSet(float microF1, float microRecall,
 			float microPrecision, float macroF1, float macroRecall,
 			float macroPrecision, int tp, int fn, int fp, float[] precisions,
-			float[] recalls, float[] f1s) {
+			float[] recalls, float[] f1s, int[] tps, int[] fps, int[] fns) {
 		this.microF1 = microF1;
 		this.microRecall = microRecall;
 		this.microPrecision = microPrecision;
@@ -29,6 +30,13 @@ public class MetricsResultSet {
 		this.precisions = precisions;
 		this.recalls = recalls;
 		this.f1s = f1s;
+		this.tps = tps;
+		this.fns = fns;
+		this.fps = fps;
+	}
+
+	public int testedInstances() {
+		return precisions.length;
 	}
 
 	public float getMicroRecall() {
@@ -87,5 +95,17 @@ public class MetricsResultSet {
 						this.getMacroRecall(), this.getMacroF1(),
 						this.getGlobalTp(), this.getGlobalFp(),
 						this.getGlobalFn());
+	}
+
+	public int getTPs(int i) {
+		return tps[i];
+	}
+
+	public int getFPs(int i) {
+		return fps[i];
+	}
+
+	public int getFNs(int i) {
+		return fns[i];
 	}
 }
