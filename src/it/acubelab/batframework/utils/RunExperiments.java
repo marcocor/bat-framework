@@ -228,18 +228,6 @@ public class RunExperiments {
 						BenchmarkCache.flush();
 					}
 
-				/*
-				 * for (T2WAnnotator t: t2wTaggers){ String prefix =
-				 * metric.getName().replaceAll("[^a-zA-Z0-9]",
-				 * "").toLowerCase(); String suffix =
-				 * t.getName().replaceAll("[^a-zA-Z0-9]",
-				 * "").toLowerCase()+"_"+ds.getName().replaceAll("[^a-zA-Z0-9]",
-				 * "").toLowerCase() +".dat"; //to implement:
-				 * computeMetricsC2WReducedFromT2W(metric, t, ds,
-				 * prefix+"_precision_threshold_"+suffix,
-				 * prefix+"_recall_threshold_"+suffix,
-				 * prefix+"_f1_threshold_"+suffix, api); Benchmark.flush(); }
-				 */
 				if (sc2wTaggers != null)
 					for (Sc2WSystem t : sc2wTaggers) {
 						computeMetricsC2WReducedFromSc2W(m, t, ds, api, result);
@@ -408,11 +396,10 @@ public class RunExperiments {
 
 	public static MetricsResultSet performMentionSpottingExp(
 			MentionSpotter spotter, D2WDataset dss) throws Exception {
-		Metrics<Mention> metrics = new Metrics<Mention>();
-		List<Set<Mention>> output = new Vector<Set<Mention>>();
-		for (String text : dss.getTextInstanceList())
-			output.add(spotter.getSpottedMentions(text));
 
+		List<Set<Mention>> output = BenchmarkCache.doSpotMentions(spotter, dss);
+
+		Metrics<Mention> metrics = new Metrics<Mention>();
 		return metrics.getResult(output, dss.getMentionsInstanceList(),
 				new MentionMatch());
 	}
