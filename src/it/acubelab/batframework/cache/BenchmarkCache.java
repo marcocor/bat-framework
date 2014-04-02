@@ -113,11 +113,11 @@ public class BenchmarkCache {
 			String doc = ds.getTextInstanceList().get(i);
 			Set<Mention> mentions = ds.getMentionsInstanceList().get(i);
 			
-			Set<Annotation> res = resultsCache.getD2WResult(annotator.getName(), doc);
+			Set<Annotation> res = resultsCache.getD2WResult(annotator.getName(), doc, mentions);
 			if (res == null){
 				modified = true;
 				res = annotator.solveD2W(doc, mentions);
-				resultsCache.putD2WResult(annotator.getName(), doc, res);
+				resultsCache.putD2WResult(annotator.getName(), doc, mentions, res);
 				resultsCache.putD2WTiming(annotator.getName(), ds.getName(), doc, annotator.getLastAnnotationTime());
 			}
 			computedAnns.add(res);
@@ -165,6 +165,20 @@ public class BenchmarkCache {
 		}
 		return computedTags;
 	}
+	
+	public static List<Set<Mention>> doSpotMentions(MentionSpotter spotter, D2WDataset ds) throws Exception {
+		List<Set<Mention>> spottedMentionsResult = new Vector<Set<Mention>>();
+		for (String doc: ds.getTextInstanceList()){
+			Set<Mention> res = resultsCache.getSpotMentionsResult(spotter.getName(), doc);
+			if (res == null){
+				modified = true;
+				res = spotter.getSpottedMentions(doc);
+				resultsCache.putSpotMentionsResult(spotter.getName(), doc, res);
+			}
+			spottedMentionsResult.add(res);
+		}
+		return spottedMentionsResult;
+	}
 
 	public static long getC2WTiming(String annotatorName, String datasetName, String text) throws Exception{
 		return resultsCache.getC2WTiming(annotatorName, datasetName, text);
@@ -187,7 +201,7 @@ public class BenchmarkCache {
 	public static List<Long> getSa2WTimingsForDataset(String taggerName, String datasetName) throws Exception{
 		return resultsCache.getSa2WTimingsForDataset(taggerName, datasetName);
 	}
-
+	
 	public static float getAvgC2WTimingsForDataset(String taggerName, String datasetName) throws Exception{
 		long sum=0;
 		List<Long> timings = getC2WTimingsForDataset(taggerName, datasetName);
