@@ -31,16 +31,16 @@ public class StrongTagMatch implements MatchRelation<Tag>{
 	}
 
 	@Override
-	public List<Set<Tag>> preProcessOutput(List<Set<Tag>> computedOutput) {
+	public List<HashSet<Tag>> preProcessOutput(List<HashSet<Tag>> computedOutput) {
 		try {
 			Annotation.prefetchRedirectList(computedOutput, api);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		List<Set<Tag>> resolvedConcepts = new Vector<Set<Tag>>();
-		for (Set<Tag> s : computedOutput){
-			Set<Tag> newRes = new HashSet<Tag>();
+		List<HashSet<Tag>> resolvedConcepts = new Vector<HashSet<Tag>>();
+		for (HashSet<Tag> s : computedOutput){
+			HashSet<Tag> newRes = new HashSet<Tag>();
 			resolvedConcepts.add(newRes);
 			for (Tag t: s)
 				try {
@@ -54,7 +54,7 @@ public class StrongTagMatch implements MatchRelation<Tag>{
 	}
 
 	@Override
-	public List<Set<Tag>> preProcessGoldStandard(List<Set<Tag>> goldStandard) {
+	public List<HashSet<Tag>> preProcessGoldStandard(List<HashSet<Tag>> goldStandard) {
 		return preProcessOutput(goldStandard);
 	}
 

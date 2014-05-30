@@ -13,7 +13,7 @@ import it.acubelab.batframework.utils.WikipediaApiInterface;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 import java.util.Vector;
 
 
@@ -35,7 +35,7 @@ public class ConceptAnnotationMatch implements MatchRelation<Annotation>{
 	}
 	
 	@Override
-	public List<Set<Annotation>> preProcessOutput(List<Set<Annotation>> computedOutput) {
+	public List<HashSet<Annotation>> preProcessOutput(List<HashSet<Annotation>> computedOutput) {
 		try {
 			Annotation.prefetchRedirectList(computedOutput, api);
 		} catch (IOException e) {
@@ -43,10 +43,10 @@ public class ConceptAnnotationMatch implements MatchRelation<Annotation>{
 			throw new RuntimeException(e);
 		}
 
-		List<Set<Annotation>> noDoubleConcepts = new Vector<Set<Annotation>>();
-		for (Set<Annotation> s : computedOutput){
+		List<HashSet<Annotation>> noDoubleConcepts = new Vector<HashSet<Annotation>>();
+		for (HashSet<Annotation> s : computedOutput){
 			HashSet<Integer> alreadyInsertedConcepts = new HashSet<Integer>();
-			Set<Annotation> noDoubleSet = new HashSet<Annotation>();
+			HashSet<Annotation> noDoubleSet = new HashSet<Annotation>();
 			noDoubleConcepts.add(noDoubleSet);
 			for (Annotation a: s)
 				try {
@@ -65,7 +65,7 @@ public class ConceptAnnotationMatch implements MatchRelation<Annotation>{
 	}
 
 	@Override
-	public List<Set<Annotation>> preProcessGoldStandard(List<Set<Annotation>> goldStandard) {
+	public List<HashSet<Annotation>> preProcessGoldStandard(List<HashSet<Annotation>> goldStandard) {
 		return preProcessOutput(goldStandard);
 	}
 

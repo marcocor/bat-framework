@@ -18,12 +18,12 @@ public class WeakMentionMatch implements MatchRelation<Mention>{
 	}
 
 	@Override
-	public List<Set<Mention>> preProcessOutput(List<Set<Mention>> computedOutput) {
+	public List<HashSet<Mention>> preProcessOutput(List<HashSet<Mention>> computedOutput) {
 		return computedOutput;
 	}
 
 	@Override
-	public List<Set<Mention>> preProcessGoldStandard(List<Set<Mention>> goldStandard) {
+	public List<HashSet<Mention>> preProcessGoldStandard(List<HashSet<Mention>> goldStandard) {
 		return goldStandard;
 	}
 

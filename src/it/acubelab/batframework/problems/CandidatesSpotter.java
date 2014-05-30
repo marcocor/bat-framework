@@ -2,7 +2,7 @@ package it.acubelab.batframework.problems;
 
 import it.acubelab.batframework.data.*;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  * A Candidate spotter is a system that, given a text, returns the mentions
@@ -13,13 +13,13 @@ import java.util.Set;
  * such a test.
  * 
  */
-public interface CandidatesSpotter {
+public interface CandidatesSpotter extends TopicSystem {
 	/**
 	 * @param text
 	 *            the text to process
 	 * @return the set of spotted multi-annotations, which are an association
 	 *         between a mention and a set of candidates.
 	 */
-	public Set<MultipleAnnotation> getSpottedCandidates(String text);
+	public HashSet<MultipleAnnotation> getSpottedCandidates(String text);
 
 }

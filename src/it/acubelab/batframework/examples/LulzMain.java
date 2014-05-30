@@ -38,13 +38,13 @@ public class LulzMain {
 		A2WDataset iitb = new IITBDataset("benchmark/datasets/iitb/crawledDocs", "benchmark/datasets/iitb/CSAW_Annotations.xml", wikiApi);
 		
 		//Run the experiment
-		List<Set<ScoredAnnotation>> computedAnnotations = BenchmarkCache.doSa2WAnnotations(miner, iitb, null, 0);
+		List<HashSet<ScoredAnnotation>> computedAnnotations = BenchmarkCache.doSa2WAnnotations(miner, iitb, null, 0);
 		
 		//Adapt the output to the same type of the gold standard (A2W) setting a threshold that excludes all annotations under 0.1
-		List<Set<Annotation>> reducedAnnotations = ProblemReduction.Sa2WToA2WList(computedAnnotations, 0.1f);
+		List<HashSet<Annotation>> reducedAnnotations = ProblemReduction.Sa2WToA2WList(computedAnnotations, 0.1f);
 		
 		//Take the gold standard
-		List<Set<Annotation>> goldStandard = iitb.getA2WGoldStandardList();
+		List<HashSet<Annotation>> goldStandard = iitb.getA2WGoldStandardList();
 
 		//Create a Match relation and the metrics calculator.
 		MatchRelation<Annotation> wam = new WeakAnnotationMatch(wikiApi);

@@ -11,7 +11,7 @@ import it.acubelab.batframework.data.Tag;
 import it.acubelab.batframework.problems.A2WDataset;
 
 import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  * This class provides methods to test an annotator.
@@ -23,7 +23,7 @@ public class TestAnnotator {
 	 * @param computedAnnotations the output of the annotator for dataset {@code ds}.
 	 * @throws AnnotationException if the output is malformed.
 	 */
-	public static <T extends Tag> void checkOutput(A2WDataset ds, List<Set<T>> computedAnnotations) throws AnnotationException {
+	public static <T extends Tag> void checkOutput(A2WDataset ds, List<HashSet<T>> computedAnnotations) throws AnnotationException {
 		if (ds.getTextInstanceList().size() != computedAnnotations.size())
 			throw new AnnotationException("Size of dataset ("+ds.getTextInstanceList().size()+" instances) and size of output ("+computedAnnotations.size()+" solutions) differ.");
 	}

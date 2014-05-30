@@ -29,7 +29,7 @@ public class IllinoisAnnotator_Server implements Sa2WSystem {
 	private long lastTime = -1;
 
 	@Override
-	public Set<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
+	public HashSet<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
 		if (ois==null)
 			try {
 				Socket s = new Socket("localhost", port);
@@ -48,7 +48,7 @@ public class IllinoisAnnotator_Server implements Sa2WSystem {
 			System.out.println("Text sent, waiting for response.");
 			lastTime = Calendar.getInstance().getTimeInMillis();
 			@SuppressWarnings("unchecked")
-			Set<ScoredAnnotation> res = (Set<ScoredAnnotation>) ois.readObject();
+			HashSet<ScoredAnnotation> res = (HashSet<ScoredAnnotation>) ois.readObject();
 			lastTime = Calendar.getInstance().getTimeInMillis() - lastTime;
 			return res;
 		} catch (Exception e) {
@@ -58,22 +58,22 @@ public class IllinoisAnnotator_Server implements Sa2WSystem {
 	}
 
 	@Override
-	public Set<Annotation> solveA2W(String text) throws AnnotationException {
+	public HashSet<Annotation> solveA2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToA2W(this.solveSa2W(text), Float.MIN_VALUE);
 	}
 
 	@Override
-	public Set<Tag> solveC2W(String text) throws AnnotationException {
+	public HashSet<Tag> solveC2W(String text) throws AnnotationException {
 		return ProblemReduction.A2WToC2W(this.solveA2W(text));
 	}
 
 	@Override
-	public Set<ScoredTag> solveSc2W(String text) throws AnnotationException {
+	public HashSet<ScoredTag> solveSc2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToSc2W(this.solveSa2W(text));
 	}
 
 	@Override
-	public Set<Annotation> solveD2W(String text, Set<Mention> mentions) {
+	public HashSet<Annotation> solveD2W(String text, HashSet<Mention> mentions) {
 		return ProblemReduction.Sa2WToD2W(solveSa2W(text), mentions, Float.MIN_VALUE);
 	}
 
@@ -127,7 +127,7 @@ public class IllinoisAnnotator_Server implements Sa2WSystem {
 					e.printStackTrace();
 				} 
 
-				Set<ScoredAnnotation> annotations = new HashSet<ScoredAnnotation>();
+				HashSet<ScoredAnnotation> annotations = new HashSet<ScoredAnnotation>();
 				for (WikifiableEntity e : problem.components){
 					annotations.add(new ScoredAnnotation(e.startOffsetCharsInText, e.entityLengthChars, e.topDisambiguation.wikiData.basicTitleInfo.getTitleId(), ((float) e.linkerScore+3)/7));
 					System.out.println("adding annotation: "+e.topDisambiguation.wikiData.basicTitleInfo.getTitleId()+ " linkerScore:"+e.linkerScore+ " normLinkerScore:"+(((float) e.linkerScore+3)/7)+ " rankerscore:"+e.topDisambiguation.rankerScore);

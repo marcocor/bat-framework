@@ -26,7 +26,7 @@ import org.xml.sax.SAXException;
 
 public class TimerunsDataset implements A2WDataset{
 	private List<String> textList = new Vector<String>();
-	private List<Set<Annotation>> annList =  new Vector<Set<Annotation>>();
+	private List<HashSet<Annotation>> annList =  new Vector<HashSet<Annotation>>();
 
 	public TimerunsDataset(String textPath, int step, int count) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
 		int currIdx = 0;
@@ -71,12 +71,12 @@ public class TimerunsDataset implements A2WDataset{
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return ProblemReduction.A2WToC2WList(this.getA2WGoldStandardList());
 	}
 
 	@Override
-	public List<Set<Annotation>> getD2WGoldStandardList() {
+	public List<HashSet<Annotation>> getD2WGoldStandardList() {
 		return getA2WGoldStandardList();
 	}
 
@@ -86,7 +86,7 @@ public class TimerunsDataset implements A2WDataset{
 	}
 
 	@Override
-	public List<Set<Mention>> getMentionsInstanceList() {
+	public List<HashSet<Mention>> getMentionsInstanceList() {
 		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 
@@ -96,7 +96,7 @@ public class TimerunsDataset implements A2WDataset{
 	}
 
 	@Override
-	public List<Set<Annotation>> getA2WGoldStandardList() {
+	public List<HashSet<Annotation>> getA2WGoldStandardList() {
 		return annList;
 	}
 

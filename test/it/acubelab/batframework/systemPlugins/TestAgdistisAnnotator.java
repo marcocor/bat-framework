@@ -17,7 +17,7 @@ public class TestAgdistisAnnotator {
 
 		String text = "The University of Leipzig in Barack Obama.";
 
-		Set<Mention> mentions = new HashSet<>();
+		HashSet<Mention> mentions = new HashSet<>();
 		mentions.add(new Mention(4, 21));
 		mentions.add(new Mention(29, 12));
 

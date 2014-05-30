@@ -7,11 +7,44 @@
 
 package it.acubelab.batframework.utils;
 
-public class Pair <T1, T2>{
+import java.io.Serializable;
+
+import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang.builder.CompareToBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
+public class Pair<T1 extends Serializable, T2 extends Serializable> implements
+		Serializable {
+	private static final long serialVersionUID = 1L;
 	public T1 first;
 	public T2 second;
-	public Pair(T1 first, T2 second){
+
+	public Pair(T1 first, T2 second) {
 		this.first = first;
 		this.second = second;
+	}
+
+	public int compareTo(Pair<T1, T2> other) {
+		return new CompareToBuilder().append(first, other.first)
+				.append(second, other.second).toComparison();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj instanceof Pair<?, ?>) {
+			Pair<?, ?> other = (Pair<?, ?>) obj;
+			return ObjectUtils.equals(first, other.first)
+					&& ObjectUtils.equals(second, other.second);
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return (first == null ? 0 : first.hashCode())
+				^ (second == null ? 0 : second.hashCode());
 	}
 }

@@ -101,7 +101,7 @@ public class BatchMain {
 		DumpResults.printCorrectnessPerformance(matchRelationsA2W, null, sa2wAnnotators, null, null, dssA2W, resA2W);
 		
 		/** Print the results about correctness to the screen as a Latex table */
-		DumpResults.latexCorrectnessPerformance(matchRelationsA2W, null, sa2wAnnotators, null, dssA2W, false, resA2W);
+		DumpResults.latexCorrectnessPerformance(matchRelationsA2W, null, null, sa2wAnnotators, null, null, dssA2W, false, true, false, resA2W);
 
 		/** Output the results in a gnuplot data .dat file that can then be given to Gnuplot*/
 		DumpResults.gnuplotCorrectnessPerformance(matchRelationsA2W, sa2wAnnotators, dssA2W, wikiApi, resA2W);
@@ -116,13 +116,13 @@ public class BatchMain {
 		matchRelationsC2W.add(new StrongTagMatch(wikiApi));
 		
 		/** Run the experiments for varying thresholds, store the resulting measures to resC2W */
-		resC2W = RunExperiments.performC2WExpVarThreshold(matchRelationsC2W, null, sa2wAnnotators, null, dssC2W, wikiApi);
+		resC2W = RunExperiments.performC2WExpVarThreshold(matchRelationsC2W, null, sa2wAnnotators, null, null, dssC2W, wikiApi);
 
 		/** Print the results about correctness (F1, precision, recall) to the screen */
 		DumpResults.printCorrectnessPerformance(matchRelationsC2W, null, sa2wAnnotators, null, null, dssC2W, resC2W);
 		
 		/** Print the results about correctness to the screen as a Latex table */
-		DumpResults.latexCorrectnessPerformance(matchRelationsC2W, null, sa2wAnnotators, null, dssC2W, false, resC2W);
+		DumpResults.latexCorrectnessPerformance(matchRelationsC2W, null, null, sa2wAnnotators, null, null, dssC2W, false, true ,false, resC2W);
 
 		/** Output the results in a gnuplot data .dat file that can then be given to Gnuplot*/
 		DumpResults.gnuplotCorrectnessPerformance(matchRelationsC2W, sa2wAnnotators, dssC2W, wikiApi, resC2W);

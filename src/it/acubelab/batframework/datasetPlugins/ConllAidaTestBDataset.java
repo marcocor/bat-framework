@@ -27,23 +27,23 @@ public class ConllAidaTestBDataset extends ConllAidaDataset{
 	@Override
 	public int getTagsCount() {
 		int count = 0;
-		for (Set<Annotation> s : getA2WGoldStandardList())
+		for (HashSet<Annotation> s : getA2WGoldStandardList())
 			count += s.size();
 		return count;
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return ProblemReduction.A2WToC2WList(getA2WGoldStandardList());
 	}
 
 	@Override
-	public List<Set<Annotation>> getA2WGoldStandardList() {
+	public List<HashSet<Annotation>> getA2WGoldStandardList() {
 		return super.getA2WGoldStandardList().subList(FIRST_DOC_ID-1, LAST_DOC_ID);
 	}
 
 	@Override
-	public List<Set<Annotation>> getD2WGoldStandardList() {
+	public List<HashSet<Annotation>> getD2WGoldStandardList() {
 		return getA2WGoldStandardList();
 	}
 
@@ -53,7 +53,7 @@ public class ConllAidaTestBDataset extends ConllAidaDataset{
 	}
 	
 	@Override
-	public List<Set<Mention>> getMentionsInstanceList() {
+	public List<HashSet<Mention>> getMentionsInstanceList() {
 		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 

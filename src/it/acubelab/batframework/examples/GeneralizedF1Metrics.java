@@ -12,7 +12,7 @@ import it.acubelab.batframework.metrics.Metrics;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 
 
 public class GeneralizedF1Metrics<T> extends Metrics<T> {
@@ -22,9 +22,9 @@ public class GeneralizedF1Metrics<T> extends Metrics<T> {
 		return (recall+precision == 0) ? 0 : (1+betaPow)*recall*precision/(betaPow*recall+precision);
 	}
 
-	public float computeF1(List<Set<T>> outputOrig, List<Set<T>> goldStandardOrig, float beta, MatchRelation<T> m) throws IOException{
-		List<Set<T>> output = m.preProcessOutput(outputOrig);
-		List<Set<T>> goldStandard = m.preProcessGoldStandard(goldStandardOrig);
+	public float computeF1(List<HashSet<T>> outputOrig, List<HashSet<T>> goldStandardOrig, float beta, MatchRelation<T> m) throws IOException{
+		List<HashSet<T>> output = m.preProcessOutput(outputOrig);
+		List<HashSet<T>> goldStandard = m.preProcessGoldStandard(goldStandardOrig);
 		int tp = tpCount(goldStandard, output, m);
 		int fp = fpCount(goldStandard, output, m);
 		int fn = fnCount(goldStandard, output, m);

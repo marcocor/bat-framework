@@ -28,7 +28,7 @@ import it.acubelab.batframework.utils.WikipediaApiInterface;
 import it.unimi.dsi.lang.MutableString;
 
 public class ConllAidaDataset implements A2WDataset{
-	private List<Set<Annotation>> annotations = new Vector<Set<Annotation>>();
+	private List<HashSet<Annotation>> annotations = new Vector<HashSet<Annotation>>();
 	private List<MutableString> documents = new Vector<MutableString>();
 	private Pattern wikiUrlPattern = Pattern.compile("http://en.wikipedia.org/wiki/(.*)");
 	private Pattern mentionPattern = Pattern.compile("^(.*?)\t([BI]?)\t(.*?)\t(.*?)\t(.*?)(?:\t(.*))?$");
@@ -37,12 +37,12 @@ public class ConllAidaDataset implements A2WDataset{
 
 
 	public ConllAidaDataset (String file, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
-		List<Set<AidaAnnotation>> aidaAnns = new Vector<Set<AidaAnnotation>>();
+		List<HashSet<AidaAnnotation>> aidaAnns = new Vector<HashSet<AidaAnnotation>>();
 		List<String> titlesToPrefetch = new Vector<String>();
 		BufferedReader r = new BufferedReader( new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
 		String line;
 		MutableString currentDoc = null;
-		Set<AidaAnnotation> currentAnns = null;
+		HashSet<AidaAnnotation> currentAnns = null;
 		int currentPos = -1, currentLen = 0;
 		String currentTitle = null;
 		while ((line = r.readLine()) != null){
@@ -107,9 +107,8 @@ public class ConllAidaDataset implements A2WDataset{
 		api.prefetchTitles(titlesToPrefetch);
 
 		/** Create annotation list */
-		for (Set<AidaAnnotation> s : aidaAnns){
+		for (HashSet<AidaAnnotation> s : aidaAnns){
 			HashSet<Annotation> sA = new HashSet<Annotation>();
-			annotations.add(sA);
 			for (AidaAnnotation aA: s){
 				int wid = api.getIdByTitle(aA.title);
 				if (wid == -1)
@@ -117,6 +116,9 @@ public class ConllAidaDataset implements A2WDataset{
 				else
 					sA.add(new Annotation(aA.position, aA.length, wid));
 			}
+			HashSet<Annotation> sANonOverlapping = Annotation.deleteOverlappingAnnotations(sA);
+			annotations.add(sANonOverlapping);
+			
 		}
 	}
 
@@ -128,23 +130,23 @@ public class ConllAidaDataset implements A2WDataset{
 	@Override
 	public int getTagsCount() {
 		int count = 0;
-		for (Set<Annotation> s : annotations)
+		for (HashSet<Annotation> s : annotations)
 			count += s.size();
 		return count;
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return ProblemReduction.A2WToC2WList(annotations);
 	}
 
 	@Override
-	public List<Set<Annotation>> getA2WGoldStandardList() {
+	public List<HashSet<Annotation>> getA2WGoldStandardList() {
 		return annotations;
 	}
 
 	@Override
-	public List<Set<Annotation>> getD2WGoldStandardList() {
+	public List<HashSet<Annotation>> getD2WGoldStandardList() {
 		return getA2WGoldStandardList();
 	}
 
@@ -158,7 +160,7 @@ public class ConllAidaDataset implements A2WDataset{
 	}
 	
 	@Override
-	public List<Set<Mention>> getMentionsInstanceList() {
+	public List<HashSet<Mention>> getMentionsInstanceList() {
 		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 

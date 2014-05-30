@@ -13,7 +13,7 @@ import it.acubelab.batframework.utils.WikipediaApiInterface;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Set;
+import java.util.HashSet;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
@@ -27,7 +27,7 @@ public class AQUAINTDataset extends MSNBCDataset {
 		HashMap<String, String> filenameToBody= loadBody(textPath, ".+\\.htm");
 
 		//load the annotations
-		HashMap<String, Set<Annotation>> filenameToAnnotations= loadTags(annotationsPath, ".+\\.htm", api);
+		HashMap<String, HashSet<Annotation>> filenameToAnnotations= loadTags(annotationsPath, ".+\\.htm", api);
 
 		//check that files are coherent.
 		checkConsistency(filenameToBody, filenameToAnnotations);

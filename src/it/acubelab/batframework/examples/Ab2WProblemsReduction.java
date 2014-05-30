@@ -7,13 +7,14 @@
 
 package it.acubelab.batframework.examples;
 
-import java.util.Set;
+import java.util.HashSet;
+import java.util.HashSet;
 
 import it.acubelab.batframework.data.*;
 import it.acubelab.batframework.utils.*;
 
 public class Ab2WProblemsReduction extends ProblemReduction{
-	public static Set<ScoredAnnotation> Ab2WToSa2W(Pair<Set<ScoredAnnotation>, Set<ScoredTag>> mentionedAnnotations){
+	public static HashSet<ScoredAnnotation> Ab2WToSa2W(Pair<HashSet<ScoredAnnotation>, HashSet<ScoredTag>> mentionedAnnotations){
 		return mentionedAnnotations.first;
 	}
 }

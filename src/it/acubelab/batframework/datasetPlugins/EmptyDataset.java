@@ -23,12 +23,12 @@ public class EmptyDataset implements A2WDataset {
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return ProblemReduction.A2WToC2WList(this.getA2WGoldStandardList());
 	}
 
 	@Override
-	public List<Set<Annotation>> getD2WGoldStandardList() {
+	public List<HashSet<Annotation>> getD2WGoldStandardList() {
 		return getA2WGoldStandardList();
 	}
 
@@ -45,7 +45,7 @@ public class EmptyDataset implements A2WDataset {
 	}
 
 	@Override
-	public List<Set<Mention>> getMentionsInstanceList() {
+	public List<HashSet<Mention>> getMentionsInstanceList() {
 		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 
@@ -60,8 +60,8 @@ public class EmptyDataset implements A2WDataset {
 	}
 
 	@Override
-	public List<Set<Annotation>> getA2WGoldStandardList() {
-		List<Set<Annotation>> l = new Vector<Set<Annotation>>();
+	public List<HashSet<Annotation>> getA2WGoldStandardList() {
+		List<HashSet<Annotation>> l = new Vector<HashSet<Annotation>>();
 		for (int i=0; i<500; i++)
 			l.add(new HashSet<Annotation>());
 		return l;

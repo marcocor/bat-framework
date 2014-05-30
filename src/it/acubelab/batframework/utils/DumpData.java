@@ -35,7 +35,7 @@ public class DumpData {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <T1 extends Tag> void dumpDataset(List<String> texts,
-			List<Set<T1>> gs, WikipediaApiInterface api) throws IOException {
+			List<HashSet<T1>> gs, WikipediaApiInterface api) throws IOException {
 		for (int i = 0; i < texts.size(); i++)
 			dumpCompare(texts.get(i), gs.get(i), null, api);
 	}
@@ -55,7 +55,8 @@ public class DumpData {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <T1 extends Tag> void dumpOutput(List<String> texts,
-			List<Set<T1>> output, WikipediaApiInterface api) throws IOException {
+			List<HashSet<T1>> output, WikipediaApiInterface api)
+			throws IOException {
 		for (int i = 0; i < texts.size(); i++)
 			dumpCompare(texts.get(i), null, output.get(i), api);
 	}
@@ -79,12 +80,45 @@ public class DumpData {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <T extends Tag> void dumpCompareList(List<String> texts,
-			List<Set<T>> expectedResult, List<Set<T>> computedResult,
+			List<HashSet<T>> expectedResult, List<HashSet<T>> computedResult,
 			WikipediaApiInterface api) throws IOException {
+		dumpCompareList(texts, expectedResult, computedResult, api, true);
+
+	}
+
+	/**
+	 * Dump, for each document of a dataset, the expected output (gold standard)
+	 * and the actual output (found by an annotator).
+	 * 
+	 * @param texts
+	 *            the instances of the dataset.
+	 * @param expectedResult
+	 *            the gold standard provided by a dataset, one for each instance
+	 *            (must have the same size as {@code texts}).
+	 * @param computedResult
+	 *            the solution found by an annotator, one for each instance
+	 *            (must have the same size as {@code texts}).
+	 * @param api
+	 *            the API to Wikipedia (needed to print information about
+	 *            annotations/tags).
+	 * @param printEmptyDocs
+	 *            whether or not to print documents with an empty gold standard
+	 *            and an empty solution.
+	 * @throws IOException
+	 *             if something went wrong while querying the Wikipedia API.
+	 */
+	public static <T extends Tag> void dumpCompareList(List<String> texts,
+			List<HashSet<T>> expectedResult, List<HashSet<T>> computedResult,
+			WikipediaApiInterface api, boolean printEmptyDocs)
+			throws IOException {
 		for (int i = 0; i < texts.size(); i++) {
-			DumpData.dumpCompare(texts.get(i), expectedResult.get(i),
-					computedResult.get(i), api);
-			System.out.println();
+			if (printEmptyDocs
+					|| (!printEmptyDocs && (!expectedResult.get(i).isEmpty() || !computedResult
+							.get(i).isEmpty()))) {
+				DumpData.dumpCompare(texts.get(i), expectedResult.get(i),
+						computedResult.get(i), api);
+				System.out.println();
+			}
 		}
 
 	}
@@ -108,8 +142,8 @@ public class DumpData {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <T extends Tag> void dumpCompareMatch(String text,
-			Set<T> expectedResult, Set<T> computedResult, MatchRelation<T> mr,
-			WikipediaApiInterface api) throws IOException {
+			HashSet<T> expectedResult, HashSet<T> computedResult,
+			MatchRelation<T> mr, WikipediaApiInterface api) throws IOException {
 		System.out.println("Text: " + text);
 		if (expectedResult != null) {
 			System.out.println();
@@ -146,7 +180,7 @@ public class DumpData {
 	}
 
 	public static <T extends Tag> void dumpCompare(String text,
-			Set<T> expectedResult, Set<T> computedResult,
+			HashSet<T> expectedResult, HashSet<T> computedResult,
 			WikipediaApiInterface api) throws IOException {
 		dumpCompareMatch(text, expectedResult, computedResult, null, api);
 	}
@@ -154,27 +188,31 @@ public class DumpData {
 	private static <T extends Tag> void printAnnotation(String text, T a,
 			WikipediaApiInterface api, String note) throws IOException {
 		if (a instanceof ScoredAnnotation)
-			System.out.printf("\t%s: %s -> %s (wid=%d) (score=%.3f)%n", note, text
-					.substring(((ScoredAnnotation) a).getPosition(),
+			System.out.printf("\t%s: %s -> %s (wid=%d) (score=%.3f)%n", note,
+					text.substring(((ScoredAnnotation) a).getPosition(),
 							((Annotation) a).getPosition()
 									+ ((ScoredAnnotation) a).getLength()), api
-					.getTitlebyId(a.getConcept()), a.getConcept(),
+							.getTitlebyId(a.getConcept()), a.getConcept(),
 					((ScoredAnnotation) a).getScore());
 		else if (a instanceof Annotation)
-			System.out.printf("\t%s: %s (%d, %d) -> %s (%d)%n", note, text.substring(
+			System.out.printf(
+					"\t%s: %s (%d, %d) -> %s (%d)%n",
+					note,
+					text.substring(
+							((Annotation) a).getPosition(),
+							((Annotation) a).getPosition()
+									+ ((Annotation) a).getLength()),
 					((Annotation) a).getPosition(),
 					((Annotation) a).getPosition()
-							+ ((Annotation) a).getLength()), ((Annotation) a)
-					.getPosition(), ((Annotation) a).getPosition()
-					+ ((Annotation) a).getLength(), api.getTitlebyId(a
-					.getConcept()), a.getConcept());
+							+ ((Annotation) a).getLength(), api.getTitlebyId(a
+							.getConcept()), a.getConcept());
 		else if (a instanceof ScoredTag)
 			System.out.printf("\t%s: %s (wid=%d) (score=%.3f)%n", note,
 					api.getTitlebyId(a.getConcept()), a.getConcept(),
 					((ScoredTag) a).getScore());
 		else if (a instanceof Tag)
-			System.out.printf("\t%s: %s (%d)", note, api.getTitlebyId(a.getConcept()),
-					a.getConcept());
+			System.out.printf("\t%s: %s (%d)", note,
+					api.getTitlebyId(a.getConcept()), a.getConcept());
 
 	}
 

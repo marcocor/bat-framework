@@ -10,7 +10,7 @@ package it.acubelab.batframework.problems;
 import it.acubelab.batframework.data.Annotation;
 import it.acubelab.batframework.utils.AnnotationException;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  * A system that tags parts of a natural language text to Wikipedia concepts.
@@ -23,6 +23,6 @@ public interface A2WSystem extends C2WSystem, D2WSystem{
 	 * @return a set containing the annotation found for the given text.
 	 * @throws AnnotationException 
 	 */
-	public Set<Annotation> solveA2W(String text) throws AnnotationException;
+	public HashSet<Annotation> solveA2W(String text) throws AnnotationException;
 
 }

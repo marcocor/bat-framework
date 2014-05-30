@@ -13,36 +13,37 @@ import it.acubelab.batframework.utils.Pair;
 import it.acubelab.batframework.utils.ProblemReduction;
 
 import java.util.Calendar;
-import java.util.Set;
+import java.util.HashSet;
+import java.util.HashSet;
 
 public class LolAbstractAnnotator implements Ab2WSystem{
 	private long lastAnnotation = -1;
 
 	@Override
-	public Pair<Set<ScoredAnnotation>,Set<ScoredTag>> getAb2WOutput(String text) {
+	public Pair<HashSet<ScoredAnnotation>,HashSet<ScoredTag>> getAb2WOutput(String text) {
 		lastAnnotation = Calendar.getInstance().getTimeInMillis();
-		Pair<Set<ScoredAnnotation>,Set<ScoredTag>> res =  computeMentionedAnnotations(text);
+		Pair<HashSet<ScoredAnnotation>,HashSet<ScoredTag>> res =  computeMentionedAnnotations(text);
 		lastAnnotation = Calendar.getInstance().getTimeInMillis()-lastAnnotation;
 		return res;
 	}
 
-	private Pair<Set<ScoredAnnotation>,Set<ScoredTag>> computeMentionedAnnotations(String text) {
+	private Pair<HashSet<ScoredAnnotation>,HashSet<ScoredTag>> computeMentionedAnnotations(String text) {
 		return null;
 	}
 
 	@Override
-	public Set<ScoredAnnotation> solveSa2W(String text)
+	public HashSet<ScoredAnnotation> solveSa2W(String text)
 			throws AnnotationException {
 		return Ab2WProblemsReduction.Ab2WToSa2W(getAb2WOutput(text));
 	}
 
 	@Override
-	public Set<Annotation> solveA2W(String text) throws AnnotationException {
+	public HashSet<Annotation> solveA2W(String text) throws AnnotationException {
 		return Ab2WProblemsReduction.Sa2WToA2W(solveSa2W(text));
 	}
 
 	@Override
-	public Set<Tag> solveC2W(String text) throws AnnotationException {
+	public HashSet<Tag> solveC2W(String text) throws AnnotationException {
 		return Ab2WProblemsReduction.A2WToC2W(solveA2W(text));
 	}
 
@@ -57,12 +58,12 @@ public class LolAbstractAnnotator implements Ab2WSystem{
 	}
 
 	@Override
-	public Set<ScoredTag> solveSc2W(String text) throws AnnotationException {
+	public HashSet<ScoredTag> solveSc2W(String text) throws AnnotationException {
 		return Ab2WProblemsReduction.Sa2WToSc2W(solveSa2W(text));
 	}
 
 	@Override
-	public Set<Annotation> solveD2W(String text, Set<Mention> mentions){
+	public HashSet<Annotation> solveD2W(String text, HashSet<Mention> mentions){
 		return ProblemReduction.Sa2WToD2W(this.solveSa2W(text), mentions, Float.MIN_VALUE);
 	}
 	

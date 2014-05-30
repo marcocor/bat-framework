@@ -2,7 +2,7 @@ package it.acubelab.batframework.problems;
 
 import it.acubelab.batframework.data.Mention;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  * A Mention spotter is a system that, given a text, returns the mentions
@@ -17,5 +17,5 @@ public interface MentionSpotter extends TopicSystem {
 	 * @param text the text to process.
 	 * @return a set of mentions spotted in the text.
 	 */
-	public Set<Mention> getSpottedMentions(String text);
+	public HashSet<Mention> getSpottedMentions(String text);
 }

@@ -91,13 +91,13 @@ public abstract class AIDAAnnotator implements Sa2WSystem{
 	}
 
 	@Override
-	public Set<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
+	public HashSet<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
 
 		/* Lazy connection if the connection made by the constructor failed.*/
 		if (!AidaRMIClientManager.isConnected())
 			setupConnection();
 
-		Set<AIDATag> res = new HashSet<AIDATag>();
+		HashSet<AIDATag> res = new HashSet<AIDATag>();
 		List<String> titlesToPrefetch = new Vector<String>();
 
 
@@ -167,7 +167,7 @@ public abstract class AIDAAnnotator implements Sa2WSystem{
 		}
 
 		/** Convert to Scored Tags*/
-		Set<ScoredAnnotation> resScoredAnnotations = new HashSet<ScoredAnnotation>();
+		HashSet<ScoredAnnotation> resScoredAnnotations = new HashSet<ScoredAnnotation>();
 		for (AIDATag t: res){
 			int wid;
 			try {
@@ -183,22 +183,22 @@ public abstract class AIDAAnnotator implements Sa2WSystem{
 	}
 
 	@Override
-	public Set<Annotation> solveA2W(String text) throws AnnotationException {
+	public HashSet<Annotation> solveA2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToA2W(solveSa2W(text), Float.MIN_VALUE);
 	}
 
 	@Override
-	public Set<Tag> solveC2W(String text) throws AnnotationException {
+	public HashSet<Tag> solveC2W(String text) throws AnnotationException {
 		return ProblemReduction.A2WToC2W(solveA2W(text));
 	}
 
 	@Override
-	public Set<ScoredTag> solveSc2W(String text) throws AnnotationException {
+	public HashSet<ScoredTag> solveSc2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToSc2W(this.solveSa2W(text));
 	}
 
 	@Override
-	public Set<Annotation> solveD2W(String text, Set<Mention> mentions) {
+	public HashSet<Annotation> solveD2W(String text, HashSet<Mention> mentions) {
 		return ProblemReduction.Sa2WToD2W(solveSa2W(text), mentions, Float.MIN_VALUE);
 	}
 

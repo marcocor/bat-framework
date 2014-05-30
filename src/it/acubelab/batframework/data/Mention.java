@@ -2,6 +2,8 @@ package it.acubelab.batframework.data;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 public class Mention implements Serializable, Cloneable, Comparable<Mention> {
 	private static final long serialVersionUID = 1L;
 	private int position; // starting position of the annotation in the original
@@ -29,7 +31,8 @@ public class Mention implements Serializable, Cloneable, Comparable<Mention> {
 
 	@Override
 	public int hashCode() {
-		return ("" + position + length).hashCode();
+		return new Integer(position).hashCode()
+				^ new Integer(length).hashCode();
 	}
 
 	@Override
@@ -54,4 +57,8 @@ public class Mention implements Serializable, Cloneable, Comparable<Mention> {
 		return this.getPosition() - m.getPosition();
 	}
 
+	@Override
+	public String toString() {
+		return String.format("(%d, %d)", this.position, this.length);
+	}
 }

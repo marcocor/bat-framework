@@ -46,8 +46,8 @@ public class WikipediaMinerAnnotator implements Sa2WSystem{
 	}
 	
 	@Override
-	public Set<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
-		Set<ScoredAnnotation> res;
+	public HashSet<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
+		HashSet<ScoredAnnotation> res;
 		try{
 			res = new HashSet<ScoredAnnotation>();
 			lastTime = Calendar.getInstance().getTimeInMillis();
@@ -119,22 +119,22 @@ public class WikipediaMinerAnnotator implements Sa2WSystem{
 	}
 	
 	@Override
-	public Set<Annotation> solveA2W(String text) throws AnnotationException {
+	public HashSet<Annotation> solveA2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToA2W(solveSa2W(text), Float.MIN_VALUE);
 	}
 
 	@Override
-	public Set<Tag> solveC2W(String text)	throws AnnotationException {
+	public HashSet<Tag> solveC2W(String text)	throws AnnotationException {
 		return ProblemReduction.A2WToC2W(solveA2W(text));
 	}
 
 	@Override
-	public Set<ScoredTag> solveSc2W(String text) throws AnnotationException {
+	public HashSet<ScoredTag> solveSc2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToSc2W(this.solveSa2W(text));
 	}
 	
 	@Override
-	public Set<Annotation> solveD2W(String text, Set<Mention> mentions) {
+	public HashSet<Annotation> solveD2W(String text, HashSet<Mention> mentions) {
 		return ProblemReduction.Sa2WToD2W(solveSa2W(text), mentions, Float.MIN_VALUE);
 	}
 

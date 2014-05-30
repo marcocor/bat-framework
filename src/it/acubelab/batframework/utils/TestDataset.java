@@ -23,7 +23,7 @@ public class TestDataset {
 	 * @throws Exception if the Wikipedia API could not be queried.
 	 */
 	private static void checkRedirects(C2WDataset ds, WikipediaApiInterface api) throws Exception {
-		for (Set<Tag> s : ds.getC2WGoldStandardList())
+		for (HashSet<Tag> s : ds.getC2WGoldStandardList())
 			for (Tag a : s)
 				if (api.isRedirect(a.getConcept()))
 					System.out.println("INFO: An annotation points to a redirect page! wid="+a.getConcept());
@@ -63,7 +63,7 @@ public class TestDataset {
 		
 		HashSet<Integer> distinctTopics = new HashSet<Integer>();
 		int annDocs = 0;
-		for (Set<Tag> s : ds.getC2WGoldStandardList()){
+		for (HashSet<Tag> s : ds.getC2WGoldStandardList()){
 			for (Tag a : s)
 				distinctTopics.add(api.dereference(a.getConcept()));
 			if (!s.isEmpty())

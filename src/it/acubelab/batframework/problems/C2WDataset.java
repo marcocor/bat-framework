@@ -10,7 +10,7 @@ package it.acubelab.batframework.problems;
 import it.acubelab.batframework.data.Tag;
 
 import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 
 
 public interface C2WDataset extends TopicDataset{
@@ -21,6 +21,6 @@ public interface C2WDataset extends TopicDataset{
 	 */
 	public int getTagsCount();
 	
-	public List<Set<Tag>> getC2WGoldStandardList();
+	public List<HashSet<Tag>> getC2WGoldStandardList();
 	
 }

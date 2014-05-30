@@ -45,10 +45,10 @@ public class Annotation extends Tag implements Serializable, Cloneable{
 		return (""+this.getConcept()+m.hashCode()).hashCode();
 	}
 	
-	public static <E extends Tag> void prefetchRedirectList(List<Set<E>> annotations, WikipediaApiInterface api) throws IOException{
+	public static <E extends Tag> void prefetchRedirectList(List<HashSet<E>> annotations, WikipediaApiInterface api) throws IOException{
 		/** Prefetch redirect values */
 		List<Integer> widsToCheck = new Vector<Integer>();
-		for (Set<E> s : annotations)
+		for (HashSet<E> s : annotations)
 			for (E a : s)
 				widsToCheck.add(a.getConcept());
 		
@@ -80,7 +80,7 @@ public class Annotation extends Tag implements Serializable, Cloneable{
 		return m.overlaps(men);
 	}
 	
-	public static <T extends Annotation> Set<T> deleteOverlappingAnnotations(Set<T> anns) {
+	public static <T extends Annotation> HashSet<T> deleteOverlappingAnnotations(HashSet<T> anns) {
 		Vector<T> annsList = new Vector<T>(anns);
 		HashSet<T> res = new HashSet<T>();
 		Collections.sort(annsList);

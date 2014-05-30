@@ -51,24 +51,24 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	}
 
 	@Override
-	public Set<Annotation> solveA2W(String text) throws AnnotationException {
+	public HashSet<Annotation> solveA2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToA2W(solveSa2W(text), Float.MIN_VALUE);
 	}
 
 	@Override
-	public Set<Tag> solveC2W(String text)	throws AnnotationException {
+	public HashSet<Tag> solveC2W(String text)	throws AnnotationException {
 		return ProblemReduction.A2WToC2W(solveA2W(text));
 	}
 
 	@Override
-	public Set<ScoredTag> solveSc2W(String text) throws AnnotationException {
+	public HashSet<ScoredTag> solveSc2W(String text) throws AnnotationException {
 		return ProblemReduction.Sa2WToSc2W(this.solveSa2W(text));
 	}
 
 	@Override
-	public Set<Annotation> solveD2W(String text, Set<Mention> mentions) {
+	public HashSet<Annotation> solveD2W(String text, HashSet<Mention> mentions) {
 		String xmlTextWithSpots = createTextWithMentions(text, mentions);
-		Set<ScoredAnnotation> scoredAnnotations = getSpotlightAnnotations(xmlTextWithSpots, Service.DISAMBIGUATE);
+		HashSet<ScoredAnnotation> scoredAnnotations = getSpotlightAnnotations(xmlTextWithSpots, Service.DISAMBIGUATE);
 		return ProblemReduction.Sa2WToD2W(scoredAnnotations, mentions, Float.MIN_VALUE);
 	}
 
@@ -78,7 +78,7 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	}
 
 	@Override
-	public Set<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
+	public HashSet<ScoredAnnotation> solveSa2W(String text) throws AnnotationException {
 		return getSpotlightAnnotations(text, Service.ANNOTATE);
 	}
 
@@ -91,15 +91,15 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	 * @param service
 	 *            the endpoint service to use
 	 */
-	public Set<ScoredAnnotation> getSpotlightAnnotations(String text, Service service) {
+	public HashSet<ScoredAnnotation> getSpotlightAnnotations(String text, Service service) {
 		//dbpedia spotlight cannot handle documents made only of whitespaces...
 		int i=0;
 		while (i<text.length() && (text.charAt(i)==' ' || text.charAt(i)=='\n')) i++;
 		if (i==text.length()) return new HashSet<ScoredAnnotation>();
 		
 		Pattern dbPediaUri = Pattern.compile("^http://dbpedia.org/resource/(.*)$");
-		Set<String> toPrefetch = new HashSet<String>();
-		Set<SpotLightAnnotation> res = new HashSet<SpotlightAnnotator.SpotLightAnnotation>();
+		HashSet<String> toPrefetch = new HashSet<String>();
+		HashSet<SpotLightAnnotation> res = new HashSet<SpotlightAnnotator.SpotLightAnnotation>();
 		try{
 			lastTime = Calendar.getInstance().getTimeInMillis();
 
@@ -213,7 +213,7 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	 * }
 	 * </pre>
 	 */
-	private static String createTextWithMentions(String text, Set<Mention> mentions) {
+	private static String createTextWithMentions(String text, HashSet<Mention> mentions) {
 		try {
 			DocumentBuilder docBuilder = DOC_FACTORY.newDocumentBuilder();
 			// annotation root element

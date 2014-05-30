@@ -12,11 +12,11 @@ import java.util.*;
 
 public class Metrics<T> {
 
-	public MetricsResultSet getResult(List<Set<T>> outputOrig,
-			List<Set<T>> goldStandardOrig, MatchRelation<T> m)
+	public MetricsResultSet getResult(List<HashSet<T>> outputOrig,
+			List<HashSet<T>> goldStandardOrig, MatchRelation<T> m)
 			throws IOException {
-		List<Set<T>> output = m.preProcessOutput(outputOrig);
-		List<Set<T>> goldStandard = m.preProcessGoldStandard(goldStandardOrig);
+		List<HashSet<T>> output = m.preProcessOutput(outputOrig);
+		List<HashSet<T>> goldStandard = m.preProcessGoldStandard(goldStandardOrig);
 
 		int tp = tpCountPreprocessed(goldStandard, output, m);
 		int fp = fpCountPreprocessed(goldStandard, output, m);
@@ -39,7 +39,7 @@ public class Metrics<T> {
 				recalls, f1s, tps, fps, fns);
 	}
 
-	private int similarityIntersection(Set<T> set1, Set<T> set2,
+	private int similarityIntersection(HashSet<T> set1, HashSet<T> set2,
 			MatchRelation<T> m) {
 		int intersectionI = 0;
 		for (T obj1 : set1)
@@ -64,7 +64,7 @@ public class Metrics<T> {
 	 * @return the number of elements that are in set1 and have no match with
 	 *         any element of set2, according to match relation m.
 	 */
-	private int dissimilaritySet(Set<T> set1, Set<T> set2, MatchRelation<T> m) {
+	private int dissimilaritySet(HashSet<T> set1, HashSet<T> set2, MatchRelation<T> m) {
 		int diss = 0;
 		for (T obj1 : set1) {
 			boolean found = false;
@@ -79,55 +79,55 @@ public class Metrics<T> {
 		return diss;
 	}
 
-	private int similarityUnion(Set<T> set1, Set<T> set2) {
+	private int similarityUnion(HashSet<T> set1, HashSet<T> set2) {
 		return set1.size() + set2.size();
 	}
 
-	public float singleSimilarity(Set<T> set1, Set<T> set2, MatchRelation<T> m) {
+	public float singleSimilarity(HashSet<T> set1, HashSet<T> set2, MatchRelation<T> m) {
 		int intersectionI = similarityIntersection(set1, set2, m);
 		int unionI = similarityUnion(set1, set2);
 		return (unionI == 0) ? 1 : (float) intersectionI / (float) unionI;
 	}
 
-	public float macroSimilarity(List<Set<T>> list1, List<Set<T>> list2,
+	public float macroSimilarity(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
-		List<Set<T>> list1preproc = m.preProcessOutput(list1);
-		List<Set<T>> list2preproc = m.preProcessOutput(list2);
+		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
+		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
 		float avg = 0;
 		for (int i = 0; i < list1preproc.size(); i++) {
-			Set<T> set1 = list1preproc.get(i);
-			Set<T> set2 = list2preproc.get(i);
+			HashSet<T> set1 = list1preproc.get(i);
+			HashSet<T> set2 = list2preproc.get(i);
 			avg += singleSimilarity(set1, set2, m);
 		}
 		return avg / (float) list1preproc.size();
 	}
 
-	public float microSimilarity(List<Set<T>> list1, List<Set<T>> list2,
+	public float microSimilarity(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
-		List<Set<T>> list1preproc = m.preProcessOutput(list1);
-		List<Set<T>> list2preproc = m.preProcessOutput(list2);
+		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
+		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
 		long intersections = 0;
 		long unions = 0;
 		for (int i = 0; i < list1preproc.size(); i++) {
-			Set<T> set1 = list1preproc.get(i);
-			Set<T> set2 = list2preproc.get(i);
+			HashSet<T> set1 = list1preproc.get(i);
+			HashSet<T> set2 = list2preproc.get(i);
 			intersections += similarityIntersection(set1, set2, m);
 			unions += similarityUnion(set1, set2);
 		}
 		return intersections / unions;
 	}
 
-	public int dissimilarityListCount(List<Set<T>> list1, List<Set<T>> list2,
+	public int dissimilarityListCount(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
-		List<Set<T>> list1preproc = m.preProcessOutput(list1);
-		List<Set<T>> list2preproc = m.preProcessOutput(list2);
+		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
+		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
 		int dissim = 0;
 		for (int i = 0; i < list1preproc.size(); i++) {
-			Set<T> set1 = list1preproc.get(i);
-			Set<T> set2 = list2preproc.get(i);
+			HashSet<T> set1 = list1preproc.get(i);
+			HashSet<T> set2 = list2preproc.get(i);
 			dissim += dissimilaritySet(set1, set2, m);
 		}
 
@@ -141,30 +141,30 @@ public class Metrics<T> {
 	 * @return the amount of elements of list1 that match with an element of
 	 *         list 2 + viceversa. (is reflexive)
 	 */
-	public int similarityListCount(List<Set<T>> list1, List<Set<T>> list2,
+	public int similarityListCount(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
-		List<Set<T>> list1preproc = m.preProcessOutput(list1);
-		List<Set<T>> list2preproc = m.preProcessOutput(list2);
+		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
+		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
 		int intersect = 0;
 		for (int i = 0; i < list1preproc.size(); i++) {
-			Set<T> set1 = list1preproc.get(i);
-			Set<T> set2 = list2preproc.get(i);
+			HashSet<T> set1 = list1preproc.get(i);
+			HashSet<T> set2 = list2preproc.get(i);
 			intersect += similarityIntersection(set1, set2, m);
 		}
 
 		return intersect;
 	}
 
-	public long listUnion(List<Set<T>> list1, List<Set<T>> list2,
+	public long listUnion(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
-		List<Set<T>> list1preproc = m.preProcessOutput(list1);
-		List<Set<T>> list2preproc = m.preProcessOutput(list2);
+		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
+		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
 		long union = 0;
 		for (int i = 0; i < list1preproc.size(); i++) {
-			Set<T> set1 = list1preproc.get(i);
-			Set<T> set2 = list2preproc.get(i);
+			HashSet<T> set1 = list1preproc.get(i);
+			HashSet<T> set2 = list2preproc.get(i);
 			union += similarityUnion(set1, set2);
 		}
 		return union;
@@ -224,30 +224,30 @@ public class Metrics<T> {
 	}
 
 	// [{ok1, nok, nok, ok2}, {ok3, ok4, nok}] -> [{ok1 ok2}, {ok3, ok4}]
-	private List<Set<T>> getTpPreprocessed(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> tp = new Vector<Set<T>>();
+	private List<HashSet<T>> getTpPreprocessed(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> tp = new Vector<HashSet<T>>();
 		for (int i = 0; i < expectedResult.size(); i++) {
-			Set<T> exp = expectedResult.get(i);
-			Set<T> comp = computedResult.get(i);
+			HashSet<T> exp = expectedResult.get(i);
+			HashSet<T> comp = computedResult.get(i);
 			tp.add(getSingleTp(exp, comp, m));
 		}
 		return tp;
 	}
 
-	public List<Set<T>> getTp(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> computedResultPrep = m.preProcessOutput(computedResult);
-		List<Set<T>> expectedResultPrep = m
+	public List<HashSet<T>> getTp(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
+		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
 		return getTpPreprocessed(expectedResultPrep, computedResultPrep, m);
 	}
 
 	// {ok1, nok, nok, ok2} -> {ok1 ok2}
 	// implementation of the tp function
-	public Set<T> getSingleTp(Set<T> expectedResult, Set<T> computedResult,
+	public HashSet<T> getSingleTp(HashSet<T> expectedResult, HashSet<T> computedResult,
 			MatchRelation<T> m) {
-		Set<T> tpsi = new HashSet<T>();
+		HashSet<T> tpsi = new HashSet<T>();
 		for (T a1 : computedResult)
 			for (T a2 : expectedResult)
 				if (m.match(a1, a2)) {
@@ -258,30 +258,30 @@ public class Metrics<T> {
 	}
 
 	// [{ok1, nok1, nok2, ok2}, {ok3, ok4, nok3}] -> [{nok1 nok2}, {nok3}]
-	private List<Set<T>> getFpPreprocessed(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> fp = new Vector<Set<T>>();
+	private List<HashSet<T>> getFpPreprocessed(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> fp = new Vector<HashSet<T>>();
 		for (int i = 0; i < expectedResult.size(); i++) {
-			Set<T> exp = expectedResult.get(i);
-			Set<T> comp = computedResult.get(i);
+			HashSet<T> exp = expectedResult.get(i);
+			HashSet<T> comp = computedResult.get(i);
 			fp.add(getSingleFp(exp, comp, m));
 		}
 		return fp;
 	}
 
-	public List<Set<T>> getFp(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> computedResultPrep = m.preProcessOutput(computedResult);
-		List<Set<T>> expectedResultPrep = m
+	public List<HashSet<T>> getFp(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
+		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
 		return getFpPreprocessed(expectedResultPrep, computedResultPrep, m);
 	}
 
 	// {ok1, nok1, nok2, ok2} -> {nok1, nok2}
 	// implementation of the fp function
-	public Set<T> getSingleFp(Set<T> expectedResult, Set<T> computedResult,
+	public HashSet<T> getSingleFp(HashSet<T> expectedResult, HashSet<T> computedResult,
 			MatchRelation<T> m) {
-		Set<T> fpsi = new HashSet<T>();
+		HashSet<T> fpsi = new HashSet<T>();
 		for (T a1 : computedResult) {
 			boolean found = false;
 			for (T a2 : expectedResult)
@@ -295,29 +295,29 @@ public class Metrics<T> {
 		return fpsi;
 	}
 
-	private List<Set<T>> getFnPreprocessed(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> fn = new Vector<Set<T>>();
+	private List<HashSet<T>> getFnPreprocessed(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> fn = new Vector<HashSet<T>>();
 		for (int i = 0; i < expectedResult.size(); i++) {
-			Set<T> exp = expectedResult.get(i);
-			Set<T> comp = computedResult.get(i);
+			HashSet<T> exp = expectedResult.get(i);
+			HashSet<T> comp = computedResult.get(i);
 			fn.add(getSingleFn(exp, comp, m));
 		}
 		return fn;
 	}
 
-	public List<Set<T>> getFn(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> computedResultPrep = m.preProcessOutput(computedResult);
-		List<Set<T>> expectedResultPrep = m
+	public List<HashSet<T>> getFn(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
+		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
 		return getFnPreprocessed(expectedResultPrep, computedResultPrep, m);
 	}
 
 	// implementation of the fn function
-	public Set<T> getSingleFn(Set<T> expectedResult, Set<T> computedResult,
+	public HashSet<T> getSingleFn(HashSet<T> expectedResult, HashSet<T> computedResult,
 			MatchRelation<T> m) {
-		Set<T> fnsi = new HashSet<T>();
+		HashSet<T> fnsi = new HashSet<T>();
 		for (T a1 : expectedResult) {
 			boolean found = false;
 			for (T a2 : computedResult)
@@ -409,18 +409,18 @@ public class Metrics<T> {
 	 *            in expectedResults.
 	 * @return the true positives.
 	 */
-	private int tpCountPreprocessed(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
+	private int tpCountPreprocessed(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int tp = 0;
 		for (int tpi : singleTpCount(expectedResult, computedResult, m))
 			tp += tpi;
 		return tp;
 	}
 
-	public int tpCount(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> computedResultPrep = m.preProcessOutput(computedResult);
-		List<Set<T>> expectedResultPrep = m
+	public int tpCount(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
+		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
 		return tpCountPreprocessed(expectedResultPrep, computedResultPrep, m);
 	}
@@ -435,18 +435,18 @@ public class Metrics<T> {
 	 *            in expectedResults.
 	 * @return the false positives.
 	 */
-	private int fpCountPreprocessed(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
+	private int fpCountPreprocessed(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int fp = 0;
 		for (int fpi : singleFpCount(expectedResult, computedResult, m))
 			fp += fpi;
 		return fp;
 	}
 
-	public int fpCount(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> computedResultPrep = m.preProcessOutput(computedResult);
-		List<Set<T>> expectedResultPrep = m
+	public int fpCount(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
+		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
 		return fpCountPreprocessed(expectedResultPrep, computedResultPrep, m);
 	}
@@ -462,18 +462,18 @@ public class Metrics<T> {
 	 *            same.
 	 * @return the false negatives.
 	 */
-	private int fnCountPreprocessed(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
+	private int fnCountPreprocessed(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int fn = 0;
 		for (int fni : singleFnCount(expectedResult, computedResult, m))
 			fn += fni;
 		return fn;
 	}
 
-	public int fnCount(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
-		List<Set<T>> computedResultPrep = m.preProcessOutput(computedResult);
-		List<Set<T>> expectedResultPrep = m
+	public int fnCount(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
+		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
 		return fnCountPreprocessed(expectedResultPrep, computedResultPrep, m);
 	}
@@ -488,8 +488,8 @@ public class Metrics<T> {
 	 *         positives, keeping the ordering and size of the lists given by
 	 *         argument.
 	 */
-	private int[] singleTpCount(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
+	private int[] singleTpCount(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int[] tps = new int[computedResult.size()];
 		for (int i = 0; i < computedResult.size(); i++)
 			tps[i] = getSingleTp(expectedResult.get(i), computedResult.get(i),
@@ -507,8 +507,8 @@ public class Metrics<T> {
 	 *         positives, keeping the ordering and size of the lists given by
 	 *         argument.
 	 */
-	private int[] singleFpCount(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
+	private int[] singleFpCount(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int[] fps = new int[computedResult.size()];
 		for (int i = 0; i < computedResult.size(); i++)
 			fps[i] = getSingleFp(expectedResult.get(i), computedResult.get(i),
@@ -526,8 +526,8 @@ public class Metrics<T> {
 	 *         negatives, keeping the ordering and size of the lists given by
 	 *         argument.
 	 */
-	private int[] singleFnCount(List<Set<T>> expectedResult,
-			List<Set<T>> computedResult, MatchRelation<T> m) {
+	private int[] singleFnCount(List<HashSet<T>> expectedResult,
+			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int[] fns = new int[expectedResult.size()];
 		for (int i = 0; i < expectedResult.size(); i++)
 			fns[i] += getSingleFn(expectedResult.get(i), computedResult.get(i),

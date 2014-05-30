@@ -19,13 +19,13 @@ import java.util.*;
 
 public class DummyDataset implements A2WDataset{
 	List<String> texts;
-	List<Set<Annotation>> annotations;
+	List<HashSet<Annotation>> annotations;
 	
 	public DummyDataset() throws AnnotationException{
 		texts = new Vector<String>();
-		annotations = new Vector<Set<Annotation>>();
-		Set<Annotation> ann1 = new HashSet<Annotation>();
-		Set<Annotation> ann2 = new HashSet<Annotation>();
+		annotations = new Vector<HashSet<Annotation>>();
+		HashSet<Annotation> ann1 = new HashSet<Annotation>();
+		HashSet<Annotation> ann2 = new HashSet<Annotation>();
 		String text1 = "Cats can hear sounds too faint or too high in frequency for human ears, such as those made by mice and other small game.";
 		String text2 = "Serenity is a 2005 space western film written and directed by Joss Whedon.";
 
@@ -57,13 +57,13 @@ public class DummyDataset implements A2WDataset{
 	@Override
 	public int getTagsCount() {
 		int count = 0;
-		for (Set<Annotation> a : annotations)
+		for (HashSet<Annotation> a : annotations)
 			count += a.size();
 		return count;
 	}
 
 	@Override
-	public List<Set<Annotation>> getA2WGoldStandardList() {
+	public List<HashSet<Annotation>> getA2WGoldStandardList() {
 		return annotations;
 	}
 
@@ -73,17 +73,17 @@ public class DummyDataset implements A2WDataset{
 	}
 
 	@Override
-	public List<Set<Mention>> getMentionsInstanceList() {
+	public List<HashSet<Mention>> getMentionsInstanceList() {
 		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return ProblemReduction.A2WToC2WList(this.getA2WGoldStandardList());
 	}
 
 	@Override
-	public List<Set<Annotation>> getD2WGoldStandardList() {
+	public List<HashSet<Annotation>> getD2WGoldStandardList() {
 		return getA2WGoldStandardList();
 	}
 

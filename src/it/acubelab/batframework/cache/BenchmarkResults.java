@@ -16,6 +16,8 @@ import it.acubelab.batframework.problems.TopicDataset;
 import it.acubelab.batframework.utils.Pair;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.*;
 
 /**
@@ -24,23 +26,23 @@ import java.util.*;
 public class BenchmarkResults implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	// mapping: tagger name -> <document, input> -> set of annotations
-	private HashMap<String, HashMap<Pair<String, Set<Mention>>, Set<Annotation>>> D2WCache = new HashMap<String, HashMap<Pair<String, Set<Mention>>, Set<Annotation>>>();
+	// mapping: tagger name -> <document, mentions> -> set of annotations
+	private HashMap<String, HashMap<String, HashSet<Annotation>>> D2WCache = new HashMap<String, HashMap<String, HashSet<Annotation>>>();
 
 	// mapping: tagger name -> document -> set of tags
-	private HashMap<String, HashMap<String, Set<Annotation>>> A2WCache = new HashMap<String, HashMap<String, Set<Annotation>>>();
+	private HashMap<String, HashMap<String, HashSet<Annotation>>> A2WCache = new HashMap<String, HashMap<String, HashSet<Annotation>>>();
 
 	// mapping: tagger name -> document -> set of scored tags
-	private HashMap<String, HashMap<String, Set<ScoredAnnotation>>> Sa2WCache = new HashMap<String, HashMap<String, Set<ScoredAnnotation>>>();
+	private HashMap<String, HashMap<String, HashSet<ScoredAnnotation>>> Sa2WCache = new HashMap<String, HashMap<String, HashSet<ScoredAnnotation>>>();
 
 	// mapping: tagger name -> document -> set of annotations
-	private HashMap<String, HashMap<String, Set<Tag>>> C2WCache = new HashMap<String, HashMap<String, Set<Tag>>>();
+	private HashMap<String, HashMap<String, HashSet<Tag>>> C2WCache = new HashMap<String, HashMap<String, HashSet<Tag>>>();
 
 	// mapping: tagger name -> document -> set of annotations
-	private HashMap<String, HashMap<String, Set<ScoredTag>>> Sc2WCache = new HashMap<String, HashMap<String, Set<ScoredTag>>>();
+	private HashMap<String, HashMap<String, HashSet<ScoredTag>>> Sc2WCache = new HashMap<String, HashMap<String, HashSet<ScoredTag>>>();
 
 	// mapping: tagger name -> document -> set of mentions
-	private HashMap<String, HashMap<String, Set<Mention>>> mentionSpotCache = new HashMap<String, HashMap<String, Set<Mention>>>();
+	private HashMap<String, HashMap<String, HashSet<Mention>>> mentionSpotCache = new HashMap<String, HashMap<String, HashSet<Mention>>>();
 
 	// mapping: tagger name -> dataset name -> document -> time in milliseconds
 	private HashMap<String, HashMap<String, HashMap<String, Long>>> D2Wtimings = new HashMap<String, HashMap<String, HashMap<String, Long>>>();
@@ -147,114 +149,116 @@ public class BenchmarkResults implements Serializable {
 	}
 
 	public void putD2WResult(String annotatorName, String doc,
-			Set<Mention> mentions, Set<Annotation> res) {
-		HashMap<Pair<String, Set<Mention>>, Set<Annotation>> annotatorCache;
+			HashSet<Mention> mentions, HashSet<Annotation> res) {
+		HashMap<String, HashSet<Annotation>> annotatorCache;
 		if ((annotatorCache = D2WCache.get(annotatorName)) == null) {
-			annotatorCache = new HashMap<Pair<String, Set<Mention>>, Set<Annotation>>();
+			annotatorCache = new HashMap<String, HashSet<Annotation>>();
 			D2WCache.put(annotatorName, annotatorCache);
 		}
-		annotatorCache.put(new Pair<String, Set<Mention>>(doc, mentions), res);
+		annotatorCache.put(d2wInputRepresentation(doc, mentions), res);
 	}
 
-	public Set<Annotation> getD2WResult(String annotatorName, String text,
-			Set<Mention> mentions) {
-		HashMap<Pair<String, Set<Mention>>, Set<Annotation>> annotatorCache;
+	public HashSet<Annotation> getD2WResult(String annotatorName, String text,
+			HashSet<Mention> mentions) {
+		HashMap<String, HashSet<Annotation>> annotatorCache;
 		if ((annotatorCache = D2WCache.get(annotatorName)) == null) {
-			annotatorCache = new HashMap<Pair<String, Set<Mention>>, Set<Annotation>>();
+			annotatorCache = new HashMap<String, HashSet<Annotation>>();
 			D2WCache.put(annotatorName, annotatorCache);
 		}
-		return annotatorCache.get(text);
+		return annotatorCache.get(d2wInputRepresentation(text, mentions));
 	}
 
 	public void putSa2WResult(String annotatorName, String doc,
-			Set<ScoredAnnotation> res) {
-		HashMap<String, Set<ScoredAnnotation>> annotatorCache;
+			HashSet<ScoredAnnotation> res) {
+		HashMap<String, HashSet<ScoredAnnotation>> annotatorCache;
 		if ((annotatorCache = Sa2WCache.get(annotatorName)) == null) {
-			annotatorCache = new HashMap<String, Set<ScoredAnnotation>>();
+			annotatorCache = new HashMap<String, HashSet<ScoredAnnotation>>();
 			Sa2WCache.put(annotatorName, annotatorCache);
 		}
 		annotatorCache.put(doc, res);
 	}
 
-	public Set<ScoredAnnotation> getSa2WResult(String annotatorName, String text) {
-		HashMap<String, Set<ScoredAnnotation>> annotatorCache;
+	public HashSet<ScoredAnnotation> getSa2WResult(String annotatorName,
+			String text) {
+		HashMap<String, HashSet<ScoredAnnotation>> annotatorCache;
 		if ((annotatorCache = Sa2WCache.get(annotatorName)) == null) {
-			annotatorCache = new HashMap<String, Set<ScoredAnnotation>>();
+			annotatorCache = new HashMap<String, HashSet<ScoredAnnotation>>();
 			Sa2WCache.put(annotatorName, annotatorCache);
 		}
 		return annotatorCache.get(text);
 	}
 
 	public void putA2WResult(String annotatorName, String doc,
-			Set<Annotation> res) {
-		HashMap<String, Set<Annotation>> annotatorCache;
+			HashSet<Annotation> res) {
+		HashMap<String, HashSet<Annotation>> annotatorCache;
 		if ((annotatorCache = A2WCache.get(annotatorName)) == null) {
-			annotatorCache = new HashMap<String, Set<Annotation>>();
+			annotatorCache = new HashMap<String, HashSet<Annotation>>();
 			A2WCache.put(annotatorName, annotatorCache);
 		}
 		annotatorCache.put(doc, res);
 	}
 
-	public void putSc2WResult(String taggerName, String doc, Set<ScoredTag> res) {
-		HashMap<String, Set<ScoredTag>> taggerCache;
+	public void putSc2WResult(String taggerName, String doc,
+			HashSet<ScoredTag> res) {
+		HashMap<String, HashSet<ScoredTag>> taggerCache;
 		if ((taggerCache = Sc2WCache.get(taggerName)) == null) {
-			taggerCache = new HashMap<String, Set<ScoredTag>>();
+			taggerCache = new HashMap<String, HashSet<ScoredTag>>();
 			Sc2WCache.put(taggerName, taggerCache);
 		}
 		taggerCache.put(doc, res);
 
 	}
 
-	public Set<Annotation> getA2WResult(String annotatorName, String doc) {
-		HashMap<String, Set<Annotation>> annotatorCache;
+	public HashSet<Annotation> getA2WResult(String annotatorName, String doc) {
+		HashMap<String, HashSet<Annotation>> annotatorCache;
 		if ((annotatorCache = A2WCache.get(annotatorName)) == null) {
-			annotatorCache = new HashMap<String, Set<Annotation>>();
+			annotatorCache = new HashMap<String, HashSet<Annotation>>();
 			A2WCache.put(annotatorName, annotatorCache);
 		}
 		return annotatorCache.get(doc);
 	}
 
-	public void putC2WResult(String taggerName, String doc, Set<Tag> res) {
-		HashMap<String, Set<Tag>> taggerCache;
+	public void putC2WResult(String taggerName, String doc, HashSet<Tag> res) {
+		HashMap<String, HashSet<Tag>> taggerCache;
 		if ((taggerCache = C2WCache.get(taggerName)) == null) {
-			taggerCache = new HashMap<String, Set<Tag>>();
+			taggerCache = new HashMap<String, HashSet<Tag>>();
 			C2WCache.put(taggerName, taggerCache);
 		}
 		taggerCache.put(doc, res);
 	}
 
-	public Set<Tag> getC2WResult(String taggerName, String doc) {
-		HashMap<String, Set<Tag>> taggerCache;
+	public HashSet<Tag> getC2WResult(String taggerName, String doc) {
+		HashMap<String, HashSet<Tag>> taggerCache;
 		if ((taggerCache = C2WCache.get(taggerName)) == null) {
-			taggerCache = new HashMap<String, Set<Tag>>();
+			taggerCache = new HashMap<String, HashSet<Tag>>();
 			C2WCache.put(taggerName, taggerCache);
 		}
 		return taggerCache.get(doc);
 	}
 
-	public Set<ScoredTag> getSc2WResult(String taggerName, String doc) {
-		HashMap<String, Set<ScoredTag>> taggerCache;
+	public HashSet<ScoredTag> getSc2WResult(String taggerName, String doc) {
+		HashMap<String, HashSet<ScoredTag>> taggerCache;
 		if ((taggerCache = Sc2WCache.get(taggerName)) == null) {
-			taggerCache = new HashMap<String, Set<ScoredTag>>();
+			taggerCache = new HashMap<String, HashSet<ScoredTag>>();
 			Sc2WCache.put(taggerName, taggerCache);
 		}
 		return taggerCache.get(doc);
 	}
 
 	public void putSpotMentionsResult(String spotterName, String doc,
-			Set<Mention> res) {
-		HashMap<String, Set<Mention>> taggerCache;
+			HashSet<Mention> res) {
+		HashMap<String, HashSet<Mention>> taggerCache;
 		if ((taggerCache = mentionSpotCache.get(spotterName)) == null) {
-			taggerCache = new HashMap<String, Set<Mention>>();
+			taggerCache = new HashMap<String, HashSet<Mention>>();
 			mentionSpotCache.put(spotterName, taggerCache);
 		}
 		taggerCache.put(doc, res);
 	}
 
-	public Set<Mention> getSpotMentionsResult(String spotterName, String doc) {
-		HashMap<String, Set<Mention>> taggerCache;
+	public HashSet<Mention> getSpotMentionsResult(String spotterName, String doc) {
+		HashMap<String, HashSet<Mention>> taggerCache;
 		if ((taggerCache = mentionSpotCache.get(spotterName)) == null) {
-			taggerCache = new HashMap<String, Set<Mention>>();
+			taggerCache = new HashMap<String, HashSet<Mention>>();
 			mentionSpotCache.put(spotterName, taggerCache);
 		}
 		return taggerCache.get(doc);
@@ -284,11 +288,13 @@ public class BenchmarkResults implements Serializable {
 
 	public void invalidateResults(String taggerName) {
 		A2Wtimings.remove(taggerName);
+		D2Wtimings.remove(taggerName);
 		Sa2Wtimings.remove(taggerName);
 		Sc2Wtimings.remove(taggerName);
 		C2Wtimings.remove(taggerName);
 
 		A2WCache.remove(taggerName);
+		D2WCache.remove(taggerName);
 		C2WCache.remove(taggerName);
 		Sa2WCache.remove(taggerName);
 		Sc2WCache.remove(taggerName);
@@ -394,6 +400,14 @@ public class BenchmarkResults implements Serializable {
 		if (a2wInfo.equals(""))
 			a2wInfo = "No A2W records.\n";
 
+		String d2wInfo = "";
+		for (String tagger : D2Wtimings.keySet())
+			for (String ds : D2Wtimings.get(tagger).keySet())
+				d2wInfo += String.format("%s/%s (%d stored results)\n", tagger,
+						ds, D2Wtimings.get(tagger).get(ds).size());
+		if (d2wInfo.equals(""))
+			d2wInfo = "No D2W records.\n";
+
 		String sa2wInfo = "";
 		for (String tagger : Sa2Wtimings.keySet())
 			for (String ds : Sa2Wtimings.get(tagger).keySet())
@@ -426,8 +440,48 @@ public class BenchmarkResults implements Serializable {
 			spotterInfo = "No Mention Spotter records.\n";
 
 		return String
-				.format("C2W annotators/dataset:%n%s%nSc2W annotators/dataset:%n%s%nA2W annotators/dataset:%n%s%nSa2W annotators/dataset:%n%s%nMention spotters/dataset:%n%s%n",
-						c2wInfo, sc2wInfo, a2wInfo, sa2wInfo, spotterInfo);
+				.format("C2W annotators/dataset:%n%s%nSc2W annotators/dataset:%n%s%nA2W annotators/dataset:%n%s%nD2W annotators/dataset:%n%s%nSa2W annotators/dataset:%n%s%nMention spotters/dataset:%n%s%n",
+						c2wInfo, sc2wInfo, a2wInfo, d2wInfo, sa2wInfo,
+						spotterInfo);
 	}
 
+	public void invalidateD2WResults() {
+		this.D2WCache.clear();
+		this.D2Wtimings.clear();
+	}
+
+	public void invalidateC2WResults() {
+		this.C2WCache.clear();
+		this.C2Wtimings.clear();
+	}
+
+	public void invalidateSa2WResults() {
+		this.Sa2WCache.clear();
+		this.Sa2Wtimings.clear();
+	}
+
+	public void invalidateA2WResults() {
+		this.A2WCache.clear();
+		this.A2Wtimings.clear();
+	}
+
+	public void invalidateSc2WResults() {
+		this.Sc2WCache.clear();
+		this.Sc2Wtimings.clear();
+	}
+
+	private String d2wInputRepresentation(String doc, HashSet<Mention> mentions) {
+		Vector<Mention> mentionsVec = new Vector<>();
+		mentionsVec.addAll(mentions);
+		Collections.sort(mentionsVec);
+		String mentionsString = "";
+		for (Mention m : mentionsVec)
+			mentionsString += m.toString();
+		try {
+			return URLEncoder.encode(doc, "utf-8") + " " + mentionsString;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }

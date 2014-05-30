@@ -30,7 +30,7 @@ public class NaiveScoredTagMatch implements MatchRelation<ScoredTag>{
 	}
 
 	@Override
-	public List<Set<ScoredTag>> preProcessOutput(List<Set<ScoredTag>> computedOutput) {
+	public List<HashSet<ScoredTag>> preProcessOutput(List<HashSet<ScoredTag>> computedOutput) {
 		try {
 			Annotation.prefetchRedirectList(computedOutput, api);
 		} catch (IOException e) {
@@ -41,7 +41,7 @@ public class NaiveScoredTagMatch implements MatchRelation<ScoredTag>{
 	}
 
 	@Override
-	public List<Set<ScoredTag>> preProcessGoldStandard(List<Set<ScoredTag>> goldStandard) {
+	public List<HashSet<ScoredTag>> preProcessGoldStandard(List<HashSet<ScoredTag>> goldStandard) {
 		return preProcessOutput(goldStandard);
 	}
 	

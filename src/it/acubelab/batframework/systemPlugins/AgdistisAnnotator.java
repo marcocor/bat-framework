@@ -53,7 +53,7 @@ public class AgdistisAnnotator implements D2WSystem {
 	}
 
 	@Override
-	public Set<Annotation> solveD2W(String text, Set<Mention> mentions) throws AnnotationException {
+	public HashSet<Annotation> solveD2W(String text, HashSet<Mention> mentions) throws AnnotationException {
 		String textWithMentions = createTextWithMentions(text, mentions);
 		try {
 			return getAnnotations(textWithMentions);
@@ -62,7 +62,7 @@ public class AgdistisAnnotator implements D2WSystem {
 		}
 	}
 
-	public Set<Annotation> getAnnotations(String textWithMentions) throws IOException, ParseException {
+	public HashSet<Annotation> getAnnotations(String textWithMentions) throws IOException, ParseException {
 		URL agdistisUrl = new URL("http://" + host + ":" + port + "/AGDISTIS");
 		String parameters = "type=agdistis&text=" + URLEncoder.encode(textWithMentions, "UTF-8");
 		HttpURLConnection slConnection = (HttpURLConnection) agdistisUrl.openConnection();
@@ -80,12 +80,12 @@ public class AgdistisAnnotator implements D2WSystem {
 		wr.close();
 
 		InputStream in = slConnection.getInputStream();
-		Set<Annotation> annotations = parseJsonStream(in);
+		HashSet<Annotation> annotations = parseJsonStream(in);
 		return annotations;
 	}
 
-	private Set<Annotation> parseJsonStream(InputStream in) throws IOException, ParseException {
-		Set<Annotation> annotations = new HashSet<>();
+	private HashSet<Annotation> parseJsonStream(InputStream in) throws IOException, ParseException {
+		HashSet<Annotation> annotations = new HashSet<>();
 
 		JSONArray namedEntities = (JSONArray) JSON_PARSER.parse(new InputStreamReader(in, "UTF-8"));
 		for (Object obj : namedEntities) {
@@ -126,7 +126,7 @@ public class AgdistisAnnotator implements D2WSystem {
 		}
 	}
 
-	static String createTextWithMentions(String text, Set<Mention> mentionsSet) {
+	static String createTextWithMentions(String text, HashSet<Mention> mentionsSet) {
 		// Example: 'The <entity>University of Leipzig</entity> in <entity>Barack Obama</entity>.'
 
 		List<Mention> mentions = new ArrayList<>(mentionsSet);

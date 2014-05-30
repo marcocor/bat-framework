@@ -14,5 +14,5 @@ import it.acubelab.batframework.problems.*;
 import it.acubelab.batframework.utils.*;
 
 public interface Ab2WSystem extends Sa2WSystem{
-	public Pair<Set<ScoredAnnotation>, Set<ScoredTag>> getAb2WOutput(String text);
+	public Pair<HashSet<ScoredAnnotation>, HashSet<ScoredTag>> getAb2WOutput(String text);
 }

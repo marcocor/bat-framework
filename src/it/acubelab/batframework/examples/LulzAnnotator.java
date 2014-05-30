@@ -8,7 +8,7 @@
 package it.acubelab.batframework.examples;
 
 import java.util.Calendar;
-import java.util.Set;
+import java.util.HashSet;
 
 import it.acubelab.batframework.data.Annotation;
 import it.acubelab.batframework.data.Mention;
@@ -21,21 +21,21 @@ public class LulzAnnotator implements A2WSystem{
 	private long lastTime = -1;
 
 	@Override
-	public Set<Annotation> solveA2W(String text) throws AnnotationException {
+	public HashSet<Annotation> solveA2W(String text) throws AnnotationException {
 		lastTime = Calendar.getInstance().getTimeInMillis();
-		Set<Annotation> result = this.retrieveResult(text);
+		HashSet<Annotation> result = this.retrieveResult(text);
 		lastTime = Calendar.getInstance().getTimeInMillis() - lastTime;
 		return result;
 	}
 
 	@Override
-	public Set<Tag> solveC2W(String text) throws AnnotationException {
-		Set<Annotation> tags = solveA2W(text);
+	public HashSet<Tag> solveC2W(String text) throws AnnotationException {
+		HashSet<Annotation> tags = solveA2W(text);
 		return ProblemReduction.A2WToC2W(tags);
 	}
 
 	@Override
-	public Set<Annotation> solveD2W(String text, Set<Mention> mentions){
+	public HashSet<Annotation> solveD2W(String text, HashSet<Mention> mentions){
 		return null;
 	}
 
@@ -49,7 +49,7 @@ public class LulzAnnotator implements A2WSystem{
 		return lastTime;
 	}
 
-	private Set<Annotation> retrieveResult(String text) {
+	private HashSet<Annotation> retrieveResult(String text) {
 		return null;
 	}
 }

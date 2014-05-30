@@ -29,11 +29,11 @@ import org.xml.sax.SAXException;
 
 public class IITBDataset implements A2WDataset{
 	private List<String> textList;
-	private List<Set<Annotation>> annList;
+	private List<HashSet<Annotation>> annList;
 	
 	public IITBDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
 		//load the annotations (and the file name list)
-		HashMap<String, Set<Annotation>> filenameToAnnotations= loadAnns(annotationsPath, api);
+		HashMap<String, HashSet<Annotation>> filenameToAnnotations= loadAnns(annotationsPath, api);
 
 		//load the bodies (from the file names list)
 		HashMap<String, String> filenameToBody= loadBody(textPath, filenameToAnnotations.keySet());
@@ -45,7 +45,7 @@ public class IITBDataset implements A2WDataset{
 		unifyMaps(filenameToBody, filenameToAnnotations);
 	}
 
-	private void checkConsistency(HashMap<String, String> filenameToBody, HashMap<String, Set<Annotation>> filenameToAnnotations) throws AnnotationException {
+	private void checkConsistency(HashMap<String, String> filenameToBody, HashMap<String, HashSet<Annotation>> filenameToAnnotations) throws AnnotationException {
 		for (String fn: filenameToAnnotations.keySet())
 			if (!filenameToBody.containsKey(fn))
 				throw new AnnotationException("Document "+fn+" cited in annotation not available!");
@@ -69,8 +69,8 @@ public class IITBDataset implements A2WDataset{
 		return filenameToBody;
 	}
 
-	public HashMap<String, Set<Annotation>> loadAnns(String annsPath, WikipediaApiInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException, XPathExpressionException {
-		HashMap<String, Set<IITBAnnotation>> filenameToAnns = new HashMap<String, Set<IITBAnnotation>>();
+	public HashMap<String, HashSet<Annotation>> loadAnns(String annsPath, WikipediaApiInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException, XPathExpressionException {
+		HashMap<String, HashSet<IITBAnnotation>> filenameToAnns = new HashMap<String, HashSet<IITBAnnotation>>();
 		File tf = new File(annsPath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -119,9 +119,9 @@ public class IITBDataset implements A2WDataset{
 		api.flush();
 
 		//convert all annotations adding the Wikipedia-ID
-		HashMap<String, Set<Annotation>> result = new HashMap<String, Set<Annotation>>();
+		HashMap<String, HashSet<Annotation>> result = new HashMap<String, HashSet<Annotation>>();
 		for (String s: filenameToAnns.keySet()){
-			Set<Annotation> anns = new HashSet<Annotation>();
+			HashSet<Annotation> anns = new HashSet<Annotation>();
 			result.put(s, anns);
 			for (IITBAnnotation a: filenameToAnns.get(s)){
 				int wid = api.getIdByTitle(a.title); //should be pre-fetched
@@ -135,8 +135,8 @@ public class IITBDataset implements A2WDataset{
 		return result;
 	}
 
-	public void unifyMaps(HashMap<String, String> filenameToBody, HashMap<String, Set<Annotation>> filenameToAnnotations){
-		annList = new Vector<Set<Annotation>>();
+	public void unifyMaps(HashMap<String, String> filenameToBody, HashMap<String, HashSet<Annotation>> filenameToAnnotations){
+		annList = new Vector<HashSet<Annotation>>();
 		textList = new Vector<String>();
 		for (String filename : filenameToAnnotations.keySet()){
 			//if (!filename.equals("yn_08Oct08_file_15")) continue;
@@ -155,18 +155,18 @@ public class IITBDataset implements A2WDataset{
 	@Override
 	public int getTagsCount() {
 		int count = 0;
-		for (Set<Annotation> s: annList)
+		for (HashSet<Annotation> s: annList)
 			count += s.size();
 		return count;
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return ProblemReduction.A2WToC2WList(this.getA2WGoldStandardList());
 	}
 	
 	@Override
-	public List<Set<Annotation>> getD2WGoldStandardList() {
+	public List<HashSet<Annotation>> getD2WGoldStandardList() {
 		return getA2WGoldStandardList();
 	}
 
@@ -176,7 +176,7 @@ public class IITBDataset implements A2WDataset{
 	}
 	
 	@Override
-	public List<Set<Mention>> getMentionsInstanceList() {
+	public List<HashSet<Mention>> getMentionsInstanceList() {
 		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 
@@ -186,7 +186,7 @@ public class IITBDataset implements A2WDataset{
 	}
 
 	@Override
-	public List<Set<Annotation>> getA2WGoldStandardList() {
+	public List<HashSet<Annotation>> getA2WGoldStandardList() {
 		return annList;
 	}
 

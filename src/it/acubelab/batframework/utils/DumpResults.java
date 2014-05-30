@@ -16,9 +16,9 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class contains all the methods to dump the result of an experiment,
- * both to the screen (methods print*), in latex form (methods latex*),
- * or as gnuplot data used to generate charts (methods gnuplot*).
+ * This class contains all the methods to dump the result of an experiment, both
+ * to the screen (methods print*), in latex form (methods latex*), or as gnuplot
+ * data used to generate charts (methods gnuplot*).
  * 
  */
 public class DumpResults {
@@ -52,10 +52,10 @@ public class DumpResults {
 	 * values.get("micro-f1"), values.get("micro-precision"),
 	 * values.get("micro-recall"));
 	 * 
-	 * List<Set<Annotation>> gs =
+	 * List<HashSet<Annotation>> gs =
 	 * wam.preProcessGoldStandard(ds.getA2WGoldStandardList());
-	 * List<Set<ScoredAnnotation>> annotations =
-	 * Benchmark.doSa2WAnnotations(annotator, ds); List<Set<Annotation>>
+	 * List<HashSet<ScoredAnnotation>> annotations =
+	 * Benchmark.doSa2WAnnotations(annotator, ds); List<HashSet<Annotation>>
 	 * reducedAnns =
 	 * wam.preProcessOutput(ProblemReduction.Sa2WToA2WList(annotations,
 	 * values.get("threshold")));
@@ -64,10 +64,10 @@ public class DumpResults {
 	 * 0;
 	 * 
 	 * for (int i=0; i<ds.getSize(); i++){ //String instanceI =
-	 * ds.getTextInstanceList().get(i); Set<Annotation> gsI = gs.get(i);
-	 * Set<Annotation> outI = reducedAnns.get(i); for (Annotation aOut: outI){
-	 * float bestRel = -1; for (Annotation aGs: gsI) if (!wam.match(aOut, aGs)
-	 * && mam.match(aOut, aGs)) try{ bestRel = Math.max(bestRel,
+	 * ds.getTextInstanceList().get(i); HashSet<Annotation> gsI = gs.get(i);
+	 * HashSet<Annotation> outI = reducedAnns.get(i); for (Annotation aOut:
+	 * outI){ float bestRel = -1; for (Annotation aGs: gsI) if (!wam.match(aOut,
+	 * aGs) && mam.match(aOut, aGs)) try{ bestRel = Math.max(bestRel,
 	 * rel.rel(aOut.getConcept(), aGs.getConcept())); } catch
 	 * (ArrayIndexOutOfBoundsException e){ //do nothing. } if (bestRel >= 0){
 	 * totalCount++; sumRel+=bestRel; counter[bestRel==1? n-1 : (int)
@@ -250,6 +250,9 @@ public class DumpResults {
 	 * @param a2wAnnotators
 	 *            The set of A2W Annotators for which the best result will be
 	 *            included in the output.
+	 * @param a2wAnnotators
+	 *            The set of D2W Annotators for which the best result will be
+	 *            included in the output.
 	 * @param sa2wAnnotators
 	 *            The set of Sa2W Annotators for which the best result will be
 	 *            included.
@@ -267,25 +270,37 @@ public class DumpResults {
 	 */
 	public static <T extends Tag, D extends TopicDataset> void latexCorrectnessPerformance(
 			Vector<MatchRelation<T>> matchRels,
-			Vector<A2WSystem> a2wAnnotator,
-			Vector<Sa2WSystem> sa2wAnnotator,
-			Vector<Sc2WSystem> sc2wAnnotator,
+			Vector<A2WSystem> a2wAnnotators,
+			Vector<D2WSystem> d2wAnnotators,
+			Vector<Sa2WSystem> sa2wAnnotators,
+			Vector<Sc2WSystem> sc2wAnnotators,
+			Vector<C2WSystem> c2wAnnotators,
 			Vector<D> dss,
 			boolean extended,
+			boolean includeMicro,
+			boolean includeMacro,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords) {
 		System.out.println("Correctness performance - latex output");
-		Vector<C2WSystem> allAnns = new Vector<C2WSystem>();
-		if (sa2wAnnotator != null)
-			allAnns.addAll(sa2wAnnotator);
-		if (sc2wAnnotator != null)
-			allAnns.addAll(sc2wAnnotator);
-		if (a2wAnnotator != null)
-			allAnns.addAll(a2wAnnotator);
+		Vector<TopicSystem> allAnns = new Vector<TopicSystem>();
+		if (sa2wAnnotators != null)
+			allAnns.addAll(sa2wAnnotators);
+		if (sc2wAnnotators != null)
+			allAnns.addAll(sc2wAnnotators);
+		if (a2wAnnotators != null)
+			allAnns.addAll(a2wAnnotators);
+		if (d2wAnnotators != null)
+			allAnns.addAll(d2wAnnotators);
+		if (c2wAnnotators != null)
+			allAnns.addAll(c2wAnnotators);
 		for (MatchRelation<T> m : matchRels) {
 			System.out.println("+++ Match Relation: " + m.getName());
 			System.out
 					.printf(LOCALE,
-							"\\hline \n Dataset & Annotator & Best Threshold & $F1_{micro}$ & $P_{micro}$ & $R_{micro}$ "
+							"\\hline \n Dataset & Annotator & Best Threshold"
+									+ (includeMicro ? " & $F1_{micro}$ & $P_{micro}$ & $R_{micro}$ "
+											: "")
+									+ (includeMacro ? " & $F1_{macro}$ & $P_{macro}$ & $R_{macro}$ "
+											: "")
 									+ (extended ? "& tp & fp & fn" : "")
 									+ "\\\\ \n \\hline%n");
 			for (TopicDataset d : dss) {
@@ -297,23 +312,32 @@ public class DumpResults {
 								"\\multirow{%d}{*}{\\parbox{.20\\textwidth}{%s \\newline(avg-len\\newline %d chars)}} %n",
 								allAnns.size(), d.getName(),
 								(int) ((float) len / (float) d.getSize()));
-				for (C2WSystem t : allAnns) {
+				for (TopicSystem t : allAnns) {
 					Pair<Float, MetricsResultSet> values = RunExperiments
 							.getBestRecord(threshRecords, m.getName(),
 									t.getName(), d.getName());
-					System.out.printf(LOCALE,
-							"& %s & $%.3f$ & $%.1f$ & $%.1f$ & $%.1f$ ",
-							t.getName(), values.first,
-							values.second.getMicroF1() * 100f,
-							values.second.getMicroPrecision() * 100f,
-							values.second.getMicroRecall() * 100f);
+					System.out.printf(LOCALE, "& %s & $%.3f$ ", t.getName(),
+							values.first);
+					if (includeMicro)
+						System.out.printf(LOCALE,
+								"& $%.1f$ & $%.1f$ & $%.1f$ ",
+								values.second.getMicroF1() * 100f,
+								values.second.getMicroPrecision() * 100f,
+								values.second.getMicroRecall() * 100f);
+					if (includeMacro)
+						System.out.printf(LOCALE,
+								"& $%.1f$ & $%.1f$ & $%.1f$ ",
+								values.second.getMacroF1() * 100f,
+								values.second.getMacroPrecision() * 100f,
+								values.second.getMacroRecall() * 100f);
 					if (extended)
 						System.out.printf(LOCALE, "& $%d$ & $%d$ & $%d$",
 								values.second.getGlobalTp(),
 								values.second.getGlobalFp(),
 								values.second.getGlobalFn());
+					int nColumns = 3 + (extended?3:0)+(includeMacro?3:0)+(includeMicro?3:0); 
 					System.out.printf(LOCALE, " \\\\ \\cline{2-"
-							+ (extended ? "9" : "6") + "}%n");
+							+ nColumns + "}%n");
 				}
 				System.out.printf(LOCALE, "\\hline%n");
 			}
@@ -370,12 +394,12 @@ public class DumpResults {
 						}
 
 						Sa2WSystem t2 = sa2wAnnotators.get(j);
-						List<Set<ScoredAnnotation>> t1Annotations = BenchmarkCache
+						List<HashSet<ScoredAnnotation>> t1Annotations = BenchmarkCache
 								.doSa2WAnnotations(t1, ds, null, 0);
-						List<Set<ScoredAnnotation>> t2Annotations = BenchmarkCache
+						List<HashSet<ScoredAnnotation>> t2Annotations = BenchmarkCache
 								.doSa2WAnnotations(t2, ds, null, 0);
-						List<Set<Annotation>> out1 = null;
-						List<Set<Annotation>> out2 = null;
+						List<HashSet<Annotation>> out1 = null;
+						List<HashSet<Annotation>> out2 = null;
 						MatchRelation<Annotation> m = null;
 						Metrics<Annotation> metrics = new Metrics<Annotation>();
 						if (focus.equals("wholeOutput")) {
@@ -396,13 +420,13 @@ public class DumpResults {
 													m) * 100);
 						} else if (focus.equals("TPonly")) {
 							m = new WeakAnnotationMatch(api);
-							List<Set<Annotation>> reducedT1Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT1Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t1Annotations,
 											RunExperiments.getBestRecord(
 													threshRecords, m.getName(),
 													t1.getName(), ds.getName()).first);
-							List<Set<Annotation>> reducedT2Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT2Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t2Annotations,
 											RunExperiments.getBestRecord(
@@ -418,13 +442,13 @@ public class DumpResults {
 													m) * 100);
 						} else if (focus.equals("mention")) {
 							m = new MentionAnnotationMatch();
-							List<Set<Annotation>> reducedT1Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT1Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t1Annotations,
 											RunExperiments.getBestRecord(
 													threshRecords, m.getName(),
 													t1.getName(), ds.getName()).first);
-							List<Set<Annotation>> reducedT2Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT2Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t2Annotations,
 											RunExperiments.getBestRecord(
@@ -440,13 +464,13 @@ public class DumpResults {
 													m) * 100);
 						} else if (focus.equals("concept")) {
 							m = new ConceptAnnotationMatch(api);
-							List<Set<Annotation>> reducedT1Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT1Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t1Annotations,
 											RunExperiments.getBestRecord(
 													threshRecords, m.getName(),
 													t1.getName(), ds.getName()).first);
-							List<Set<Annotation>> reducedT2Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT2Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t2Annotations,
 											RunExperiments.getBestRecord(
@@ -462,13 +486,13 @@ public class DumpResults {
 													m) * 100);
 						} else if (focus.equals("mention/concept")) {
 							m = new MentionAnnotationMatch();
-							List<Set<Annotation>> reducedT1Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT1Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t1Annotations,
 											RunExperiments.getBestRecord(
 													threshRecords, m.getName(),
 													t1.getName(), ds.getName()).first);
-							List<Set<Annotation>> reducedT2Tags = ProblemReduction
+							List<HashSet<Annotation>> reducedT2Tags = ProblemReduction
 									.Sa2WToA2WList(
 											t2Annotations,
 											RunExperiments.getBestRecord(
@@ -555,25 +579,25 @@ public class DumpResults {
 					Sa2WSystem t2 = sa2wAnnotators.get(j);
 					MatchRelation<Tag> m = new StrongTagMatch(api);
 					Metrics<Tag> metrics = new Metrics<Tag>();
-					List<Set<ScoredAnnotation>> t1Annotations = BenchmarkCache
+					List<HashSet<ScoredAnnotation>> t1Annotations = BenchmarkCache
 							.doSa2WAnnotations(t1, ds, null, 0);
-					List<Set<ScoredAnnotation>> t2Annotations = BenchmarkCache
+					List<HashSet<ScoredAnnotation>> t2Annotations = BenchmarkCache
 							.doSa2WAnnotations(t2, ds, null, 0);
-					List<Set<Annotation>> reducedT1Anns = ProblemReduction
+					List<HashSet<Annotation>> reducedT1Anns = ProblemReduction
 							.Sa2WToA2WList(t1Annotations, RunExperiments
 									.getBestRecord(threshRecords, m.getName(),
 											t1.getName(), ds.getName()).first);
-					List<Set<Annotation>> reducedT2Anns = ProblemReduction
+					List<HashSet<Annotation>> reducedT2Anns = ProblemReduction
 							.Sa2WToA2WList(t2Annotations, RunExperiments
 									.getBestRecord(threshRecords, m.getName(),
 											t2.getName(), ds.getName()).first);
-					List<Set<Tag>> reducedT1Tags = ProblemReduction
+					List<HashSet<Tag>> reducedT1Tags = ProblemReduction
 							.A2WToC2WList(reducedT1Anns);
-					List<Set<Tag>> reducedT2Tags = ProblemReduction
+					List<HashSet<Tag>> reducedT2Tags = ProblemReduction
 							.A2WToC2WList(reducedT2Anns);
-					List<Set<Tag>> tponlyTagsT1 = metrics.getTp(
+					List<HashSet<Tag>> tponlyTagsT1 = metrics.getTp(
 							ds.getC2WGoldStandardList(), reducedT1Tags, m);
-					List<Set<Tag>> tponlyTagsT2 = metrics.getTp(
+					List<HashSet<Tag>> tponlyTagsT2 = metrics.getTp(
 							ds.getC2WGoldStandardList(), reducedT2Tags, m);
 
 					System.out.printf(LOCALE, "&$%.3f$", metrics
@@ -700,6 +724,63 @@ public class DumpResults {
 
 	}
 
+	public static <T extends Tag, D extends TopicDataset> void printCorrectnessPerformance(
+			Vector<MatchRelation<T>> matchRels,
+			Vector<A2WSystem> a2wAnnotators,
+			Vector<Sa2WSystem> sa2wAnnotators,
+			Vector<Sc2WSystem> c2wAnnotators,
+			Vector<D2WSystem> d2wAnnotators,
+			Vector<D> dss,
+			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords,
+			boolean printMicro, boolean printMacro, boolean printTpFpFn,
+			float threshold) {
+
+		Vector<TopicSystem> allAnns = new Vector<TopicSystem>();
+		if (sa2wAnnotators != null)
+			allAnns.addAll(sa2wAnnotators);
+		if (c2wAnnotators != null)
+			allAnns.addAll(c2wAnnotators);
+		if (a2wAnnotators != null)
+			allAnns.addAll(a2wAnnotators);
+		if (d2wAnnotators != null)
+			allAnns.addAll(d2wAnnotators);
+		System.out.println("Correctness performance [F1/prec/rec]");
+		for (MatchRelation<T> metric : matchRels) {
+			System.out.printf(LOCALE, "Best results (metrics: %s):%n",
+					metric.getName());
+			for (TopicDataset d : dss)
+				for (TopicSystem t : allAnns) {
+					Pair<Float, MetricsResultSet> result = null;
+					if (threshold >= 0)
+						result = new Pair<Float, MetricsResultSet>(threshold,
+								RunExperiments.getRecords(threshRecords,
+										metric.getName(), t.getName(),
+										d.getName()).get(threshold));
+					else
+						result = RunExperiments.getBestRecord(threshRecords,
+								metric.getName(), t.getName(), d.getName());
+					System.out.printf(LOCALE, "%s\t%s\t%.3f\t", d.getName(),
+							t.getName(), result.first);
+					if (printMicro)
+						System.out.printf(LOCALE, "[mic: %.3f\t%.3f\t%.3f] ",
+								result.second.getMicroF1(),
+								result.second.getMicroPrecision(),
+								result.second.getMicroRecall());
+					if (printMacro)
+						System.out.printf(LOCALE, "[mac: %.3f\t%.3f\t%.3f] ",
+								result.second.getMacroF1(),
+								result.second.getMacroPrecision(),
+								result.second.getMacroRecall());
+					if (printTpFpFn)
+						System.out.printf(LOCALE, "TP/FP/FN: %d/%d/%d",
+								result.second.getGlobalTp(),
+								result.second.getGlobalFp(),
+								result.second.getGlobalFn());
+					System.out.println();
+				}
+		}
+	}
+
 	/**
 	 * Print the best micro- and macro- measures achieved by each (annotator,
 	 * dataset) pair along with other data. Data is printed for the metrics
@@ -730,36 +811,9 @@ public class DumpResults {
 			Vector<D2WSystem> d2wAnnotators,
 			Vector<D> dss,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords) {
-		Vector<TopicSystem> allAnns = new Vector<TopicSystem>();
-		if (sa2wAnnotators != null)
-			allAnns.addAll(sa2wAnnotators);
-		if (c2wAnnotators != null)
-			allAnns.addAll(c2wAnnotators);
-		if (a2wAnnotators != null)
-			allAnns.addAll(a2wAnnotators);
-		if (d2wAnnotators != null)
-			allAnns.addAll(d2wAnnotators);
-		System.out.println("Correctness performance [F1/prec/rec]");
-		for (MatchRelation<T> metric : matchRels) {
-			System.out.printf(LOCALE, "Best results (metrics: %s):%n",
-					metric.getName());
-			for (TopicSystem t : allAnns)
-				for (TopicDataset d : dss) {
-					Pair<Float, MetricsResultSet> result = RunExperiments
-							.getBestRecord(threshRecords, metric.getName(),
-									t.getName(), d.getName());
-					System.out
-							.printf(LOCALE,
-									"%s\t%s\t%.3f\t[mic: %.3f\t%.3f\t%.3f] [mac: %.3f\t%.3f\t%.3f]%n",
-									d.getName(), t.getName(), result.first,
-									result.second.getMicroF1(),
-									result.second.getMicroPrecision(),
-									result.second.getMicroRecall(),
-									result.second.getMacroF1(),
-									result.second.getMacroPrecision(),
-									result.second.getMacroRecall());
-				}
-		}
+		printCorrectnessPerformance(matchRels, a2wAnnotators, sa2wAnnotators,
+				c2wAnnotators, d2wAnnotators, dss, threshRecords, true, true,
+				false, -1);
 	}
 
 	/**
@@ -800,27 +854,27 @@ public class DumpResults {
 					System.out.println("Annotator1: " + t1.getName());
 					System.out.println("Annotator2: " + t2.getName());
 
-					List<Set<ScoredAnnotation>> t1Annotations = BenchmarkCache
+					List<HashSet<ScoredAnnotation>> t1Annotations = BenchmarkCache
 							.doSa2WAnnotations(t1, ds, null, 0);
-					List<Set<ScoredAnnotation>> t2Annotations = BenchmarkCache
+					List<HashSet<ScoredAnnotation>> t2Annotations = BenchmarkCache
 							.doSa2WAnnotations(t2, ds, null, 0);
 
-					List<Set<Annotation>> reducedT1Tags = ProblemReduction
+					List<HashSet<Annotation>> reducedT1Tags = ProblemReduction
 							.Sa2WToA2WList(t1Annotations, RunExperiments
 									.getBestRecord(bestThresholds, m.getName(),
 											t1.getName(), ds.getName()).first);
-					List<Set<Annotation>> reducedT2Tags = ProblemReduction
+					List<HashSet<Annotation>> reducedT2Tags = ProblemReduction
 							.Sa2WToA2WList(t2Annotations, RunExperiments
 									.getBestRecord(bestThresholds, m.getName(),
 											t2.getName(), ds.getName()).first);
 
-					List<Set<Annotation>> out1Tp = metrics.getTp(
+					List<HashSet<Annotation>> out1Tp = metrics.getTp(
 							ds.getA2WGoldStandardList(), reducedT1Tags, m);
-					List<Set<Annotation>> out2Tp = metrics.getTp(
+					List<HashSet<Annotation>> out2Tp = metrics.getTp(
 							ds.getA2WGoldStandardList(), reducedT2Tags, m);
-					List<Set<Annotation>> out1Fp = metrics.getFp(
+					List<HashSet<Annotation>> out1Fp = metrics.getFp(
 							ds.getA2WGoldStandardList(), reducedT1Tags, m);
-					List<Set<Annotation>> out2Fp = metrics.getFp(
+					List<HashSet<Annotation>> out2Fp = metrics.getFp(
 							ds.getA2WGoldStandardList(), reducedT2Tags, m);
 
 					long tpUnion = metrics.listUnion(out1Tp, out2Tp, m);
@@ -888,14 +942,14 @@ public class DumpResults {
 						.printf(LOCALE,
 								"Finding document with most redirect tags for dataset:%s tagger:%s%n",
 								ds.getName(), t.getName());
-				List<Set<ScoredAnnotation>> compRes = BenchmarkCache
+				List<HashSet<ScoredAnnotation>> compRes = BenchmarkCache
 						.doSa2WAnnotations(t, ds, null, 0);
 				int bestCount = -1;
 
 				for (int i = 0; i < compRes.size(); i++) {
-					Set<ScoredAnnotation> comp = compRes.get(i);
+					HashSet<ScoredAnnotation> comp = compRes.get(i);
 					int count = 0;
-					Set<Integer> distinctRedirects = new HashSet<Integer>();
+					HashSet<Integer> distinctRedirects = new HashSet<Integer>();
 					for (ScoredAnnotation tag : comp)
 						if (api.isRedirect(tag.getConcept())) {
 							count++;
@@ -933,19 +987,20 @@ public class DumpResults {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <E extends Tag> void printCorrectnessPerformance(
-			TopicSystem ann, MatchRelation<E> m, List<Set<E>> goldStandard,
-			List<Set<E>> output, WikipediaApiInterface api) throws IOException {
+			TopicSystem ann, MatchRelation<E> m, List<HashSet<E>> goldStandard,
+			List<HashSet<E>> output, WikipediaApiInterface api)
+			throws IOException {
 		Metrics<E> metrics = new Metrics<E>();
 		MetricsResultSet rs = metrics.getResult(output, goldStandard, m);
 		System.out.format(LOCALE,
-				"%s tp:%d fp:%d fn:%d precision:%.3f recall:%.3f F1:%.3f%n",
+				"%s tp:%d fp:%d fn:%d precision: %.3f recall:%.3f F1:%.3f%n",
 				ann.getName(), rs.getGlobalTp(), rs.getGlobalFp(),
-				rs.getGlobalFn(), rs.getMicroPrecision(), rs.getMicroRecall(),
-				rs.getMicroF1());
-		System.out.format(LOCALE,
-				"%s macro-precision: %.3f macro-recall:%.3f macro-F1:%.3f%n",
-				ann.getName(), rs.getMacroPrecision(), rs.getMacroRecall(),
+				rs.getGlobalFn(), rs.getMacroPrecision(), rs.getMacroRecall(),
 				rs.getMacroF1());
+		System.out.format(LOCALE,
+				"%s micro-precision:%.3f micro-recall:%.3f micro-F1:%.3f%n",
+				ann.getName(), rs.getMicroPrecision(), rs.getMicroRecall(),
+				rs.getMicroF1());
 
 	}
 
@@ -970,9 +1025,12 @@ public class DumpResults {
 			Vector<Sa2WSystem> sa2wAnnotators,
 			Vector<Sc2WSystem> sc2wAnnotators, Vector<A2WDataset> dss)
 			throws Exception {
-		if (sa2wAnnotators == null) sa2wAnnotators = new Vector<Sa2WSystem>();
-		if (a2wAnnotators == null) a2wAnnotators = new Vector<A2WSystem>();
-		if (sc2wAnnotators == null) sc2wAnnotators = new Vector<Sc2WSystem>();
+		if (sa2wAnnotators == null)
+			sa2wAnnotators = new Vector<Sa2WSystem>();
+		if (a2wAnnotators == null)
+			a2wAnnotators = new Vector<A2WSystem>();
+		if (sc2wAnnotators == null)
+			sc2wAnnotators = new Vector<Sc2WSystem>();
 		System.out.println("Timing performance:");
 		for (A2WDataset d : dss) {
 			for (A2WSystem t : a2wAnnotators) {
@@ -1050,4 +1108,5 @@ public class DumpResults {
 			relOs.close();
 		}
 	}
+
 }

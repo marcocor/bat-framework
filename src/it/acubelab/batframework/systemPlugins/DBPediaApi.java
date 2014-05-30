@@ -7,7 +7,7 @@
 
 package it.acubelab.batframework.systemPlugins;
 
-import java.util.Set;
+import java.util.HashSet;
 
 public class DBPediaApi {
 
@@ -16,7 +16,7 @@ public class DBPediaApi {
 		return dbpTitle;
 	}
 
-	public void prefetch(Set<String> resourcesToPrefetch) {
+	public void prefetch(HashSet<String> resourcesToPrefetch) {
 	}
 
 }

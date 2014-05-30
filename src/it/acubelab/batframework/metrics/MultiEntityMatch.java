@@ -37,11 +37,11 @@ public class MultiEntityMatch implements MatchRelation<MultipleAnnotation> {
 	}
 
 	@Override
-	public List<Set<MultipleAnnotation>> preProcessOutput(
-			List<Set<MultipleAnnotation>> computedOutput) {
+	public List<HashSet<MultipleAnnotation>> preProcessOutput(
+			List<HashSet<MultipleAnnotation>> computedOutput) {
 		/** Prefetch redirect values */
 		List<Integer> widsToCheck = new Vector<Integer>();
-		for (Set<MultipleAnnotation> s : computedOutput)
+		for (HashSet<MultipleAnnotation> s : computedOutput)
 			for (MultipleAnnotation a : s)
 				for (int candidate : a.getCandidates())
 					widsToCheck.add(candidate);
@@ -56,8 +56,8 @@ public class MultiEntityMatch implements MatchRelation<MultipleAnnotation> {
 	}
 
 	@Override
-	public List<Set<MultipleAnnotation>> preProcessGoldStandard(
-			List<Set<MultipleAnnotation>> goldStandard) {
+	public List<HashSet<MultipleAnnotation>> preProcessGoldStandard(
+			List<HashSet<MultipleAnnotation>> goldStandard) {
 		return preProcessOutput(goldStandard);
 	}
 

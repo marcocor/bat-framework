@@ -21,7 +21,7 @@ import java.util.regex.*;
 
 public class MeijDataset implements Rc2WDataset{
 	private List<String> texts;
-	private List<Set<Tag>> tags;
+	private List<HashSet<Tag>> tags;
 	private List<List<Tag>> rankedTags;
 
 	public MeijDataset(String tweetsFile, String tagsFile, String rankFile){
@@ -46,10 +46,10 @@ public class MeijDataset implements Rc2WDataset{
 */
 		this.texts = new Vector<String>();
 		
-		this.tags = new Vector<Set<Tag>>();
+		this.tags = new Vector<HashSet<Tag>>();
 		for (Map.Entry<String, MeijDocument> e: docs.entrySet()){
 			texts.add(e.getValue().text);
-			Set<Tag> anns = new HashSet<Tag>();
+			HashSet<Tag> anns = new HashSet<Tag>();
 			tags.add(anns);
 			for (int a: e.getValue().tags){
 				anns.add(new Tag(a));
@@ -141,14 +141,14 @@ public class MeijDataset implements Rc2WDataset{
 	@Override
 	public int getTagsCount() {
 		int c=0;
-		for (Set<Tag> s: tags){
+		for (HashSet<Tag> s: tags){
 			c+=s.size();
 		}
 		return c;
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return tags;
 	}
 
@@ -165,7 +165,7 @@ public class MeijDataset implements Rc2WDataset{
 		//String author;
 		String text;
 		String id;
-		Set<Integer> tags;
+		HashSet<Integer> tags;
 		Vector<Integer> ranked;
 		public MeijDocument(){
 			tags=new HashSet<Integer>();

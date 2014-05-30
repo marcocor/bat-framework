@@ -28,7 +28,7 @@ public class DumpAnnotator {
 		Sa2WSystem annotator = new SpotlightAnnotator(dbpediaApi, wikiApi);
 		A2WDataset ds = new DummyDataset();
 		
-		List<Set<ScoredAnnotation>> computedAnnotations = BenchmarkCache.doSa2WAnnotations(annotator, ds, null, 0);
+		List<HashSet<ScoredAnnotation>> computedAnnotations = BenchmarkCache.doSa2WAnnotations(annotator, ds, null, 0);
 		
 		//Do some basic check on the annotator's output.
 		TestAnnotator.checkOutput(ds, computedAnnotations);

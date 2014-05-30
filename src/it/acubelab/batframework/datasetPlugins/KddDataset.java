@@ -29,7 +29,7 @@ import it.acubelab.batframework.utils.WikipediaApiInterface;
 import it.unimi.dsi.lang.MutableString;
 
 public class KddDataset implements A2WDataset{
-	private List<Set<Annotation>> tags = new Vector<Set<Annotation>>();
+	private List<HashSet<Annotation>> tags = new Vector<HashSet<Annotation>>();
 	private List<MutableString> documents = new Vector<MutableString>();
 	private Pattern nonePattern = Pattern.compile("^([^\t]*)\t([^\t]*)\tO\tB-.*NONE\tNONE$");
 	private Pattern nonePattern2 = Pattern.compile("^([^\t]*)\tO\tO\tO\t.*NONE\tNONE$");
@@ -41,13 +41,13 @@ public class KddDataset implements A2WDataset{
 
 
 	public KddDataset (String[] files, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
-		List<Set<KddAnnotation>> kddAnns = new Vector<Set<KddAnnotation>>();
+		List<HashSet<KddAnnotation>> kddAnns = new Vector<HashSet<KddAnnotation>>();
 		List<String> titlesToPrefetch = new Vector<String>();
 		for (String file: files){
 			BufferedReader r = new BufferedReader(new FileReader(file));
 			String line;
 			MutableString currentDoc = new MutableString();
-			Set<KddAnnotation> currentAnns = new HashSet<KddAnnotation>();
+			HashSet<KddAnnotation> currentAnns = new HashSet<KddAnnotation>();
 			int currentPos = 0;
 			while ((line = r.readLine()) != null){
 				Matcher noneMatch = nonePattern.matcher(line);
@@ -104,7 +104,7 @@ public class KddDataset implements A2WDataset{
 		api.prefetchTitles(titlesToPrefetch);
 
 		/** Create annotation list */
-		for (Set<KddAnnotation> s : kddAnns){
+		for (HashSet<KddAnnotation> s : kddAnns){
 			HashSet<Annotation> sA = new HashSet<Annotation>();
 			tags.add(sA);
 			for (KddAnnotation aA: s){
@@ -130,18 +130,18 @@ public class KddDataset implements A2WDataset{
 	@Override
 	public int getTagsCount() {
 		int count = 0;
-		for (Set<Annotation> s : tags)
+		for (HashSet<Annotation> s : tags)
 			count += s.size();
 		return count;
 	}
 
 	@Override
-	public List<Set<Tag>> getC2WGoldStandardList() {
+	public List<HashSet<Tag>> getC2WGoldStandardList() {
 		return ProblemReduction.A2WToC2WList(tags);
 	}
 
 	@Override
-	public List<Set<Annotation>> getD2WGoldStandardList() {
+	public List<HashSet<Annotation>> getD2WGoldStandardList() {
 		return getA2WGoldStandardList();
 	}
 
@@ -155,7 +155,7 @@ public class KddDataset implements A2WDataset{
 	}
 	
 	@Override
-	public List<Set<Mention>> getMentionsInstanceList() {
+	public List<HashSet<Mention>> getMentionsInstanceList() {
 		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 
@@ -165,7 +165,7 @@ public class KddDataset implements A2WDataset{
 	}
 
 	@Override
-	public List<Set<Annotation>> getA2WGoldStandardList() {
+	public List<HashSet<Annotation>> getA2WGoldStandardList() {
 		return tags;
 	}
 

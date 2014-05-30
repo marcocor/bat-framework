@@ -10,7 +10,7 @@ package it.acubelab.batframework.metrics;
 import it.acubelab.batframework.data.Annotation;
 
 import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 import java.util.Vector;
 
 public class MentionAnnotationMatch implements MatchRelation<Annotation>{
@@ -20,15 +20,15 @@ public class MentionAnnotationMatch implements MatchRelation<Annotation>{
 	}
 
 	@Override
-	public List<Set<Annotation>> preProcessOutput(List<Set<Annotation>> computedOutput) {
-		List<Set<Annotation>> nonOverlappingOutput = new Vector<Set<Annotation>>();
-		for (Set<Annotation> s: computedOutput)
+	public List<HashSet<Annotation>> preProcessOutput(List<HashSet<Annotation>> computedOutput) {
+		List<HashSet<Annotation>> nonOverlappingOutput = new Vector<HashSet<Annotation>>();
+		for (HashSet<Annotation> s: computedOutput)
 			nonOverlappingOutput.add(Annotation.deleteOverlappingAnnotations(s));
 		return nonOverlappingOutput;
 	}
 
 	@Override
-	public List<Set<Annotation>> preProcessGoldStandard(List<Set<Annotation>> goldStandard) {
+	public List<HashSet<Annotation>> preProcessGoldStandard(List<HashSet<Annotation>> goldStandard) {
 		return preProcessOutput(goldStandard);
 	}
 

@@ -369,7 +369,7 @@ public class WikipediaApiInterface {
 	 */
 	public void prefetchWids(List<Integer> widsToPrefetch) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		final int widsPerRequest = 50;
-		Set<Integer> widsToActuallyPrefetchSet = new HashSet<Integer>();
+		HashSet<Integer> widsToActuallyPrefetchSet = new HashSet<Integer>();
 		for (int wid: widsToPrefetch) // only pre-fetch titles that have not been pre-fetched yet.
 			if (wid != -1 && !bidiTitle2wid.hasInt(wid))
 				widsToActuallyPrefetchSet.add(wid);

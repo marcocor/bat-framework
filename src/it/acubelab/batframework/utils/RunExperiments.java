@@ -37,7 +37,7 @@ public class RunExperiments {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
 		float threshold = 0;
 		System.out.print("Doing annotations... ");
-		List<Set<Annotation>> computedAnnotations = BenchmarkCache
+		List<HashSet<Annotation>> computedAnnotations = BenchmarkCache
 				.doA2WAnnotations(tagger, ds);
 		System.out.println("Done.");
 		for (threshold = 0; threshold <= 1; threshold += THRESHOLD_STEP) {
@@ -60,7 +60,7 @@ public class RunExperiments {
 			throws Exception {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
 		System.out.println("Doing annotations... ");
-		List<Set<ScoredAnnotation>> computedAnnotations = BenchmarkCache
+		List<HashSet<ScoredAnnotation>> computedAnnotations = BenchmarkCache
 				.doSa2WAnnotations(tagger, ds, new AnnotatingCallback() {
 					public void run(long msec, int doneDocs, int totalDocs,
 							int foundTags) {
@@ -74,8 +74,8 @@ public class RunExperiments {
 			System.out.println("Testing with tagger: " + tagger.getName()
 					+ " dataset: " + ds.getName() + " score threshold: "
 					+ threshold);
-			List<Set<Annotation>> reducedTags = ProblemReduction.Sa2WToA2WList(
-					computedAnnotations, (float) threshold);
+			List<HashSet<Annotation>> reducedTags = ProblemReduction
+					.Sa2WToA2WList(computedAnnotations, (float) threshold);
 			MetricsResultSet rs = metrics.getResult(reducedTags,
 					ds.getA2WGoldStandardList(), m);
 			updateThresholdRecords(results, m.getName(), tagger.getName(),
@@ -92,7 +92,7 @@ public class RunExperiments {
 			throws Exception {
 		Metrics<Tag> metrics = new Metrics<Tag>();
 		System.out.println("Doing annotations... ");
-		List<Set<ScoredAnnotation>> computedAnnotations = BenchmarkCache
+		List<HashSet<ScoredAnnotation>> computedAnnotations = BenchmarkCache
 				.doSa2WAnnotations(tagger, ds, new AnnotatingCallback() {
 					public void run(long msec, int doneDocs, int totalDocs,
 							int foundTags) {
@@ -106,11 +106,11 @@ public class RunExperiments {
 			System.out.println("Testing with tagger: " + tagger.getName()
 					+ " dataset: " + ds.getName() + " score threshold: "
 					+ threshold);
-			List<Set<Annotation>> reducedAnnotations = ProblemReduction
+			List<HashSet<Annotation>> reducedAnnotations = ProblemReduction
 					.Sa2WToA2WList(computedAnnotations, (float) threshold);
-			List<Set<Tag>> reducedTags = ProblemReduction
+			List<HashSet<Tag>> reducedTags = ProblemReduction
 					.A2WToC2WList(reducedAnnotations);
-			List<Set<Tag>> reducedGs = ds.getC2WGoldStandardList();
+			List<HashSet<Tag>> reducedGs = ds.getC2WGoldStandardList();
 			MetricsResultSet rs = metrics.getResult(reducedTags, reducedGs, m);
 			updateThresholdRecords(results, m.getName(), tagger.getName(),
 					ds.getName(), (float) threshold, rs);
@@ -127,18 +127,41 @@ public class RunExperiments {
 		Metrics<Tag> metrics = new Metrics<Tag>();
 		double threshold = 0;
 		System.out.print("Doing annotations... ");
-		List<Set<ScoredTag>> computedAnnotations = BenchmarkCache.doSc2WTags(
-				tagger, ds);
+		List<HashSet<ScoredTag>> computedAnnotations = BenchmarkCache
+				.doSc2WTags(tagger, ds);
 		System.out.println("Done.");
 		for (threshold = 0; threshold <= 1; threshold += THRESHOLD_STEP) {
 			System.out.println("Testing with tagger: " + tagger.getName()
 					+ " dataset: " + ds.getName() + " score threshold: "
 					+ threshold);
-			List<Set<Tag>> reducedAnnotations = ProblemReduction.Sc2WToC2WList(
-					computedAnnotations, (float) threshold);
-			List<Set<Tag>> reducedGs = ds.getC2WGoldStandardList();
+			List<HashSet<Tag>> reducedAnnotations = ProblemReduction
+					.Sc2WToC2WList(computedAnnotations, (float) threshold);
+			List<HashSet<Tag>> reducedGs = ds.getC2WGoldStandardList();
 			MetricsResultSet rs = metrics.getResult(reducedAnnotations,
 					reducedGs, m);
+			updateThresholdRecords(results, m.getName(), tagger.getName(),
+					ds.getName(), (float) threshold, rs);
+		}
+	}
+
+	public static void computeMetricsC2W(
+			MatchRelation<Tag> m,
+			C2WSystem tagger,
+			C2WDataset ds,
+			WikipediaApiInterface api,
+			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
+			throws Exception {
+		Metrics<Tag> metrics = new Metrics<Tag>();
+		double threshold = 0;
+		System.out.print("Doing annotations... ");
+		List<HashSet<Tag>> computedAnnotations = BenchmarkCache.doC2WTags(
+				tagger, ds);
+		System.out.println("Done.");
+		System.out.println("Testing with tagger: " + tagger.getName()
+				+ " dataset: " + ds.getName() + " (no score thr.)");
+		MetricsResultSet rs = metrics.getResult(computedAnnotations,
+				ds.getC2WGoldStandardList(), m);
+		for (threshold = 0; threshold <= 1; threshold += THRESHOLD_STEP) {
 			updateThresholdRecords(results, m.getName(), tagger.getName(),
 					ds.getName(), (float) threshold, rs);
 		}
@@ -156,13 +179,13 @@ public class RunExperiments {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
 		StrongAnnotationMatch m = new StrongAnnotationMatch(api);
 		float threshold = 0;
-		System.out.print("Doing annotations... ");
-		List<Set<Annotation>> computedAnnotations = BenchmarkCache
+		System.out.print("Doing native D2W annotations... ");
+		List<HashSet<Annotation>> computedAnnotations = BenchmarkCache
 				.doD2WAnnotations(tagger, ds, new AnnotatingCallback() {
 					public void run(long msec, int doneDocs, int totalDocs,
 							int foundTags) {
 						System.out
-								.printf("Done %d/%d documents. Found %d annotations/tags so far.%n",
+								.printf("Done %d/%d documents. Found %d annotations so far.%n",
 										doneDocs, totalDocs, foundTags);
 					}
 				}, 60000);
@@ -187,7 +210,7 @@ public class RunExperiments {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
 		StrongAnnotationMatch m = new StrongAnnotationMatch(api);
 		System.out.println("Doing annotations... ");
-		List<Set<ScoredAnnotation>> computedAnnotations = BenchmarkCache
+		List<HashSet<ScoredAnnotation>> computedAnnotations = BenchmarkCache
 				.doSa2WAnnotations(tagger, ds, new AnnotatingCallback() {
 					public void run(long msec, int doneDocs, int totalDocs,
 							int foundTags) {
@@ -197,13 +220,14 @@ public class RunExperiments {
 					}
 				}, 60000);
 		System.out.println("Done with all documents.");
+		System.out
+				.printf("Testing with tagger: %s, dataset: %s, for values of the score threshold in [0,1].%n",
+						tagger.getName(), ds.getName());
 		for (double threshold = 0; threshold <= 1; threshold += THRESHOLD_STEP) {
-			System.out.println("Testing with tagger: " + tagger.getName()
-					+ " dataset: " + ds.getName() + " score threshold: "
-					+ threshold);
-			List<Set<Annotation>> reducedAnns = ProblemReduction.Sa2WToD2WList(
-					computedAnnotations, ds.getMentionsInstanceList(),
-					(float) threshold);
+
+			List<HashSet<Annotation>> reducedAnns = ProblemReduction
+					.Sa2WToD2WList(computedAnnotations,
+							ds.getMentionsInstanceList(), (float) threshold);
 			MetricsResultSet rs = metrics.getResult(reducedAnns,
 					ds.getD2WGoldStandardList(), m);
 			updateThresholdRecords(results, m.getName(), tagger.getName(),
@@ -214,7 +238,8 @@ public class RunExperiments {
 	public static HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> performC2WExpVarThreshold(
 			Vector<MatchRelation<Tag>> matchRels,
 			Vector<A2WSystem> a2wAnnotators, Vector<Sa2WSystem> sa2wAnnotators,
-			Vector<Sc2WSystem> sc2wTaggers, Vector<C2WDataset> dss,
+			Vector<Sc2WSystem> sc2wTaggers,
+			Vector<C2WSystem> c2wTaggers, Vector<C2WDataset> dss,
 			WikipediaApiInterface api) throws Exception {
 		HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> result = new HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>>();
 		for (MatchRelation<Tag> m : matchRels)
@@ -231,6 +256,11 @@ public class RunExperiments {
 				if (sc2wTaggers != null)
 					for (Sc2WSystem t : sc2wTaggers) {
 						computeMetricsC2WReducedFromSc2W(m, t, ds, api, result);
+						BenchmarkCache.flush();
+					}
+				if (c2wTaggers != null)
+					for (C2WSystem t : c2wTaggers) {
+						computeMetricsC2W(m, t, ds, api, result);
 						BenchmarkCache.flush();
 					}
 
@@ -378,8 +408,8 @@ public class RunExperiments {
 		Pair<Float, MetricsResultSet> bestRecord = null;
 		for (Float t : thresholds)
 			if (bestRecord == null
-					|| records.get(t).getMicroF1() > bestRecord.second
-							.getMicroF1())
+					|| records.get(t).getMacroF1() > bestRecord.second
+							.getMacroF1())
 				bestRecord = new Pair<Float, MetricsResultSet>(t,
 						records.get(t));
 		return bestRecord;
@@ -395,13 +425,30 @@ public class RunExperiments {
 	}
 
 	public static MetricsResultSet performMentionSpottingExp(
-			MentionSpotter spotter, D2WDataset dss) throws Exception {
-
-		List<Set<Mention>> output = BenchmarkCache.doSpotMentions(spotter, dss);
-
+			MentionSpotter spotter, D2WDataset ds) throws Exception {
+		List<HashSet<Mention>> output = BenchmarkCache.doSpotMentions(spotter,
+				ds);
 		Metrics<Mention> metrics = new Metrics<Mention>();
-		return metrics.getResult(output, dss.getMentionsInstanceList(),
+		return metrics.getResult(output, ds.getMentionsInstanceList(),
 				new MentionMatch());
+	}
+
+	public static void performMentionSpottingExp(
+			List<MentionSpotter> mentionSpotters, List<D2WDataset> dss)
+			throws Exception {
+		for (MentionSpotter spotter : mentionSpotters) {
+			for (D2WDataset ds : dss) {
+				System.out.println("Testing Spotter " + spotter.getName()
+						+ " on dataset " + ds.getName());
+				System.out.println("Doing spotting... ");
+				MetricsResultSet rs = performMentionSpottingExp(spotter, ds);
+				System.out.println("Done with all documents.");
+
+				System.out.printf("%s / %s%n%s%n%n", spotter.getName(),
+						ds.getName(), rs);
+			}
+		}
+
 	}
 
 	public static MetricsResultSet performCandidateSpottingExp(
@@ -409,10 +456,10 @@ public class RunExperiments {
 			throws Exception {
 		Metrics<MultipleAnnotation> metrics = new Metrics<MultipleAnnotation>();
 
-		List<Set<MultipleAnnotation>> gold = annotationToMulti(dss
+		List<HashSet<MultipleAnnotation>> gold = annotationToMulti(dss
 				.getD2WGoldStandardList());
 
-		List<Set<MultipleAnnotation>> output = new Vector<Set<MultipleAnnotation>>();
+		List<HashSet<MultipleAnnotation>> output = new Vector<HashSet<MultipleAnnotation>>();
 		for (String text : dss.getTextInstanceList())
 			output.add(spotter.getSpottedCandidates(text));
 
@@ -425,11 +472,47 @@ public class RunExperiments {
 
 	}
 
-	private static <T extends Mention> List<Set<T>> mentionSubstraction(
-			List<Set<T>> list1, List<Set<T>> list2) {
-		List<Set<T>> list1filtered = new Vector<Set<T>>();
+	public static Integer[] candidateCoverageDistributionExp(
+			CandidatesSpotter spotter, D2WDataset dss, WikipediaApiInterface api)
+			throws Exception {
+		List<HashSet<MultipleAnnotation>> gold = annotationToMulti(dss
+				.getD2WGoldStandardList());
+
+		List<HashSet<MultipleAnnotation>> output = new Vector<HashSet<MultipleAnnotation>>();
+		for (String text : dss.getTextInstanceList())
+			output.add(spotter.getSpottedCandidates(text));
+
+		output = mentionSubstraction(output, gold);
+		gold = mentionSubstraction(gold, output);
+
+		Vector<Integer> positions = new Vector<>();
+		for (int i = 0; i < output.size(); i++) {
+			HashSet<MultipleAnnotation> outI = output.get(i);
+			HashSet<MultipleAnnotation> goldI = gold.get(i);
+			for (MultipleAnnotation outAnn : outI)
+				for (MultipleAnnotation goldAnn : goldI)
+					if (outAnn.overlaps(goldAnn)) {
+						int goldCand = goldAnn.getCandidates()[0];
+						int candIdx = 0;
+						for (; candIdx < outAnn.getCandidates().length; candIdx++)
+							if (outAnn.getCandidates()[candIdx] == goldCand) {
+								positions.add(candIdx);
+								break;
+							}
+						if (candIdx == outAnn.getCandidates().length)
+							positions.add(-1);
+					}
+		}
+
+		return positions.toArray(new Integer[positions.size()]);
+
+	}
+
+	private static <T extends Mention> List<HashSet<T>> mentionSubstraction(
+			List<HashSet<T>> list1, List<HashSet<T>> list2) {
+		List<HashSet<T>> list1filtered = new Vector<HashSet<T>>();
 		for (int i = 0; i < list1.size(); i++) {
-			Set<T> filtered1 = new HashSet<T>();
+			HashSet<T> filtered1 = new HashSet<T>();
 			list1filtered.add(filtered1);
 			for (T a : list1.get(i)) {
 				boolean found = false;
@@ -446,11 +529,11 @@ public class RunExperiments {
 		return list1filtered;
 	}
 
-	private static List<Set<MultipleAnnotation>> annotationToMulti(
-			List<Set<Annotation>> d2wGoldStandardList) {
-		List<Set<MultipleAnnotation>> res = new Vector<Set<MultipleAnnotation>>();
-		for (Set<Annotation> annSet : d2wGoldStandardList) {
-			Set<MultipleAnnotation> multiAnn = new HashSet<MultipleAnnotation>();
+	private static List<HashSet<MultipleAnnotation>> annotationToMulti(
+			List<HashSet<Annotation>> d2wGoldStandardList) {
+		List<HashSet<MultipleAnnotation>> res = new Vector<HashSet<MultipleAnnotation>>();
+		for (HashSet<Annotation> annSet : d2wGoldStandardList) {
+			HashSet<MultipleAnnotation> multiAnn = new HashSet<MultipleAnnotation>();
 			res.add(multiAnn);
 			for (Annotation a : annSet)
 				multiAnn.add(new MultipleAnnotation(a.getPosition(), a

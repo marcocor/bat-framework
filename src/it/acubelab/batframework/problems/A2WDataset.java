@@ -10,7 +10,7 @@ package it.acubelab.batframework.problems;
 import it.acubelab.batframework.data.Annotation;
 
 import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 
 public interface A2WDataset extends C2WDataset, D2WDataset{
 
@@ -18,7 +18,7 @@ public interface A2WDataset extends C2WDataset, D2WDataset{
 	 * Note: the order of the elements in this list must be the same of those returned by getTextIterator().
 	 * @return a list of the annotations of the text included in the dataset.
 	 */
-	public List<Set<Annotation>> getA2WGoldStandardList();
+	public List<HashSet<Annotation>> getA2WGoldStandardList();
 
 
 }

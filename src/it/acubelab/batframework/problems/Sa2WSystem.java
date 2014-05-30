@@ -10,7 +10,7 @@ package it.acubelab.batframework.problems;
 import it.acubelab.batframework.data.ScoredAnnotation;
 import it.acubelab.batframework.utils.AnnotationException;
 
-import java.util.Set;
+import java.util.HashSet;
 
 /**
  * A system that tags parts of a natural language text to Wikipedia concepts.
@@ -24,6 +24,6 @@ public interface Sa2WSystem extends A2WSystem, Sc2WSystem{
 	 * the relevance of the topic to the text.
 	 * @throws AnnotationException 
 	 */
-	public Set<ScoredAnnotation> solveSa2W(String text) throws AnnotationException;
+	public HashSet<ScoredAnnotation> solveSa2W(String text) throws AnnotationException;
 
 }

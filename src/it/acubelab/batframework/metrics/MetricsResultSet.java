@@ -7,7 +7,10 @@
 
 package it.acubelab.batframework.metrics;
 
-public class MetricsResultSet {
+import java.io.Serializable;
+
+public class MetricsResultSet implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private float microF1, microRecall, microPrecision, macroF1, macroRecall,
 			macroPrecision;
 	private int tp, fn, fp;

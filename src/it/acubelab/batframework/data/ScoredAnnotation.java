@@ -7,9 +7,11 @@
 
 package it.acubelab.batframework.data;
 
+import java.io.Serializable;
+
 import it.acubelab.batframework.utils.AnnotationException;
 
-public class ScoredAnnotation extends Annotation implements Cloneable{
+public class ScoredAnnotation extends Annotation implements Cloneable, Serializable{
 	private static final long serialVersionUID = 1L;
 	private float score;
 

@@ -7,7 +7,9 @@
 
 package it.acubelab.batframework.data;
 
-public class ScoredTag extends Tag implements Cloneable{
+import java.io.Serializable;
+
+public class ScoredTag extends Tag implements Cloneable, Serializable{
 	private static final long serialVersionUID = 1L;
 	private float score;
 

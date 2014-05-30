@@ -21,12 +21,12 @@ public class RunExperimentsTest {
 	private static final double DELTA = 1e-6;
 
 	private final String textA = "Obama saw Silvio Berlusconi in a pink suite.";
-	private final Set<Mention> mentionA1 = new HashSet<Mention>();
-	private final Set<Mention> mentionA2 = new HashSet<Mention>();
+	private final HashSet<Mention> mentionA1 = new HashSet<Mention>();
+	private final HashSet<Mention> mentionA2 = new HashSet<Mention>();
 
 	private final String textB = "The cat is an intelligent feline.";
-	private final Set<Mention> mentionB1 = new HashSet<Mention>();
-	private final Set<Mention> mentionB2 = new HashSet<Mention>();
+	private final HashSet<Mention> mentionB1 = new HashSet<Mention>();
+	private final HashSet<Mention> mentionB2 = new HashSet<Mention>();
 
 	@Before
 	public void setUp() throws Exception {
@@ -88,15 +88,15 @@ public class RunExperimentsTest {
 		}
 
 		@Override
-		public List<Set<Mention>> getMentionsInstanceList() {
-			List<Set<Mention>> mentions = new Vector<Set<Mention>>();
+		public List<HashSet<Mention>> getMentionsInstanceList() {
+			List<HashSet<Mention>> mentions = new Vector<HashSet<Mention>>();
 			mentions.add(mentionA1);
 			mentions.add(mentionB1);
 			return mentions;
 		}
 
 		@Override
-		public List<Set<Annotation>> getD2WGoldStandardList() {
+		public List<HashSet<Annotation>> getD2WGoldStandardList() {
 			return null;
 		}
 
@@ -114,7 +114,7 @@ public class RunExperimentsTest {
 		}
 
 		@Override
-		public Set<Mention> getSpottedMentions(String text) {
+		public HashSet<Mention> getSpottedMentions(String text) {
 			if (text.equals(textA))
 				return mentionA2;
 			else
@@ -134,7 +134,7 @@ public class RunExperimentsTest {
 		}
 
 		@Override
-		public Set<Mention> getSpottedMentions(String text) {
+		public HashSet<Mention> getSpottedMentions(String text) {
 			if (text.equals(textA))
 				return mentionA1;
 			else

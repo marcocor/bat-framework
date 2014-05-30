@@ -46,20 +46,22 @@ public class BenchmarkCache {
 	public static void flush() throws FileNotFoundException, IOException{
 		lastFlush = new Date();
 		if (modified && resultsCacheFilename != null){
+			System.out.print("Flushing results cache... ");
 			new File(resultsCacheFilename).createNewFile();
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(resultsCacheFilename));
 			oos.writeObject(resultsCache);
 			oos.close();
+			System.out.println("Flushing results cache Done.");
 		}
 	}
 
-	public static List<Set<ScoredAnnotation>> doSa2WAnnotations(Sa2WSystem annotator, TopicDataset ds, AnnotatingCallback callback, int msec) throws Exception {
-		List<Set<ScoredAnnotation>> computedAnns = new Vector<Set<ScoredAnnotation>>();
+	public static List<HashSet<ScoredAnnotation>> doSa2WAnnotations(Sa2WSystem annotator, TopicDataset ds, AnnotatingCallback callback, int msec) throws Exception {
+		List<HashSet<ScoredAnnotation>> computedAnns = new Vector<HashSet<ScoredAnnotation>>();
 		Date lastCallback = new Date();
 		int doneDocs = 0;
 		int foundAnns = 0;
 		for (String doc: ds.getTextInstanceList()){
-			Set<ScoredAnnotation> res = resultsCache.getSa2WResult(annotator.getName(), doc);
+			HashSet<ScoredAnnotation> res = resultsCache.getSa2WResult(annotator.getName(), doc);
 			if (res == null){
 				modified = true;
 				res = annotator.solveSa2W(doc);
@@ -89,10 +91,10 @@ public class BenchmarkCache {
 	 * The annotations are in the same order of the documents given by argument.
 	 * @throws Exception 
 	 */
-	public static List<Set<Annotation>> doA2WAnnotations(A2WSystem annotator, C2WDataset ds) throws Exception{
-		List<Set<Annotation>> computedAnns = new Vector<Set<Annotation>>();
+	public static List<HashSet<Annotation>> doA2WAnnotations(A2WSystem annotator, C2WDataset ds) throws Exception{
+		List<HashSet<Annotation>> computedAnns = new Vector<HashSet<Annotation>>();
 		for (String doc : ds.getTextInstanceList()){
-			Set<Annotation> res = resultsCache.getA2WResult(annotator.getName(), doc);
+			HashSet<Annotation> res = resultsCache.getA2WResult(annotator.getName(), doc);
 			if (res == null){
 				modified = true;
 				res = annotator.solveA2W(doc);
@@ -104,16 +106,16 @@ public class BenchmarkCache {
 		return computedAnns;
 	}
 	
-	public static List<Set<Annotation>> doD2WAnnotations(D2WSystem annotator, D2WDataset ds, AnnotatingCallback callback, int msec) throws Exception {
-		List<Set<Annotation>> computedAnns = new ArrayList<Set<Annotation>>();
+	public static List<HashSet<Annotation>> doD2WAnnotations(D2WSystem annotator, D2WDataset ds, AnnotatingCallback callback, int msec) throws Exception {
+		List<HashSet<Annotation>> computedAnns = new ArrayList<HashSet<Annotation>>();
 		Date lastCallback = new Date();
 		int doneDocs = 0;
 		int foundAnns = 0;
 		for (int i = 0; i < ds.getTextInstanceList().size(); i++){
 			String doc = ds.getTextInstanceList().get(i);
-			Set<Mention> mentions = ds.getMentionsInstanceList().get(i);
+			HashSet<Mention> mentions = ds.getMentionsInstanceList().get(i);
 			
-			Set<Annotation> res = resultsCache.getD2WResult(annotator.getName(), doc, mentions);
+			HashSet<Annotation> res = resultsCache.getD2WResult(annotator.getName(), doc, mentions);
 			if (res == null){
 				modified = true;
 				res = annotator.solveD2W(doc, mentions);
@@ -125,7 +127,7 @@ public class BenchmarkCache {
 			foundAnns += res.size();
 			
 			//if more than 10 minutes have passed since last flush, flush again!
-			if (new Date().getTime() - lastFlush.getTime() > 1000*60*10)
+			if (new Date().getTime() - lastFlush.getTime() > 1000*60*1)
 				flush();
 			//if more than <msec> seconds have passed, call the callback function.
 			if (callback != null && new Date().getTime() - lastCallback.getTime() > msec){
@@ -136,10 +138,10 @@ public class BenchmarkCache {
 		return computedAnns;
 	}
 
-	public static List<Set<Tag>> doC2WTags(C2WSystem tagger, C2WDataset ds) throws Exception{
-		List<Set<Tag>> computedTags = new Vector<Set<Tag>>();
+	public static List<HashSet<Tag>> doC2WTags(C2WSystem tagger, C2WDataset ds) throws Exception{
+		List<HashSet<Tag>> computedTags = new Vector<HashSet<Tag>>();
 		for (String doc: ds.getTextInstanceList()){
-			Set<Tag> res = resultsCache.getC2WResult(tagger.getName(), doc);
+			HashSet<Tag> res = resultsCache.getC2WResult(tagger.getName(), doc);
 			if (res == null){
 				modified = true;
 				res = tagger.solveC2W(doc);
@@ -151,10 +153,10 @@ public class BenchmarkCache {
 		return computedTags;
 	}
 
-	public static List<Set<ScoredTag>> doSc2WTags(Sc2WSystem tagger, C2WDataset ds) throws Exception {
-		List<Set<ScoredTag>> computedTags = new Vector<Set<ScoredTag>>();
+	public static List<HashSet<ScoredTag>> doSc2WTags(Sc2WSystem tagger, C2WDataset ds) throws Exception {
+		List<HashSet<ScoredTag>> computedTags = new Vector<HashSet<ScoredTag>>();
 		for (String doc: ds.getTextInstanceList()){
-			Set<ScoredTag> res = resultsCache.getSc2WResult(tagger.getName(), doc);
+			HashSet<ScoredTag> res = resultsCache.getSc2WResult(tagger.getName(), doc);
 			if (res == null){
 				modified = true;
 				res = tagger.solveSc2W(doc);
@@ -166,10 +168,10 @@ public class BenchmarkCache {
 		return computedTags;
 	}
 	
-	public static List<Set<Mention>> doSpotMentions(MentionSpotter spotter, D2WDataset ds) throws Exception {
-		List<Set<Mention>> spottedMentionsResult = new Vector<Set<Mention>>();
+	public static List<HashSet<Mention>> doSpotMentions(MentionSpotter spotter, D2WDataset ds) throws Exception {
+		List<HashSet<Mention>> spottedMentionsResult = new Vector<HashSet<Mention>>();
 		for (String doc: ds.getTextInstanceList()){
-			Set<Mention> res = resultsCache.getSpotMentionsResult(spotter.getName(), doc);
+			HashSet<Mention> res = resultsCache.getSpotMentionsResult(spotter.getName(), doc);
 			if (res == null){
 				modified = true;
 				res = spotter.getSpottedMentions(doc);

@@ -10,7 +10,7 @@ import it.acubelab.batframework.utils.*;
 public class InvalidateResults {
 
 	public static void main(String[] args) throws Exception{
-		String resultsCacheFilename = "benchmark/cache/results.cache";
+		String resultsCacheFilename = "results.cache";
 		WikipediaApiInterface api = new WikipediaApiInterface("benchmark/cache/wid.cache", "benchmark/cache/redirect.cache");
 		//A2WDataset aidaDs = new ConllAidaDataset("benchmark/datasets/aida/AIDA-YAGO2-dataset.tsv", api);
 		//A2WDataset aidaTestBDs = new ConllAidaTestBDataset("benchmark/datasets/aida/AIDA-YAGO2-dataset-update.tsv", api);
@@ -21,7 +21,8 @@ public class InvalidateResults {
 		BenchmarkResults resultsCache = (BenchmarkResults) new ObjectInputStream(new FileInputStream(resultsCacheFilename)).readObject();
 		//resultsCache.invalidateResults("AIDA-PriorityOnly", aidaDs);
 		//resultsCache.invalidateResults("AIDA-PriorityOnly", aidaTestBDs);
-		resultsCache.invalidateResults("WikiSense (simple)");
+		//resultsCache.invalidateResults("TagMe 2");
+		resultsCache.invalidateD2WResults();
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(resultsCacheFilename));
 		oos.writeObject(resultsCache);
 		oos.close();

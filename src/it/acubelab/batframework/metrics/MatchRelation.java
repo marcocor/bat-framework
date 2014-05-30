@@ -8,15 +8,15 @@
 package it.acubelab.batframework.metrics;
 
 import java.util.List;
-import java.util.Set;
+import java.util.HashSet;
 
-public interface MatchRelation <E>{
-	
+public interface MatchRelation<E> {
+
 	public boolean match(E t1, E t2);
 
-	public List<Set<E>> preProcessOutput(List<Set<E>> computedOutput);
+	public List<HashSet<E>> preProcessOutput(List<HashSet<E>> computedOutput);
 
-	public List<Set<E>> preProcessGoldStandard(List<Set<E>> goldStandard);
+	public List<HashSet<E>> preProcessGoldStandard(List<HashSet<E>> goldStandard);
 
 	public String getName();
 
