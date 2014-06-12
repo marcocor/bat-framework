@@ -64,7 +64,7 @@ public class WikipediaApiInterface {
 				try{
 					wid2redirect = (Int2IntOpenHashMap) new ObjectInputStream(new FileInputStream(wid2redirectCache)).readObject();
 				} catch (Exception e){
-					throw new RuntimeException("Could not load cache file "+bidiTitle2widCache.getAbsolutePath()+". Try to manually delete the file to clear the cache. Message: "+e.getMessage());
+					throw new RuntimeException("Could not load cache file "+wid2redirectCache.getAbsolutePath()+". Try to manually delete the file to clear the cache. Message: "+e.getMessage());
 				}
 			else
 				//create a new empty mapping to fill in.
