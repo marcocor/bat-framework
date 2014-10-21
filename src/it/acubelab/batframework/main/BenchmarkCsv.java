@@ -119,7 +119,7 @@ public class BenchmarkCsv {
 				true,
 				String.format(
 						"verbousely explain each printed value. This is for beginners only (default: %b)",
-						printPerdoc));
+						explain));
 		opts.addOption("widscache", true, String.format(
 				"set cache file for wikipedia ids (default: %s)", widsCache));
 		opts.addOption("redirectcache", true, String.format(
@@ -151,6 +151,8 @@ public class BenchmarkCsv {
 			printMacro = Boolean.parseBoolean(cmd.getOptionValue("macro"));
 		if (cmd.hasOption("pn"))
 			printPn = Boolean.parseBoolean(cmd.getOptionValue("pn"));
+		if (cmd.hasOption("explain"))
+			explain = Boolean.parseBoolean(cmd.getOptionValue("explain"));
 		if (cmd.hasOption("perdocument"))
 			printPerdoc = Boolean.parseBoolean(cmd
 					.getOptionValue("perdocument"));
