@@ -56,7 +56,7 @@ public class ProblemReduction {
 	 */
 	public static HashSet<Annotation> Sa2WToA2W(
 			HashSet<ScoredAnnotation> scoredAnns) throws AnnotationException {
-		return Sa2WToA2W(scoredAnns, Float.MIN_VALUE);
+		return Sa2WToA2W(scoredAnns, Float.NEGATIVE_INFINITY);
 	}
 
 	/**
