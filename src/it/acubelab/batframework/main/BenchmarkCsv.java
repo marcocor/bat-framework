@@ -100,11 +100,9 @@ public class BenchmarkCsv {
 				"print Weak Annotation Match comparisons (default: %b)",
 				printWam));
 		opts.addOption("cam", true, String.format(
-				"print Concept Match comparisons (default: %b)",
-				printCam));
+				"print Concept Match comparisons (default: %b)", printCam));
 		opts.addOption("mam", true, String.format(
-				"print Mention Match comparisons (default: %b)",
-				printMam));
+				"print Mention Match comparisons (default: %b)", printMam));
 		opts.addOption("micro", true, String.format(
 				"print micro aggregated results (default: %b)", printMicro));
 		opts.addOption("macro", true, String.format(
@@ -245,22 +243,30 @@ public class BenchmarkCsv {
 	private static void printResults(Pair<Float, MetricsResultSet> mrs,
 			List<String> docids) {
 		printBestThreshold(mrs.first);
-		if (printMacro)
+		if (printMacro) {
 			printResultsMacro(mrs.second);
-		if (explain)
-			System.out.println("[This is the best threshold in the range [0,1], meaning the micro-F1 score for this measure is optimal when discarding annotations under this threshold.]");
-		if (printMicro)
+			if (explain)
+				System.out
+						.println("[This is the best threshold in the range [0,1], meaning the micro-F1 score for this measure is optimal when discarding annotations under this threshold.]");
+		}
+		if (printMicro) {
 			printResultsMicro(mrs.second);
-		if (explain)
-			System.out.println("[Micro results are computed considering the global number of TP, FP, and FN.]");
-		if (printPn)
+			if (explain)
+				System.out
+						.println("[Micro results are computed considering the global number of TP, FP, and FN.]");
+		}
+		if (printPn) {
 			printResultsTpFpFn(mrs.second);
-		if (explain)
-			System.out.println("[Macro results are the average of the results for each document.]");
-		if (printPerdoc)
+			if (explain)
+				System.out
+						.println("[Macro results are the average of the results for each document.]");
+		}
+		if (printPerdoc) {
 			printResultsSingleDocument(docids, mrs.second);
-		if (explain)
-			System.out.println("[These are the measures for each document.]");
+			if (explain)
+				System.out
+						.println("[These are the measures for each document.]");
+		}
 	}
 
 	private static void printResultsSingleDocument(List<String> docIds,
