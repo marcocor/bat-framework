@@ -243,12 +243,16 @@ public class BenchmarkCsv {
 	private static void printResults(Pair<Float, MetricsResultSet> mrs,
 			List<String> docids) {
 		printBestThreshold(mrs.first);
+		if (explain)
+			System.out
+					.println("[This is the best threshold in the range [0,1], meaning the micro-F1 score for this measure is optimal when discarding annotations under this threshold.]");
+	
 		if (printMacro) {
 			printResultsMacro(mrs.second);
 			if (explain)
 				System.out
-						.println("[This is the best threshold in the range [0,1], meaning the micro-F1 score for this measure is optimal when discarding annotations under this threshold.]");
-		}
+						.println("[Macro results are the average of the results for each document.]");
+			}
 		if (printMicro) {
 			printResultsMicro(mrs.second);
 			if (explain)
@@ -259,7 +263,7 @@ public class BenchmarkCsv {
 			printResultsTpFpFn(mrs.second);
 			if (explain)
 				System.out
-						.println("[Macro results are the average of the results for each document.]");
+						.println("[These are the global True Positives, False Positives and False Negatives.]");
 		}
 		if (printPerdoc) {
 			printResultsSingleDocument(docids, mrs.second);
