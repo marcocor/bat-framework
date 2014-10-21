@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.builder.CompareToBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class Pair<T1 extends Serializable, T2 extends Serializable> implements
 		Serializable {
@@ -47,4 +46,10 @@ public class Pair<T1 extends Serializable, T2 extends Serializable> implements
 		return (first == null ? 0 : first.hashCode())
 				^ (second == null ? 0 : second.hashCode());
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("(%s, %s)", this.first.toString(), this.second.toString());
+	}
+
 }
