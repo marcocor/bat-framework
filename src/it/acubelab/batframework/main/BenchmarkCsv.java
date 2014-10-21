@@ -208,7 +208,7 @@ public class BenchmarkCsv {
 			System.out.println(" *** Weak Annotation Match results ***");
 			if (explain)
 				System.out
-						.println("[When checking the correctness of an annotation A, the Weak Annotation Match interprets A as correct if and only if there is an annotation G in the gold standard that points to the same Wikipedia entity (redirects are solved) and A and B overlap. In other words, as long as the annotation points to the correct entity and somehow covers the correct portion of text (though not strictly), it is considered correct. For this reason, results based on WAM are always better than those based on SAM. This measure is suggested to test text annotators.");
+						.println("[When checking the correctness of an annotation A, the Weak Annotation Match interprets A as correct if and only if there is an annotation G in the gold standard that points to the same Wikipedia entity (redirects are solved) and A and B overlap. In other words, as long as the annotation points to the correct entity and somehow covers the correct portion of text (though not strictly), it is considered correct. For this reason, results based on WAM are always better than those based on SAM. This measure is suggested to test text annotators.]");
 			printResults(mrs, ds.getTextInstanceList());
 			System.out.println();
 		}
@@ -218,7 +218,7 @@ public class BenchmarkCsv {
 			System.out.println(" *** Concept Match results ***");
 			if (explain)
 				System.out
-						.println("[The Concept Match interprets A as correct if and only if there is an annotatin in the gold standard that points to the same entity. This measure is useful to check an annotator performance in finding entities associated to a document without taking into account its ability to link them to the correct portion of text.");
+						.println("[The Concept Match interprets A as correct if and only if there is an annotatin in the gold standard that points to the same entity. This measure is useful to check an annotator performance in finding entities associated to a document without taking into account its ability to link them to the correct portion of text.]");
 			printResults(mrs, ds.getTextInstanceList());
 			System.out.println();
 		}
@@ -229,7 +229,7 @@ public class BenchmarkCsv {
 			System.out.println(" *** Mention Match results ***");
 			if (explain)
 				System.out
-						.println("[The Mention Match interprets A as correct if and only if there is an annotatin in the gold standard that overlap with A. This measure is useful to check an annotator performance in spotting mentions in a document without taking into account its ability to link them to the correct entity. In other words, this measure tests the performance of the annotator in spotting mentions in documents.");
+						.println("[The Mention Match interprets A as correct if and only if there is an annotatin in the gold standard that overlap with A. This measure is useful to check an annotator performance in spotting mentions in a document without taking into account its ability to link them to the correct entity. In other words, this measure tests the performance of the annotator in spotting mentions in documents.]");
 			printResults(mrs, ds.getTextInstanceList());
 			System.out.println();
 		}
@@ -247,12 +247,20 @@ public class BenchmarkCsv {
 		printBestThreshold(mrs.first);
 		if (printMacro)
 			printResultsMacro(mrs.second);
+		if (explain)
+			System.out.println("[This is the best threshold in the range [0,1], meaning the micro-F1 score for this measure is optimal when discarding annotations under this threshold.]");
 		if (printMicro)
 			printResultsMicro(mrs.second);
+		if (explain)
+			System.out.println("[Micro results are computed considering the global number of TP, FP, and FN.]");
 		if (printPn)
 			printResultsTpFpFn(mrs.second);
+		if (explain)
+			System.out.println("[Macro results are the average of the results for each document.]");
 		if (printPerdoc)
 			printResultsSingleDocument(docids, mrs.second);
+		if (explain)
+			System.out.println("[These are the measures for each document.]");
 	}
 
 	private static void printResultsSingleDocument(List<String> docIds,
