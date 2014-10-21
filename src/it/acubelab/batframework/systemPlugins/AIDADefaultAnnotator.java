@@ -2,7 +2,6 @@ package it.acubelab.batframework.systemPlugins;
 
 import java.io.*;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.util.*;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,32 +21,35 @@ import it.acubelab.batframework.data.Tag;
 import it.acubelab.batframework.problems.MentionSpotter;
 import it.acubelab.batframework.problems.Sa2WSystem;
 import it.acubelab.batframework.utils.AnnotationException;
+import it.acubelab.batframework.utils.ProblemReduction;
 import it.acubelab.batframework.utils.WikipediaApiInterface;
 
 public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 	private long lastTime = 0;
 	private String url;
 	private WikipediaApiInterface api;
+	private String tech;
 
-	public AIDADefaultAnnotator(String url, WikipediaApiInterface api) {
+	public AIDADefaultAnnotator(String url, String tech,
+			WikipediaApiInterface api) {
 		this.url = url;
 		this.api = api;
+		this.tech = tech;
 	}
 
 	@Override
 	public HashSet<Annotation> solveA2W(String text) throws AnnotationException {
-		return null;
+		return ProblemReduction.Sa2WToA2W(solveSa2W(text));
 	}
 
 	@Override
 	public HashSet<Tag> solveC2W(String text) throws AnnotationException {
-		// TODO Auto-generated method stub
-		return null;
+		return ProblemReduction.A2WToC2W(solveA2W(text));
 	}
 
 	@Override
 	public String getName() {
-		return "AIDA - default";
+		return String.format("AIDA - (%s)", tech);
 	}
 
 	@Override
@@ -63,9 +65,12 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 		Collections.sort(mentionsList);
 		String spotString = "";
 		int lastChar = 0;
-		for (Mention m : mentionsList) 
-			System.out.println(m.toString() +" "+ text.substring(m.getPosition(), m.getPosition()+m.getLength()));
-				
+		for (Mention m : mentionsList)
+			System.out.println(m.toString()
+					+ " "
+					+ text.substring(m.getPosition(),
+							m.getPosition() + m.getLength()));
+
 		for (Mention m : mentionsList) {
 			spotString += text.substring(lastChar, m.getPosition());
 			spotString += "[[";
@@ -98,8 +103,7 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 
 	@Override
 	public HashSet<ScoredTag> solveSc2W(String text) throws AnnotationException {
-		// TODO Auto-generated method stub
-		return null;
+		return ProblemReduction.Sa2WToSc2W(solveSa2W(text));
 	}
 
 	@Override
@@ -134,8 +138,8 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 			JSONObject jsMention = (JSONObject) jsMentionObj;
 			if (!jsMention.containsKey("bestEntity"))
 				continue;
-			// System.out.println(jsMention);
-			startPositions.add(((Long) jsMention.get("offset")).intValue() - 1);
+			//System.out.println(jsMention);
+			startPositions.add(((Long) jsMention.get("offset")).intValue());
 			lengths.add(((Long) jsMention.get("length")).intValue());
 			titles.add(StringEscapeUtils
 					.unescapeJava((String) ((JSONObject) jsMention
@@ -150,10 +154,11 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 		HashSet<ScoredAnnotation> res = new HashSet<ScoredAnnotation>();
 		try {
 			api.prefetchTitles(titles);
-			for (int i = 0; i < startPositions.size(); i++)
+			for (int i = 0; i < startPositions.size(); i++){
 				res.add(new ScoredAnnotation(startPositions.get(i), lengths
 						.get(i), api.getIdByTitle(titles.get(i)),
 						(float) scores.get(i)));
+			}
 		} catch (XPathExpressionException | IOException
 				| ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
@@ -192,8 +197,8 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 
 	private JSONObject queryJson(String getParameters, String text, String url)
 			throws Exception {
-		String postParameters = String.format("text=\"%s\"",
-				URLEncoder.encode(text, "UTF-8"));
+		String postParameters = String.format("text=%s\ntech=%s",
+				URLEncoder.encode(text, "UTF-8"), tech);
 
 		URL webApi = new URL(String.format("%s?%s", url, getParameters));
 		HttpURLConnection slConnection = (HttpURLConnection) webApi
