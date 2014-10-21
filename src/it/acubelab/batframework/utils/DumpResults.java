@@ -261,7 +261,7 @@ public class DumpResults {
 	 *            included.
 	 * @param dss
 	 *            The datasets for which the best result will be included.
-	 * @param extended
+	 * @param includeTpFpFn
 	 *            true if the output table has to include the total number of
 	 *            tp/fp/fn
 	 * @param threshRecords
@@ -276,7 +276,7 @@ public class DumpResults {
 			Vector<Sc2WSystem> sc2wAnnotators,
 			Vector<C2WSystem> c2wAnnotators,
 			Vector<D> dss,
-			boolean extended,
+			boolean includeTpFpFn,
 			boolean includeMicro,
 			boolean includeMacro,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords) {
@@ -301,7 +301,7 @@ public class DumpResults {
 											: "")
 									+ (includeMacro ? " & $F1_{macro}$ & $P_{macro}$ & $R_{macro}$ "
 											: "")
-									+ (extended ? "& tp & fp & fn" : "")
+									+ (includeTpFpFn ? "& tp & fp & fn" : "")
 									+ "\\\\ \n \\hline%n");
 			for (TopicDataset d : dss) {
 				long len = 0;
@@ -330,12 +330,12 @@ public class DumpResults {
 								values.second.getMacroF1() * 100f,
 								values.second.getMacroPrecision() * 100f,
 								values.second.getMacroRecall() * 100f);
-					if (extended)
+					if (includeTpFpFn)
 						System.out.printf(LOCALE, "& $%d$ & $%d$ & $%d$",
 								values.second.getGlobalTp(),
 								values.second.getGlobalFp(),
 								values.second.getGlobalFn());
-					int nColumns = 3 + (extended?3:0)+(includeMacro?3:0)+(includeMicro?3:0); 
+					int nColumns = 3 + (includeTpFpFn?3:0)+(includeMacro?3:0)+(includeMicro?3:0); 
 					System.out.printf(LOCALE, " \\\\ \\cline{2-"
 							+ nColumns + "}%n");
 				}
