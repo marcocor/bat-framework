@@ -20,7 +20,7 @@ public class TestWikisense {
 		
 		WikipediaApiInterface api = new WikipediaApiInterface("benchmark/cache/wid.cache", "benchmark/cache/redirect.cache");
 
-		Sa2WSystem aida = new AIDADefaultAnnotator("http://localhost:9999/aida/service/disambiguate-defaultsettings", api);
+		Sa2WSystem aida = new AIDADefaultAnnotator("http://localhost:9999/aida/service/disambiguate-defaultsettings", "LOCAL", api);
 /*		Set<ScoredAnnotation> res = aida.solveSa2W("The new CEO of Fédération Internationale de l'Automobile is Slobodan [[Milošević]], the Yugoslav politician who was the President of Serbia");
 		for (ScoredAnnotation sa : res)
 			System.out.println(sa);
