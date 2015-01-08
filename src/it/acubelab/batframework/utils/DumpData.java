@@ -111,12 +111,42 @@ public class DumpData {
 			List<HashSet<T>> expectedResult, List<HashSet<T>> computedResult,
 			WikipediaApiInterface api, boolean printEmptyDocs)
 			throws IOException {
+		dumpCompareList(texts, expectedResult, computedResult, api, printEmptyDocs, null);
+	}
+	
+	/**
+	 * Dump, for each document of a dataset, the expected output (gold standard)
+	 * and the actual output (found by an annotator).
+	 * 
+	 * @param texts
+	 *            the instances of the dataset.
+	 * @param expectedResult
+	 *            the gold standard provided by a dataset, one for each instance
+	 *            (must have the same size as {@code texts}).
+	 * @param computedResult
+	 *            the solution found by an annotator, one for each instance
+	 *            (must have the same size as {@code texts}).
+	 * @param api
+	 *            the API to Wikipedia (needed to print information about
+	 *            annotations/tags).
+	 * @param printEmptyDocs
+	 *            whether or not to print documents with an empty gold standard
+	 *            and an empty solution.
+	 * @param mr
+	 *            match relation used to dump annotations about TP/FP/FN
+	 * @throws IOException
+	 *             if something went wrong while querying the Wikipedia API.
+	 */
+	public static <T extends Tag> void dumpCompareList(List<String> texts,
+			List<HashSet<T>> expectedResult, List<HashSet<T>> computedResult,
+			WikipediaApiInterface api, boolean printEmptyDocs, MatchRelation<T> mr)
+			throws IOException {
 		for (int i = 0; i < texts.size(); i++) {
 			if (printEmptyDocs
 					|| (!printEmptyDocs && (!expectedResult.get(i).isEmpty() || !computedResult
 							.get(i).isEmpty()))) {
-				DumpData.dumpCompare(texts.get(i), expectedResult.get(i),
-						computedResult.get(i), api);
+				DumpData.dumpCompareMatch(texts.get(i), expectedResult.get(i),
+						computedResult.get(i), mr, api);
 				System.out.println();
 			}
 		}
