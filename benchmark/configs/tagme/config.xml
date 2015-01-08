@@ -3,6 +3,6 @@
 <tagme>
         <setting name="access">
                 <param name="key" value="KEY" />
-                <param name="url" value="http://tagme.di.unipi.it/api" />
+                <param name="url" value="http://tagme.di.unipi.it/tag" />
         </setting>
 </tagme>
