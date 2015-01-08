@@ -248,10 +248,10 @@ public class Metrics<T> {
 	public HashSet<T> getSingleTp(HashSet<T> expectedResult, HashSet<T> computedResult,
 			MatchRelation<T> m) {
 		HashSet<T> tpsi = new HashSet<T>();
-		for (T a1 : computedResult)
-			for (T a2 : expectedResult)
+		for (T a1 : expectedResult)
+			for (T a2 : computedResult)
 				if (m.match(a1, a2)) {
-					tpsi.add(a1);
+					tpsi.add(a2);
 					break;
 				}
 		return tpsi;
