@@ -42,7 +42,7 @@ public class Annotation extends Tag implements Serializable, Cloneable{
 	}
 
 	@Override public int hashCode() {
-		return (""+this.getConcept()+m.hashCode()).hashCode();
+		return (this.getConcept()^m.hashCode());
 	}
 	
 	public static <E extends Tag> void prefetchRedirectList(List<HashSet<E>> annotations, WikipediaApiInterface api) throws IOException{
