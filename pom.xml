@@ -113,9 +113,9 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
-					<excludes>
+					<!--			<excludes>
 						<exclude>it/unipi/di/acube/batframework/systemPlugins/IllinoisAnnotatorServer.java</exclude>
-					</excludes>
+					</excludes>-->
 
 				</configuration>
 			</plugin>
