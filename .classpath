@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="it/acubelab/batframework/metrics/ProximityAnnotationMatch.java|it/acubelab/batframework/systemPlugins/TagMyQueryTagger.java" kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/dsiutils-2.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/fastutil-6.4.1.jar"/>
-	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/junit-4.7.jar"/>
-	<classpathentry kind="lib" path="lib/opencsv-2.3.jar"/>
-	<classpathentry kind="lib" path="benchmark/libs/aida/mpi-rmi-aida-public_20130218.jar"/>
-	<classpathentry kind="lib" path="benchmark/libs/illinois/edison-0.2.9.jar"/>
-	<classpathentry kind="lib" path="benchmark/libs/illinois/protobuf-java-2.3.0.jar"/>
-	<classpathentry kind="lib" path="benchmark/libs/illinois/Wikifier.jar"/>
-	<classpathentry kind="lib" path="lib/httpclient-4.0-beta1.jar"/>
-	<classpathentry kind="lib" path="lib/httpcore-4.0-beta2.jar"/>
-	<classpathentry kind="lib" path="lib/httpmime-4.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/apache-mime4j-0.6.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry excluding="it/unipi/di/acube/batframework/systemPlugins/IllinoisAnnotatorServer.java" kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src/main/test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/TagMe"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
