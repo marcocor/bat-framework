@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.unipi.di.acube</groupId>
 	<artifactId>bat-framework</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.3</version>
 	<name>BAT framework</name>
 	<description>A framework to compare entity annotation systems.</description>
 	<properties>
@@ -130,7 +130,7 @@
 		<connection>scm:git:https://github.com/marcocor/${project.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:marcocor/${project.artifactId}.git</developerConnection>
 		<url>https://github.com/marcocor/${project.artifactId}</url>
-		<tag>bat-framework-${project.version}</tag>
+		<tag>bat-framework-0.3</tag>
 	</scm>
 	<distributionManagement>
 		<snapshotRepository>
