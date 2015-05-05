@@ -5,7 +5,6 @@ import it.unipi.di.acube.batframework.data.Mention;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.HashSet;
 
 public interface D2WDataset extends TopicDataset {
 	public List<HashSet<Mention>> getMentionsInstanceList();

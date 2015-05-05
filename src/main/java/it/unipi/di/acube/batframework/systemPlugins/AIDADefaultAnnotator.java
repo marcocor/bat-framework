@@ -221,9 +221,11 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 		wr.close();
 
 		java.util.Scanner s = new java.util.Scanner(
-				slConnection.getInputStream()).useDelimiter("\\A");
+				slConnection.getInputStream());
+		s.useDelimiter("\\A");
 		String resultStr = s.hasNext() ? s.next() : "";
-
+		s.close();
+		
 		if (resultStr.equals("ERROR: Failed Disambiguating"))
 			return null;
 

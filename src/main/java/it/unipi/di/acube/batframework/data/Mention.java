@@ -2,8 +2,6 @@ package it.unipi.di.acube.batframework.data;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 public class Mention implements Serializable, Cloneable, Comparable<Mention> {
 	private static final long serialVersionUID = 1L;
 	private int position; // starting position of the annotation in the original

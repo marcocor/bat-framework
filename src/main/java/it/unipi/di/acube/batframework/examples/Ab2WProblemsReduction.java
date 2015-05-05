@@ -8,7 +8,6 @@
 package it.unipi.di.acube.batframework.examples;
 
 import java.util.HashSet;
-import java.util.HashSet;
 
 import it.unipi.di.acube.batframework.data.*;
 import it.unipi.di.acube.batframework.utils.*;

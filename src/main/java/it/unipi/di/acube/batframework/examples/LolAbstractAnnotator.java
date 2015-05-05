@@ -14,7 +14,6 @@ import it.unipi.di.acube.batframework.utils.ProblemReduction;
 
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.HashSet;
 
 public class LolAbstractAnnotator implements Ab2WSystem{
 	private long lastAnnotation = -1;

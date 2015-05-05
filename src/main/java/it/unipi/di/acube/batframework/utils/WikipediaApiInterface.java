@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 import javax.xml.parsers.*;
 import javax.xml.xpath.*;
+
 import org.w3c.dom.*;
 import org.xml.sax.*;
 
@@ -32,7 +33,8 @@ public class WikipediaApiInterface {
 	 * @param bidiTitle2widCacheFileName title to wid cache file name. Pass null to avoid the cache.
 	 * @param wid2redirectCacheFileName redirect cache file name. Pass null to avoid the cache.
 	 */
-	public WikipediaApiInterface(String bidiTitle2widCacheFileName, String wid2redirectCacheFileName) {
+	@SuppressWarnings("unchecked")
+    public WikipediaApiInterface(String bidiTitle2widCacheFileName, String wid2redirectCacheFileName) {
 		if (bidiTitle2widCacheFileName == null)
 			//will not load/store the mapping to a file, keeping all the data in memory
 			bidiTitle2wid = new BidiObjectIntHashMap<String>();

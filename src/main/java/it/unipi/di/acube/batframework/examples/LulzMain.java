@@ -7,8 +7,6 @@
 
 package it.unipi.di.acube.batframework.examples;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.*;
 
 import it.unipi.di.acube.batframework.cache.*;

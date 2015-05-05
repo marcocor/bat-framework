@@ -13,7 +13,6 @@ import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.HashSet;
 import java.util.Vector;
 
 
