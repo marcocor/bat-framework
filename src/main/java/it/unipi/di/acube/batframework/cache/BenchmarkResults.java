@@ -13,7 +13,6 @@ import it.unipi.di.acube.batframework.data.ScoredAnnotation;
 import it.unipi.di.acube.batframework.data.ScoredTag;
 import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.TopicDataset;
-import it.unipi.di.acube.batframework.utils.Pair;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -52,34 +51,33 @@ public class BenchmarkResults implements Serializable {
 	private HashMap<String, HashMap<String, HashMap<String, Long>>> Sc2Wtimings = new HashMap<String, HashMap<String, HashMap<String, Long>>>();
 
 	public void putC2WTiming(String taggerName, String datasetName,
-			String text, long time) throws Exception {
+			String text, long time) {
 		putTiming(C2Wtimings, taggerName, datasetName, text, time);
 	}
 
 	public void putD2WTiming(String taggerName, String datasetName,
-			String text, long time) throws Exception {
+			String text, long time) {
 		putTiming(D2Wtimings, taggerName, datasetName, text, time);
 	}
 
 	public void putSa2WTiming(String taggerName, String datasetName,
-			String text, long time) throws Exception {
+			String text, long time) {
 		putTiming(Sa2Wtimings, taggerName, datasetName, text, time);
 	}
 
 	public void putA2WTiming(String taggerName, String datasetName,
-			String text, long time) throws Exception {
+			String text, long time) {
 		putTiming(A2Wtimings, taggerName, datasetName, text, time);
 	}
 
 	public void putSc2WTiming(String taggerName, String datasetName,
-			String text, long time) throws Exception {
+			String text, long time) {
 		putTiming(Sc2Wtimings, taggerName, datasetName, text, time);
 	}
 
 	private void putTiming(
 			HashMap<String, HashMap<String, HashMap<String, Long>>> timings,
-			String taggerName, String datasetName, String text, long time)
-			throws Exception {
+			String taggerName, String datasetName, String text, long time) {
 		if (!timings.containsKey(taggerName))
 			timings.put(taggerName,
 					new HashMap<String, HashMap<String, Long>>());

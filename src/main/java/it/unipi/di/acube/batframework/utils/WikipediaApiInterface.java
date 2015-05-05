@@ -29,13 +29,10 @@ public class WikipediaApiInterface {
 	private int queries = 0; //counter for the sent queries
 
 	/**
-	 * @param bidiTitle2widCacheFileName pass null to avoid the cache.
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param bidiTitle2widCacheFileName title to wid cache file name. Pass null to avoid the cache.
+	 * @param wid2redirectCacheFileName redirect cache file name. Pass null to avoid the cache.
 	 */
-	@SuppressWarnings("unchecked")
-	public WikipediaApiInterface(String bidiTitle2widCacheFileName,String wid2redirectCacheFileName) throws FileNotFoundException, IOException, ClassNotFoundException{
+	public WikipediaApiInterface(String bidiTitle2widCacheFileName, String wid2redirectCacheFileName) {
 		if (bidiTitle2widCacheFileName == null)
 			//will not load/store the mapping to a file, keeping all the data in memory
 			bidiTitle2wid = new BidiObjectIntHashMap<String>();
@@ -93,10 +90,7 @@ public class WikipediaApiInterface {
 	 * Note that if the given title redirects to a second page, the id of the second page if returned.
 	 * @param title the wikipedia article title. (Eg. "Barack Obama")
 	 * @return the wikipedia id for the article, or -1 if the article was not found.
-	 * @throws IOException 
-	 * @throws ParserConfigurationException 
-	 * @throws SAXException 
-	 * @throws XPathExpressionException 
+	 * @throws IOException on a connection error towards Wikipedia api.
 	 */
 	public int getIdByTitle(String title) throws IOException{
 		title = normalize(title);

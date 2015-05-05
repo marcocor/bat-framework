@@ -31,6 +31,8 @@ public class DumpData {
 	 * @param api
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
+	 * @param <T1>
+	 *            the type of this dataset's gold standard.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
@@ -51,6 +53,8 @@ public class DumpData {
 	 * @param api
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
+	 * @param <T1>
+	 *            the type of this output's gold standard.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
@@ -76,6 +80,8 @@ public class DumpData {
 	 * @param api
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
+	 * @param <T>
+	 *            the type of this list elements.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
@@ -104,6 +110,8 @@ public class DumpData {
 	 * @param printEmptyDocs
 	 *            whether or not to print documents with an empty gold standard
 	 *            and an empty solution.
+	 * @param <T>
+	 *            the type of these lists elements.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
@@ -134,6 +142,8 @@ public class DumpData {
 	 *            and an empty solution.
 	 * @param mr
 	 *            match relation used to dump annotations about TP/FP/FN
+	 * @param <T>
+	 *            the type of these lists elements.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
@@ -168,6 +178,10 @@ public class DumpData {
 	 * @param api
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
+	 * @param mr
+	 *            a match relation to compare the results.
+	 * @param <T>
+	 *            the type of result.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */

@@ -86,12 +86,11 @@ public class BenchmarkCache {
 
 	/**Use the given tagger to annotate the whole dataset.
 	 * @param annotator the system used to tag the dataset.
-	 * @param datasetTexts the documents of the dataset.
+	 * @param ds the dataset.
 	 * @return a list containing the annotations found by the tagger.
 	 * The annotations are in the same order of the documents given by argument.
-	 * @throws Exception 
 	 */
-	public static List<HashSet<Annotation>> doA2WAnnotations(A2WSystem annotator, C2WDataset ds) throws Exception{
+	public static List<HashSet<Annotation>> doA2WAnnotations(A2WSystem annotator, C2WDataset ds) {
 		List<HashSet<Annotation>> computedAnns = new Vector<HashSet<Annotation>>();
 		for (String doc : ds.getTextInstanceList()){
 			HashSet<Annotation> res = resultsCache.getA2WResult(annotator.getName(), doc);

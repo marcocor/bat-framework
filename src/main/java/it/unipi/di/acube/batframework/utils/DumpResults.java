@@ -31,68 +31,6 @@ public class DumpResults {
 		}
 	}
 
-	/*
-	 * //this test features the proximity of wrong concepts to the correct ones,
-	 * but needs the relatedness measure which is provided by tagme. private
-	 * static void proximityTest(Vector<Sa2WSystem> annotators,
-	 * Vector<A2WDataset> dss, WikipediaApiInterface api, HashMap<String,
-	 * HashMap<String, HashMap<String, HashMap<String, Float>>>> bestThresholds)
-	 * throws Exception {
-	 * TagmeConfig.init("benchmark/configs/tagme/config.xml"); Relatedness rel =
-	 * new Relatedness("en"); WeakAnnotationMatch wam = new
-	 * WeakAnnotationMatch(api); MentionAnnotationMatch mam = new
-	 * MentionAnnotationMatch();
-	 * 
-	 * for (Sa2WSystem annotator: annotators) for (A2WDataset ds: dss){
-	 * 
-	 * HashMap<String, Float> values = getBestThresholdValues(bestThresholds,
-	 * wam.getName(), annotator.getName(), ds.getName()); // System.out.printf(
-	 * "%s\t%s\t%.3f\tHashMap<String, HashMap<String, HashMap<String, List<HashMap<String, Float>>>>>%.3f\t%.3f\t%.3f%n"
-	 * , ds.getName(), annotator.getName(), values.get("threshold"),
-	 * values.get("micro-f1"), values.get("micro-precision"),
-	 * values.get("micro-recall"));
-	 * 
-	 * List<HashSet<Annotation>> gs =
-	 * wam.preProcessGoldStandard(ds.getA2WGoldStandardList());
-	 * List<HashSet<ScoredAnnotation>> annotations =
-	 * Benchmark.doSa2WAnnotations(annotator, ds); List<HashSet<Annotation>>
-	 * reducedAnns =
-	 * wam.preProcessOutput(ProblemReduction.Sa2WToA2WList(annotations,
-	 * values.get("threshold")));
-	 * 
-	 * int n=20; int[] counter = new int[n]; int totalCount = 0; double sumRel =
-	 * 0;
-	 * 
-	 * for (int i=0; i<ds.getSize(); i++){ //String instanceI =
-	 * ds.getTextInstanceList().get(i); HashSet<Annotation> gsI = gs.get(i);
-	 * HashSet<Annotation> outI = reducedAnns.get(i); for (Annotation aOut:
-	 * outI){ float bestRel = -1; for (Annotation aGs: gsI) if (!wam.match(aOut,
-	 * aGs) && mam.match(aOut, aGs)) try{ bestRel = Math.max(bestRel,
-	 * rel.rel(aOut.getConcept(), aGs.getConcept())); } catch
-	 * (ArrayIndexOutOfBoundsException e){ //do nothing. } if (bestRel >= 0){
-	 * totalCount++; sumRel+=bestRel; counter[bestRel==1? n-1 : (int)
-	 * Math.floor(n*bestRel)]++; } } }
-	 * 
-	 * System.out.println("Avg. rel for "+annotator.getName()+"="+sumRel/(double)
-	 * totalCount);
-	 * 
-	 * String suffix = annotator.getName().replaceAll("[^a-zA-Z0-9]",
-	 * "").toLowerCase()+"_"+ds.getName().replaceAll("[^a-zA-Z0-9]",
-	 * "").toLowerCase() +".dat"; OutputStreamWriter relOs = new
-	 * OutputStreamWriter(new FileOutputStream("fp_relatedness_"+suffix)); for
-	 * (int i=0; i<counter.length; i++){
-	 * //System.out.printf("%.2f-%.2f: %d%n",(float)i/(float)n,
-	 * (float)(i+1)/(float)n, counter[i]); //relOs.write((float)i/(float)n +
-	 * "\t" + counter[i]+"\n"); int partSum = 0; for (int j=i; j<counter.length;
-	 * j++) partSum+=counter[j]; relOs.write((float)i/(float)n + "\t"
-	 * +(float)partSum/(float)totalCount +"\n"); } relOs.close();
-	 * 
-	 * }
-	 * 
-	 * 
-	 * }
-	 */
-
 	/**
 	 * Writes (as {@code .dat} gnuplot data) the micro-F1, micro-precision and
 	 * micro-recall achieved for each combination of Match relation - Annotator
@@ -113,8 +51,14 @@ public class DumpResults {
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
 	 * @param threshRecords
-	 *            the hashmap in the form metric -> annotator -> dataset ->
+	 *            the hashmap in the form metric -&gt; annotator -&gt; dataset -&gt;
 	 *            (threshold, results) where the results are stored.
+	 * @param <T1>
+	 *            the type of system.
+	 * @param <T2>
+	 *            the type of system's output.
+	 * @param <T3>
+	 *            the type of dataset.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
@@ -203,7 +147,7 @@ public class DumpResults {
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
 	 * @param threshRecords
-	 *            the hashmap in the form metric -> annotator -> dataset ->
+	 *            the hashmap in the form metric -&gt; annotator -&gt; dataset -&gt;
 	 *            (threshold, results) where the results are stored.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
@@ -250,23 +194,36 @@ public class DumpResults {
 	 * @param a2wAnnotators
 	 *            The set of A2W Annotators for which the best result will be
 	 *            included in the output.
-	 * @param a2wAnnotators
+	 * @param d2wAnnotators
 	 *            The set of D2W Annotators for which the best result will be
 	 *            included in the output.
 	 * @param sa2wAnnotators
 	 *            The set of Sa2W Annotators for which the best result will be
 	 *            included.
-	 * @param sc2wAnnotator
+	 * @param sc2wAnnotators
 	 *            The set of Sc2W Annotators for which the best result will be
 	 *            included.
+	 * @param c2wAnnotators
+	 *            The set of C2W Annotators for which the best result will be
+	 *            included in the output.
 	 * @param dss
 	 *            The datasets for which the best result will be included.
 	 * @param includeTpFpFn
 	 *            true if the output table has to include the total number of
 	 *            tp/fp/fn
 	 * @param threshRecords
-	 *            the hashmap in the form metric -> annotator -> dataset ->
+	 *            the hashmap in the form metric -&gt; annotator -&gt; dataset -&gt;
 	 *            (threshold, results) where the results are stored.
+	 * @param includeMicro
+	 *            whether or not to include micro-measures in the table
+	 * @param includeMacro
+	 *            whether or not to include macro-measures in the table
+	 * @param includeTpFpFn
+	 *            whether or not to include TP, FP and FN count in the table
+	 * @param <T>
+	 *            the type of data on which the match relation operates.
+	 * @param <D>
+	 *            the type of dataset.
 	 */
 	public static <T extends Tag, D extends TopicDataset> void latexCorrectnessPerformance(
 			Vector<MatchRelation<T>> matchRels,
@@ -358,11 +315,13 @@ public class DumpResults {
 	 * @param sa2wAnnotators
 	 *            the Sa2W annotators whose similarity will be printed.
 	 * @param threshRecords
-	 *            the hashmap in the form metric -> annotator -> dataset ->
+	 *            the hashmap in the form metric -&gt; annotator -&gt; dataset -&gt;
 	 *            (threshold, results) where the results are stored.
 	 * @param api
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
+	 * @param <D>
+	 *            the type of dataset.
 	 * @throws Exception
 	 *             if anything went wrong while retrieving the results.
 	 */
@@ -544,7 +503,7 @@ public class DumpResults {
 	 * @param sa2wAnnotators
 	 *            the Sa2W annotators whose similarity will be printed.
 	 * @param threshRecords
-	 *            the hashmap in the form metric -> annotator -> dataset ->
+	 *            the hashmap in the form metric -&gt; annotator -&gt; dataset -&gt;
 	 *            (threshold, results) where the results are stored.
 	 * @param api
 	 *            the API to Wikipedia (needed to print information about
@@ -622,6 +581,8 @@ public class DumpResults {
 	 *            The Sc2W annotators that will be included in the output.
 	 * @param dss
 	 *            The datasets that will be included in the output.
+	 * @param <D>
+	 *            the type of dataset.
 	 * @throws Exception
 	 *             if the cache does not contain records about the given
 	 *             dataset/annotator avg. time.
@@ -679,14 +640,18 @@ public class DumpResults {
 	 * 
 	 * @param sa2wAnnotators
 	 *            The Sa2W annotators that will be included in the output.
+	 * @param sc2wAnnotators
+	 *            The Sc2W annotators that will be included in the output.
 	 * @param dss
 	 *            The datasets that will be included in the output.
+	 * @param <D>
+	 *            the type of dataset.
 	 * @throws Exception
 	 *             if the cache does not contain records about the given
 	 *             dataset/annotator avg. time.
 	 */
 	public static <D extends TopicDataset> void latexTimingPerformance2(
-			Vector<Sa2WSystem> sa2wTaggers, Vector<Sc2WSystem> sc2wTaggers,
+			Vector<Sa2WSystem> sa2wAnnotators, Vector<Sc2WSystem> sc2wAnnotators,
 			Vector<D> dss) throws Exception {
 		System.out.println("Timing performance - latex output 2");
 
@@ -695,8 +660,8 @@ public class DumpResults {
 			System.out.printf(LOCALE, " & " + ds.getName());
 		System.out.printf(LOCALE, " \n \\hline%n");
 
-		if (sa2wTaggers != null)
-			for (Sa2WSystem t : sa2wTaggers) {
+		if (sa2wAnnotators != null)
+			for (Sa2WSystem t : sa2wAnnotators) {
 				System.out.printf(LOCALE, t.getName());
 				for (TopicDataset d : dss)
 					System.out.printf(
@@ -708,8 +673,8 @@ public class DumpResults {
 				System.out.printf(LOCALE, "\\hline%n");
 
 			}
-		if (sc2wTaggers != null)
-			for (Sc2WSystem t : sc2wTaggers) {
+		if (sc2wAnnotators != null)
+			for (Sc2WSystem t : sc2wAnnotators) {
 				System.out.printf(LOCALE, t.getName());
 				for (TopicDataset d : dss)
 					System.out.printf(
@@ -791,6 +756,9 @@ public class DumpResults {
 	 * @param a2wAnnotators
 	 *            The set of A2W Annotators for which the best result will be
 	 *            included in the output.
+	 * @param d2wAnnotators
+	 *            The set of D2W Annotators for which the best result will be
+	 *            included in the output.
 	 * @param sa2wAnnotators
 	 *            The set of Sa2W Annotators for which the best result will be
 	 *            included.
@@ -800,8 +768,12 @@ public class DumpResults {
 	 * @param dss
 	 *            The datasets for which the best result will be included.
 	 * @param threshRecords
-	 *            the hashmap in the form metric -> annotator -> dataset ->
+	 *            the hashmap in the form metric -&gt; annotator -&gt; dataset -&gt;
 	 *            (threshold, results) where the results are stored.
+	 * @param <T>
+	 *            the type of data on which the match relation operates.
+	 * @param <D>
+	 *            the type of dataset.
 	 */
 	public static <T extends Tag, D extends TopicDataset> void printCorrectnessPerformance(
 			Vector<MatchRelation<T>> matchRels,
@@ -828,7 +800,7 @@ public class DumpResults {
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
 	 * @param threshRecords
-	 *            the hashmap in the form metric -> annotator -> dataset ->
+	 *            the hashmap in the form metric -&gt; annotator -&gt; dataset -&gt;
 	 *            (threshold, results) where the results are stored.
 	 * @throws Exception
 	 *             if something went wrong while retrieving the results.
@@ -836,7 +808,7 @@ public class DumpResults {
 	public static void printDissimilarityA2W(
 			Vector<A2WDataset> dssA2W,
 			Vector<Sa2WSystem> sa2wAnnotators,
-			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> bestThresholds,
+			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords,
 			WikipediaApiInterface api) throws Exception {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
 		WeakAnnotationMatch m = new WeakAnnotationMatch(api);
@@ -861,11 +833,11 @@ public class DumpResults {
 
 					List<HashSet<Annotation>> reducedT1Tags = ProblemReduction
 							.Sa2WToA2WList(t1Annotations, RunExperiments
-									.getBestRecord(bestThresholds, m.getName(),
+									.getBestRecord(threshRecords, m.getName(),
 											t1.getName(), ds.getName()).first);
 					List<HashSet<Annotation>> reducedT2Tags = ProblemReduction
 							.Sa2WToA2WList(t2Annotations, RunExperiments
-									.getBestRecord(bestThresholds, m.getName(),
+									.getBestRecord(threshRecords, m.getName(),
 											t2.getName(), ds.getName()).first);
 
 					List<HashSet<Annotation>> out1Tp = metrics.getTp(
@@ -983,6 +955,8 @@ public class DumpResults {
 	 * @param api
 	 *            the API to Wikipedia (needed to print information about
 	 *            annotations/tags).
+	 * @param <E>
+	 *            the type of system output and dataset.
 	 * @throws IOException
 	 *             if something went wrong while querying the Wikipedia API.
 	 */

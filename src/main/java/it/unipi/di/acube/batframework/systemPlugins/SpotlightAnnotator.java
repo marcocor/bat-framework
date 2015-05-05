@@ -90,6 +90,7 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	 *            the text to send
 	 * @param service
 	 *            the endpoint service to use
+	 * @return the set of scored annotations found by Spotlight.
 	 */
 	public HashSet<ScoredAnnotation> getSpotlightAnnotations(String text, Service service) {
 		//dbpedia spotlight cannot handle documents made only of whitespaces...
@@ -286,10 +287,6 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	public enum DisambiguationPolicy {
 		Document, Occurrences, CuttingEdge, Default, GraphBased;
 
-		/**
-		 * @throws IllegalArgumentException
-		 *             if there are no or invalid policies as argument.
-		 */
 		public static List<DisambiguationPolicy> parsePoliciesFromArgs(String[] args) {
 			List<DisambiguationPolicy> policies = new ArrayList<>();
 			for (String arg : args) {

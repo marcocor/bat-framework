@@ -34,7 +34,7 @@ public class BidiObjectIntHashMap<E> implements Serializable {
 	}
 	
 	/**Use n==-1 to indicate a missing value.
-	 * @param o
+	 * @param o an object
 	 * @param n must be positive.
 	 */
 	public void put(E o, int n){

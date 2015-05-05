@@ -22,7 +22,7 @@ public interface Sa2WSystem extends A2WSystem, Sc2WSystem{
 	 * @param text a text to tag.
 	 * @return a set containing the tags found for the given text, with a score associated to it representing
 	 * the relevance of the topic to the text.
-	 * @throws AnnotationException 
+	 * @throws AnnotationException if text annotation did not succeed.
 	 */
 	public HashSet<ScoredAnnotation> solveSa2W(String text) throws AnnotationException;
 

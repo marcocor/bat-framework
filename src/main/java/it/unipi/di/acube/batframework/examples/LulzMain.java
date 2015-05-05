@@ -21,11 +21,6 @@ import it.unipi.di.acube.batframework.utils.*;
 
 public class LulzMain {
 
-	/**
-	 * @param args
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
-	 */
 	public static void main(String[] args) throws Exception {
 		//Store the cache in a file (for future executions).
 		BenchmarkCache.useCache("benchmark/cache/results.cache");

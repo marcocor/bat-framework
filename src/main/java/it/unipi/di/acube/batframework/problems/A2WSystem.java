@@ -21,7 +21,7 @@ public interface A2WSystem extends C2WSystem, D2WSystem{
 	/**
 	 * @param text a text to tag.
 	 * @return a set containing the annotation found for the given text.
-	 * @throws AnnotationException 
+	 * @throws AnnotationException if text annotation did not succeed.
 	 */
 	public HashSet<Annotation> solveA2W(String text) throws AnnotationException;
 

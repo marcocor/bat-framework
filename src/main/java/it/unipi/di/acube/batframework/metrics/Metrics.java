@@ -135,9 +135,9 @@ public class Metrics<T> {
 	}
 
 	/**
-	 * @param list1
-	 * @param list2
-	 * @param m
+	 * @param list1 a list of sets
+	 * @param list2 another list of sets
+	 * @param m a match relation between elements of those sets.
 	 * @return the amount of elements of list1 that match with an element of
 	 *         list 2 + viceversa. (is reflexive)
 	 */

@@ -32,7 +32,7 @@ public class ProblemReduction {
 	 * Adapt a list of solutions for an A2W problem instance to C2W, discarding
 	 * the mentions and keeping the set of concepts.
 	 * 
-	 * @param tags
+	 * @param tagsList
 	 *            a A2W solution.
 	 * @return the list of adapted solutions for the C2W problem.
 	 */
@@ -50,8 +50,6 @@ public class ProblemReduction {
 	 * 
 	 * @param scoredAnns
 	 *            the solution of the Sa2W problem.
-	 * @param threshold
-	 *            all annotations scored under this threshold will be discarded.
 	 * @return the adapted solution of the A2W problem.
 	 */
 	public static HashSet<Annotation> Sa2WToA2W(

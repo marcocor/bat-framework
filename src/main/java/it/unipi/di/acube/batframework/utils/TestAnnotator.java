@@ -21,6 +21,7 @@ public class TestAnnotator {
 	 * Check that the output of an annotator is correctly formed.
 	 * @param ds a dataset.
 	 * @param computedAnnotations the output of the annotator for dataset {@code ds}.
+	 * @param <T> type of output
 	 * @throws AnnotationException if the output is malformed.
 	 */
 	public static <T extends Tag> void checkOutput(A2WDataset ds, List<HashSet<T>> computedAnnotations) throws AnnotationException {
