@@ -27,6 +27,7 @@ public class WikipediaApiInterface {
 	File bidiTitle2widCache = null;
 	Int2IntMap wid2redirect = null;// mapping between source and destination of a redirect. If the page identified by id is not a redirect, then wid2redirect.get(id) == id
 	File wid2redirectCache = null;
+	public static final String wikiApiBaseUrl = "https://en.wikipedia.org/w/api.php";
 	private int queries = 0; //counter for the sent queries
 
 	/**
@@ -197,7 +198,7 @@ public class WikipediaApiInterface {
 
 		//query to resolve redirections
 		incrementAutoFlushCounter();
-		URL wikiApi = new URL("http://en.wikipedia.org/w/api.php?format=xml&action=query&prop=info&redirects=&pageids="+requestList);
+		URL wikiApi = new URL(wikiApiBaseUrl + "?format=xml&action=query&prop=info&redirects=&pageids="+requestList);
 		System.out.println("Querying "+wikiApi);
 		URLConnection wikiConnection = wikiApi.openConnection();
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -350,7 +351,7 @@ public class WikipediaApiInterface {
 				titlesQuery += (j==i ? "":"|")+URLEncoder.encode(titlesToActuallyPrefetch.get(j), "UTF-8");
 
 
-			URL wikiApi = new URL("http://en.wikipedia.org/w/api.php?format=xml&action=query&prop=info&titles="+titlesQuery);
+			URL wikiApi = new URL(wikiApiBaseUrl + "?format=xml&action=query&prop=info&titles="+titlesQuery);
 			System.out.println("Querying "+wikiApi);
 			processNonRedirectQueryResult(wikiApi);
 		}
@@ -377,7 +378,7 @@ public class WikipediaApiInterface {
 				widsQuery += (j==i ? "":"|") + widsToActuallyPrefetch[j];
 
 
-			URL wikiApi = new URL("http://en.wikipedia.org/w/api.php?format=xml&action=query&prop=info&pageids="+widsQuery);
+			URL wikiApi = new URL(wikiApiBaseUrl + "?format=xml&action=query&prop=info&pageids="+widsQuery);
 			System.out.println("Querying "+wikiApi);
 			processNonRedirectQueryResult(wikiApi);
 		}
