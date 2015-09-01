@@ -24,9 +24,9 @@ public class Metrics<T> {
 		float microPrecision = precision(tp, fp);
 		float microRecall = recall(tp, fp, fn);
 		float microF1 = F1(microRecall, microPrecision);
-		int[] tps = singleTpCount(goldStandard, output, m);
-		int[] fps = singleFpCount(goldStandard, output, m);
-		int[] fns = singleFnCount(goldStandard, output, m);
+		int[] tps = tpArray(goldStandard, output, m);
+		int[] fps = fpArray(goldStandard, output, m);
+		int[] fns = fnArray(goldStandard, output, m);
 		float macroPrecision = macroPrecision(tps, fps);
 		float macroRecall = macroRecall(tps, fps, fns);
 		float macroF1 = macroF1(tps, fps, fns);
@@ -412,7 +412,7 @@ public class Metrics<T> {
 	private int tpCountPreprocessed(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int tp = 0;
-		for (int tpi : singleTpCount(expectedResult, computedResult, m))
+		for (int tpi : tpArray(expectedResult, computedResult, m))
 			tp += tpi;
 		return tp;
 	}
@@ -438,7 +438,7 @@ public class Metrics<T> {
 	private int fpCountPreprocessed(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int fp = 0;
-		for (int fpi : singleFpCount(expectedResult, computedResult, m))
+		for (int fpi : fpArray(expectedResult, computedResult, m))
 			fp += fpi;
 		return fp;
 	}
@@ -465,7 +465,7 @@ public class Metrics<T> {
 	private int fnCountPreprocessed(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int fn = 0;
-		for (int fni : singleFnCount(expectedResult, computedResult, m))
+		for (int fni : fnArray(expectedResult, computedResult, m))
 			fn += fni;
 		return fn;
 	}
@@ -488,7 +488,7 @@ public class Metrics<T> {
 	 *         positives, keeping the ordering and size of the lists given by
 	 *         argument.
 	 */
-	private int[] singleTpCount(List<HashSet<T>> expectedResult,
+	private int[] tpArray(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int[] tps = new int[computedResult.size()];
 		for (int i = 0; i < computedResult.size(); i++)
@@ -507,7 +507,7 @@ public class Metrics<T> {
 	 *         positives, keeping the ordering and size of the lists given by
 	 *         argument.
 	 */
-	private int[] singleFpCount(List<HashSet<T>> expectedResult,
+	private int[] fpArray(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int[] fps = new int[computedResult.size()];
 		for (int i = 0; i < computedResult.size(); i++)
@@ -526,7 +526,7 @@ public class Metrics<T> {
 	 *         negatives, keeping the ordering and size of the lists given by
 	 *         argument.
 	 */
-	private int[] singleFnCount(List<HashSet<T>> expectedResult,
+	private int[] fnArray(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
 		int[] fns = new int[expectedResult.size()];
 		for (int i = 0; i < expectedResult.size(); i++)
@@ -534,5 +534,45 @@ public class Metrics<T> {
 					m).size();
 		return fns;
 	}
+	
+	/**
+	 * @param expectedResult
+	 *            the gold standard for one instance.
+	 * @param computedResult
+	 *            the elements found by the system.
+	 * @return the precision of the system for this instance.
+	 */
+	public float singlePrecision(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
+		int tp = getSingleTp(expectedResult, computedResult, m).size();
+		int fp = getSingleFp(expectedResult, computedResult, m).size();
+		return precision(tp, fp);
+	}
+	
+	/**
+	 * @param expectedResult
+	 *            the gold standard for one instance.
+	 * @param computedResult
+	 *            the elements found by the system.
+	 * @return the recall of the system for this instance.
+	 */
+	public float singleRecall(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
+		int tp = getSingleTp(expectedResult, computedResult, m).size();
+		int fp = getSingleFp(expectedResult, computedResult, m).size();
+		int fn = getSingleFn(expectedResult, computedResult, m).size();
+		return recall(tp, fp, fn);
+	}
 
+	/**
+	 * @param expectedResult
+	 *            the gold standard for one instance.
+	 * @param computedResult
+	 *            the elements found by the system.
+	 * @return the F1 of the system for this instance.
+	 */
+	public float singleF1(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
+		int tp = getSingleTp(expectedResult, computedResult, m).size();
+		int fp = getSingleFp(expectedResult, computedResult, m).size();
+		int fn = getSingleFn(expectedResult, computedResult, m).size();
+		return F1(recall(tp, fp, fn), precision(tp, fp));
+	}
 }
