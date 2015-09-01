@@ -542,7 +542,7 @@ public class Metrics<T> {
 	 *            the elements found by the system.
 	 * @return the precision of the system for this instance.
 	 */
-	public float singlePrecision(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
+	public float getSinglePrecision(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
 		int tp = getSingleTp(expectedResult, computedResult, m).size();
 		int fp = getSingleFp(expectedResult, computedResult, m).size();
 		return precision(tp, fp);
@@ -555,7 +555,7 @@ public class Metrics<T> {
 	 *            the elements found by the system.
 	 * @return the recall of the system for this instance.
 	 */
-	public float singleRecall(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
+	public float getSingleRecall(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
 		int tp = getSingleTp(expectedResult, computedResult, m).size();
 		int fp = getSingleFp(expectedResult, computedResult, m).size();
 		int fn = getSingleFn(expectedResult, computedResult, m).size();
@@ -569,7 +569,7 @@ public class Metrics<T> {
 	 *            the elements found by the system.
 	 * @return the F1 of the system for this instance.
 	 */
-	public float singleF1(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
+	public float getSingleF1(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
 		int tp = getSingleTp(expectedResult, computedResult, m).size();
 		int fp = getSingleFp(expectedResult, computedResult, m).size();
 		int fn = getSingleFn(expectedResult, computedResult, m).size();
