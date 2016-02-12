@@ -29,7 +29,7 @@ import org.aksw.gerbil.transfer.nif.data.NamedEntity;
 import org.w3c.dom.*;
 
 public class Exporter {
-	public static final String BASE_WIKIPEDIA_URI = "http://en.wikipedia.org/wiki/";
+	public static final String BASE_DBPEDIA_URI = "http://dbpedia.org/resource/";
 
 	/**
 	 * Export an A2W dataset in readable XML format.
@@ -308,12 +308,8 @@ public class Exporter {
 		}
 	}
 
-	public static String getWikipediaURI(String title) {
-		try {
-			return BASE_WIKIPEDIA_URI + URLEncoder.encode(title, "utf8").replace("+", "%20");
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
+	public static String getDBPediaURI(String title) {
+		return BASE_DBPEDIA_URI + WikipediaApiInterface.normalize(title);
 	}
 
 	public static void exportToNif(A2WDataset ds, String baseUri, WikipediaApiInterface wikiApi, OutputStream outputStream) {
@@ -330,7 +326,7 @@ public class Exporter {
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 				}
-				d.addMarking(new NamedEntity(a.getPosition(), a.getLength(), getWikipediaURI(title)));
+				d.addMarking(new NamedEntity(a.getPosition(), a.getLength(), getDBPediaURI(title)));
 			}
 			documents.add(d);
 		}
