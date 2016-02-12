@@ -14,6 +14,7 @@ import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.problems.C2WDataset;
 
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.*;
 
 import javax.xml.parsers.*;
@@ -21,9 +22,14 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.aksw.gerbil.io.nif.NIFWriter;
+import org.aksw.gerbil.io.nif.impl.TurtleNIFWriter;
+import org.aksw.gerbil.transfer.nif.data.DocumentImpl;
+import org.aksw.gerbil.transfer.nif.data.NamedEntity;
 import org.w3c.dom.*;
 
 public class Exporter {
+	public static final String BASE_WIKIPEDIA_URI = "http://en.wikipedia.org/wiki/";
 
 	/**
 	 * Export an A2W dataset in readable XML format.
@@ -302,4 +308,33 @@ public class Exporter {
 		}
 	}
 
+	public static String getWikipediaURI(String title) {
+		try {
+			return BASE_WIKIPEDIA_URI + URLEncoder.encode(title, "utf8").replace("+", "%20");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static void exportToNif(A2WDataset ds, String baseUri, WikipediaApiInterface wikiApi, OutputStream outputStream) {
+		List<org.aksw.gerbil.transfer.nif.Document> documents = new Vector<>();
+
+		for (int i = 0; i < ds.getSize(); i++) {
+			String text = ds.getTextInstanceList().get(i);
+			org.aksw.gerbil.transfer.nif.Document d = new DocumentImpl(text, baseUri + "/doc" + i);
+
+			for (it.unipi.di.acube.batframework.data.Annotation a : ds.getA2WGoldStandardList().get(i)) {
+				String title;
+				try {
+					title = wikiApi.getTitlebyId(a.getConcept());
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+				d.addMarking(new NamedEntity(a.getPosition(), a.getLength(), getWikipediaURI(title)));
+			}
+			documents.add(d);
+		}
+		NIFWriter writer = new TurtleNIFWriter();
+		writer.writeNIF(documents, outputStream);
+	}
 }
