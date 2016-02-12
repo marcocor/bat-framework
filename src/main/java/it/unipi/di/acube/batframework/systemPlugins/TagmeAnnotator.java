@@ -143,7 +143,7 @@ public class TagmeAnnotator implements Sa2WSystem {
 			if (minComm >= 0)
 				params += "&min_comm=" + minComm;
 			if (minLink >= 0)
-				params += "&min_link=" + minLink;
+				params += "&min_lp=" + minLink;
 			params += "&text=" + URLEncoder.encode(text, "UTF-8");
 			URL wikiApi = new URL(url);
 
