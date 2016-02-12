@@ -1,0 +1,92 @@
+
+TREC-1	adobe indian houses
+TREC-2	atypical squamous cells
+TREC-3	battles in the civil war
+TREC-4	becoming a paralegal
+TREC-5	best long term care insurance
+TREC-6	blue throated hummingbird
+TREC-7	bowflex power pro
+TREC-8	brooks brothers clearance
+TREC-9	butter and margarine
+TREC-10	california franchise tax board
+TREC-11	cass county missouri
+TREC-12	civil right movement
+TREC-13	condos in florida
+TREC-14	culpeper national cemetery
+TREC-15	dangers of asbestos
+TREC-16	designer dog breeds
+TREC-17	discovery channel store
+TREC-18	dog clean up bags
+TREC-19	dogs for adoption
+TREC-20	dutchess county tourism
+TREC-21	earn money at home
+TREC-22	east ridge high school
+TREC-23	electronic skeet shoot
+TREC-24	equal opportunity employer
+TREC-25	er tv show
+TREC-26	fact on uranus
+TREC-27	fickle creek farm
+TREC-28	french lick resort and casino
+TREC-29	furniture for small spaces
+TREC-30	gmat prep classes
+TREC-31	gs pay rate
+TREC-32	how to build a fence
+TREC-33	hp mini 2140
+TREC-34	illinois state tax
+TREC-35	income tax return online
+TREC-36	indiana child support
+TREC-37	indiana state fairgrounds
+TREC-38	internet phone service
+TREC-39	interview thank you
+TREC-40	iowa food stamp program
+TREC-41	jax chemical company
+TREC-42	kansas city mo
+TREC-43	kenmore gas water heater
+TREC-44	last supper painting
+TREC-45	living in india
+TREC-46	lower heart rate
+TREC-47	lymphoma in dogs
+TREC-48	madam cj walker
+TREC-49	map of brazil
+TREC-50	map of the united states
+TREC-51	martha stewart and imclone
+TREC-52	mayo clinic jacksonville fl
+TREC-53	milwaukee journal sentinel
+TREC-54	mothers day songs
+TREC-55	obama family tree
+TREC-56	orange county convention center
+TREC-57	pacific northwest laboratory
+TREC-58	poem in your pocket day
+TREC-59	president of the united states
+TREC-60	ps 2 games
+TREC-61	ralph owen brewster
+TREC-62	rincon puerto rico
+TREC-63	ritz carlton lake las vegas
+TREC-64	rock and gem shows
+TREC-65	rocky mountain news
+TREC-66	septic system design
+TREC-67	signs of a heartattack
+TREC-68	sit and reach test
+TREC-69	sonoma county medical services
+TREC-70	source of the nile
+TREC-71	tangible personal property tax
+TREC-72	texas border patrol
+TREC-73	the beatles rock band
+TREC-74	the music man
+TREC-75	the secret garden
+TREC-76	tn highway patrol
+TREC-77	to be or not to be that is the question
+TREC-78	trombone for sale
+TREC-79	tv on computer
+TREC-80	universal animal cuts reviews
+TREC-81	university of phoenix
+TREC-82	uplift at yellowstone national park
+TREC-83	us capitol map
+TREC-84	used car parts
+TREC-85	uss yorktown charleston sc
+TREC-86	va dmv registration
+TREC-87	vines for shade
+TREC-88	von willebrand disease
+TREC-89	website design hosting
+TREC-90	wedding budget calculator
+TREC-91	who invented music
