@@ -37,6 +37,10 @@ public class MockAnnotator implements Sa2WSystem {
 	public String getName() {
 		return name;
 	}
+	
+	public void appendName(String suffix){
+		name += suffix;
+	}
 
 	@Override
 	public long getLastAnnotationTime() {
