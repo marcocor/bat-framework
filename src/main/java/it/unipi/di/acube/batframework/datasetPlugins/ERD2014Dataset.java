@@ -19,6 +19,8 @@ package it.unipi.di.acube.batframework.datasetPlugins;
 import java.io.*;
 import java.util.*;
 
+import org.codehaus.jettison.json.JSONException;
+
 import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.data.Mention;
 import it.unipi.di.acube.batframework.data.Tag;
@@ -31,7 +33,7 @@ public class ERD2014Dataset implements A2WDataset {
 	List<String> queries = new Vector<>();
 	List<HashSet<Annotation>> annotations = new Vector<>();
 		
-	public ERD2014Dataset(String queryFile, String annotationFile, FreebaseApi freebApi, WikipediaApiInterface wikiApi) throws IOException{
+	public ERD2014Dataset(String queryFile, String annotationFile, FreebaseApi freebApi, WikipediaApiInterface wikiApi) throws IOException, JSONException{
 		Map<String, Integer> trecIdToIndex = new HashMap<>();
 		
 		BufferedReader queryBr = new BufferedReader(new FileReader(queryFile));

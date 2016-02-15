@@ -10,10 +10,9 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 /**
  * D2W annotator that uses HITS on DBpedia Graph.
@@ -21,7 +20,6 @@ import org.json.simple.parser.ParseException;
  * @see <a href="https://github.com/AKSW/AGDISTIS">https://github.com/AKSW/AGDISTIS</a>
  */
 public class AgdistisAnnotator implements D2WSystem {
-	private static final JSONParser JSON_PARSER = new JSONParser();
 
 	private long calib = -1;
 	private long lastTime = -1;
@@ -57,12 +55,12 @@ public class AgdistisAnnotator implements D2WSystem {
 		String textWithMentions = createTextWithMentions(text, mentions);
 		try {
 			return getAnnotations(textWithMentions);
-		} catch (IOException | ParseException e) {
+		} catch (IOException | JSONException e) {
 			throw new AnnotationException(e.getMessage());
 		}
 	}
 
-	public HashSet<Annotation> getAnnotations(String textWithMentions) throws IOException, ParseException {
+	public HashSet<Annotation> getAnnotations(String textWithMentions) throws IOException, JSONException {
 		URL agdistisUrl = new URL("http://" + host + ":" + port + "/AGDISTIS");
 		String parameters = "type=agdistis&text=" + URLEncoder.encode(textWithMentions, "UTF-8");
 		HttpURLConnection slConnection = (HttpURLConnection) agdistisUrl.openConnection();
@@ -79,17 +77,19 @@ public class AgdistisAnnotator implements D2WSystem {
 		wr.flush();
 		wr.close();
 
-		InputStream in = slConnection.getInputStream();
-		HashSet<Annotation> annotations = parseJsonStream(in);
+		HashSet<Annotation> annotations = parseJsonStream(slConnection);
 		return annotations;
 	}
 
-	private HashSet<Annotation> parseJsonStream(InputStream in) throws IOException, ParseException {
+	private HashSet<Annotation> parseJsonStream(HttpURLConnection conn) throws IOException, JSONException {
 		HashSet<Annotation> annotations = new HashSet<>();
 
-		JSONArray namedEntities = (JSONArray) JSON_PARSER.parse(new InputStreamReader(in, "UTF-8"));
-		for (Object obj : namedEntities) {
-			JSONObject namedEntity = (JSONObject) obj;
+		Scanner s = new Scanner(conn.getInputStream()).useDelimiter("\\A");
+		String resultStr = s.hasNext() ? s.next() : "";
+
+		JSONArray namedEntities = new JSONArray(resultStr);
+		for (int i=0; i<namedEntities.length(); i++) {
+			JSONObject namedEntity = namedEntities.getJSONObject(i);
 
 			long start = (long) namedEntity.get("start");
 			long offset = (long) namedEntity.get("offset");

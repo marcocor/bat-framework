@@ -8,9 +8,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.lang.StringEscapeUtils;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.xml.sax.SAXException;
 
 import it.unipi.di.acube.batframework.data.Annotation;
@@ -133,19 +133,23 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 		Vector<Integer> lengths = new Vector<Integer>();
 		Vector<String> titles = new Vector<String>();
 		Vector<Float> scores = new Vector<Float>();
-		JSONArray jsMentions = (JSONArray) obj.get("mentions");
-		for (Object jsMentionObj : jsMentions) {
-			JSONObject jsMention = (JSONObject) jsMentionObj;
-			if (!jsMention.containsKey("bestEntity"))
-				continue;
-			//System.out.println(jsMention);
-			startPositions.add(((Long) jsMention.get("offset")).intValue());
-			lengths.add(((Long) jsMention.get("length")).intValue());
-			titles.add(StringEscapeUtils
-					.unescapeJava((String) ((JSONObject) jsMention
-							.get("bestEntity")).get("name")));
-			scores.add(Float.parseFloat((String) ((JSONObject) jsMention
-					.get("bestEntity")).get("disambiguationScore")));
+		
+		try {
+			JSONArray jsMentions = obj.getJSONArray("mentions");
+			for (int i = 0; i < jsMentions.length(); i++) {
+				JSONObject jsMention = jsMentions.getJSONObject(i);
+				if (jsMention.isNull("bestEntity"))
+					continue;
+				// System.out.println(jsMention);
+				startPositions.add(jsMention.getInt("offset"));
+				lengths.add(jsMention.getInt("length"));
+				titles.add(StringEscapeUtils.unescapeJava(jsMention
+						.getJSONObject("bestEntity").getString("name")));
+				scores.add((float) jsMention.getJSONObject("bestEntity")
+						.getDouble("disambiguationScore"));
+			}
+		} catch (JSONException e) {
+			throw new AnnotationException(e.getMessage());
 		}
 
 		for (String title : titles)
@@ -185,14 +189,18 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 							+ e.getMessage());
 		}
 
-		JSONArray jsMentions = (JSONArray) obj.get("mentions");
-		for (Object jsMentionObj : jsMentions) {
-			JSONObject jsMention = (JSONObject) jsMentionObj;
-			int pos = ((Long) jsMention.get("offset")).intValue() - 1;
-			int len = ((Long) jsMention.get("length")).intValue();
-			res.add(new Mention(pos, len));
+		try {
+			JSONArray jsMentions = obj.getJSONArray("mentions");
+			for (int i = 0; i > jsMentions.length(); i++) {
+				JSONObject jsMention = jsMentions.getJSONObject(i);
+				int pos = jsMention.getInt("offset") - 1;
+				int len = jsMention.getInt("length");
+				res.add(new Mention(pos, len));
+			}
+		} catch (JSONException e) {
+			throw new AnnotationException(e.getMessage());
 		}
-		return res;
+	return res;
 	}
 
 	private JSONObject queryJson(String getParameters, String text, String url)
@@ -229,7 +237,7 @@ public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 		if (resultStr.equals("ERROR: Failed Disambiguating"))
 			return null;
 
-		JSONObject obj = (JSONObject) JSONValue.parse(resultStr);
+		JSONObject obj = new JSONObject(resultStr);
 		return obj;
 	}
 }

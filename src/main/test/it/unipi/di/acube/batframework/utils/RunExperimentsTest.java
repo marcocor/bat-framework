@@ -1,10 +1,9 @@
-package test;
+package it.unipi.di.acube.batframework.utils;
 
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
 
 import it.unipi.di.acube.batframework.data.Annotation;
@@ -119,26 +118,6 @@ public class RunExperimentsTest {
 				return mentionA2;
 			else
 				return mentionB2;
-		}
-	}
-
-	private class PerfectAnnotator implements MentionSpotter {
-		@Override
-		public String getName() {
-			return "Perfect Annotator";
-		}
-
-		@Override
-		public long getLastAnnotationTime() {
-			return 0;
-		}
-
-		@Override
-		public HashSet<Mention> getSpottedMentions(String text) {
-			if (text.equals(textA))
-				return mentionA1;
-			else
-				return mentionB1;
 		}
 	}
 }

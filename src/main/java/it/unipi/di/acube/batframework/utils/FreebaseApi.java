@@ -17,9 +17,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 public class FreebaseApi {
 	private String key;
@@ -60,7 +60,7 @@ public class FreebaseApi {
 		this.key = key;
 	}
 
-	public String midToTitle(String mid) throws IOException {
+	public String midToTitle(String mid) throws IOException, JSONException {
 		if (mid.charAt(0) != '/')
 			mid = "/" + mid;
 
@@ -68,15 +68,15 @@ public class FreebaseApi {
 			return mid2WikiTitle.get(mid);
 
 		JSONObject response = jsonQuery(mid, false);
-		JSONObject propJson = (JSONObject) response.get("property");
+		JSONObject propJson = response.getJSONObject("property");
 		if (propJson == null) { // See if this MID has been replaced...
 			JSONObject replacedResponse = jsonQuery(mid, true);
-			JSONObject replacedPropJson = (JSONObject) replacedResponse
-					.get("property");
-			JSONObject replacedTopicEqJson = (JSONObject) replacedPropJson
-					.get("/dataworld/gardening_hint/replaced_by");
-			JSONArray replValuesJson = (JSONArray) replacedTopicEqJson
-					.get("values");
+			JSONObject replacedPropJson = replacedResponse
+					.getJSONObject("property");
+			JSONObject replacedTopicEqJson = replacedPropJson
+					.getJSONObject("/dataworld/gardening_hint/replaced_by");
+			JSONArray replValuesJson = replacedTopicEqJson
+					.getJSONArray("values");
 			JSONObject valObj = (JSONObject) replValuesJson.get(0);
 			String replMid = (String) valObj.get("id");
 			System.out.printf("WARNING: mid %s replaced by %s%n", mid, replMid);
@@ -90,9 +90,9 @@ public class FreebaseApi {
 		JSONArray valuesJson = (JSONArray) topicEqJson.get("values");
 
 		String title = null;
-		for (Object obj : valuesJson.toArray()) {
-			JSONObject jsonObj = (JSONObject) obj;
-			String value = ((String) jsonObj.get("text"));
+		for (int i=0; i<valuesJson.length(); i++) {
+			JSONObject jsonObj = valuesJson.getJSONObject(i);
+			String value = jsonObj.getString("text");
 			if (value
 					.startsWith("http://en.wikipedia.org/wiki/index.html?curid="))
 				continue;
@@ -107,7 +107,7 @@ public class FreebaseApi {
 	}
 
 	private JSONObject jsonQuery(String mid, boolean replaced)
-			throws IOException {
+			throws IOException, JSONException {
 		String url = String
 				.format("https://www.googleapis.com/freebase/v1/topic%s?filter=%s&limit=0%s",
 						mid, replaced ? "/dataworld/gardening_hint/replaced_by"
@@ -137,7 +137,7 @@ public class FreebaseApi {
 
 		s.close();
 		s2.close();
-		JSONObject obj = (JSONObject) JSONValue.parse(resultStr);
+		JSONObject obj = new JSONObject(resultStr);
 
 		increaseFlushCounter();
 		return obj;

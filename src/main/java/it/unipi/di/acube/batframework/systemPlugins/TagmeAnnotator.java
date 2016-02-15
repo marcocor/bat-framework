@@ -17,9 +17,8 @@ import java.util.*;
 import javax.xml.parsers.*;
 import javax.xml.xpath.*;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -170,17 +169,17 @@ public class TagmeAnnotator implements Sa2WSystem {
 			String resultStr = s2.hasNext() ? s2.next() : "";
 			s.close();
 
-			JSONObject obj = (JSONObject) JSONValue.parse(resultStr);
-			lastTime = (Long) obj.get("time");
+			JSONObject obj = new JSONObject(resultStr);
+			lastTime = obj.getLong("time");
 
-			JSONArray jsAnnotations = (JSONArray) obj.get("annotations");
-			for (Object js_ann_obj : jsAnnotations) {
-				JSONObject js_ann = (JSONObject) js_ann_obj;
-				System.out.println(js_ann);
-				int start = ((Long) js_ann.get("start")).intValue();
-				int end = ((Long) js_ann.get("end")).intValue();
-				int id = ((Long) js_ann.get("id")).intValue();
-				float rho = Float.parseFloat((String) js_ann.get("rho"));
+			JSONArray jsAnnotations = obj.getJSONArray("annotations");
+			for (int i=0; i<jsAnnotations.length(); i++) {
+				JSONObject jsAnn = jsAnnotations.getJSONObject(i);
+				System.out.println(jsAnn);
+				int start = jsAnn.getInt("start");
+				int end = jsAnn.getInt("end");
+				int id = jsAnn.getInt("id");
+				float rho = (float) jsAnn.getDouble("rho");
 				System.out.println(text.substring(start, end) + "->" + id
 						+ " (" + rho + ")");
 				res.add(new ScoredAnnotation(start, end - start, id,

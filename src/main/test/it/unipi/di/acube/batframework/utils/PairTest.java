@@ -1,4 +1,4 @@
-package test;
+package it.unipi.di.acube.batframework.utils;
 
 import static org.junit.Assert.*;
 

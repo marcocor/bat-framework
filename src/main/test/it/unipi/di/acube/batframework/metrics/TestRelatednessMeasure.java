@@ -1,4 +1,4 @@
-package test;
+package it.unipi.di.acube.batframework.metrics;
 
 import it.unipi.di.acube.batframework.datasetPlugins.WikipediaSimilarity411;
 import it.unipi.di.acube.batframework.metrics.RelatednessMetrics;
