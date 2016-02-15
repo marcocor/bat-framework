@@ -3,7 +3,6 @@ package it.unipi.di.acube.batframework.systemPlugins;
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import it.unipi.di.acube.batframework.data.Mention;
 import it.unipi.di.acube.batframework.systemPlugins.AgdistisAnnotator;
