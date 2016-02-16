@@ -16,17 +16,6 @@
 
 package it.unipi.di.acube.batframework.systemPlugins;
 
-import java.io.*;
-import java.lang.invoke.MethodHandles;
-import java.net.*;
-import java.util.*;
-
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-
 import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.data.Mention;
 import it.unipi.di.acube.batframework.data.MultipleAnnotation;
@@ -38,6 +27,20 @@ import it.unipi.di.acube.batframework.problems.MentionSpotter;
 import it.unipi.di.acube.batframework.problems.Sa2WSystem;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
+
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.Vector;
+
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 public class WATAnnotator implements Sa2WSystem, MentionSpotter,
 		CandidatesSpotter {
