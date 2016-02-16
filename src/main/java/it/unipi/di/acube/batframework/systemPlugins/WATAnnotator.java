@@ -390,7 +390,7 @@ public class WATAnnotator implements Sa2WSystem, MentionSpotter,
 		return parameters.toString();
 	}
 	
-	private JSONObject queryJson(String parameters,
+	protected JSONObject queryJson(String parameters,
 			String url, String getParameters, int retry) throws Exception {
 
 		String resultStr = null;
