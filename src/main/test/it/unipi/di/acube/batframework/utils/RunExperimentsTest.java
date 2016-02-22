@@ -61,11 +61,6 @@ public class RunExperimentsTest {
 		assertEquals(8 / 15f, res.getMacroF1(), DELTA);
 	}
 
-	@Test
-	public void testPerformCandidateSpottingExp() {
-		fail("Not yet implemented");
-	}
-
 	private class TestDataset implements D2WDataset {
 
 		@Override
