@@ -29,7 +29,14 @@ public class WikipediaApiInterface {
 	File wid2redirectCache = null;
 	public static final String wikiApiBaseUrl = "https://en.wikipedia.org/w/api.php";
 	private int queries = 0; //counter for the sent queries
+	private static WikipediaApiInterface wikiApi = null;
 
+	public static WikipediaApiInterface api(){
+		if (wikiApi == null)
+			wikiApi = new WikipediaApiInterface("wid.cache", "redirect.cache");
+		return wikiApi;
+	}
+	
 	/**
 	 * @param bidiTitle2widCacheFileName title to wid cache file name. Pass null to avoid the cache.
 	 * @param wid2redirectCacheFileName redirect cache file name. Pass null to avoid the cache.
