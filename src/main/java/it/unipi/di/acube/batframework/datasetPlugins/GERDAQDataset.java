@@ -36,8 +36,10 @@ public class GERDAQDataset implements A2WDataset {
 	private List<String> queries = new Vector<String>();
 	private List<HashSet<Tag>> tags = new Vector<HashSet<Tag>>();
 	private List<HashSet<Annotation>> annotations = new Vector<HashSet<Annotation>>();
+	private String name = null;
 
-	public GERDAQDataset(String xmlFile, WikipediaApiInterface api) {
+	public GERDAQDataset(String xmlFile, WikipediaApiInterface api, String nameSuffix) {
+		this.name  = "GERDAQ-" + nameSuffix;
 		File fXmlFile = new File(xmlFile);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
@@ -147,7 +149,7 @@ public class GERDAQDataset implements A2WDataset {
 
 	@Override
 	public String getName() {
-		return "GERDAQ";
+		return name;
 	}
 
 	@Override
