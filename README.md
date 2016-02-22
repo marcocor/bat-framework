@@ -21,7 +21,7 @@ The BAT-framework is mavenized. You can include it with:
 <dependency>
     <groupId>it.unipi.di.acube</groupId>
     <artifactId>bat-framework</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
 </dependency>
 ```
 
