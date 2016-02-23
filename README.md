@@ -32,4 +32,4 @@ You can either use BAT-framework directly (see [this](http://acube.di.unipi.it/w
 To keep track of the changes in recent versions of the BAT-Framework, see the [CHANGELOG](CHANGELOG.md).
 
 ### Contributing
-You can contribute by either opening an [issue](issues) or by forking the project, implement the feature in a separate branch, and creating a pull request.
+You can contribute by either opening an [issue](https://github.com/marcocor/bat-framework/issues) or by forking the project, implement the feature in a separate branch, and creating a pull request.
