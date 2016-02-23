@@ -1,8 +1,10 @@
 # Changes in BAT-Framework
 
-## 1.2 (2016-02-22) Dataset factory
-- Added dataset factory.
+## 1.3 (2016-02-23) Dataset factory
 - Datasets moved to resource folders, now accessible from other jars.
+- Added dataset factory.
+
+## 1.2 (2016-02-22) Dataset factory
 - Added a few helper methods to compute metrics for single problems.
 - Added three new dataset plugins: GERDAQ (dataset included), Yahoo Webscope L42 (dataset not included for copyright reasons), and ERD2014 (dataset included).
 
