@@ -21,9 +21,15 @@ The BAT-framework is mavenized. You can include it with:
 <dependency>
     <groupId>it.unipi.di.acube</groupId>
     <artifactId>bat-framework</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
 </dependency>
 ```
 
 ### How to use
 You can either use BAT-framework directly (see [this](http://acube.di.unipi.it/wp-content/uploads/2013/01/BAT-Framework-0.1-reference.pdf) guide) or by using [GERBIL](https://github.com/AKSW/gerbil), which provides an easy web interface and is built on top of the BAT-Framework.
+
+### Changelog
+To keep track of the changes in recent versions of the BAT-Framework, see the [CHANGELOG](CHANGELOG.md).
+
+### Contributing
+You can contribute by either opening an [issue](https://github.com/marcocor/bat-framework/issues) or by forking the project, implement the feature in a separate branch, and creating a pull request.
