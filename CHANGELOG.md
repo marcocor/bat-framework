@@ -1,5 +1,8 @@
 # Changes in BAT-Framework
 
+## 1.3.1 (2016-02-24) Dataset factory
+- Fixed dataset resource management. Dataset can now be created from other jars.
+
 ## 1.3 (2016-02-23) Dataset factory
 - Datasets moved to resource folders, now accessible from other jars.
 - Added dataset factory.
