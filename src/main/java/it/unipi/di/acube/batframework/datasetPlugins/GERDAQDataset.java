@@ -38,15 +38,18 @@ public class GERDAQDataset implements A2WDataset {
 	private List<HashSet<Annotation>> annotations = new Vector<HashSet<Annotation>>();
 	private String name = null;
 
-	public GERDAQDataset(String xmlFile, WikipediaApiInterface api, String nameSuffix) {
+	public GERDAQDataset(String xmlFile, WikipediaApiInterface api, String nameSuffix) throws FileNotFoundException {
+		this(new FileInputStream(new File(xmlFile)), api, nameSuffix);
+	}
+
+	public GERDAQDataset(InputStream stream, WikipediaApiInterface api, String nameSuffix) {
 		this.name  = "GERDAQ-" + nameSuffix;
-		File fXmlFile = new File(xmlFile);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
 		Document doc;
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
-			doc = dBuilder.parse(fXmlFile);
+			doc = dBuilder.parse(stream);
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			throw new RuntimeException(e);
 		}
@@ -140,7 +143,7 @@ public class GERDAQDataset implements A2WDataset {
 
 		if (queries.size() != tags.size() || tags.size() != annotations.size())
 			throw new RuntimeException("Parsing error");
-	}
+    }
 
 	@Override
 	public int getSize() {

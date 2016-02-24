@@ -7,18 +7,6 @@
 
 package it.unipi.di.acube.batframework.datasetPlugins;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-
-import org.xml.sax.SAXException;
-
 import it.unimi.dsi.lang.MutableString;
 import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.data.Mention;
@@ -27,6 +15,23 @@ import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
 import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
 
 public class KddDataset implements A2WDataset{
 	private List<HashSet<Annotation>> tags = new Vector<HashSet<Annotation>>();
@@ -39,12 +44,11 @@ public class KddDataset implements A2WDataset{
 	private Pattern endPattern = Pattern.compile("^\\.\tO\tO\t#$");
 	private Pattern nonTagPattern2 = Pattern.compile("^([^\t]*)\tO\tO\tO$");
 
-
-	public KddDataset (String[] files, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
+	public KddDataset (InputStream[] inputstreams, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
 		List<HashSet<KddAnnotation>> kddAnns = new Vector<HashSet<KddAnnotation>>();
 		List<String> titlesToPrefetch = new Vector<String>();
-		for (String file: files){
-			BufferedReader r = new BufferedReader(new FileReader(file));
+		for (InputStream is: inputstreams){
+			BufferedReader r = new BufferedReader(new InputStreamReader(is));
 			String line;
 			MutableString currentDoc = new MutableString();
 			HashSet<KddAnnotation> currentAnns = new HashSet<KddAnnotation>();
@@ -117,9 +121,17 @@ public class KddDataset implements A2WDataset{
 			}
 
 		}
+	}
 
-
-
+	public static InputStream[] filesToInputStreams(String[] files) throws FileNotFoundException {
+		InputStream[] iss = new InputStream[files.length];
+		for (int i = 0; i < files.length; i++)
+			iss[i] = new FileInputStream(files[i]);
+		return iss;
+	}
+	
+	public KddDataset (String[] files, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
+		this(filesToInputStreams(files), api);
 	}
 	
 	@Override

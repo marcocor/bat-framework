@@ -12,32 +12,40 @@ import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
-
 public class ACE2004Dataset extends MSNBCDataset {
-	public ACE2004Dataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
-		//load the bodies
-		HashMap<String, String> filenameToBody= loadBody(textPath, "^[^\\.]+.*");
+	public ACE2004Dataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException,
+	        ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException {
+		this(getFilesAndInputStreams(textPath, "^[^\\.]+.*"), getFilesAndInputStreams(annotationsPath, "^[^\\.]+.*"), api);
+	}
 
-		//load the annotations
-		HashMap<String, HashSet<Annotation>> filenameToAnnotations= loadTags(annotationsPath, "^[^\\.]+.*", api);
+	public ACE2004Dataset(Map<String, InputStream> bodyFilenameToInputstream,
+	        Map<String, InputStream> anchorsFilenameToInputstream, WikipediaApiInterface api) throws IOException,
+	        AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
+		// load the bodies
+		HashMap<String, String> filenameToBody = loadBody(bodyFilenameToInputstream);
 
-		//check that files are coherent.
+		// load the annotations
+		HashMap<String, HashSet<Annotation>> filenameToAnnotations = loadTags(anchorsFilenameToInputstream, api);
+
+		// check that files are coherent.
 		checkConsistency(filenameToBody, filenameToAnnotations);
 
-		//unify the two mappings and generate the lists.
+		// unify the two mappings and generate the lists.
 		unifyMaps(filenameToBody, filenameToAnnotations);
 	}
 
 	@Override
-	public String getName(){
+	public String getName() {
 		return "ACE2004";
 	}
 

@@ -33,12 +33,18 @@ public class ERD2014Dataset implements A2WDataset {
 	List<String> queries = new Vector<>();
 	List<HashSet<Annotation>> annotations = new Vector<>();
 		
-	public ERD2014Dataset(String queryFile, String annotationFile, FreebaseApi freebApi, WikipediaApiInterface wikiApi) throws IOException, JSONException{
+	public ERD2014Dataset(String queryFile, String annotationFile, FreebaseApi freebApi, WikipediaApiInterface wikiApi)
+	        throws IOException, JSONException {
+		this(new FileInputStream(new File(queryFile)), new FileInputStream(new File(annotationFile)), freebApi, wikiApi);
+	}
+
+	public ERD2014Dataset(InputStream queryStream, InputStream annotationStream, FreebaseApi freebApi,
+	        WikipediaApiInterface wikiApi) throws IOException, JSONException {
 		Map<String, Integer> trecIdToIndex = new HashMap<>();
-		
-		BufferedReader queryBr = new BufferedReader(new FileReader(queryFile));
+
+		BufferedReader queryBr = new BufferedReader(new InputStreamReader(queryStream));
 		String line;
-		while ((line = queryBr.readLine()) != null){
+		while ((line = queryBr.readLine()) != null) {
 			String[] tokens = line.split("\t");
 			if (tokens.length != 2)
 				continue;
@@ -49,15 +55,15 @@ public class ERD2014Dataset implements A2WDataset {
 		}
 		queryBr.close();
 
-		BufferedReader annotationsBr = new BufferedReader(new FileReader(annotationFile));
-		while ((line = annotationsBr.readLine()) != null){
+		BufferedReader annotationsBr = new BufferedReader(new InputStreamReader(annotationStream));
+		while ((line = annotationsBr.readLine()) != null) {
 			String[] tokens = line.split("\t");
 			int index = trecIdToIndex.get(tokens[0]);
 			String query = queries.get(index);
 			System.out.println(query);
 			System.out.println(tokens[3]);
 			int position = query.indexOf(tokens[3]);
-			int length =  tokens[3].length();
+			int length = tokens[3].length();
 			String freeBaseMID = tokens[2];
 			String title = freebApi.midToTitle(freeBaseMID);
 			if (title != null)

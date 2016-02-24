@@ -24,6 +24,7 @@ public abstract class DatasetTestBase {
 		int nConcepts = 0;
 		for (HashSet<Tag> c: ds.getC2WGoldStandardList())
 			nConcepts += c.size();
+		//There must be at least one entity in the whole dataset.
 		assertTrue(nConcepts > 0);
 	}
 }

@@ -1,6 +1,7 @@
 package it.unipi.di.acube.batframework.datasetPlugins;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
@@ -14,7 +15,7 @@ import it.unipi.di.acube.batframework.utils.AnnotationException;
 public class ACE2004DatasetTest extends DatasetTestBase{
 
 	@Override
-	public C2WDataset build() throws AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException, IOException {
+	public C2WDataset build() throws AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException, IOException, URISyntaxException {
 		return DatasetBuilder.getACE2004();
 	}
 

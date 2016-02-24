@@ -8,15 +8,22 @@
 package it.unipi.di.acube.batframework.datasetPlugins;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import it.unimi.dsi.io.FileLinesCollection;
-import it.unimi.dsi.io.FileLinesCollection.FileLinesIterator;
-import it.unimi.dsi.lang.MutableString;
 import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.Rc2WDataset;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.util.*;
-import java.util.regex.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MeijDataset implements Rc2WDataset{
@@ -24,26 +31,15 @@ public class MeijDataset implements Rc2WDataset{
 	private List<HashSet<Tag>> tags;
 	private List<List<Tag>> rankedTags;
 
-	public MeijDataset(String tweetsFile, String tagsFile, String rankFile){
-		Object2ObjectOpenHashMap<String,MeijDocument> docs=ReadTweetFile(tweetsFile);
-		readTagFile(tagsFile,docs);
-		loadRankedTags(rankFile, docs);
-		 //Dump information about parsed tweets
-		 
-/*		System.out.println(docs.keySet().size()+" tweets found");
-		int annotated=0;
-		int n_annots=0;
-		for(MeijDocument d: docs.values()){
-			if(d.annotations.size()>0 && !d.text.equals("null")) {
-				annotated++;
-				n_annots+=d.annotations.size();
-				System.out.println(d.id+":"+d.text);
-			}
-		}
+	public MeijDataset(String tweetsFile, String tagsFile, String rankFile) throws FileNotFoundException, IOException {
+		this(new FileInputStream(tweetsFile), new FileInputStream(tagsFile), new FileInputStream(rankFile));
+	}
 
-		System.out.println(annotated+" tweets in the dataset have at least one annotation and their text is not null");
-		System.out.println("Anntoation for tweet (average) "+(float)n_annots/(float)annotated);
-*/
+	public MeijDataset(InputStream tweetsIs, InputStream tagsIs, InputStream rankIs) throws IOException {
+		Object2ObjectOpenHashMap<String, MeijDocument> docs = ReadTweetFile(tweetsIs);
+		readTagFile(tagsIs, docs);
+		loadRankedTags(rankIs, docs);
+
 		this.texts = new Vector<String>();
 		
 		this.tags = new Vector<HashSet<Tag>>();
@@ -64,14 +60,14 @@ public class MeijDataset implements Rc2WDataset{
 				rankedAnns.add(new Tag(a));
 			}
 		}
-	}
+    }
 
-	private static Object2ObjectOpenHashMap<String,MeijDocument> ReadTweetFile(String path){
-		FileLinesIterator iter = new FileLinesCollection(path, "UTF-8").iterator();
+	private static Object2ObjectOpenHashMap<String,MeijDocument> ReadTweetFile(InputStream inputStream) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 		Object2ObjectOpenHashMap<String,MeijDocument> docs= new Object2ObjectOpenHashMap<String,MeijDocument>();
 
-		while(iter.hasNext()){
-			MutableString l=iter.next();
+		String l;
+		while((l = br.readLine())!=null){
 			String[] seq= l.toString().split("\t");
 
 			MeijDocument d= new MeijDocument();
@@ -86,17 +82,17 @@ public class MeijDataset implements Rc2WDataset{
 		return docs;
 	}
 
-	private static void readTagFile(String path,Object2ObjectOpenHashMap<String,MeijDocument> docs){
-		FileLinesIterator iter = new FileLinesCollection(path, "UTF-8").iterator();
-		while(iter.hasNext()){
-			MutableString l=iter.next();
-			String[] seq= l.toString().split("\t");
-			//long id=Long.parseLong(seq[0]);
-			if(Integer.parseInt(seq[1])>=0)
+	private static void readTagFile(InputStream inputStream, Object2ObjectOpenHashMap<String, MeijDocument> docs)
+	        throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+		String l;
+		while ((l = br.readLine()) != null) {
+			String[] seq = l.toString().split("\t");
+			// long id=Long.parseLong(seq[0]);
+			if (Integer.parseInt(seq[1]) >= 0)
 				docs.get(seq[0]).tags.add(Integer.parseInt(seq[1]));
-//			if(!seq[2].equals("-"))
-//				docs.get(seq[0]).annotations.add(HTMLParser.html2Unicode(seq[2]));
-			
+			// if(!seq[2].equals("-"))
+			// docs.get(seq[0]).annotations.add(HTMLParser.html2Unicode(seq[2]));
 		}
 	}
 
@@ -119,17 +115,14 @@ public class MeijDataset implements Rc2WDataset{
 	}
 
 
-	private static void loadRankedTags(String path, Object2ObjectOpenHashMap<String,MeijDocument> docs){
-		FileLinesIterator iter = new FileLinesCollection(path, "UTF-8").iterator();
-
-		while(iter.hasNext()){
-			MutableString l=iter.next();
+	private static void loadRankedTags(InputStream inputStream, Object2ObjectOpenHashMap<String,MeijDocument> docs) throws NumberFormatException, IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+		String l;
+		while ((l = br.readLine()) != null) {
 			String[] seq= l.toString().split(" ");
 			if(docs.containsKey(seq[0]))
 				docs.get(seq[0]).ranked.add(new Integer(Integer.parseInt(seq[2])));
-
 		}
-
 	}
 	
 	@Override

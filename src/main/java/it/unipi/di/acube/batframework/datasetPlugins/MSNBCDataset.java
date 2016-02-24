@@ -32,25 +32,27 @@ import org.xml.sax.SAXException;
 public class MSNBCDataset implements A2WDataset {
 	private List<String> textList;
 	private List<HashSet<Annotation>> annList;
-	private static Pattern wikiUrlPattern = Pattern
-			.compile("http://en.wikipedia.org/wiki/(.*?)\"?");
+	private static Pattern wikiUrlPattern = Pattern.compile("http://en.wikipedia.org/wiki/(.*?)\"?");
 
 	/**
 	 * This constructor should only be used by inherited classes.
 	 */
-	public MSNBCDataset() {
+	protected MSNBCDataset() {
 	};
 
-	public MSNBCDataset(String textPath, String annotationsPath,
-			WikipediaApiInterface api) throws IOException,
-			ParserConfigurationException, SAXException, AnnotationException,
-			XPathExpressionException {
+	public MSNBCDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException,
+	        ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException {
+		this(getFilesAndInputStreams(textPath, ".+\\.txt"), getFilesAndInputStreams(annotationsPath, ".+\\.txt"), api);
+	}
+
+	public MSNBCDataset(Map<String, InputStream> bodyFilenameToInputstream,
+	        Map<String, InputStream> anchorsFilenameToInputstream, WikipediaApiInterface api) throws IOException,
+	        AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
 		// load the bodies
-		HashMap<String, String> filenameToBody = loadBody(textPath, ".+\\.txt");
+		HashMap<String, String> filenameToBody = loadBody(bodyFilenameToInputstream);
 
 		// load the annotations
-		HashMap<String, HashSet<Annotation>> filenameToAnnotations = loadTags(
-				annotationsPath, ".+\\.txt", api);
+		HashMap<String, HashSet<Annotation>> filenameToAnnotations = loadTags(anchorsFilenameToInputstream, api);
 
 		// check that files are coherent.
 		checkConsistency(filenameToBody, filenameToAnnotations);
@@ -59,94 +61,62 @@ public class MSNBCDataset implements A2WDataset {
 		unifyMaps(filenameToBody, filenameToAnnotations);
 	}
 
-	public HashMap<String, String> loadBody(String textPath, String pattern)
-			throws IOException {
-		HashMap<String, String> filenameToBody = new HashMap<String, String>();
-		File textsDir = new File(textPath);
-		File[] textFiles = textsDir.listFiles();
+	protected static Map<String, InputStream> getFilesAndInputStreams(String path, String pattern) throws FileNotFoundException {
+		Map<String, InputStream> bodyFilenameToInputstream = new HashMap<>();
+		File[] textFiles = new File(path).listFiles();
 		for (File tf : textFiles)
-			if (tf.isFile() && tf.getName().toLowerCase().matches(pattern)) {
-				BufferedReader r = new BufferedReader(new InputStreamReader(
-						new FileInputStream(tf), Charset.forName("UTF-8")));
-				String line;
-				String body = "";
-				while ((line = r.readLine()) != null)
-					body += line + "\n";
-				r.close();
-				filenameToBody.put(tf.getName(), body);
-			}
-		return filenameToBody;
+			if (tf.isFile() && tf.getName().toLowerCase().matches(pattern))
+				bodyFilenameToInputstream.put(tf.getName(), new FileInputStream(tf));
+		return bodyFilenameToInputstream;
 	}
 
-	public HashMap<String, HashSet<Annotation>> loadTags(String tagsPath,
-			String pattern, WikipediaApiInterface api)
-			throws ParserConfigurationException, SAXException, IOException,
-			AnnotationException, XPathExpressionException {
+	protected HashMap<String, HashSet<Annotation>> loadTags(Map<String, InputStream> anchorsFilenameToInputstream,
+	        WikipediaApiInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException,
+	        XPathExpressionException {
 		HashMap<String, HashSet<MSNBCAnnotation>> filenameToTags = new HashMap<String, HashSet<MSNBCAnnotation>>();
-		File annDir = new File(tagsPath);
-		File[] tagFiles = annDir.listFiles();
-		for (File tf : tagFiles)
-			if (tf.isFile() && tf.getName().toLowerCase().matches(pattern)) {
-				HashSet<MSNBCAnnotation> tags = new HashSet<MSNBCAnnotation>();
-				DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-						.newInstance();
-				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				Document doc = dBuilder.parse(tf);
-				doc.getDocumentElement().normalize();
+		for (String tf : anchorsFilenameToInputstream.keySet()) {
+			HashSet<MSNBCAnnotation> tags = new HashSet<MSNBCAnnotation>();
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(anchorsFilenameToInputstream.get(tf));
+			doc.getDocumentElement().normalize();
 
-				NodeList nList = doc.getElementsByTagName("ReferenceInstance");
-				for (int i = 0; i < nList.getLength(); i++) {
-					Node nNode = nList.item(i);
-					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-						Element eElement = (Element) nNode;
-						NodeList annData = eElement.getChildNodes();
-						int position = -1;
-						int length = -1;
-						String title = null;
-						for (int j = 0; j < annData.getLength(); j++) {
-							Node dataNode = annData.item(j);
-							if (dataNode.getNodeType() == Node.ELEMENT_NODE) {
-								Element dataElement = (Element) dataNode;
-								if (dataElement.getTagName().equals("Offset"))
-									position = CharUtils
-											.parseInt(CharUtils
-													.trim(dataElement
-															.getTextContent()));
-								if (dataElement.getTagName().equals("Length"))
-									length = CharUtils
-											.parseInt(CharUtils
-													.trim(dataElement
-															.getTextContent()));
-								if (dataElement.getTagName().equals(
-										"ChosenAnnotation")) {
-									String concept = URLDecoder
-											.decode(CharUtils
-													.trim(dataElement
-															.getTextContent())
-													.toString()
-													.replace('_', ' '), "UTF-8");
-									Matcher m = wikiUrlPattern.matcher(concept);
-									if (m.matches())
-										title = m.group(1);
-									else
-										System.out
-												.println(this.getName()
-														+ " dataset is malformed: URL "
-														+ CharUtils
-																.trim(dataElement
-																		.getTextContent())
-														+ " does not match the pattern. Discarding annotation.");
-								}
+			NodeList nList = doc.getElementsByTagName("ReferenceInstance");
+			for (int i = 0; i < nList.getLength(); i++) {
+				Node nNode = nList.item(i);
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+					NodeList annData = eElement.getChildNodes();
+					int position = -1;
+					int length = -1;
+					String title = null;
+					for (int j = 0; j < annData.getLength(); j++) {
+						Node dataNode = annData.item(j);
+						if (dataNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element dataElement = (Element) dataNode;
+							if (dataElement.getTagName().equals("Offset"))
+								position = CharUtils.parseInt(CharUtils.trim(dataElement.getTextContent()));
+							if (dataElement.getTagName().equals("Length"))
+								length = CharUtils.parseInt(CharUtils.trim(dataElement.getTextContent()));
+							if (dataElement.getTagName().equals("ChosenAnnotation")) {
+								String concept = URLDecoder.decode(CharUtils.trim(dataElement.getTextContent()).toString()
+								        .replace('_', ' '), "UTF-8");
+								Matcher m = wikiUrlPattern.matcher(concept);
+								if (m.matches())
+									title = m.group(1);
+								else
+									System.out.println(this.getName() + " dataset is malformed: URL "
+									        + CharUtils.trim(dataElement.getTextContent())
+									        + " does not match the pattern. Discarding annotation.");
 							}
 						}
-						if (title != null)
-							tags.add(new MSNBCAnnotation(position, length,
-									title));
 					}
+					if (title != null)
+						tags.add(new MSNBCAnnotation(position, length, title));
 				}
-				filenameToTags.put(tf.getName(), tags);
-
 			}
+			filenameToTags.put(tf, tags);
+		}
 
 		// prefetch all Wikipedia-ids for the titles found
 		List<String> titlesToPrefetch = new Vector<String>();
@@ -162,16 +132,13 @@ public class MSNBCDataset implements A2WDataset {
 			for (MSNBCAnnotation a : filenameToTags.get(s)) {
 				int wid = api.getIdByTitle(a.title); // should be pre-fetched
 				if (wid == -1)
-					System.out
-							.println(this.getName()
-									+ " dataset is malformed: an entity has been tagged with the wikipedia title ["
-									+ a.title
-									+ "] but this article does not exist. Discarding annotation.");
+					System.out.println(this.getName()
+					        + " dataset is malformed: an entity has been tagged with the wikipedia title [" + a.title
+					        + "] but this article does not exist. Discarding annotation.");
 				else
 					anns.add(new Annotation(a.position, a.length, wid));
 			}
-			HashSet<Annotation> annsNonOverlap = Annotation
-					.deleteOverlappingAnnotations(anns);
+			HashSet<Annotation> annsNonOverlap = Annotation.deleteOverlappingAnnotations(anns);
 			result.put(s, annsNonOverlap);
 
 		}
@@ -179,24 +146,34 @@ public class MSNBCDataset implements A2WDataset {
 		return result;
 	}
 
-	public void checkConsistency(HashMap<String, String> filenameToBody,
-			HashMap<String, HashSet<Annotation>> filenameToAnnotations)
-			throws AnnotationException {
+	protected HashMap<String, String> loadBody(Map<String, InputStream> bodyFilenameToInputstream) throws IOException {
+		HashMap<String, String> filenameToBody = new HashMap<String, String>();
+		for (String tf : bodyFilenameToInputstream.keySet()) {
+			BufferedReader r = new BufferedReader(new InputStreamReader(bodyFilenameToInputstream.get(tf), Charset.forName("UTF-8")));
+			String line;
+			String body = "";
+			while ((line = r.readLine()) != null)
+				body += line + "\n";
+			r.close();
+			filenameToBody.put(tf, body);
+		}
+		return filenameToBody;
+	}
+
+	protected void checkConsistency(HashMap<String, String> filenameToBody,
+	        HashMap<String, HashSet<Annotation>> filenameToAnnotations) throws AnnotationException {
 
 		for (String filename : filenameToAnnotations.keySet())
 			if (!filenameToBody.containsKey(filename))
-				throw new AnnotationException("In " + this.getName()
-						+ " dataset, there is an annotation file " + filename
-						+ " that has no corresponding raw text.");
+				throw new AnnotationException("In " + this.getName() + " dataset, there is an annotation file " + filename
+				        + " that has no corresponding raw text.");
 		for (String filename : filenameToBody.keySet())
 			if (!filenameToAnnotations.containsKey(filename))
-				throw new AnnotationException("In " + this.getName()
-						+ " dataset, there is a raw file " + filename
-						+ " that has no corresponding annotations.");
+				throw new AnnotationException("In " + this.getName() + " dataset, there is a raw file " + filename
+				        + " that has no corresponding annotations.");
 	}
 
-	public void unifyMaps(HashMap<String, String> filenameToBody,
-			HashMap<String, HashSet<Annotation>> filenameToAnnotations) {
+	protected void unifyMaps(HashMap<String, String> filenameToBody, HashMap<String, HashSet<Annotation>> filenameToAnnotations) {
 		annList = new Vector<HashSet<Annotation>>();
 		textList = new Vector<String>();
 		for (String filename : filenameToAnnotations.keySet()) {
@@ -235,8 +212,7 @@ public class MSNBCDataset implements A2WDataset {
 
 	@Override
 	public List<HashSet<Mention>> getMentionsInstanceList() {
-		return ProblemReduction
-				.A2WToD2WMentionsInstance(getA2WGoldStandardList());
+		return ProblemReduction.A2WToD2WMentionsInstance(getA2WGoldStandardList());
 	}
 
 	@Override
