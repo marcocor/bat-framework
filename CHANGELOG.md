@@ -1,5 +1,8 @@
 # Changes in BAT-Framework
 
+## 1.3.2 (release candidate) Fixes
+- Fixed default DBPedia Spotlight URL (fixes Issue [\#6](https://github.com/marcocor/bat-framework/issues/6)).
+
 ## 1.3.1 (2016-02-24) Dataset factory
 - Fixed dataset resource management. Dataset can now be created from other jars.
 
