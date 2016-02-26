@@ -26,6 +26,8 @@ import it.unipi.di.acube.batframework.problems.*;
 import it.unipi.di.acube.batframework.utils.*;
 
 public class SpotlightAnnotator implements Sa2WSystem{
+	public static final String DEFAULT_HOST = "spotlight.sztaki.hu";
+	public static final int DEFAULT_PORT = 2222;
 	private long lastTime = -1;
 	private long calib = -1;
 
@@ -47,7 +49,7 @@ public class SpotlightAnnotator implements Sa2WSystem{
 	}
 	
 	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi){
-		this(DisambiguationPolicy.Default, dbpediaApi, wikiApi, "spotlight.dbpedia.org", 80);
+		this(DisambiguationPolicy.Default, dbpediaApi, wikiApi, DEFAULT_HOST, DEFAULT_PORT);
 	}
 
 	@Override
