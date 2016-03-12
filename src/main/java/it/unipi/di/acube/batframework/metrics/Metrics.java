@@ -15,6 +15,8 @@ public class Metrics<T> {
 	public MetricsResultSet getResult(List<HashSet<T>> outputOrig,
 			List<HashSet<T>> goldStandardOrig, MatchRelation<T> m)
 			throws IOException {
+		if (outputOrig.size() != goldStandardOrig.size())
+			throw new IllegalArgumentException("The output must be the same size as the gold standard (number of documents).");
 		List<HashSet<T>> output = m.preProcessOutput(outputOrig);
 		List<HashSet<T>> goldStandard = m.preProcessGoldStandard(goldStandardOrig);
 
@@ -91,6 +93,9 @@ public class Metrics<T> {
 
 	public float macroSimilarity(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
+		if (list1.size() != list2.size())
+			throw new IllegalArgumentException("The two lists must have same size (number of documents).");
+
 		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
 		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
@@ -105,6 +110,8 @@ public class Metrics<T> {
 
 	public float microSimilarity(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
+		if (list1.size() != list2.size())
+			throw new IllegalArgumentException("The two lists must have same size (number of documents).");
 		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
 		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
@@ -121,6 +128,8 @@ public class Metrics<T> {
 
 	public int dissimilarityListCount(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
+		if (list1.size() != list2.size())
+			throw new IllegalArgumentException("The two lists must have same size (number of documents).");
 		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
 		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
@@ -143,6 +152,8 @@ public class Metrics<T> {
 	 */
 	public int similarityListCount(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
+		if (list1.size() != list2.size())
+			throw new IllegalArgumentException("The two lists must have same size (number of documents).");
 		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
 		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
@@ -158,6 +169,8 @@ public class Metrics<T> {
 
 	public long listUnion(List<HashSet<T>> list1, List<HashSet<T>> list2,
 			MatchRelation<T> m) {
+		if (list1.size() != list2.size())
+			throw new IllegalArgumentException("The two lists must have same size (number of documents).");
 		List<HashSet<T>> list1preproc = m.preProcessOutput(list1);
 		List<HashSet<T>> list2preproc = m.preProcessOutput(list2);
 
@@ -237,6 +250,8 @@ public class Metrics<T> {
 
 	public List<HashSet<T>> getTp(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		if (computedResult.size() != expectedResult.size())
+			throw new IllegalArgumentException("The output must be the same size as the gold standard (number of documents).");
 		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
 		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
@@ -271,6 +286,8 @@ public class Metrics<T> {
 
 	public List<HashSet<T>> getFp(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		if (computedResult.size() != expectedResult.size())
+			throw new IllegalArgumentException("The output must be the same size as the gold standard (number of documents).");
 		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
 		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
@@ -308,6 +325,8 @@ public class Metrics<T> {
 
 	public List<HashSet<T>> getFn(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		if (computedResult.size() != expectedResult.size())
+			throw new IllegalArgumentException("The output must be the same size as the gold standard (number of documents).");
 		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
 		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
@@ -340,6 +359,8 @@ public class Metrics<T> {
 	 * @return the macro-precision.
 	 */
 	public float macroPrecision(int[] tps, int[] fps) {
+		if (tps.length != fps.length)
+			throw new IllegalArgumentException("The size of tps and fps must be equal (number of documents).");
 		float macroPrec = 0;
 		float precisions[] = precisions(tps, fps);
 		for (int i = 0; i < tps.length; i++)
@@ -349,6 +370,8 @@ public class Metrics<T> {
 	}
 
 	public float[] precisions(int[] tps, int[] fps) {
+		if (tps.length != fps.length)
+			throw new IllegalArgumentException("The size of tps and fps must be equal (number of documents).");
 		float[] precisions = new float[tps.length];
 		for (int i = 0; i < tps.length; i++)
 			precisions[i] = precision(tps[i], fps[i]);
@@ -367,6 +390,8 @@ public class Metrics<T> {
 	 * @return the macro-recall.
 	 */
 	public float macroRecall(int[] tps, int[] fps, int[] fns) {
+		if (tps.length != fps.length || tps.length != fns.length)
+			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float macroRec = 0;
 		float[] recalls = recalls(tps, fps, fns);
 		for (int i = 0; i < tps.length; i++)
@@ -376,6 +401,8 @@ public class Metrics<T> {
 	}
 
 	public float[] recalls(int[] tps, int[] fps, int[] fns) {
+		if (tps.length != fps.length || tps.length != fns.length)
+			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float[] recalls = new float[tps.length];
 		for (int i = 0; i < tps.length; i++)
 			recalls[i] = recall(tps[i], fps[i], fns[i]);
@@ -383,6 +410,8 @@ public class Metrics<T> {
 	}
 
 	public float macroF1(int[] tps, int[] fps, int[] fns) {
+		if (tps.length != fps.length || tps.length != fns.length)
+			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float macroF1 = 0;
 		float[] f1s = f1s(tps, fps, fns);
 		for (int i = 0; i < tps.length; i++)
@@ -392,6 +421,8 @@ public class Metrics<T> {
 	}
 
 	public float[] f1s(int[] tps, int[] fps, int[] fns) {
+		if (tps.length != fps.length || tps.length != fns.length)
+			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float[] f1s = new float[tps.length];
 		for (int i = 0; i < tps.length; i++)
 			f1s[i] = F1(recall(tps[i], fps[i], fns[i]),
@@ -419,6 +450,8 @@ public class Metrics<T> {
 
 	public int tpCount(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		if (computedResult.size() != expectedResult.size())
+			throw new IllegalArgumentException("The output must be the same size as the gold standard (number of documents).");
 		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
 		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
@@ -445,6 +478,8 @@ public class Metrics<T> {
 
 	public int fpCount(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		if (computedResult.size() != expectedResult.size())
+			throw new IllegalArgumentException("The output must be the same size as the gold standard (number of documents).");
 		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
 		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
@@ -472,6 +507,8 @@ public class Metrics<T> {
 
 	public int fnCount(List<HashSet<T>> expectedResult,
 			List<HashSet<T>> computedResult, MatchRelation<T> m) {
+		if (computedResult.size() != expectedResult.size())
+			throw new IllegalArgumentException("The output must be the same size as the gold standard (number of documents).");
 		List<HashSet<T>> computedResultPrep = m.preProcessOutput(computedResult);
 		List<HashSet<T>> expectedResultPrep = m
 				.preProcessGoldStandard(expectedResult);
