@@ -8,9 +8,18 @@
 package it.unipi.di.acube.batframework.metrics;
 
 import java.io.Serializable;
+import java.util.Locale;
+
+import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
+import org.apache.commons.math3.stat.descriptive.moment.Variance;
+
+import com.google.common.primitives.Doubles;
+import com.google.common.primitives.Floats;
 
 public class MetricsResultSet implements Serializable{
 	private static final long serialVersionUID = 1L;
+	private static final StandardDeviation std = new StandardDeviation();
+	private static final Variance var = new Variance();
 	private float microF1, microRecall, microPrecision, macroF1, macroRecall,
 			macroPrecision;
 	private int tp, fn, fp;
@@ -90,14 +99,34 @@ public class MetricsResultSet implements Serializable{
 		return f1s[i];
 	}
 
+	public double getF1StdDev() {
+		return std.evaluate(Doubles.toArray(Floats.asList(f1s)));
+	}
+	
+	public double getPrecisionStdDev() {
+		return std.evaluate(Doubles.toArray(Floats.asList(precisions)));
+	}
+	
+	public double getRecallStdDev() {
+		return std.evaluate(Doubles.toArray(Floats.asList(recalls)));
+	}
+	
+	public double getF1Var() {
+		return var.evaluate(Doubles.toArray(Floats.asList(f1s)));
+	}
+	
+	public double getPrecisionVar() {
+		return var.evaluate(Doubles.toArray(Floats.asList(precisions)));
+	}
+	
+	public double getRecallVar() {
+		return var.evaluate(Doubles.toArray(Floats.asList(recalls)));
+	}
+	
 	public String toString() {
-		return String
-				.format("Micro P/R/F1: %.3f/%.3f/%.3f%nMacro P/R/F1: %.3f/%.3f/%.3f%nGlobal TP/FP/FN: %d/%d/%d",
-						this.getMicroPrecision(), this.getMicroRecall(),
-						this.getMicroF1(), this.getMacroPrecision(),
-						this.getMacroRecall(), this.getMacroF1(),
-						this.getGlobalTp(), this.getGlobalFp(),
-						this.getGlobalFn());
+		return String.format(Locale.ENGLISH, "mac-P/R/F1: %.3f/%.3f/%.3f mic-P/R/F1: %.3f/%.3f/%.3f TP/FP/FN: %d/%d/%d",
+		        this.getMacroPrecision(), this.getMacroRecall(), this.getMacroF1(), this.getMicroPrecision(),
+		        this.getMicroRecall(), this.getMicroF1(), this.getGlobalTp(), this.getGlobalFp(), this.getGlobalFn());
 	}
 
 	public int getTPs(int i) {
