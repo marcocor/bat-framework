@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.unipi.di.acube</groupId>
 	<artifactId>bat-framework</artifactId>
-	<version>1.3.4.rc1-SNAPSHOT</version>
+	<version>1.3.3-SNAPSHOT</version>
 	<name>BAT framework</name>
 	<description>A framework to compare entity annotation systems.</description>
 	<properties>

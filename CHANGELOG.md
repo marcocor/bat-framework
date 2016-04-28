@@ -1,6 +1,6 @@
 # Changes in BAT-Framework
 
-## 1.3.3 (release candidate) Fixes
+## 1.3.3 (2016-04-28) Fixes
 - Fixed default DBPedia Spotlight URL (fixes Issue [\#6](https://github.com/marcocor/bat-framework/issues/6)).
 - Added computation of variance and standard deviation on dataset-wise metrics.
 
