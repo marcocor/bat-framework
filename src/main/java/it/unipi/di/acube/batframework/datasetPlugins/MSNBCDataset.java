@@ -14,6 +14,7 @@ import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.CharUtils;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
+import it.unipi.di.acube.batframework.utils.Utils;
 import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
 
 import java.io.*;
@@ -42,7 +43,7 @@ public class MSNBCDataset implements A2WDataset {
 
 	public MSNBCDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException,
 	        ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException {
-		this(getFilesAndInputStreams(textPath, ".+\\.txt"), getFilesAndInputStreams(annotationsPath, ".+\\.txt"), api);
+		this(Utils.getFilesAndInputStreams(textPath, ".+\\.txt"), Utils.getFilesAndInputStreams(annotationsPath, ".+\\.txt"), api);
 	}
 
 	public MSNBCDataset(Map<String, InputStream> bodyFilenameToInputstream,
@@ -59,15 +60,6 @@ public class MSNBCDataset implements A2WDataset {
 
 		// unify the two mappings and generate the lists.
 		unifyMaps(filenameToBody, filenameToAnnotations);
-	}
-
-	protected static Map<String, InputStream> getFilesAndInputStreams(String path, String pattern) throws FileNotFoundException {
-		Map<String, InputStream> bodyFilenameToInputstream = new HashMap<>();
-		File[] textFiles = new File(path).listFiles();
-		for (File tf : textFiles)
-			if (tf.isFile() && tf.getName().toLowerCase().matches(pattern))
-				bodyFilenameToInputstream.put(tf.getName(), new FileInputStream(tf));
-		return bodyFilenameToInputstream;
 	}
 
 	protected HashMap<String, HashSet<Annotation>> loadTags(Map<String, InputStream> anchorsFilenameToInputstream,

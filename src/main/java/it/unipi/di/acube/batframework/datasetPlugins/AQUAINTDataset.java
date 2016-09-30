@@ -9,6 +9,7 @@ package it.unipi.di.acube.batframework.datasetPlugins;
 
 import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
+import it.unipi.di.acube.batframework.utils.Utils;
 import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ import org.xml.sax.SAXException;
 public class AQUAINTDataset extends MSNBCDataset {
 	public AQUAINTDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException,
 	        ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException {
-		this(getFilesAndInputStreams(textPath, ".+\\.htm"), getFilesAndInputStreams(annotationsPath, ".+\\.htm"), api);
+		this(Utils.getFilesAndInputStreams(textPath, ".+\\.htm"), Utils.getFilesAndInputStreams(annotationsPath, ".+\\.htm"), api);
 	}
 
 	public AQUAINTDataset(Map<String, InputStream> bodyFilenameToInputstream,

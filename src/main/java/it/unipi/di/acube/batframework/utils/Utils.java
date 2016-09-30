@@ -2,6 +2,7 @@ package it.unipi.di.acube.batframework.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -49,5 +50,14 @@ public class Utils {
 			throw new UnsupportedOperationException("Cannot list files for URL " + dirURL);
 		
 		return result;
+	}
+	
+	public static Map<String, InputStream> getFilesAndInputStreams(String path, String pattern) throws FileNotFoundException {
+		Map<String, InputStream> bodyFilenameToInputstream = new HashMap<>();
+		File[] textFiles = new File(path).listFiles();
+		for (File tf : textFiles)
+			if (tf.isFile() && tf.getName().toLowerCase().matches(pattern))
+				bodyFilenameToInputstream.put(tf.getName(), new FileInputStream(tf));
+		return bodyFilenameToInputstream;
 	}
 }

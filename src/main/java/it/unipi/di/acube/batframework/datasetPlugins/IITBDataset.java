@@ -14,6 +14,7 @@ import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.CharUtils;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
+import it.unipi.di.acube.batframework.utils.Utils;
 import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
 
 import java.io.*;
@@ -32,11 +33,15 @@ public class IITBDataset implements A2WDataset{
 	private List<HashSet<Annotation>> annList;
 	
 	public IITBDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
+		this(Utils.getFilesAndInputStreams(textPath, ".*"), new FileInputStream(annotationsPath), api);
+	}
+	
+	public IITBDataset(Map<String, InputStream> texts, InputStream annotationsIs, WikipediaApiInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
 		//load the annotations (and the file name list)
-		HashMap<String, HashSet<Annotation>> filenameToAnnotations= loadAnns(annotationsPath, api);
+		HashMap<String, HashSet<Annotation>> filenameToAnnotations= loadAnns(annotationsIs, api);
 
 		//load the bodies (from the file names list)
-		HashMap<String, String> filenameToBody= loadBody(textPath, filenameToAnnotations.keySet());
+		HashMap<String, String> filenameToBody= loadBody(texts, filenameToAnnotations.keySet());
 
 		//check consistency
 		checkConsistency(filenameToBody, filenameToAnnotations);
@@ -51,30 +56,25 @@ public class IITBDataset implements A2WDataset{
 				throw new AnnotationException("Document "+fn+" cited in annotation not available!");
 	}
 
-	public HashMap<String, String> loadBody(String textPath, Set<String> textFiles) throws IOException{
+	public HashMap<String, String> loadBody(Map<String, InputStream> texts, Set<String> textFiles) throws IOException{
 		HashMap<String, String> filenameToBody=new HashMap<String, String>();
-		for (String filename : textFiles){
-			File tf = new File(textPath+"/"+filename);			
-			if (tf.isFile()){
-				
-				BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(tf), Charset.forName("UTF-8")));
-				String line;
-				String body="";
-				while ((line = r.readLine())!=null)
-					body += line.replace((char)0, ' ')+"\n";
-				r.close();
-				filenameToBody.put(tf.getName(), body);
-			}
+		for (String filename : texts.keySet()){
+			BufferedReader r = new BufferedReader(new InputStreamReader(texts.get(filename), Charset.forName("UTF-8")));
+			String line;
+			String body="";
+			while ((line = r.readLine())!=null)
+				body += line.replace((char)0, ' ')+"\n";
+			r.close();
+			filenameToBody.put(filename, body);
 		}
 		return filenameToBody;
 	}
 
-	public HashMap<String, HashSet<Annotation>> loadAnns(String annsPath, WikipediaApiInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException, XPathExpressionException {
+	public HashMap<String, HashSet<Annotation>> loadAnns(InputStream annsIs, WikipediaApiInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException, XPathExpressionException {
 		HashMap<String, HashSet<IITBAnnotation>> filenameToAnns = new HashMap<String, HashSet<IITBAnnotation>>();
-		File tf = new File(annsPath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(tf);
+		Document doc = dBuilder.parse(annsIs);
 		doc.getDocumentElement().normalize();
 		List<String> titlesToPrefetch = new Vector<String>();
 

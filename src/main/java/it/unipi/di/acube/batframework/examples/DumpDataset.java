@@ -17,10 +17,10 @@ public class DumpDataset {
 
 	public static void main(String[] args) throws Exception {
 		//Creating the API to Wikipedia.
-		WikipediaApiInterface api = new WikipediaApiInterface("benchmark/cache/wid.cache", "benchmark/cache/redirect.cache");
+		WikipediaApiInterface api = WikipediaApiInterface.api();
 		
 		//Creating the IITB dataset.
-		A2WDataset ds = new IITBDataset("benchmark/datasets/iitb/crawledDocs", "benchmark/datasets/iitb/CSAW_Annotations.xml", api);
+		A2WDataset ds = DatasetBuilder.getIITB();
 
 		System.out.println("Printing basic information about dataset " + ds.getName());
 		//Basic check & Dump basic information

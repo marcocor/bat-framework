@@ -2,6 +2,7 @@ package it.unipi.di.acube.batframework.datasetPlugins;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -10,6 +11,7 @@ import javax.xml.xpath.XPathExpressionException;
 import org.codehaus.jettison.json.JSONException;
 import org.xml.sax.SAXException;
 
+import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.FreebaseApi;
 import it.unipi.di.acube.batframework.utils.Utils;
@@ -52,5 +54,8 @@ public class DatasetBuilder {
 	        ParserConfigurationException, SAXException, URISyntaxException {
 		return new MSNBCDataset(Utils.getResourceListing(classLoader, "datasets/MSNBC/RawTextsSimpleChars_utf8", ".+\\.txt"),
 		        Utils.getResourceListing(classLoader, "datasets/MSNBC/Problems", ".+\\.txt"), WikipediaApiInterface.api());
+	}
+	public static A2WDataset getIITB() throws AnnotationException, XPathExpressionException, UnsupportedEncodingException, IOException, ParserConfigurationException, SAXException, URISyntaxException {
+		return new IITBDataset(Utils.getResourceListing(classLoader, "datasets/iitb/crawledDocs", ".*"), classLoader.getResourceAsStream("datasets/iitb/CSAW_Annotations.xml"), WikipediaApiInterface.api());
 	}
 }
