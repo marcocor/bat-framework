@@ -80,6 +80,8 @@ public class WikipediaApiInterface {
 	}
 
 	public void flush() throws FileNotFoundException, IOException{
+		if (queries == 0)
+			return;
 		if (bidiTitle2widCache != null){
 			bidiTitle2widCache.createNewFile();
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(bidiTitle2widCache));
@@ -184,7 +186,7 @@ public class WikipediaApiInterface {
 	}
 
 	private void incrementAutoFlushCounter() throws FileNotFoundException, IOException{
-		if (queries++ % 30 == 0)
+		if (++queries % 30 == 0)
 			this.flush();
 	}
 
@@ -329,8 +331,11 @@ public class WikipediaApiInterface {
 		NodeList redirectIdNodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 
 		Vector<Integer> idsToDereference =  new Vector<Integer>();
-		for (int j=0; j < redirectIdNodes.getLength(); j++)
-			idsToDereference.add(Integer.parseInt(redirectIdNodes.item(j).getNodeValue()));
+		for (int j=0; j < redirectIdNodes.getLength(); j++) {
+			int id = Integer.parseInt(redirectIdNodes.item(j).getNodeValue());
+			if (!wid2redirect.containsKey(id))
+				idsToDereference.add(id);
+		}
 		prefetchRedirects(idsToDereference);
 		
 			
