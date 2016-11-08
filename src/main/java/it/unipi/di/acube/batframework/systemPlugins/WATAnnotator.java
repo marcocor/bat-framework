@@ -38,6 +38,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Vector;
 
+import org.apache.commons.io.IOUtils;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -395,7 +396,7 @@ public class WATAnnotator implements Sa2WSystem, MentionSpotter,
 	
 	protected JSONObject queryJson(String parameters,
 			String url, String getParameters, int retry) throws Exception {
-
+		byte[] parametersBytes = parameters.getBytes("utf-8");
 		String resultStr = null;
 		try {
 			URL wikiSenseApi = new URL(String.format("%s?%s", url,
@@ -411,28 +412,23 @@ public class WATAnnotator implements Sa2WSystem, MentionSpotter,
 			slConnection.setRequestMethod("POST");
 			slConnection.setRequestProperty("Content-Type", "application/json");
 			slConnection.setRequestProperty("Content-Length", ""
-					+ parameters.toString().getBytes().length);
+					+ parametersBytes.length);
 
 			slConnection.setUseCaches(false);
 
 			DataOutputStream wr = new DataOutputStream(
 					slConnection.getOutputStream());
-			wr.write(parameters.toString().getBytes());
+			wr.write(parametersBytes);
 			wr.flush();
 			wr.close();
 
 			if (slConnection.getResponseCode() != 200) {
-				Scanner s = new Scanner(slConnection.getErrorStream())
-						.useDelimiter("\\A");
+				String errorMsg = IOUtils.toString(slConnection.getErrorStream(), "utf-8");
 				System.err.printf("Got HTTP error %d. Message is: %s%n",
-						slConnection.getResponseCode(), s.next());
-				s.close();
+						slConnection.getResponseCode(), errorMsg);
 			}
 
-			Scanner s = new Scanner(slConnection.getInputStream())
-					.useDelimiter("\\A");
-			resultStr = s.hasNext() ? s.next() : "";
-
+			resultStr = IOUtils.toString(slConnection.getInputStream(), "utf-8");
 			JSONObject obj = new JSONObject(resultStr);
 
 			return obj;
