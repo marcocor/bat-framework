@@ -34,7 +34,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.Vector;
 
@@ -303,11 +302,7 @@ public class WATAnnotator implements Sa2WSystem, MentionSpotter,
 				additionalInfo.get(m).put("rho", rho);
 				additionalInfo.get(m).put("pageRank", pageRank);
 
-				// System.out.println(text.substring(start, end) + "->" + id +
-				// " ("
-				// + rho + ")");
-				res.add(new ScoredAnnotation(start, end - start, id,
-						(float) rho));
+				res.add(new ScoredAnnotation(start, end - start, id, (float) rho));
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
