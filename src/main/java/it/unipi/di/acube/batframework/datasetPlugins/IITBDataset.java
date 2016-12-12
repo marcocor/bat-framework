@@ -15,7 +15,7 @@ import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.CharUtils;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
 import it.unipi.di.acube.batframework.utils.Utils;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -32,11 +32,11 @@ public class IITBDataset implements A2WDataset{
 	private List<String> textList;
 	private List<HashSet<Annotation>> annList;
 	
-	public IITBDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
+	public IITBDataset(String textPath, String annotationsPath, WikipediaInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
 		this(Utils.getFilesAndInputStreams(textPath, ".*"), new FileInputStream(annotationsPath), api);
 	}
 	
-	public IITBDataset(Map<String, InputStream> texts, InputStream annotationsIs, WikipediaApiInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
+	public IITBDataset(Map<String, InputStream> texts, InputStream annotationsIs, WikipediaInterface api) throws IOException, ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException{
 		//load the annotations (and the file name list)
 		HashMap<String, HashSet<Annotation>> filenameToAnnotations= loadAnns(annotationsIs, api);
 
@@ -70,7 +70,7 @@ public class IITBDataset implements A2WDataset{
 		return filenameToBody;
 	}
 
-	public HashMap<String, HashSet<Annotation>> loadAnns(InputStream annsIs, WikipediaApiInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException, XPathExpressionException {
+	public HashMap<String, HashSet<Annotation>> loadAnns(InputStream annsIs, WikipediaInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException, XPathExpressionException {
 		HashMap<String, HashSet<IITBAnnotation>> filenameToAnns = new HashMap<String, HashSet<IITBAnnotation>>();
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

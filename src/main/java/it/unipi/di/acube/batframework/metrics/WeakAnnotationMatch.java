@@ -8,7 +8,7 @@
 package it.unipi.di.acube.batframework.metrics;
 
 import it.unipi.di.acube.batframework.data.Annotation;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,8 +16,8 @@ import java.util.HashSet;
 import java.util.Vector;
 
 public class WeakAnnotationMatch implements MatchRelation<Annotation>{
-	private WikipediaApiInterface api;
-	public WeakAnnotationMatch(WikipediaApiInterface api){
+	private WikipediaInterface api;
+	public WeakAnnotationMatch(WikipediaInterface api){
 		this.api = api;
 	}
 	@Override

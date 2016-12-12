@@ -31,7 +31,7 @@ public class RunExperiments {
 			String precisionFilename,
 			String recallFilename,
 			String F1Filename,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
 			throws Exception {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
@@ -55,7 +55,7 @@ public class RunExperiments {
 			String precisionFilename,
 			String recallFilename,
 			String F1Filename,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
 			throws Exception {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
@@ -87,7 +87,7 @@ public class RunExperiments {
 			MatchRelation<Tag> m,
 			Sa2WSystem tagger,
 			C2WDataset ds,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
 			throws Exception {
 		Metrics<Tag> metrics = new Metrics<Tag>();
@@ -121,7 +121,7 @@ public class RunExperiments {
 			MatchRelation<Tag> m,
 			Sc2WSystem tagger,
 			C2WDataset ds,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
 			throws Exception {
 		Metrics<Tag> metrics = new Metrics<Tag>();
@@ -148,7 +148,7 @@ public class RunExperiments {
 			MatchRelation<Tag> m,
 			C2WSystem tagger,
 			C2WDataset ds,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
 			throws Exception {
 		Metrics<Tag> metrics = new Metrics<Tag>();
@@ -173,7 +173,7 @@ public class RunExperiments {
 			String precisionFilename,
 			String recallFilename,
 			String F1Filename,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
 			throws Exception {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
@@ -204,7 +204,7 @@ public class RunExperiments {
 			String precisionFilename,
 			String recallFilename,
 			String F1Filename,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> results)
 			throws Exception {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
@@ -240,7 +240,7 @@ public class RunExperiments {
 			Vector<A2WSystem> a2wAnnotators, Vector<Sa2WSystem> sa2wAnnotators,
 			Vector<Sc2WSystem> sc2wTaggers,
 			Vector<C2WSystem> c2wTaggers, Vector<C2WDataset> dss,
-			WikipediaApiInterface api) throws Exception {
+			WikipediaInterface api) throws Exception {
 		HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> result = new HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>>();
 		for (MatchRelation<Tag> m : matchRels)
 			for (C2WDataset ds : dss) {
@@ -273,7 +273,7 @@ public class RunExperiments {
 	public static HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> performA2WExpVarThreshold(
 			Vector<MatchRelation<Annotation>> metrics,
 			Vector<A2WSystem> a2wTaggers, Vector<Sa2WSystem> sa2wTaggers,
-			Vector<A2WDataset> dss, WikipediaApiInterface api) throws Exception {
+			Vector<A2WDataset> dss, WikipediaInterface api) throws Exception {
 		HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> result = new HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>>();
 		for (MatchRelation<Annotation> metric : metrics) {
 			for (A2WDataset ds : dss) {
@@ -325,7 +325,7 @@ public class RunExperiments {
 
 	public static HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> performD2WExpVarThreshold(
 			Vector<D2WSystem> d2wAnnotators, Vector<Sa2WSystem> sa2wAnnotators,
-			Vector<D2WDataset> dss, WikipediaApiInterface api) throws Exception {
+			Vector<D2WDataset> dss, WikipediaInterface api) throws Exception {
 		HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> result = new HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>>();
 		MatchRelation<Annotation> sam = new StrongAnnotationMatch(api);
 		for (D2WDataset ds : dss) {
@@ -452,7 +452,7 @@ public class RunExperiments {
 	}
 
 	public static MetricsResultSet performCandidateSpottingExp(
-			CandidatesSpotter spotter, D2WDataset dss, WikipediaApiInterface api)
+			CandidatesSpotter spotter, D2WDataset dss, WikipediaInterface api)
 			throws Exception {
 		Metrics<MultipleAnnotation> metrics = new Metrics<MultipleAnnotation>();
 
@@ -473,7 +473,7 @@ public class RunExperiments {
 	}
 
 	public static Integer[] candidateCoverageDistributionExp(
-			CandidatesSpotter spotter, D2WDataset dss, WikipediaApiInterface api)
+			CandidatesSpotter spotter, D2WDataset dss, WikipediaInterface api)
 			throws Exception {
 		List<HashSet<MultipleAnnotation>> gold = annotationToMulti(dss
 				.getD2WGoldStandardList());

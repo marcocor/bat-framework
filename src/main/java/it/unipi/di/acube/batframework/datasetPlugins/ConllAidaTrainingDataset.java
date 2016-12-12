@@ -15,7 +15,7 @@ public class ConllAidaTrainingDataset extends ConllAidaDataset{
 	private static final int FIRST_DOC_ID = 1;
 	private static final int LAST_DOC_ID = 946;
 
-	public ConllAidaTrainingDataset(String file, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
+	public ConllAidaTrainingDataset(String file, WikipediaInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
 		super(file, api);
 	}
 

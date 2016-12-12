@@ -4,7 +4,7 @@ import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.data.Mention;
 import it.unipi.di.acube.batframework.problems.D2WSystem;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.*;
 import java.net.*;
@@ -26,15 +26,15 @@ public class AgdistisAnnotator implements D2WSystem {
 
 	private final String host;
 	private final int port;
-	private final WikipediaApiInterface wikiApi;
+	private final WikipediaInterface wikiApi;
 
-	public AgdistisAnnotator(String host, int port, WikipediaApiInterface wikiApi) {
+	public AgdistisAnnotator(String host, int port, WikipediaInterface wikiApi) {
 		this.host = host;
 		this.port = port;
 		this.wikiApi = wikiApi;
 	}
 
-	public AgdistisAnnotator(WikipediaApiInterface wikiApi) {
+	public AgdistisAnnotator(WikipediaInterface wikiApi) {
 		this("139.18.2.164", 8080, wikiApi);
 	}
 

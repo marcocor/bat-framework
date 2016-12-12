@@ -16,8 +16,17 @@
 
 package it.unipi.di.acube.batframework.datasetPlugins;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 import org.codehaus.jettison.json.JSONException;
 
@@ -27,19 +36,19 @@ import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.FreebaseApi;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class ERD2014Dataset implements A2WDataset {
 	List<String> queries = new Vector<>();
 	List<HashSet<Annotation>> annotations = new Vector<>();
 		
-	public ERD2014Dataset(String queryFile, String annotationFile, FreebaseApi freebApi, WikipediaApiInterface wikiApi)
+	public ERD2014Dataset(String queryFile, String annotationFile, FreebaseApi freebApi, WikipediaInterface wikiApi)
 	        throws IOException, JSONException {
 		this(new FileInputStream(new File(queryFile)), new FileInputStream(new File(annotationFile)), freebApi, wikiApi);
 	}
 
 	public ERD2014Dataset(InputStream queryStream, InputStream annotationStream, FreebaseApi freebApi,
-	        WikipediaApiInterface wikiApi) throws IOException, JSONException {
+	        WikipediaInterface wikiApi) throws IOException, JSONException {
 		Map<String, Integer> trecIdToIndex = new HashMap<>();
 
 		BufferedReader queryBr = new BufferedReader(new InputStreamReader(queryStream));

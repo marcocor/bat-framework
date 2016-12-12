@@ -25,7 +25,7 @@ import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class ConllAidaDataset implements A2WDataset{
 	private List<HashSet<Annotation>> annotations = new Vector<HashSet<Annotation>>();
@@ -36,7 +36,7 @@ public class ConllAidaDataset implements A2WDataset{
 	private Pattern punctuationPattern = Pattern.compile("^\\W.*$");
 
 
-	public ConllAidaDataset (String file, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
+	public ConllAidaDataset (String file, WikipediaInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
 		List<HashSet<AidaAnnotation>> aidaAnns = new Vector<HashSet<AidaAnnotation>>();
 		List<String> titlesToPrefetch = new Vector<String>();
 		BufferedReader r = new BufferedReader( new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));

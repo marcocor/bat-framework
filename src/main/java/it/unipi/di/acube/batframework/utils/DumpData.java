@@ -37,7 +37,7 @@ public class DumpData {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <T1 extends Tag> void dumpDataset(List<String> texts,
-			List<HashSet<T1>> gs, WikipediaApiInterface api) throws IOException {
+			List<HashSet<T1>> gs, WikipediaInterface api) throws IOException {
 		for (int i = 0; i < texts.size(); i++)
 			dumpCompare(texts.get(i), gs.get(i), null, api);
 	}
@@ -59,7 +59,7 @@ public class DumpData {
 	 *             if something went wrong while querying the Wikipedia API.
 	 */
 	public static <T1 extends Tag> void dumpOutput(List<String> texts,
-			List<HashSet<T1>> output, WikipediaApiInterface api)
+			List<HashSet<T1>> output, WikipediaInterface api)
 			throws IOException {
 		for (int i = 0; i < texts.size(); i++)
 			dumpCompare(texts.get(i), null, output.get(i), api);
@@ -87,7 +87,7 @@ public class DumpData {
 	 */
 	public static <T extends Tag> void dumpCompareList(List<String> texts,
 			List<HashSet<T>> expectedResult, List<HashSet<T>> computedResult,
-			WikipediaApiInterface api) throws IOException {
+			WikipediaInterface api) throws IOException {
 		dumpCompareList(texts, expectedResult, computedResult, api, true);
 
 	}
@@ -117,7 +117,7 @@ public class DumpData {
 	 */
 	public static <T extends Tag> void dumpCompareList(List<String> texts,
 			List<HashSet<T>> expectedResult, List<HashSet<T>> computedResult,
-			WikipediaApiInterface api, boolean printEmptyDocs)
+			WikipediaInterface api, boolean printEmptyDocs)
 			throws IOException {
 		dumpCompareList(texts, expectedResult, computedResult, api, printEmptyDocs, null);
 	}
@@ -149,7 +149,7 @@ public class DumpData {
 	 */
 	public static <T extends Tag> void dumpCompareList(List<String> texts,
 			List<HashSet<T>> expectedResult, List<HashSet<T>> computedResult,
-			WikipediaApiInterface api, boolean printEmptyDocs, MatchRelation<T> mr)
+			WikipediaInterface api, boolean printEmptyDocs, MatchRelation<T> mr)
 			throws IOException {
 		for (int i = 0; i < texts.size(); i++) {
 			if (printEmptyDocs
@@ -187,7 +187,7 @@ public class DumpData {
 	 */
 	public static <T extends Tag> void dumpCompareMatch(String text,
 			HashSet<T> expectedResult, HashSet<T> computedResult,
-			MatchRelation<T> mr, WikipediaApiInterface api) throws IOException {
+			MatchRelation<T> mr, WikipediaInterface api) throws IOException {
 		System.out.println("Text: " + text);
 		if (expectedResult != null) {
 			System.out.println();
@@ -225,12 +225,12 @@ public class DumpData {
 
 	public static <T extends Tag> void dumpCompare(String text,
 			HashSet<T> expectedResult, HashSet<T> computedResult,
-			WikipediaApiInterface api) throws IOException {
+			WikipediaInterface api) throws IOException {
 		dumpCompareMatch(text, expectedResult, computedResult, null, api);
 	}
 
 	private static <T extends Tag> void printAnnotation(String text, T a,
-			WikipediaApiInterface api, String note) throws IOException {
+			WikipediaInterface api, String note) throws IOException {
 		if (a instanceof ScoredAnnotation)
 			System.out.printf("\t%s: %s -> %s (wid=%d) (score=%.3f)%n", note,
 					text.substring(((ScoredAnnotation) a).getPosition(),

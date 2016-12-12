@@ -22,16 +22,16 @@ import it.unipi.di.acube.batframework.problems.MentionSpotter;
 import it.unipi.di.acube.batframework.problems.Sa2WSystem;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class AIDADefaultAnnotator implements Sa2WSystem, MentionSpotter {
 	private long lastTime = 0;
 	private String url;
-	private WikipediaApiInterface api;
+	private WikipediaInterface api;
 	private String tech;
 
 	public AIDADefaultAnnotator(String url, String tech,
-			WikipediaApiInterface api) {
+			WikipediaInterface api) {
 		this.url = url;
 		this.api = api;
 		this.tech = tech;

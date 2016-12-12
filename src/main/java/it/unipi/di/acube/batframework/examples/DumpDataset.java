@@ -17,7 +17,7 @@ public class DumpDataset {
 
 	public static void main(String[] args) throws Exception {
 		//Creating the API to Wikipedia.
-		WikipediaApiInterface api = WikipediaApiInterface.api();
+		WikipediaInterface api = WikipediaApiInterface.api();
 		
 		//Creating the IITB dataset.
 		A2WDataset ds = DatasetBuilder.getIITB();

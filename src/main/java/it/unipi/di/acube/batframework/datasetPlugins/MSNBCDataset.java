@@ -15,7 +15,7 @@ import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.CharUtils;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
 import it.unipi.di.acube.batframework.utils.Utils;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.*;
 import java.net.URLDecoder;
@@ -41,13 +41,13 @@ public class MSNBCDataset implements A2WDataset {
 	protected MSNBCDataset() {
 	};
 
-	public MSNBCDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException,
+	public MSNBCDataset(String textPath, String annotationsPath, WikipediaInterface api) throws IOException,
 	        ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException {
 		this(Utils.getFilesAndInputStreams(textPath, ".+\\.txt"), Utils.getFilesAndInputStreams(annotationsPath, ".+\\.txt"), api);
 	}
 
 	public MSNBCDataset(Map<String, InputStream> bodyFilenameToInputstream,
-	        Map<String, InputStream> anchorsFilenameToInputstream, WikipediaApiInterface api) throws IOException,
+	        Map<String, InputStream> anchorsFilenameToInputstream, WikipediaInterface api) throws IOException,
 	        AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
 		// load the bodies
 		HashMap<String, String> filenameToBody = loadBody(bodyFilenameToInputstream);
@@ -63,7 +63,7 @@ public class MSNBCDataset implements A2WDataset {
 	}
 
 	protected HashMap<String, HashSet<Annotation>> loadTags(Map<String, InputStream> anchorsFilenameToInputstream,
-	        WikipediaApiInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException,
+			WikipediaInterface api) throws ParserConfigurationException, SAXException, IOException, AnnotationException,
 	        XPathExpressionException {
 		HashMap<String, HashSet<MSNBCAnnotation>> filenameToTags = new HashMap<String, HashSet<MSNBCAnnotation>>();
 		for (String tf : anchorsFilenameToInputstream.keySet()) {

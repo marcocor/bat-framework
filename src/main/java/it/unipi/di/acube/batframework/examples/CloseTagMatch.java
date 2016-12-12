@@ -10,11 +10,11 @@ package it.unipi.di.acube.batframework.examples;
 
 import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.metrics.StrongTagMatch;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class CloseTagMatch extends StrongTagMatch{
 
-	public CloseTagMatch(WikipediaApiInterface api) {
+	public CloseTagMatch(WikipediaInterface api) {
 		super(api);
 	}
 

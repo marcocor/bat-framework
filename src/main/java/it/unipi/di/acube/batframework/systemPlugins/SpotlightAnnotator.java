@@ -33,14 +33,14 @@ public class SpotlightAnnotator implements Sa2WSystem{
 
 	private final DisambiguationPolicy disambiguator;
 	private DBPediaApi dbpediaApi;
-	private WikipediaApiInterface wikiApi;
+	private WikipediaInterface wikiApi;
 	private final String host;
 	private final int port;
 
 	private static final DocumentBuilderFactory DOC_FACTORY = DocumentBuilderFactory.newInstance();
 	private static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
 
-	public SpotlightAnnotator(DisambiguationPolicy disambiguator, DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi, String host, int port) {
+	public SpotlightAnnotator(DisambiguationPolicy disambiguator, DBPediaApi dbpediaApi, WikipediaInterface wikiApi, String host, int port) {
 		this.disambiguator = disambiguator;
 		this.dbpediaApi = dbpediaApi;
 		this.wikiApi = wikiApi;
@@ -48,7 +48,7 @@ public class SpotlightAnnotator implements Sa2WSystem{
 		this.port = port;
 	}
 	
-	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaApiInterface wikiApi){
+	public SpotlightAnnotator(DBPediaApi dbpediaApi, WikipediaInterface wikiApi){
 		this(DisambiguationPolicy.Default, dbpediaApi, wikiApi, DEFAULT_HOST, DEFAULT_PORT);
 	}
 

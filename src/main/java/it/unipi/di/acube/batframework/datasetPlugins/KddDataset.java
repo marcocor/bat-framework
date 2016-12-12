@@ -14,7 +14,7 @@ import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -44,7 +44,7 @@ public class KddDataset implements A2WDataset{
 	private Pattern endPattern = Pattern.compile("^\\.\tO\tO\t#$");
 	private Pattern nonTagPattern2 = Pattern.compile("^([^\t]*)\tO\tO\tO$");
 
-	public KddDataset (InputStream[] inputstreams, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
+	public KddDataset (InputStream[] inputstreams, WikipediaInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
 		List<HashSet<KddAnnotation>> kddAnns = new Vector<HashSet<KddAnnotation>>();
 		List<String> titlesToPrefetch = new Vector<String>();
 		for (InputStream is: inputstreams){
@@ -130,7 +130,7 @@ public class KddDataset implements A2WDataset{
 		return iss;
 	}
 	
-	public KddDataset (String[] files, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
+	public KddDataset (String[] files, WikipediaInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException{
 		this(filesToInputStreams(files), api);
 	}
 	

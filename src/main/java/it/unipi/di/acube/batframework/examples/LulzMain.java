@@ -23,7 +23,7 @@ public class LulzMain {
 		//Store the cache in a file (for future executions).
 		BenchmarkCache.useCache("benchmark/cache/results.cache");
 		//Create the API to wikipedia, storing retrieved data in two files, and the interface to DBPedia.
-		WikipediaApiInterface wikiApi = new WikipediaApiInterface("benchmark/cache/wid.cache", "benchmark/cache/redirect.cache");
+		WikipediaInterface wikiApi = new WikipediaApiInterface("benchmark/cache/wid.cache", "benchmark/cache/redirect.cache");
 		DBPediaApi dbpediaApi = new DBPediaApi();
 		
 		//Create the interface to an annotator.

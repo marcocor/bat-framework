@@ -16,13 +16,30 @@
 
 package it.unipi.di.acube.batframework.datasetPlugins;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.invoke.MethodHandles;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Vector;
 
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 
-import org.w3c.dom.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import it.unipi.di.acube.batframework.data.Annotation;
@@ -30,7 +47,7 @@ import it.unipi.di.acube.batframework.data.Mention;
 import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class GERDAQDataset implements A2WDataset {
 	private List<String> queries = new Vector<String>();
@@ -38,11 +55,11 @@ public class GERDAQDataset implements A2WDataset {
 	private List<HashSet<Annotation>> annotations = new Vector<HashSet<Annotation>>();
 	private String name = null;
 
-	public GERDAQDataset(String xmlFile, WikipediaApiInterface api, String nameSuffix) throws FileNotFoundException {
+	public GERDAQDataset(String xmlFile, WikipediaInterface api, String nameSuffix) throws FileNotFoundException {
 		this(new FileInputStream(new File(xmlFile)), api, nameSuffix);
 	}
 
-	public GERDAQDataset(InputStream stream, WikipediaApiInterface api, String nameSuffix) {
+	public GERDAQDataset(InputStream stream, WikipediaInterface api, String nameSuffix) {
 		this.name  = "GERDAQ-" + nameSuffix;
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;

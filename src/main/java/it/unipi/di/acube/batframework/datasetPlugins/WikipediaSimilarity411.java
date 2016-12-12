@@ -6,7 +6,7 @@ import java.util.*;
 import au.com.bytecode.opencsv.CSVReader;
 import it.unipi.di.acube.batframework.data.RelatednessRecord;
 import it.unipi.di.acube.batframework.problems.RelatednessDataset;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class WikipediaSimilarity411 implements RelatednessDataset {
 	List<RelatednessRecord> goldStandard = new Vector<RelatednessRecord>();
@@ -17,7 +17,7 @@ public class WikipediaSimilarity411 implements RelatednessDataset {
 		float relatedness;
 	}
 
-	public WikipediaSimilarity411(String filename, WikipediaApiInterface wikiApi)
+	public WikipediaSimilarity411(String filename, WikipediaInterface wikiApi)
 			throws Exception {
 		try {
 			CSVReader r = new CSVReader(new FileReader(filename));

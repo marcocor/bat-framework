@@ -9,14 +9,14 @@ package it.unipi.di.acube.batframework.metrics;
 
 import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.data.Tag;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.IOException;
 import java.util.*;
 
 public class StrongTagMatch implements MatchRelation<Tag>{
-	private WikipediaApiInterface api;
-	public StrongTagMatch(WikipediaApiInterface api){
+	private WikipediaInterface api;
+	public StrongTagMatch(WikipediaInterface api){
 		this.api = api;
 	}
 

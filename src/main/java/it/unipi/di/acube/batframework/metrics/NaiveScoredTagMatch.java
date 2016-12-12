@@ -8,14 +8,14 @@
 package it.unipi.di.acube.batframework.metrics;
 
 import it.unipi.di.acube.batframework.data.*;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.IOException;
 import java.util.*;
 
 public class NaiveScoredTagMatch implements MatchRelation<ScoredTag>{
-	private WikipediaApiInterface api;
-	public NaiveScoredTagMatch(WikipediaApiInterface api){
+	private WikipediaInterface api;
+	public NaiveScoredTagMatch(WikipediaInterface api){
 		this.api = api;
 	}
 	

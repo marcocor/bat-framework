@@ -10,7 +10,7 @@ package it.unipi.di.acube.batframework.datasetPlugins;
 import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.Utils;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,13 +24,13 @@ import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
 
 public class AQUAINTDataset extends MSNBCDataset {
-	public AQUAINTDataset(String textPath, String annotationsPath, WikipediaApiInterface api) throws IOException,
+	public AQUAINTDataset(String textPath, String annotationsPath, WikipediaInterface api) throws IOException,
 	        ParserConfigurationException, SAXException, AnnotationException, XPathExpressionException {
 		this(Utils.getFilesAndInputStreams(textPath, ".+\\.htm"), Utils.getFilesAndInputStreams(annotationsPath, ".+\\.htm"), api);
 	}
 
 	public AQUAINTDataset(Map<String, InputStream> bodyFilenameToInputstream,
-	        Map<String, InputStream> anchorsFilenameToInputstream, WikipediaApiInterface api) throws IOException,
+	        Map<String, InputStream> anchorsFilenameToInputstream, WikipediaInterface api) throws IOException,
 	        AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
 		// load the bodies
 		HashMap<String, String> filenameToBody = loadBody(bodyFilenameToInputstream);

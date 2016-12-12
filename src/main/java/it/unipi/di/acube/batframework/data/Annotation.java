@@ -8,7 +8,7 @@
 package it.unipi.di.acube.batframework.data;
 
 import it.unipi.di.acube.batframework.utils.AnnotationException;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -45,7 +45,7 @@ public class Annotation extends Tag implements Serializable, Cloneable{
 		return (this.getConcept()^m.hashCode());
 	}
 	
-	public static <E extends Tag> void prefetchRedirectList(List<HashSet<E>> annotations, WikipediaApiInterface api) throws IOException{
+	public static <E extends Tag> void prefetchRedirectList(List<HashSet<E>> annotations, WikipediaInterface api) throws IOException{
 		/** Prefetch redirect values */
 		List<Integer> widsToCheck = new Vector<Integer>();
 		for (HashSet<E> s : annotations)

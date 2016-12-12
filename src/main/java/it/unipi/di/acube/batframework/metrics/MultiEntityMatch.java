@@ -8,15 +8,15 @@
 package it.unipi.di.acube.batframework.metrics;
 
 import it.unipi.di.acube.batframework.data.MultipleAnnotation;
-import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.IOException;
 import java.util.*;
 
 public class MultiEntityMatch implements MatchRelation<MultipleAnnotation> {
-	private WikipediaApiInterface api;
+	private WikipediaInterface api;
 
-	public MultiEntityMatch(WikipediaApiInterface api) {
+	public MultiEntityMatch(WikipediaInterface api) {
 		this.api = api;
 	}
 

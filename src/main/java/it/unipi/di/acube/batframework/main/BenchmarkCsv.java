@@ -16,6 +16,7 @@ import it.unipi.di.acube.batframework.utils.AnnotationException;
 import it.unipi.di.acube.batframework.utils.Pair;
 import it.unipi.di.acube.batframework.utils.RunExperiments;
 import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -159,7 +160,7 @@ public class BenchmarkCsv {
 		if (cmd.hasOption("redirectcache"))
 			redirectCache = cmd.getOptionValue("redirectcache");
 
-		WikipediaApiInterface wikiApi = new WikipediaApiInterface(widsCache,
+		WikipediaInterface wikiApi = new WikipediaApiInterface(widsCache,
 				redirectCache);
 		A2WDataset ds = loadDatasetCsv(datasetCsv);
 		Sa2WSystem ann = loadAnnotatorCsv(systemCsv, ds.getTextInstanceList());

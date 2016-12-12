@@ -66,7 +66,7 @@ public class DumpResults {
 			Vector<MatchRelation<T2>> matchRels,
 			List<T1> annotators,
 			Vector<T3> dss,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords)
 			throws IOException {
 
@@ -160,7 +160,7 @@ public class DumpResults {
 			Vector<A2WSystem> a2wAnnotators,
 			Vector<Sa2WSystem> sa2wAnnotators,
 			String datasetName,
-			WikipediaApiInterface api,
+			WikipediaInterface api,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords)
 			throws IOException, Exception {
 		OutputStreamWriter runTimeF1Stream = new OutputStreamWriter(
@@ -329,7 +329,7 @@ public class DumpResults {
 			Vector<D> dssA2W,
 			Vector<Sa2WSystem> sa2wAnnotators,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords,
-			WikipediaApiInterface api) throws Exception {
+			WikipediaInterface api) throws Exception {
 		/** Difference between systems & "Jaccard" measure */
 		for (String focus : new String[] { "wholeOutput", "TPonly", "mention",
 				"concept", "mention/concept" }) {
@@ -515,7 +515,7 @@ public class DumpResults {
 			Vector<C2WDataset> dssC2W,
 			Vector<Sa2WSystem> sa2wAnnotators,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords,
-			WikipediaApiInterface api) throws Exception {
+			WikipediaInterface api) throws Exception {
 		System.out.println("Similarity measures - latex output - tp C2W");
 		for (C2WDataset ds : dssC2W) {
 			System.out.println("Dataset: " + ds.getName());
@@ -809,7 +809,7 @@ public class DumpResults {
 			Vector<A2WDataset> dssA2W,
 			Vector<Sa2WSystem> sa2wAnnotators,
 			HashMap<String, HashMap<String, HashMap<String, HashMap<Float, MetricsResultSet>>>> threshRecords,
-			WikipediaApiInterface api) throws Exception {
+			WikipediaInterface api) throws Exception {
 		Metrics<Annotation> metrics = new Metrics<Annotation>();
 		WeakAnnotationMatch m = new WeakAnnotationMatch(api);
 
@@ -903,7 +903,7 @@ public class DumpResults {
 	 *             if something went wrong while retrieving the results.
 	 */
 	public static void printMostRedirectDocument(Vector<A2WDataset> dss,
-			Vector<Sa2WSystem> sa2wAnnotators, WikipediaApiInterface api)
+			Vector<Sa2WSystem> sa2wAnnotators, WikipediaInterface api)
 			throws Exception {
 		System.out.println("Returned Redirect");
 		for (A2WDataset ds : dss) {
@@ -962,7 +962,7 @@ public class DumpResults {
 	 */
 	public static <E extends Tag> void printCorrectnessPerformance(
 			TopicSystem ann, MatchRelation<E> m, List<HashSet<E>> goldStandard,
-			List<HashSet<E>> output, WikipediaApiInterface api)
+			List<HashSet<E>> output, WikipediaInterface api)
 			throws IOException {
 		Metrics<E> metrics = new Metrics<E>();
 		MetricsResultSet rs = metrics.getResult(output, goldStandard, m);

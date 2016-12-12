@@ -22,7 +22,7 @@ public class TestDataset {
 	 * @param api the API to Wikipedia.
 	 * @throws Exception if the Wikipedia API could not be queried.
 	 */
-	private static void checkRedirects(C2WDataset ds, WikipediaApiInterface api) throws Exception {
+	private static void checkRedirects(C2WDataset ds, WikipediaInterface api) throws Exception {
 		for (HashSet<Tag> s : ds.getC2WGoldStandardList())
 			for (Tag a : s)
 				if (api.isRedirect(a.getConcept()))
@@ -46,7 +46,7 @@ public class TestDataset {
 	 * @param api the API to Wikipedia.
 	 * @throws Exception if the Wikipedia API could not be queried.
 	 */
-	public static void dumpInfo(C2WDataset ds, WikipediaApiInterface api) throws Exception{
+	public static void dumpInfo(C2WDataset ds, WikipediaInterface api) throws Exception{
 		
 		System.out.println("Basic check on dataset " + ds.getName());
 		if (!checkBasicData(ds)) return;

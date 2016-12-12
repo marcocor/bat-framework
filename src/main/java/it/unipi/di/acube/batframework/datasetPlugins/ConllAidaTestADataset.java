@@ -15,7 +15,7 @@ public class ConllAidaTestADataset extends ConllAidaDataset{
 	private static final int FIRST_DOC_ID = 947;
 	private static final int LAST_DOC_ID = 1162;
 
-	public ConllAidaTestADataset(String file, WikipediaApiInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
+	public ConllAidaTestADataset(String file, WikipediaInterface api) throws IOException, AnnotationException, XPathExpressionException, ParserConfigurationException, SAXException {
 		super(file, api);
 	}
 
