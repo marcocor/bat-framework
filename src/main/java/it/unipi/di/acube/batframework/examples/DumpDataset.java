@@ -20,7 +20,7 @@ public class DumpDataset {
 		WikipediaInterface api = WikipediaApiInterface.api();
 		
 		//Creating the IITB dataset.
-		A2WDataset ds = DatasetBuilder.getIITB();
+		A2WDataset ds = DatasetBuilder.getIITB(api);
 
 		System.out.println("Printing basic information about dataset " + ds.getName());
 		//Basic check & Dump basic information
