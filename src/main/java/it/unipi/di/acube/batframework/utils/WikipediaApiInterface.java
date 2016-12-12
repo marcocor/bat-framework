@@ -21,8 +21,7 @@ import javax.xml.xpath.*;
 import org.w3c.dom.*;
 import org.xml.sax.*;
 
-
-public class WikipediaApiInterface {
+public class WikipediaApiInterface extends WikipediaInterface {
 	BidiObjectIntHashMap<String> bidiTitle2wid = null;
 	File bidiTitle2widCache = null;
 	Int2IntMap wid2redirect = null;// mapping between source and destination of a redirect. If the page identified by id is not a redirect, then wid2redirect.get(id) == id
@@ -33,7 +32,7 @@ public class WikipediaApiInterface {
 
 	public static WikipediaApiInterface api(){
 		if (wikiApi == null)
-			wikiApi = new WikipediaApiInterface("wid.cache", "redirect.cache");
+			wikiApi = new WikipediaApiInterface(null, null);
 		return wikiApi;
 	}
 	
@@ -79,6 +78,7 @@ public class WikipediaApiInterface {
 		}
 	}
 
+	@Override
 	public void flush() throws FileNotFoundException, IOException{
 		if (queries == 0)
 			return;
@@ -97,13 +97,7 @@ public class WikipediaApiInterface {
 		}
 	}
 
-	/**
-	 * Query the public wikipedia API to ask the binding between an article name and its unique wikipedia ID.
-	 * Note that if the given title redirects to a second page, the id of the second page if returned.
-	 * @param title the wikipedia article title. (Eg. "Barack Obama")
-	 * @return the wikipedia id for the article, or -1 if the article was not found.
-	 * @throws IOException on a connection error towards Wikipedia api.
-	 */
+	@Override
 	public int getIdByTitle(String title) throws IOException{
 		title = normalize(title);
 		if (bidiTitle2wid.hasObject(title))
@@ -126,11 +120,7 @@ public class WikipediaApiInterface {
 		return bidiTitle2wid.getByObject(title);
 	}
 
-	/**Query (if the information is not stored in the cache) the Wikipedia API converting a Wikipedia ID to the title of the page.
-	 * @param wid the Wikipedia ID.
-	 * @return the title of the page whose ID is {@code wid}.
-	 * @throws IOException if something went wrong while querying the Wikipedia API.
-	 */
+	@Override
 	public String getTitlebyId(int wid) throws IOException{
 		if (bidiTitle2wid.hasInt(wid))
 			return bidiTitle2wid.getByInt(wid);
@@ -151,20 +141,12 @@ public class WikipediaApiInterface {
 		return bidiTitle2wid.getByInt(wid);
 	}
 
-	/**
-	 * @param wid a Wikipedia ID
-	 * @return true iff {@code wid} is a redirect.
-	 * @throws IOException if something went wrong while querying the Wikipedia API.
-	 */
+	@Override
 	public boolean isRedirect(int wid) throws IOException {
 		return (wid != dereference(wid));
 	}
 
-	/**Implements the de-reference function: queries the wikipedia API to resolve a redirection.
-	 * @param wid a Wikipedia ID.
-	 * @return {@code wid} if the page is not a redirect, the Wikipedia ID of the page pointed by the redirection otherwise.
-	 * @throws IOException if something went wrong while querying the Wikipedia API.
-	 */
+	@Override
 	public int dereference(int wid) throws IOException {
 		if (wid2redirect.containsKey(wid))
 			return wid2redirect.get(wid);
@@ -341,13 +323,7 @@ public class WikipediaApiInterface {
 			
 	}
 
-	/**Prefetch the information (id, redirect, ...) of a set of Wikipedia Titles for faster caching.
-	 * @param titlesToPrefetch the titles to prefetch.
-	 * @throws IOException is the query processing failed.
-	 * @throws ParserConfigurationException if the reply parsing failed.
-	 * @throws SAXException if the reply parsing failed.
-	 * @throws XPathExpressionException if the reply parsing failed.
-	 */
+	@Override
 	public void prefetchTitles(List<String> titlesToPrefetch) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		final int titlesPerRequest = 50;
 		List<String> titlesToActuallyPrefetch = new Vector<String>();
@@ -369,13 +345,7 @@ public class WikipediaApiInterface {
 		}
 	}
 
-	/**Prefetch the information (title, redirects) of a list of Wikipedia IDs for faster caching.
-	 * @param widsToPrefetch the IDs to prefetch.
-	 * @throws IOException is the query processing failed.
-	 * @throws ParserConfigurationException if the reply parsing failed.
-	 * @throws SAXException if the reply parsing failed.
-	 * @throws XPathExpressionException if the reply parsing failed.
-	 */
+	@Override
 	public void prefetchWids(List<Integer> widsToPrefetch) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		final int widsPerRequest = 50;
 		HashSet<Integer> widsToActuallyPrefetchSet = new HashSet<Integer>();
@@ -417,13 +387,4 @@ public class WikipediaApiInterface {
 	        .append(")")
 	        .toString();
 	  }
-	
-	/** Normalize a title of a Wikipedia page, replacing substrings formed by underscores `_' to one single space ` '.
-	 * @param title the title to normalize.
-	 * @return the normalized title.
-	 */
-	public static String normalize(String title){
-		return title.replaceAll("_+", " ");
-	}
-
 }
