@@ -50,6 +50,7 @@ import it.unipi.di.acube.batframework.utils.ProblemReduction;
 import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class GERDAQDataset implements A2WDataset {
+	private final static Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	private List<String> queries = new Vector<String>();
 	private List<HashSet<Tag>> tags = new Vector<HashSet<Tag>>();
 	private List<HashSet<Annotation>> annotations = new Vector<HashSet<Annotation>>();
@@ -72,10 +73,14 @@ public class GERDAQDataset implements A2WDataset {
 		}
 		doc.getDocumentElement().normalize();
 
-		List<HashMap<Mention, Vector<String>>> queryMenToTitles = new Vector<HashMap<Mention, Vector<String>>>();
+		List<HashMap<Mention, Vector<String>>> queryMenToTitles = new Vector<>();
+		List<HashMap<Mention, Vector<Integer>>> queryMenToWids = new Vector<>();
+		List<String> titlesToPrefetch = new Vector<>();
+		List<Integer> widsToPrefetch = new Vector<>();
 		NodeList nList = doc.getElementsByTagName("instance");
 		for (int i = 0; i < nList.getLength(); i++) {
 			HashMap<Mention, Vector<String>> mentionToTitles = new HashMap<>();
+			HashMap<Mention, Vector<Integer>> mentionToWids = new HashMap<>();
 			String query = "";
 			Node instanceNode = nList.item(i);
 			Element eElement = (Element) instanceNode;
@@ -91,12 +96,23 @@ public class GERDAQDataset implements A2WDataset {
 					int len = query.length() - pos;
 					Mention men = new Mention(pos, len);
 					mentionToTitles.put(men, new Vector<String>());
+					mentionToWids.put(men, new Vector<Integer>());
 					NamedNodeMap attrs = instElemNode.getAttributes();
 					int h = 0;
-					Node n = null;
+					Node n;
 					while ((n = attrs.getNamedItem(String.format(
 							"rank_%d_title", h))) != null) {
-						mentionToTitles.get(men).add(n.getTextContent());
+						String title = n.getTextContent();
+						titlesToPrefetch.add(title);
+						mentionToTitles.get(men).add(title);
+						h++;
+					}
+					h = 0;
+					while ((n = attrs.getNamedItem(String.format(
+							"rank_%d_id", h))) != null) {
+						int wid = Integer.parseInt(n.getTextContent());
+						widsToPrefetch.add(wid);
+						mentionToWids.get(men).add(wid);
 						h++;
 					}
 				} else if (instElemNode.getNodeType() == Node.TEXT_NODE)
@@ -105,14 +121,12 @@ public class GERDAQDataset implements A2WDataset {
 			}
 			queries.add(query);
 			queryMenToTitles.add(mentionToTitles);
+			queryMenToWids.add(mentionToWids);
 		}
 
-		List<String> titlesToPrefetch = new Vector<String>();
-		for (HashMap<Mention, Vector<String>> setS : queryMenToTitles)
-			for (Vector<String> titles : setS.values())
-				titlesToPrefetch.addAll(titles);
 		try {
 			api.prefetchTitles(titlesToPrefetch);
+			api.prefetchWids(widsToPrefetch);
 		} catch (XPathExpressionException | IOException
 				| ParserConfigurationException | SAXException e) {
 			throw new RuntimeException(e);
@@ -121,18 +135,33 @@ public class GERDAQDataset implements A2WDataset {
 			for (int i = 0; i < queryMenToTitles.size(); i++) {
 				HashSet<Tag> qTags = new HashSet<Tag>();
 				HashSet<Annotation> qAnns = new HashSet<Annotation>();
-				HashMap<Mention, Vector<String>> menToTitles = queryMenToTitles
-						.get(i);
+				HashMap<Mention, Vector<String>> menToTitles = queryMenToTitles.get(i);
+				HashMap<Mention, Vector<Integer>> menToWids = queryMenToWids.get(i);
 
 				for (Mention m : menToTitles.keySet()) {
+					int wid = menToWids.get(m).get(0);
 					String title = menToTitles.get(m).get(0);
-					int id = api.getIdByTitle(title);
-					if (id == -1)
-						System.err.println("Error in dataset " + this.getName()
-								+ ": Could not find wikipedia title: " + title);
+					String resolvedTitle = api.getTitlebyId(wid);
+					int resolvedId = api.getIdByTitle(title);
+					if (resolvedId != -1)
+						resolvedId = api.dereference(resolvedId);
+
+
+					if (resolvedTitle != null) {
+						if (api.isRedirect(wid)) {
+							LOG.warn("In dataset {}: Wikipedia ID {} is a redirect to {}.", this.getName(), wid, api.dereference(wid));
+							wid = api.dereference(wid);
+						}
+						qAnns.add(new Annotation(m.getPosition(), m.getLength(), wid));
+						if (!resolvedTitle.equals(title))
+							LOG.warn("In dataset {}: The title associated with Wikipedia ID {} is not {} anymore, now it is {}.", this.getName(), wid, title, resolvedTitle);
+					}
+					else if (resolvedTitle == null && resolvedId != -1){
+						LOG.warn("In dataset {}: Wikipedia ID {} does not exist anymore. Falling back to resolving title {}, that lead to Wikipedia ID {}", this.getName(), wid, title, resolvedId);
+						qAnns.add(new Annotation(m.getPosition(), m.getLength(), resolvedId));
+					}
 					else {
-						qAnns.add(new Annotation(m.getPosition(),
-								m.getLength(), id));
+						LOG.error("In dataset {}: Wikipedia ID {} does not exist anymore and nor does title {}. Discarding annotation.",  this.getName(), wid, title);
 					}
 				}
 
