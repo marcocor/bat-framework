@@ -4,17 +4,20 @@ import java.util.HashSet;
 
 import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.C2WDataset;
+import it.unipi.di.acube.batframework.utils.WikipediaApiInterface;
+import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public abstract class DatasetTestBase {
-	public abstract C2WDataset build() throws Exception;
+	public abstract C2WDataset build(WikipediaInterface i) throws Exception;
 	
 	@Test
 	public void test() throws Exception {
-		C2WDataset ds = build();
+		WikipediaInterface i = WikipediaApiInterface.api();
+		C2WDataset ds = build(i);
 		assertNotNull(ds.getName());
 		assertNotNull(ds.getC2WGoldStandardList());
 		assertNotNull(ds.getTextInstanceList());
