@@ -58,4 +58,13 @@ public class DatasetBuilder {
 	public static A2WDataset getIITB(WikipediaInterface i) throws AnnotationException, XPathExpressionException, UnsupportedEncodingException, IOException, ParserConfigurationException, SAXException, URISyntaxException {
 		return new IITBDataset(Utils.getResourceListing(classLoader, "datasets/iitb/crawledDocs", ".*"), classLoader.getResourceAsStream("datasets/iitb/CSAW_Annotations.xml"), i);
 	}
+	public static A2WDataset getNEEL2016Training(WikipediaInterface i) throws IOException {
+		return new NEEL2016Dataset(classLoader.getResourceAsStream("datasets/neel2016/NEEL2016-training_neel.gs"), classLoader.getResourceAsStream("datasets/neel2016/NEEL2016-training.tsv"), i, "training");
+	}
+	public static A2WDataset getNEEL2016Dev(WikipediaInterface i) throws IOException {
+		return new NEEL2016Dataset(classLoader.getResourceAsStream("datasets/neel2016/NEEL2016-dev_neel.gs"), classLoader.getResourceAsStream("datasets/neel2016/NEEL2016-dev.tsv"), i, "dev");
+	}
+	public static A2WDataset getNEEL2016Test(WikipediaInterface i) throws IOException {
+		return new NEEL2016Dataset(classLoader.getResourceAsStream("datasets/neel2016/NEEL2016-test_neel.gs"), classLoader.getResourceAsStream("datasets/neel2016/NEEL2016-test.tsv"), i, "test");
+	}
 }
