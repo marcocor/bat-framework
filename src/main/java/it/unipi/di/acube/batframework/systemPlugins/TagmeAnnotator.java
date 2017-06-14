@@ -28,7 +28,7 @@ import it.unipi.di.acube.batframework.utils.*;
 
 public class TagmeAnnotator implements Sa2WSystem {
 	private long lastTime = -1;
-	private String key;
+	private String gcubeToken;
 	private String url;
 	private float epsilon = -1;
 	private float minComm = -1;
@@ -43,12 +43,12 @@ public class TagmeAnnotator implements Sa2WSystem {
 		this.minComm = minCommonness;
 		this.minLink = minLink;
 	}
-	public TagmeAnnotator(String url, String key, float epsilon,
+	public TagmeAnnotator(String url, String gcubeToken, float epsilon,
 			float minCommonness, float minLink)
 			throws ParserConfigurationException, FileNotFoundException,
 			SAXException, IOException, XPathExpressionException {
 		this.url = url;
-		this.key = key;
+		this.gcubeToken = gcubeToken;
 		this.epsilon = epsilon;
 		this.minComm = minCommonness;
 		this.minLink = minLink;
@@ -56,7 +56,7 @@ public class TagmeAnnotator implements Sa2WSystem {
 	
 	public TagmeAnnotator(String url, String key) {
 		this.url = url;
-		this.key = key;
+		this.gcubeToken = key;
 	}
 
 	public TagmeAnnotator(String configFile)
@@ -66,11 +66,11 @@ public class TagmeAnnotator implements Sa2WSystem {
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document doc = builder.parse(new FileInputStream(configFile));
 		url = getConfigValue("access", "url", doc);
-		key = getConfigValue("access", "key", doc);
-		if (url.equals("") || key.equals(""))
+		gcubeToken = getConfigValue("access", "key", doc);
+		if (url.equals("") || gcubeToken.equals(""))
 			throw new AnnotationException("Configuration file " + configFile
 					+ " has missing value 'url' or 'key'.");
-		if (key.equals("KEY"))
+		if (gcubeToken.equals("KEY"))
 			throw new AnnotationException(
 					"Configuration file "
 							+ configFile
@@ -135,7 +135,7 @@ public class TagmeAnnotator implements Sa2WSystem {
 		try {
 			res = new HashSet<ScoredAnnotation>();
 
-			params = "key=" + this.key;
+			params = "gcube-token=" + this.gcubeToken;
 			params += "&lang=en";
 			if (epsilon >= 0)
 				params += "&epsilon=" + epsilon;
