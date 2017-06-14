@@ -41,6 +41,33 @@ public class TestDataset {
 		return true;
 	}
 
+	/**Check that dataset annotations are legit.
+	 * @param ds the dataset to test.
+	 * @return true iff the test has passed.
+	 */
+	private static void checkAnnotations(A2WDataset ds) {
+		for (int docid = 0; docid < ds.getSize(); docid++) {
+			String text = ds.getTextInstanceList().get(docid);
+			for (Annotation a : ds.getA2WGoldStandardList().get(docid)) {
+				if (a.getPosition() < 0 || a.getEnd() > text.codePointCount(0, text.length()))
+					System.err.printf("ERROR: Annotation (pos=%d len=%d -> %d) is out of text boundaries. Document: %s%n",
+					        a.getPosition(), a.getLength(), a.getConcept(), text);
+				if (a.getPosition() >= 1
+				        && Character.isLetterOrDigit(text.codePointAt(text.offsetByCodePoints(0, a.getPosition() - 1))))
+					System.out.printf("WARNING: Annotation (pos=%d last=%d [%s] -> %d) breaks words on the left. Text: %s%n",
+					        a.getPosition(), a.getEnd(),
+					        a.getMentionString(text),
+					        a.getConcept(), text);
+				if (a.getEnd() <= text.codePointCount(0, text.length() - 1)
+				        && Character.isLetterOrDigit(text.codePointAt(text.offsetByCodePoints(0, a.getEnd()))))
+					System.out.printf("WARNING: Annotation (pos=%d last=%d [%s] -> %d) breaks words on the right. Text: %s%n",
+					        a.getPosition(), a.getEnd(),
+					        a.getMentionString(text),
+					        a.getConcept(), text);
+			}
+		}
+	}
+
 	/**Dump some information about a dataset.
 	 * @param ds the dataset.
 	 * @param api the API to Wikipedia.
@@ -52,6 +79,10 @@ public class TestDataset {
 		if (!checkBasicData(ds)) return;
 		System.out.println("Checking that no pages are redirects on dataset " + ds.getName());
 		checkRedirects(ds, api);
+		if (ds instanceof A2WDataset){
+			System.out.println("Checking that all annotations are legit on dataset " + ds.getName());
+			checkAnnotations((A2WDataset) ds);
+		}
 		
 		long len = 0;
 		long longest = 0;
