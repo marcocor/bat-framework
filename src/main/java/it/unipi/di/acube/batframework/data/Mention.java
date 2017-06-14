@@ -13,12 +13,28 @@ public class Mention implements Serializable, Cloneable, Comparable<Mention> {
 		this.length = length;
 	}
 
+	/**
+	 * Returns the index of the first Unicode code point of this mention. The index is in terms of Unicode code points. In other words, this function returns the number of Unicode code points before the beginning of this mention. Note that this corresponds to the position of the corresponding character only if the text does not contain Unicode pair surrogates.
+	 * @return the position of the first unicode code point of this mention. 
+	 */
 	public int getPosition() {
 		return position;
 	}
 
+	/**
+	 * Returns the length of this mention in terms of Unicode code points. Note that this corresponds to the length of the corresponding string only if it does not contain Unicode pair surrogates.
+	 * @return the length of this mention. 
+	 */
 	public int getLength() {
 		return length;
+	}
+
+	/**
+	 * Returns the index of the first Unicode code point after this mention. The index is in terms of Unicode code points. In other words, this function returns the number of Unicode code points before the first point after this mention. Note that this corresponds to the position of the corresponding character only if the text does not contain Unicode pair surrogates.
+	 * @return the position of the first unicode code point after this mention. 
+	 */
+	public int getEnd() {
+		return position + length;
 	}
 
 	@Override
@@ -58,5 +74,11 @@ public class Mention implements Serializable, Cloneable, Comparable<Mention> {
 	@Override
 	public String toString() {
 		return String.format("(%d, %d)", this.position, this.length);
+	}
+
+	public String getMentionString(String text) {
+		int startCharIndex = text.offsetByCodePoints(0, position);
+		int endCharIndex = text.offsetByCodePoints(startCharIndex, length);
+		return text.substring(startCharIndex, endCharIndex);
 	}
 }

@@ -36,6 +36,10 @@ public class Annotation extends Tag implements Serializable, Cloneable{
 		return m.getLength();
 	}
 
+	public int getEnd() {
+		return m.getEnd();
+	}
+
 	@Override public boolean equals(Object a){
 		Annotation ann = (Annotation) a;
 		return (m.equals(ann.m) && this.getConcept() == ann.getConcept());
@@ -98,5 +102,9 @@ public class Annotation extends Tag implements Serializable, Cloneable{
 			res.add(bestCandidate);
 		}
 		return res;
+	}
+	
+	public String getMentionString(String text){
+		return m.getMentionString(text);
 	}
 }
