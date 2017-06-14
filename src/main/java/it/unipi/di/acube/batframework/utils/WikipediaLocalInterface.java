@@ -111,7 +111,7 @@ public class WikipediaLocalInterface extends WikipediaInterface {
 			while (iter.hasNext()) {
 				Triple t = iter.next();
 
-				String title = getTitle(t.getSubject());
+				String title = dbPediaUrlToTitle(t.getSubject().getURI());
 				if (!t.getPredicate().getURI().equals(DBPEDIA_WID_RELATION))
 					throw new IllegalArgumentException();
 				int wid = (Integer) t.getObject().getLiteralValue();
@@ -131,10 +131,10 @@ public class WikipediaLocalInterface extends WikipediaInterface {
 			while (iter.hasNext()) {
 				Triple t = iter.next();
 
-				String titleFrom = getTitle(t.getSubject());
+				String titleFrom = dbPediaUrlToTitle(t.getSubject().getURI());
 				if (!t.getPredicate().getURI().equals(DBPEDIA_REDIRECT_RELATION))
 					throw new IllegalArgumentException();
-				String titleTo = getTitle(t.getObject());
+				String titleTo = dbPediaUrlToTitle(t.getObject().getURI());
 
 				if (!wli.titleToWid.containsKey(titleFrom)) {
 					LOG.warn("Could not find wid for from-title {}", titleFrom);
@@ -162,8 +162,8 @@ public class WikipediaLocalInterface extends WikipediaInterface {
 		wli.db.close();
 	}
 
-	private static String getTitle(Node object) {
-		Matcher m = DBPEDIA_RESOURCE_URI.matcher((String) object.getURI());
+	public static String dbPediaUrlToTitle(String uri) {
+		Matcher m = DBPEDIA_RESOURCE_URI.matcher(uri);
 		if (!m.matches())
 			throw new IllegalArgumentException();
 		try {
