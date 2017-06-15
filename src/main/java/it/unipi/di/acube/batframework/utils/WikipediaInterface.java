@@ -20,7 +20,7 @@ public abstract class WikipediaInterface {
 
 	/**Get the title of a Wikipedia article given its Wikipedia API.
 	 * @param wid the Wikipedia ID.
-	 * @return the title of the page whose ID is {@code wid}, or {@value null} if such a title does not exist.
+	 * @return the title of the page whose ID is {@code wid}, or {@code null} if such a title does not exist.
 	 * @throws IOException if an error happened while retrieving data.
 	 */
 	public abstract String getTitlebyId(int wid) throws IOException;
@@ -34,7 +34,7 @@ public abstract class WikipediaInterface {
 
 	/**De-reference a Wikipedia ID resolving redirections, if any.
 	 * @param wid a Wikipedia ID.
-	 * @return {@value -1} if {@code wid} does not exist; {@code wid} if the page is not a redirect; the Wikipedia ID of the page pointed by the redirection otherwise.
+	 * @return {@code -1} if {@code wid} does not exist; {@code wid} if the page is not a redirect; the Wikipedia ID of the page pointed by the redirection otherwise.
 	 * @throws IOException if an error happened while retrieving data.
 	 */
 	public abstract int dereference(int wid) throws IOException;

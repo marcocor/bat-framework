@@ -460,12 +460,11 @@ public class Metrics<T> {
 
 	/**
 	 * @param expectedResult
-	 *            the expected results for each document in a dataset, that is,
-	 *            for any document, the set of annotation in the gold standard.
+	 *            the expected results for each document in a dataset, that is, for any document, the set of annotation in the
+	 *            gold standard.
 	 * @param computedResult
-	 *            the annotations found by a tagger for each document. The
-	 *            ordering of the documents in the list must be the same as that
-	 *            in expectedResults.
+	 *            the annotations found by a tagger for each document. The ordering of the documents in the list must be the same
+	 *            as that in expectedResults.
 	 * @return the false positives.
 	 */
 	private int fpCountPreprocessed(List<HashSet<T>> expectedResult,
@@ -577,6 +576,8 @@ public class Metrics<T> {
 	 *            the gold standard for one instance.
 	 * @param computedResult
 	 *            the elements found by the system.
+	 * @param m
+	 *            the match relation according to which elements are accounted are correct or wrong.
 	 * @return the precision of the system for this instance.
 	 */
 	public float getSinglePrecision(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
@@ -584,12 +585,14 @@ public class Metrics<T> {
 		int fp = getSingleFp(expectedResult, computedResult, m).size();
 		return precision(tp, fp);
 	}
-	
+
 	/**
 	 * @param expectedResult
 	 *            the gold standard for one instance.
 	 * @param computedResult
 	 *            the elements found by the system.
+	 * @param m
+	 *            the match relation according to which elements are accounted are correct or wrong.
 	 * @return the recall of the system for this instance.
 	 */
 	public float getSingleRecall(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
@@ -604,6 +607,8 @@ public class Metrics<T> {
 	 *            the gold standard for one instance.
 	 * @param computedResult
 	 *            the elements found by the system.
+	 * @param m
+	 *            the match relation according to which elements are accounted are correct or wrong.
 	 * @return the F1 of the system for this instance.
 	 */
 	public float getSingleF1(HashSet<T> expectedResult, HashSet<T> computedResult, MatchRelation<T> m) {
