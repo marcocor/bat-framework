@@ -16,12 +16,12 @@ As a contribute to the scientific community working on the field of entity annot
 * Completely open source, distributed under the GPLv3 license.
 
 ### How to include
-The BAT-framework is mavenized. You can include it with:
+The BAT-framework is mavenized and published on the Maven Central repository. You can include it with:
 ```
 <dependency>
     <groupId>it.unipi.di.acube</groupId>
     <artifactId>bat-framework</artifactId>
-    <version>1.3.3</version>
+    <version>1.3.4</version>
 </dependency>
 ```
 

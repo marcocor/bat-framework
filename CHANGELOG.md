@@ -1,5 +1,12 @@
 # Changes in BAT-Framework
 
+## 1.3.4 (2017-06-15) New datasets and local Wikpedia interface.
+- Added local Wikipedia interface (faster and does not depend on the online Wikipedia version).
+- Fixed access to TagMe (now points to the SoBigData deployment by default). 
+- Added NEEL 2016 #Microposts dataset.
+- Updated GERDAQ references.
+- Added utility classes to merge and divide datasets.
+
 ## 1.3.3 (2016-04-28) Fixes
 - Fixed default DBPedia Spotlight URL (fixes Issue [\#6](https://github.com/marcocor/bat-framework/issues/6)).
 - Added computation of variance and standard deviation on dataset-wise metrics.
