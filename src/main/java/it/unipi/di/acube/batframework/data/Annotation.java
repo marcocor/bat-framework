@@ -107,4 +107,9 @@ public class Annotation extends Tag implements Serializable, Cloneable{
 	public String getMentionString(String text){
 		return m.getMentionString(text);
 	}
+
+	@Override
+	public String toString() {
+		return String.format("%s->%d", m.toString(), this.getConcept());
+	}
 }
