@@ -18,7 +18,7 @@ public abstract class WikipediaInterface {
 	 */
 	public abstract int getIdByTitle(String title) throws IOException;
 
-	/**Get the title of a Wikipedia article given its Wikipedia API.
+	/**Get the title of a Wikipedia article given its Wikipedia ID.
 	 * @param wid the Wikipedia ID.
 	 * @return the title of the page whose ID is {@code wid}, or {@code null} if such a title does not exist.
 	 * @throws IOException if an error happened while retrieving data.
