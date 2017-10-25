@@ -8,7 +8,9 @@
 package it.unipi.di.acube.batframework.metrics;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Vector;
 
 public class Metrics<T> {
 
@@ -20,25 +22,14 @@ public class Metrics<T> {
 		List<HashSet<T>> output = m.preProcessOutput(outputOrig);
 		List<HashSet<T>> goldStandard = m.preProcessGoldStandard(goldStandardOrig);
 
-		int tp = tpCountPreprocessed(goldStandard, output, m);
-		int fp = fpCountPreprocessed(goldStandard, output, m);
-		int fn = fnCountPreprocessed(goldStandard, output, m);
-		float microPrecision = precision(tp, fp);
-		float microRecall = recall(tp, fp, fn);
-		float microF1 = F1(microRecall, microPrecision);
 		int[] tps = tpArray(goldStandard, output, m);
 		int[] fps = fpArray(goldStandard, output, m);
 		int[] fns = fnArray(goldStandard, output, m);
-		float macroPrecision = macroPrecision(tps, fps);
-		float macroRecall = macroRecall(tps, fps, fns);
-		float macroF1 = macroF1(tps, fps, fns);
 		float precisions[] = precisions(tps, fps);
 		float recalls[] = recalls(tps, fps, fns);
 		float f1s[] = f1s(tps, fps, fns);
 
-		return new MetricsResultSet(microF1, microRecall, microPrecision,
-				macroF1, macroRecall, macroPrecision, tp, fn, fp, precisions,
-				recalls, f1s, tps, fps, fns);
+		return new MetricsResultSet(precisions, recalls, f1s, tps, fps, fns);
 	}
 
 	private int similarityIntersection(HashSet<T> set1, HashSet<T> set2,
@@ -123,7 +114,7 @@ public class Metrics<T> {
 			intersections += similarityIntersection(set1, set2, m);
 			unions += similarityUnion(set1, set2);
 		}
-		return intersections / unions;
+		return intersections / ((float) unions);
 	}
 
 	public int dissimilarityListCount(List<HashSet<T>> list1, List<HashSet<T>> list2,
@@ -358,7 +349,7 @@ public class Metrics<T> {
 	 *            tps).
 	 * @return the macro-precision.
 	 */
-	public float macroPrecision(int[] tps, int[] fps) {
+	public static float macroPrecision(int[] tps, int[] fps) {
 		if (tps.length != fps.length)
 			throw new IllegalArgumentException("The size of tps and fps must be equal (number of documents).");
 		float macroPrec = 0;
@@ -369,7 +360,7 @@ public class Metrics<T> {
 		return macroPrec;
 	}
 
-	public float[] precisions(int[] tps, int[] fps) {
+	public static float[] precisions(int[] tps, int[] fps) {
 		if (tps.length != fps.length)
 			throw new IllegalArgumentException("The size of tps and fps must be equal (number of documents).");
 		float[] precisions = new float[tps.length];
@@ -389,7 +380,7 @@ public class Metrics<T> {
 	 *            tps).
 	 * @return the macro-recall.
 	 */
-	public float macroRecall(int[] tps, int[] fps, int[] fns) {
+	public static float macroRecall(int[] tps, int[] fps, int[] fns) {
 		if (tps.length != fps.length || tps.length != fns.length)
 			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float macroRec = 0;
@@ -400,7 +391,7 @@ public class Metrics<T> {
 		return macroRec;
 	}
 
-	public float[] recalls(int[] tps, int[] fps, int[] fns) {
+	public static float[] recalls(int[] tps, int[] fps, int[] fns) {
 		if (tps.length != fps.length || tps.length != fns.length)
 			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float[] recalls = new float[tps.length];
@@ -409,7 +400,7 @@ public class Metrics<T> {
 		return recalls;
 	}
 
-	public float macroF1(int[] tps, int[] fps, int[] fns) {
+	public static float macroF1(int[] tps, int[] fps, int[] fns) {
 		if (tps.length != fps.length || tps.length != fns.length)
 			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float macroF1 = 0;
@@ -420,7 +411,7 @@ public class Metrics<T> {
 		return macroF1;
 	}
 
-	public float[] f1s(int[] tps, int[] fps, int[] fns) {
+	public static float[] f1s(int[] tps, int[] fps, int[] fns) {
 		if (tps.length != fps.length || tps.length != fns.length)
 			throw new IllegalArgumentException("The size of tps, fps and fns must be equal (number of documents).");
 		float[] f1s = new float[tps.length];

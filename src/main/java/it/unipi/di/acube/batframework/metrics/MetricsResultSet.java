@@ -8,8 +8,11 @@
 package it.unipi.di.acube.batframework.metrics;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Locale;
+import java.util.Random;
 
+import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 import org.apache.commons.math3.stat.descriptive.moment.Variance;
 
@@ -17,34 +20,33 @@ import com.google.common.primitives.Doubles;
 import com.google.common.primitives.Floats;
 
 public class MetricsResultSet implements Serializable{
+	public static final int BOOTSTRAP_K = 40; 
 	private static final long serialVersionUID = 1L;
 	private static final StandardDeviation std = new StandardDeviation();
 	private static final Variance var = new Variance();
+	private static final Mean mean = new Mean();
 	private float microF1, microRecall, microPrecision, macroF1, macroRecall,
 			macroPrecision;
 	private int tp, fn, fp;
 	private float[] precisions, recalls, f1s;
 	private int[] tps, fns, fps;
 
-	public MetricsResultSet(float microF1, float microRecall,
-			float microPrecision, float macroF1, float macroRecall,
-			float macroPrecision, int tp, int fn, int fp, float[] precisions,
-			float[] recalls, float[] f1s, int[] tps, int[] fps, int[] fns) {
-		this.microF1 = microF1;
-		this.microRecall = microRecall;
-		this.microPrecision = microPrecision;
-		this.macroF1 = macroF1;
-		this.macroRecall = macroRecall;
-		this.macroPrecision = macroPrecision;
-		this.tp = tp;
-		this.fn = fn;
-		this.fp = fp;
-		this.precisions = precisions;
-		this.recalls = recalls;
-		this.f1s = f1s;
+	public MetricsResultSet(float[] precisions, float[] recalls, float[] f1s, int[] tps, int[] fps, int[] fns) {
 		this.tps = tps;
 		this.fns = fns;
 		this.fps = fps;
+		this.precisions = precisions;
+		this.recalls = recalls;
+		this.f1s = f1s;
+		this.tp = Arrays.stream(tps).sum();
+		this.fn = Arrays.stream(fns).sum();
+		this.fp = Arrays.stream(fps).sum();
+		this.microPrecision = Metrics.precision(tp, fp);
+		this.microRecall = Metrics.recall(tp, fp, fn);
+		this.microF1 = Metrics.F1(microRecall, microPrecision);
+		this.macroPrecision = Metrics.macroPrecision(tps, fps);
+		this.macroRecall = Metrics.macroRecall(tps, fps, fns);
+		this.macroF1 = Metrics.macroF1(tps, fps, fns);
 	}
 
 	public int testedInstances() {
@@ -122,7 +124,99 @@ public class MetricsResultSet implements Serializable{
 	public double getRecallVar() {
 		return var.evaluate(Doubles.toArray(Floats.asList(recalls)));
 	}
-	
+
+	public static int[] getRandomSampleIndices(int n, Random r) {
+		int[] indexes = new int[n];
+		for (int i = 0; i < n; i++)
+			indexes[i] = r.nextInt(n);
+		return indexes;
+	}
+
+	private MetricsResultSet[] getBootstrapRuns() {
+		Random r = new Random(42);
+		MetricsResultSet[] results = new MetricsResultSet[BOOTSTRAP_K];
+		for (int i = 0; i < BOOTSTRAP_K; i++) {
+			int[] randIndexesI = getRandomSampleIndices(tps.length, r);
+			float[] precisionsI = new float[randIndexesI.length];
+			float[] recallsI = new float[randIndexesI.length];
+			float[] f1sI = new float[randIndexesI.length];
+			int[] tpsI = new int[randIndexesI.length];
+			int[] fpsI = new int[randIndexesI.length];
+			int[] fnsI = new int[randIndexesI.length];
+			for (int j = 0; j < randIndexesI.length; j++) {
+				precisionsI[j] = precisions[randIndexesI[j]];
+				recallsI[j] = recalls[randIndexesI[j]];
+				f1sI[j] = f1s[randIndexesI[j]];
+				tpsI[j] = tps[randIndexesI[j]];
+				fpsI[j] = fps[randIndexesI[j]];
+				fnsI[j] = fns[randIndexesI[j]];
+			}
+			results[i] = new MetricsResultSet(precisionsI, recallsI, f1sI, tpsI, fpsI, fnsI);
+		}
+
+		return results;
+	}
+
+	public double getMicroPrecisionBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return mean.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMicroPrecision()).toArray());
+	}
+
+	public double getMicroPrecisionStdBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return std.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMicroPrecision()).toArray());
+	}
+
+	public double getMicroRecallBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return mean.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMicroRecall()).toArray());
+	}
+
+	public double getMicroRecallStdBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return std.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMicroRecall()).toArray());
+	}
+
+	public double getMicroF1Bootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return mean.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMicroF1()).toArray());
+	}
+
+	public double getMicroF1StdBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return std.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMicroF1()).toArray());
+	}
+
+	public double getMacroPrecisionBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return mean.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMacroPrecision()).toArray());
+	}
+
+	public double getMacroPrecisionStdBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return std.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMacroPrecision()).toArray());
+	}
+
+	public double getMacroRecallBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return mean.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMacroRecall()).toArray());
+	}
+
+	public double getMacroRecallStdBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return std.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMacroRecall()).toArray());
+	}
+
+	public double getMacroF1Bootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return mean.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMacroF1()).toArray());
+	}
+
+	public double getMacroF1StdBootstrap() {
+		MetricsResultSet[] bootstrapRuns = getBootstrapRuns();
+		return std.evaluate(Arrays.stream(bootstrapRuns).mapToDouble(run -> run.getMacroF1()).toArray());
+	}
+
 	public String toString() {
 		return String.format(Locale.ENGLISH, "mac-P/R/F1: %.3f/%.3f/%.3f mic-P/R/F1: %.3f/%.3f/%.3f TP/FP/FN: %d/%d/%d",
 		        this.getMacroPrecision(), this.getMacroRecall(), this.getMacroF1(), this.getMicroPrecision(),
