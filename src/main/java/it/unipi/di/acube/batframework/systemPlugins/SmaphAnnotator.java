@@ -30,7 +30,6 @@ import it.unipi.di.acube.batframework.utils.ProblemReduction;
 
 public class SmaphAnnotator implements Sa2WSystem {
 	private final static Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-	private static URIBuilder uriBuilder = new URIBuilder();
 	
 	SmaphVersion v = SmaphVersion.DEFAULT;
 	private String apiUri = "https://smaph.d4science.org/smaph/annotate";
@@ -107,15 +106,13 @@ public class SmaphAnnotator implements Sa2WSystem {
 		lastTime = Calendar.getInstance().getTimeInMillis();
 
 		URI request = null;
-		synchronized (uriBuilder) {
-			try {
-				request = new URIBuilder(apiUri).addParameter("q", query).addParameter("annotator", v.toParam())
-				        .addParameter("google-cse-id", googleCseId).addParameter("google-api-key", googleApiKey)
-				        .addParameter("gcube-token", this.gcubeToken).build();
+		try {
+			request = new URIBuilder(apiUri).addParameter("q", query).addParameter("annotator", v.toParam())
+			        .addParameter("google-cse-id", googleCseId).addParameter("google-api-key", googleApiKey)
+			        .addParameter("gcube-token", this.gcubeToken).build();
 
-			} catch (URISyntaxException e) {
-				throw new AnnotationException(e.getMessage());
-			}
+		} catch (URISyntaxException e) {
+			throw new AnnotationException(e.getMessage());
 		}
 		HttpGet get = new HttpGet(request);
 		get.setHeader("Accept", "application/json");
