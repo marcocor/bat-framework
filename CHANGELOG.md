@@ -1,5 +1,10 @@
 # Changes in BAT-Framework
 
+## 1.3.5 (2017-10-26) WAT2 support and bootstrap measures
+- Added bootstrap statistics for micro/macro precision/recall/F1
+- Added interface to WAT2 annotator
+- Added Wikipedia interface through WAT2
+
 ## 1.3.4 (2017-06-15) New datasets and local Wikpedia interface.
 - Added local Wikipedia interface (faster and does not depend on the online Wikipedia version).
 - Fixed access to TagMe (now points to the SoBigData deployment by default). 
