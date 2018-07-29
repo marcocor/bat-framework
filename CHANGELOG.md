@@ -1,5 +1,8 @@
 # Changes in BAT-Framework
 
+## 1.3.6 (2018-07-29) Fix ERD-dev dataset
+- Made ERD-dev dataset independent from the Freebase API, which is not maintained anymore. 
+
 ## 1.3.5 (2017-10-26) WAT2 support and bootstrap measures
 - Added bootstrap statistics for micro/macro precision/recall/F1
 - Added interface to WAT2 annotator
