@@ -13,7 +13,6 @@ import org.xml.sax.SAXException;
 
 import it.unipi.di.acube.batframework.problems.A2WDataset;
 import it.unipi.di.acube.batframework.utils.AnnotationException;
-import it.unipi.di.acube.batframework.utils.FreebaseApi;
 import it.unipi.di.acube.batframework.utils.Utils;
 import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
@@ -32,8 +31,8 @@ public class DatasetBuilder {
 	public static GERDAQDataset getGerdaqTest(WikipediaInterface i){
 		return new GERDAQDataset(classLoader.getResourceAsStream("datasets/gerdaq_1.0/gerdaq_test.xml"), i, "test");
 	}
-	public static ERD2014Dataset getERD(FreebaseApi freebaseApi, WikipediaInterface i) throws IOException, JSONException{
-		return new ERD2014Dataset(classLoader.getResourceAsStream("datasets/erd2014/Trec_beta.query.txt"), classLoader.getResourceAsStream("datasets/erd2014/Trec_beta.annotation.txt"), freebaseApi, i);
+	public static ERD2014Dataset getERD(WikipediaInterface i) throws IOException, JSONException{
+		return new ERD2014Dataset(classLoader.getResourceAsStream("datasets/erd2014/Trec_beta.query.txt"), classLoader.getResourceAsStream("datasets/erd2014/Trec_beta.annotation.txt"), i);
 	}
 	public static ACE2004Dataset getACE2004(WikipediaInterface i) throws AnnotationException, XPathExpressionException, IOException, ParserConfigurationException, SAXException, URISyntaxException{
 		return new ACE2004Dataset(Utils.getResourceListing(classLoader, "datasets/ACE2004_Coref_Turking/Dev/RawTextsNoTranscripts", "^[^\\.]+.*"), Utils.getResourceListing(classLoader, "datasets/ACE2004_Coref_Turking/Dev/ProblemsNoTranscripts", "^[^\\.]+.*"), i);

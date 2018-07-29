@@ -22,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -29,26 +30,27 @@ import java.util.Map;
 import java.util.Vector;
 
 import org.codehaus.jettison.json.JSONException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import it.unipi.di.acube.batframework.data.Annotation;
 import it.unipi.di.acube.batframework.data.Mention;
 import it.unipi.di.acube.batframework.data.Tag;
 import it.unipi.di.acube.batframework.problems.A2WDataset;
-import it.unipi.di.acube.batframework.utils.FreebaseApi;
 import it.unipi.di.acube.batframework.utils.ProblemReduction;
 import it.unipi.di.acube.batframework.utils.WikipediaInterface;
 
 public class ERD2014Dataset implements A2WDataset {
+	private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	List<String> queries = new Vector<>();
 	List<HashSet<Annotation>> annotations = new Vector<>();
-		
-	public ERD2014Dataset(String queryFile, String annotationFile, FreebaseApi freebApi, WikipediaInterface wikiApi)
-	        throws IOException, JSONException {
-		this(new FileInputStream(new File(queryFile)), new FileInputStream(new File(annotationFile)), freebApi, wikiApi);
+
+	public ERD2014Dataset(String queryFile, String annotationFile, WikipediaInterface wikiApi) throws IOException, JSONException {
+		this(new FileInputStream(new File(queryFile)), new FileInputStream(new File(annotationFile)), wikiApi);
 	}
 
-	public ERD2014Dataset(InputStream queryStream, InputStream annotationStream, FreebaseApi freebApi,
-	        WikipediaInterface wikiApi) throws IOException, JSONException {
+	public ERD2014Dataset(InputStream queryStream, InputStream annotationStream, WikipediaInterface wikiApi)
+	        throws IOException, JSONException {
 		Map<String, Integer> trecIdToIndex = new HashMap<>();
 
 		BufferedReader queryBr = new BufferedReader(new InputStreamReader(queryStream));
@@ -57,7 +59,6 @@ public class ERD2014Dataset implements A2WDataset {
 			String[] tokens = line.split("\t");
 			if (tokens.length != 2)
 				continue;
-			System.out.println(line);
 			trecIdToIndex.put(tokens[0], queries.size());
 			queries.add(tokens[1]);
 			annotations.add(new HashSet<Annotation>());
@@ -69,14 +70,17 @@ public class ERD2014Dataset implements A2WDataset {
 			String[] tokens = line.split("\t");
 			int index = trecIdToIndex.get(tokens[0]);
 			String query = queries.get(index);
-			System.out.println(query);
-			System.out.println(tokens[3]);
 			int position = query.indexOf(tokens[3]);
 			int length = tokens[3].length();
-			String freeBaseMID = tokens[2];
-			String title = freebApi.midToTitle(freeBaseMID);
-			if (title != null)
-				annotations.get(index).add(new Annotation(position, length, wikiApi.getIdByTitle(title)));
+			String title = tokens[2];
+			int wid = wikiApi.getIdByTitle(title);
+			if (wid == -1) {
+				LOG.warn("Could not resolve Wikipedia title " + title);
+				continue;
+			}
+			Annotation ann = new Annotation(position, length, wid);
+			if (annotations.get(index).stream().noneMatch(a -> a.overlaps(ann)))
+				annotations.get(index).add(ann);
 		}
 		annotationsBr.close();
 	}
